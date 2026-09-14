@@ -1,6 +1,6 @@
                                                                                                                     What This Project Is, in Plain Terms
                                                                                                                     
-# when we study how well a mineral holds onto a contaminant, we usually describe it with a single curve: at this pH, at this saltiness, this much sticks.
+# When we study how well a mineral holds onto a contaminant, we usually describe it with a single curve: at this pH, at this saltiness, this much sticks.
 
 This project asks a different question: instead of just how much sticks, how sensitive is that stickiness to its environment — and does the pattern of that sensitivity look different from mine#ral to mineral, even when the raw amount adsorbed looks similar?
 
