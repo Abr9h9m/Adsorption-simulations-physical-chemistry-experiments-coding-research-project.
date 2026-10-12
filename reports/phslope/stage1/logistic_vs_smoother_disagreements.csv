@@ -1,0 +1,949 @@
+curve_id,reference,mineral,sorbate,shape,primary_model,n_disagree_points,qc_flags
+bbs85_f2c,bbs85,kaolinite,Ra(+2),rising,logistic,29.0,edge_not_bracketed
+bb05_fa4apsi,bb05,montmorillonite,Sn(+4),flat,spline,26.0,poor_fit
+bb09a_f2aapsi,bb09a,illite,Am(+3),multi_step,spline,25.0,
+rgmmd08_f4bb,rgmmd08,hematite,Se(+6),flat,logistic,25.0,too_few_points;bootstrap_unstable
+fw98_f3ad,fw98,boehmite,Eu(+3),bell,spline,25.0,
+bb09_f3bb,bb09,illite,Ni(+2),rising,logistic,24.0,
+lslch17_f2ba,lslch17,magnetite,U(+6),bell,spline,24.0,edge_not_bracketed
+hyz05_f2a,hyz05,gibbsite,U(+6),rising,logistic,23.0,edge_not_bracketed
+ZB04a_f2c,ZB04a,hematite,Am(+3),rising,logistic,23.0,
+bb99_f4ab,bb99,montmorillonite,Ni(+2),rising,logistic,23.0,
+c96_f236bc,c96,hematite,Am(+3),rising,logistic,22.0,
+d01_f7-8c,d01,kaolinite,P(+5),flat,logistic,22.0,
+lslch17_f2bb,lslch17,magnetite,U(+6),bell,spline,22.0,edge_not_bracketed
+bbbkt07_f1c,bbbkt07,kaolinite,Pu(+4),unclassified,spline,22.0,
+rgmmd08_f4ab,rgmmd08,hematite,Se(+4),falling,logistic,21.0,too_few_points;wide_interval;bootstrap_unstable
+hpq71_f2cc,hpq71,goethite,Se(+4),falling,logistic,21.0,
+bbs85_f1a,bbs85,kaolinite,Ra(+2),rising,logistic,21.0,wide_interval
+lslch17_f2bc,lslch17,magnetite,U(+6),bell,spline,21.0,edge_not_bracketed;wide_interval
+bb05a_f102b,bb05a,illite,Ni(+2),rising,logistic,20.0,edge_not_bracketed
+nea94_f1aa,nea94,alumina,Eu(+3),rising,logistic,20.0,edge_not_bracketed
+pbb99a_f11apsi,pbb99a,illite,Ni(+2),rising,spline,20.0,poor_fit
+ra91_f3b,ra91,goethite,C(+4),bell,spline,20.0,
+BBGR06_f3b,BBGR06,montmorillonite,Cm(+3),flat,logistic,20.0,
+sksz06_f1b,sksz06,bentonite,Pu(+4),bell,spline,19.0,too_few_points;edge_not_bracketed;bootstrap_unstable
+jysb04_f2a,jysb04,corundum,Oxalic acid,flat,logistic,19.0,
+bb05_fa2ac,bb05,montmorillonite,Ni(+2),bell,spline,19.0,poor_fit
+pbb99a_f23bpsi,pbb99a,illite,Cs(+1),flat,logistic,18.0,
+khl99_f9a,khl99,hematite,Np(+5),rising,logistic,18.0,too_few_points
+ljaw03_f1ca,ljaw03,illite,Citric acid,flat,logistic,18.0,
+awj06b_f3c,awj06b,kaolinite,Mellitic acid,flat,logistic,18.0,
+bs00_f5b,bs00,goethite,Ra(+2),rising,logistic,17.0,
+kmps97_f1a,kmps97,montmorillonite,Eu(+3),rising,logistic,17.0,too_few_points;edge_not_bracketed;wide_interval
+ra91_f3c,ra91,goethite,C(+4),falling,spline,17.0,edge_not_bracketed;poor_fit
+bb05_fa2ba,bb05,montmorillonite,Ni(+2),bell,spline,17.0,poor_fit
+bbbkt07_f1b,bbbkt07,kaolinite,Pu(+4),unclassified,spline,17.0,
+hm10_f1,hm10,bentonite,Eu(+3),rising,logistic,17.0,wide_interval
+jysb04_f2c,jysb04,corundum,Oxalic acid,flat,logistic,17.0,
+tad01_f2ca,tad01,goethite,Ca(+2),multi_step,spline,17.0,
+oja03_f1b,oja03,TiO2,Pu,flat,logistic,17.0,
+zsbus09_f1cc,zsbus09,hematite,U(+6),bell,spline,17.0,
+ddbbj13_f1c,ddbbj13,illite,Citric acid,flat,logistic,17.0,
+aotka82_f2fc,aotka82,quartz,Am(+3),bell,spline,17.0,too_few_points;edge_not_bracketed;bootstrap_unstable
+cjgmw14_f1Aa,cjgmw14,bentonite,P(+5),falling,spline,16.0,edge_not_bracketed;poor_fit
+awj06b_f3a,awj06b,kaolinite,Mellitic acid,flat,logistic,16.0,
+fw98_f3ac,fw98,boehmite,Eu(+3),bell,spline,16.0,
+ss00_f2bd,ss00,goethite,Se(+4),falling,logistic,16.0,edge_not_bracketed;wide_interval
+pbb99a_f13apsi,pbb99a,illite,Eu(+3),rising,spline,16.0,poor_fit
+hchk01_f3ba,hchk01,chlorite,U(+6),rising,logistic,16.0,edge_not_bracketed
+csb18_f4b,csb18,kaolinite,U(+6),bell,spline,16.0,edge_not_bracketed;poor_fit;wide_interval
+rmssg03_f2b,rmssg03,manganese dioxide,Pu(+6),bell,spline,16.0,poor_fit
+bb05_fa5bb,bb05,montmorillonite,U(+6),bell,spline,16.0,
+fw98_f3bd,fw98,goethite,Eu(+3),rising,logistic,15.0,
+bb05_fa5bc,bb05,montmorillonite,U(+6),bell,spline,15.0,
+pt97_f2a,pt97,montmorillonite,U(+6),bell,spline,15.0,
+w16_s18b,w16,hematite,Np(+5),bell,spline,15.0,
+dlf06_f1aa,dlf06,hematite,Se(+4),falling,logistic,15.0,
+ptbp98_f8ba,ptbp98,montmorillonite,U(+6),bell,spline,15.0,
+jysb04_f2b,jysb04,corundum,Oxalic acid,flat,logistic,15.0,
+pbb99a_f23apsi,pbb99a,illite,Cs(+1),flat,logistic,15.0,
+k97_f3b,k97,gibbsite,S(+6),falling,logistic,15.0,
+cl86_f7a,cl86,birnessite,Cu(+2),rising,logistic,15.0,edge_not_bracketed
+lh99_f2a,lh99,hematite,U(+6),bell,spline,15.0,poor_fit;wide_interval
+mbgk18_f6bb,mbgk18,illite,Zn(+2),rising,logistic,15.0,edge_not_bracketed;wide_interval
+pt97_f4a,pt97,montmorillonite,U(+6),bell,spline,14.0,
+bm11_f3ec,bm11,bentonite,U(+6),bell,spline,14.0,
+dskmp10_f4,dskmp10,magnetite,U(+6),flat,logistic,14.0,too_few_points;bootstrap_unstable
+wdpwx94_f4ad,wdpwx94,ferrihydrite,U(+6),bell,spline,14.0,
+syw09_f1,syw09,goethite,Citric acid,rising,logistic,14.0,too_few_points;edge_not_bracketed;wide_interval
+SSLWF08_f5c,SSLWF08,quartz,Am(+3),rising,logistic,14.0,
+ptbp98_f8bc,ptbp98,montmorillonite,U(+6),bell,spline,14.0,
+rk14_f4g,rk14,hematite,Np(+5),rising,logistic,14.0,edge_not_bracketed
+jmlg09_f3,jmlg09,hematite,Si(+4),bell,spline,14.0,
+aotka82_f2cb,aotka82,quartz,U(+6),bell,spline,14.0,edge_not_bracketed;wide_interval;bootstrap_unstable
+bbs85_f4b,bbs85,montmorillonite,Ra(+2),rising,spline,14.0,edge_not_bracketed;wide_interval
+awj06b_f3e,awj06b,kaolinite,Mellitic acid,flat,logistic,14.0,
+hpq71_f2cf,hpq71,goethite,Se(+4),multi_step,spline,14.0,
+bb05_fa4capsi,bb05,montmorillonite,Np(+5),multi_step,spline,14.0,edge_not_bracketed
+mbgk18_f6bbpsi,mbgk18,illite,Zn(+2),rising,logistic,14.0,edge_not_bracketed;wide_interval
+w16_s20b,w16,hematite,Np(+5),bell,spline,14.0,
+bb05_fa2d,bb05,montmorillonite,Zn(+2),rising,spline,14.0,poor_fit
+lh99_f1c,lh99,hematite,U(+6),bell,spline,14.0,
+cl86_f3a,cl86,birnessite,Cu(+2),rising,logistic,14.0,
+s83_III8c_48hr,s83,silica,Pu(+5),rising,logistic,13.0,too_few_points;edge_not_bracketed;wide_interval;bootstrap_unstable
+jhlch99_f1bb,jhlch99,goethite,U(+6),bell,spline,13.0,
+w16_s20a,w16,hematite,Np(+5),bell,spline,13.0,
+w16_s12f,w16,hematite,Np(+5),bell,spline,13.0,
+aotka82_f2fb,aotka82,alumina,Am(+3),rising,logistic,13.0,too_few_points;edge_not_bracketed;wide_interval
+s83_III8b_24hr,s83,silica,Pu(+5),rising,logistic,13.0,too_few_points;edge_not_bracketed;wide_interval;bootstrap_unstable
+jysb04_f1e,jysb04,corundum,Oxalic acid,flat,logistic,13.0,
+bb05_fa4ca,bb05,montmorillonite,Np(+5),multi_step,spline,13.0,
+w16_s8d,w16,hematite,Np(+5),bell,spline,13.0,
+w16_s14b,w16,hematite,Np(+5),bell,spline,13.0,
+mg07_f3bc,mg07,bentonite,Sr(+2),flat,logistic,13.0,too_few_points
+bb05_fa2c,bb05,montmorillonite,Zn(+2),rising,spline,13.0,
+w16_s16b,w16,hematite,Np(+5),bell,spline,13.0,
+mlh99_f5b,mlh99,hematite,COM,bell,spline,13.0,
+bb05a_f101bpsi,bb05a,illite,Ni(+2),rising,spline,13.0,edge_not_bracketed
+ksktn07_f7d,ksktn07,hematite,Pu(+4),rising,logistic,13.0,too_few_points;edge_not_bracketed;bootstrap_unstable
+bb05_fa5aapsi,bb05,montmorillonite,U(+6),bell,spline,13.0,edge_not_bracketed
+hpq71_f2ce,hpq71,goethite,Se(+4),falling,logistic,13.0,wide_interval
+pbb99a_f10bpsi,pbb99a,illite,Ni(+2),rising,spline,13.0,poor_fit
+dlfjr03_f3e,dlfjr03,hydroxyapatite,Se(+4),bell,spline,13.0,
+pt97_f5a,pt97,montmorillonite,U(+6),bell,spline,13.0,
+kbbb21_f2apsi,kbbb21,montmorillonite,Ba(+2),rising,logistic,13.0,wide_interval
+d01_f7-1a,d01,kaolinite,U(+6),bell,spline,13.0,
+pt97_f4b,pt97,montmorillonite,U(+6),bell,spline,13.0,
+d01_f7-2b,d01,kaolinite,U(+6),bell,spline,13.0,edge_not_bracketed
+pt97_f2c,pt97,montmorillonite,U(+6),bell,spline,13.0,
+mcgom17_f1d,mcgom17,clay,Ra(+2),flat,logistic,13.0,
+vcb91_f1a,vcb91,alumina,Oxalic acid,flat,logistic,13.0,
+d01_f7-11b,d01,kaolinite,U(+6),bell,spline,13.0,
+bb05_fa2bb,bb05,montmorillonite,Ni(+2),bell,spline,12.0,
+lkda94_f3d,lkda94,quartz,Eu(+3),rising,logistic,12.0,wide_interval
+hpl88_f4ab,hpl88,ferrihydrite,Se(+4),falling,logistic,12.0,
+cjgmw14_f1Ab,cjgmw14,bentonite,P(+5),falling,logistic,12.0,edge_not_bracketed;wide_interval
+pbb99a_f7a,pbb99a,illite,Sr(+2),rising,logistic,12.0,edge_not_bracketed;wide_interval
+sem81_f13c,sem81,alumina,Cd(+2),rising,logistic,12.0,
+zsbus09_f1cd,zsbus09,hematite,U(+6),bell,spline,12.0,poor_fit
+s83_III8d_7d,s83,silica,Pu(+5),rising,logistic,12.0,too_few_points;edge_not_bracketed;wide_interval;bootstrap_unstable
+bb05_fa4cbpsi,bb05,montmorillonite,Np(+5),rising,logistic,12.0,edge_not_bracketed
+sph08_f2a,sph08,goethite,U(+6),bell,spline,12.0,
+bb06_f2b,bb06,montmorillonite,Np(+5),rising,logistic,12.0,
+nea94_f2ac,nea94,alumina,Sr(+2),rising,logistic,12.0,edge_not_bracketed;wide_interval
+bb05_fa5abpsi,bb05,montmorillonite,U(+6),rising,spline,12.0,edge_not_bracketed;poor_fit
+oja03_f1a,oja03,TiO2,Pu,flat,logistic,12.0,
+hpq71_f2cb,hpq71,goethite,Se(+4),falling,logistic,12.0,
+hpq71_f2cd,hpq71,goethite,Se(+4),falling,logistic,12.0,wide_interval
+d01_f7-12bb,d01,kaolinite,U(+6),bell,spline,12.0,
+mf92_f2cb,mf92,goethite,Oxalic acid,falling,logistic,12.0,edge_not_bracketed
+afi02_f1e,afi02,kaolinite,Trimesic acid,flat,logistic,12.0,
+c96_fIV2b,c96,hematite,Co(+2),unclassified,spline,12.0,poor_fit
+vrl94_f4bb,vrl94,goethite,C(+4),bell,spline,12.0,
+d01_f7-7b,d01,kaolinite,U(+6),bell,spline,12.0,
+d01_f7-7a,d01,kaolinite,U(+6),bell,spline,12.0,
+d01_f7-11a,d01,kaolinite,U(+6),bell,spline,12.0,
+hpq71_f2cg,hpq71,goethite,Se(+4),falling,logistic,12.0,wide_interval
+zb04_fa15a,zb04,heulandite,Sm(+3),bell,spline,12.0,
+aotka82_f2eb,aotka82,alumina,Pu,rising,logistic,12.0,edge_not_bracketed;wide_interval
+jysb04_f1c,jysb04,corundum,Oxalic acid,flat,logistic,12.0,
+fs06_f2a,fs06,bentonite,Cs(+1),rising,logistic,12.0,wide_interval
+rgmmd08_f4aa,rgmmd08,goethite,Se(+4),falling,logistic,12.0,too_few_points;edge_not_bracketed;wide_interval;bootstrap_unstable
+pbb99_f7c,pbb99,illite,Cs(+1),flat,logistic,12.0,
+cl86_f3c,cl86,birnessite,Pb(+2),rising,logistic,12.0,
+mf92_f2ca,mf92,goethite,Oxalic acid,falling,logistic,12.0,
+lkda94_f4d,lkda94,quartz,Eu(+3),flat,logistic,12.0,
+lyt14_t4a,lyt14,biotite,Se(+4),falling,logistic,12.0,
+w16_s12e,w16,hematite,Np(+5),bell,spline,12.0,
+sd90_f3a_ads,sd90,clay,Am(+3),rising,logistic,11.0,too_few_points;edge_not_bracketed;wide_interval;bootstrap_unstable
+sd90_f2d,sd90,clay,Am(+3),rising,logistic,11.0,too_few_points;edge_not_bracketed;wide_interval;bootstrap_unstable
+ljaw03_f1cb,ljaw03,illite,Citric acid,flat,logistic,11.0,
+LBSSVRS10_f5a,LBSSVRS10,goethite,Am(+3),bell,spline,11.0,
+wlclbtg13_f1bc,wlclbtg13,vernadite,U(+6),bell,spline,11.0,
+nea94_f2bc,nea94,quartz,Sr(+2),flat,logistic,11.0,too_few_points;bootstrap_unstable
+mf92a_f1c,mf92a,goethite,Oxalic acid,falling,logistic,11.0,
+sms85_f1bb,sms85,goethite,Pu(+5),rising,logistic,11.0,edge_not_bracketed
+vl00_f6a,vl00,goethite,C(+4),bell,spline,11.0,
+pt97_f4c,pt97,montmorillonite,U(+6),bell,spline,11.0,
+bb97_f5c,bb97,montmorillonite,Ni(+2),flat,logistic,11.0,
+bm11_f3eb,bm11,bentonite,U(+6),bell,spline,11.0,
+mf92_f2ab,mf92,goethite,Oxalic acid,falling,logistic,11.0,
+fghgwsy22_f10a,fghgwsy22,quartz,Dodecylamine,rising,logistic,11.0,too_few_points;edge_not_bracketed;bootstrap_unstable
+wlclbtg13_f1bb,wlclbtg13,vernadite,U(+6),bell,spline,11.0,
+w16_s14c,w16,hematite,Np(+5),bell,spline,11.0,
+d01_f7-12ac,d01,kaolinite,U(+6),flat,logistic,11.0,
+dlfjr03_f3c,dlfjr03,hematite,Se(+4),falling,logistic,11.0,edge_not_bracketed;wide_interval
+kdse04_f1c,kdse04,montmorillonite,U(+6),rising,logistic,11.0,
+pbb99a_f8a,pbb99a,illite,Sr(+2),rising,logistic,11.0,
+sfbd13_f1aapsi,sfbd13,montmorillonite,Fe(+2),rising,spline,11.0,edge_not_bracketed;poor_fit
+fwr95_f3cb,fwr95,montmorillonite,Eu(+3),unclassified,spline,11.0,
+w16_s12h,w16,hematite,Np(+5),bell,spline,11.0,
+w16_s12g,w16,hematite,Np(+5),bell,spline,11.0,
+kasw00_f6,kasw00,illite,Eu(+3),flat,logistic,11.0,
+ab90a_f3b,ab90a,gibbsite,Se(+4),falling,logistic,11.0,
+w16_s12d,w16,hematite,Np(+5),bell,spline,11.0,
+nkm14_f1a,nkm14,quartz,U(+6),bell,spline,11.0,
+w16_s20c,w16,hematite,Np(+5),bell,spline,11.0,
+c96_fIV9b,c96,hematite,Th(+4),rising,logistic,11.0,wide_interval
+bsl83_f3a,bsl83,quartz,Ra(+2),rising,logistic,11.0,
+bbs85_f3a,bbs85,montmorillonite,Ra(+2),rising,logistic,11.0,edge_not_bracketed
+bb05a_f91b,bb05a,illite,Sr(+2),multi_step,spline,11.0,wide_interval
+ddbbj13_f1d,ddbbj13,illite,Citric acid,flat,logistic,11.0,
+d01_f7-12aa,d01,kaolinite,U(+6),bell,spline,11.0,
+w16_s12a,w16,hematite,Np(+5),bell,spline,11.0,edge_not_bracketed
+lds03_f5,lds03,zirconia,U(+6),rising,logistic,11.0,
+pbb99_f7a,pbb99,illite,Cs(+1),flat,logistic,10.0,
+csb18_f4d,csb18,quartz,U(+6),bell,spline,10.0,
+bb99_f1a,bb99,montmorillonite,Zn(+2),rising,spline,10.0,edge_not_bracketed;poor_fit
+zb04_fa14,zb04,heulandite,Eu(+3),bell,spline,10.0,edge_not_bracketed;poor_fit
+bb09_f4,bb09,illite,Co(+2),multi_step,spline,10.0,poor_fit
+d01_f7-3b,d01,kaolinite,U(+6),bell,spline,10.0,
+zb04_fa16,zb04,heulandite,Sm(+3),bell,spline,10.0,edge_not_bracketed;poor_fit
+bm11_f3ca,bm11,montmorillonite,U(+6),bell,spline,10.0,
+fwr95_f3bb,fwr95,kaolinite,Eu(+3),unclassified,spline,10.0,
+d01_f7-8a,d01,kaolinite,U(+6),bell,spline,10.0,
+ljaw03_f1bb,ljaw03,kaolinite,Citric acid,falling,logistic,10.0,wide_interval
+cjgmw14_f2a,cjgmw14,bentonite,Eu(+3),rising,logistic,10.0,wide_interval
+dmrgb04_f2ab,dmrgb04,goethite,Pu,rising,logistic,10.0,wide_interval
+ptbp98_f5Aa,ptbp98,quartz,U(+6),bell,spline,10.0,
+bsl83_f4b,bsl83,quartz,Ra(+2),rising,logistic,10.0,edge_not_bracketed;wide_interval
+wdpwx94_f4ac,wdpwx94,ferrihydrite,U(+6),bell,spline,10.0,
+jwb16_f4b,jwb16,gibbsite,C(+4),flat,logistic,10.0,too_few_points;bootstrap_unstable
+tad01_f2cb,tad01,goethite,Ca(+2),multi_step,spline,10.0,
+c96_fIV13a,c96,hematite,U(+6),rising,logistic,10.0,wide_interval
+c96_fIV14a,c96,hematite,U(+6),rising,logistic,10.0,wide_interval
+mbgk18_f4ba,mbgk18,illite,Co(+2),rising,logistic,10.0,wide_interval
+mbgk18_f5aapsi,mbgk18,illite,Co(+2),rising,logistic,10.0,edge_not_bracketed;wide_interval
+smrlg15_f2aa,smrlg15,montmorillonite,Eu(+3),rising,logistic,10.0,wide_interval
+snbsw03_f4a,snbsw03,hausmannite,Pu(+6),flat,logistic,10.0,
+smrlg15_f2ac,smrlg15,montmorillonite,Eu(+3),rising,logistic,10.0,
+snbsw03_f4b,snbsw03,manganite,Pu(+6),flat,logistic,10.0,
+nkm14_f5d,nkm14,alumina,U(+6),bell,spline,10.0,
+nkm14_f6b,nkm14,rutile,As(+5),falling,logistic,10.0,
+bb06_f3psi,bb06,montmorillonite,Pa(+5),flat,logistic,10.0,
+ra91_f3a,ra91,goethite,C(+4),bell,spline,10.0,edge_not_bracketed
+w16_s18a,w16,hematite,Np(+5),bell,spline,10.0,
+nrsgwy17_f2ac,nrsgwy17,illite,Np(+4),flat,logistic,10.0,
+kmps97_f1b,kmps97,kaolinite,Eu(+3),rising,logistic,10.0,edge_not_bracketed;wide_interval
+vl00_f6e,vl00,goethite,C(+4),bell,spline,10.0,
+tpb98_f2c,tpb98,montmorillonite,Np(+5),bell,spline,10.0,
+k62_ESR3,k62,ferrihydrite,Sr(+2),rising,logistic,10.0,edge_not_bracketed
+nkm14_f5c,nkm14,alumina,As(+5),falling,logistic,10.0,edge_not_bracketed;wide_interval
+nrsgwy17_f2bb,nrsgwy17,shale,Np(+4),flat,logistic,10.0,
+bb05_fa3ca,bb05,montmorillonite,Am(+3),flat,logistic,10.0,
+khl99_f5a,khl99,hematite,Np(+5),rising,logistic,10.0,too_few_points;edge_not_bracketed
+fw98_f1ab,fw98,boehmite,Humic acid,falling,logistic,10.0,edge_not_bracketed;wide_interval
+bpa98_f3b,bpa98,montmorillonite,Np(+5),rising,logistic,10.0,
+bb05_fa4d,bb05,montmorillonite,Np(+5),rising,logistic,10.0,wide_interval
+w16_s12b,w16,hematite,Np(+5),bell,spline,10.0,
+lh99_f4aa,lh99,hematite,U(+6),bell,spline,10.0,
+jysb04_f1d,jysb04,corundum,Oxalic acid,flat,logistic,10.0,
+lkda94_f2b,lkda94,goethite,Fulvic acid,multi_step,spline,10.0,edge_not_bracketed;wide_interval
+bchssy98_f2a,bchssy98,bentonite,U(+6),flat,logistic,10.0,
+w16_s8b,w16,hematite,Np(+5),bell,spline,10.0,
+nkm14_f3a,nkm14,goethite,U(+6),bell,spline,10.0,
+w16_s8c,w16,hematite,Np(+5),bell,spline,10.0,
+nkm14_f1b,nkm14,quartz,As(+5),falling,logistic,10.0,edge_not_bracketed;wide_interval
+afi02_f2c,afi02,kaolinite,Phthalic acid,flat,logistic,10.0,
+d01_f7-17ab,d01,kaolinite,U(+6),bell,spline,10.0,
+afi02_f1f,afi02,kaolinite,Mellitic acid,flat,logistic,10.0,
+ptbp98_f14,ptbp98,montmorillonite,U(+6),bell,spline,10.0,
+mbdsb12_f1a,mbdsb12,montmorillonite,U(+6),multi_step,spline,10.0,edge_not_bracketed
+w16_s18c,w16,hematite,Np(+5),bell,spline,10.0,
+bb05a_f103,bb05a,illite,Ni(+2),unclassified,spline,9.0,
+bb17a_f39apsi,bb17a,illite,Np(+5),rising,logistic,9.0,
+bb97_f5cpsi,bb97,montmorillonite,Ni(+2),flat,spline,9.0,poor_fit
+wat01c_f7ac,wat01c,goethite,Se(+4),falling,logistic,9.0,
+jdb07_f3,jdb07,ferrihydrite,U(+6),rising,logistic,9.0,
+ss00_f2be,ss00,goethite,Se(+4),falling,logistic,9.0,wide_interval
+nrsgwy17_f2ba,nrsgwy17,shale,Np(+4),flat,logistic,9.0,
+jwb16_f4c,jwb16,gibbsite,C(+4),flat,logistic,9.0,too_few_points
+hpq71_f1b,hpq71,goethite,Se(+4),falling,logistic,9.0,
+bb05a_f103dpsi,bb05a,illite,Ni(+2),rising,logistic,9.0,edge_not_bracketed
+zlqwwzy16_f7b,zlqwwzy16,bentonite,U(+6),rising,logistic,9.0,
+mbgk18_f4ab,mbgk18,illite,Co(+2),rising,logistic,9.0,edge_not_bracketed;wide_interval
+mg07_f5bd,mg07,bentonite,Co(+2),rising,logistic,9.0,
+fs06_f2d,fs06,magnetite,Sr(+2),rising,logistic,9.0,
+pt97_f2d,pt97,montmorillonite,U(+6),bell,spline,9.0,
+afi02_f2b,afi02,goethite,Phthalic acid,flat,logistic,9.0,
+hchk01_f4a,hchk01,montmorillonite,U(+6),falling,logistic,9.0,wide_interval
+pbb99a_f22,pbb99a,illite,Cs(+1),flat,logistic,9.0,
+bb05_fa5ba,bb05,montmorillonite,U(+6),bell,spline,9.0,
+pbb99a_f14,pbb99a,illite,Eu(+3),rising,spline,9.0,poor_fit
+cjgmw14_f4b,cjgmw14,bentonite,P(+5),flat,logistic,9.0,
+jlmge09_f3,jlmge09,magnetite,Se(+4),falling,logistic,9.0,wide_interval
+awj06b_f3d,awj06b,kaolinite,Mellitic acid,flat,logistic,9.0,
+awj06b_f3b,awj06b,kaolinite,Mellitic acid,flat,logistic,9.0,
+smrlg15_f2ab,smrlg15,montmorillonite,Eu(+3),rising,logistic,9.0,
+bc87_f3ac,bc87,goethite,Se(+4),falling,logistic,9.0,wide_interval
+jmlg09_f2,jmlg09,hematite,Se(+4),falling,logistic,9.0,
+bc87_f4ad,bc87,goethite,Se(+4),falling,logistic,9.0,
+mlh99_f1b,mlh99,hematite,Th(+4),rising,logistic,9.0,
+azzbn01_f1a,azzbn01,quartz,U(+6),bell,spline,9.0,
+mf92_f1a,mf92,goethite,Oxalic acid,falling,logistic,9.0,
+pa05_f1b,pa05,goethite,Oxalic acid,falling,logistic,9.0,wide_interval
+bbs85_f4d,bbs85,montmorillonite,Ra(+2),rising,logistic,9.0,edge_not_bracketed;wide_interval
+mf92_f2bb,mf92,goethite,Oxalic acid,falling,logistic,9.0,
+d01_f7-17ba,d01,kaolinite,U(+6),bell,spline,9.0,
+vrl94_f4bc,vrl94,goethite,C(+4),bell,spline,9.0,
+c96_f235bb,c96,hematite,Co(+2),rising,spline,9.0,edge_not_bracketed;poor_fit;wide_interval
+c96_f237ca,c96,hematite,Th(+4),rising,logistic,9.0,
+c96_fIV8a,c96,hematite,Th(+4),rising,logistic,9.0,wide_interval
+mdf99_f4,mdf99,magnetite,Ni(+2),rising,logistic,9.0,
+d01_f7-17bb,d01,kaolinite,U(+6),bell,spline,9.0,
+d01_f4-5c,d01,ferrihydrite,U(+6),bell,spline,9.0,
+d01_f4-7a,d01,ferrihydrite,U(+6),bell,spline,9.0,
+snbsw03_f3ba,snbsw03,hausmannite,Pu(+6),bell,spline,9.0,edge_not_bracketed;bootstrap_unstable
+w16_s12c,w16,hematite,Np(+5),bell,spline,9.0,
+aotka82_f2ab,aotka82,alumina,Th(+4),rising,logistic,9.0,edge_not_bracketed;wide_interval
+d01_f7-17aa,d01,kaolinite,U(+6),bell,spline,9.0,
+c96_fIV13b,c96,hematite,U(+6),bell,spline,9.0,edge_not_bracketed
+d01_f7-1b,d01,kaolinite,U(+6),bell,spline,9.0,
+d01_f7-9a,d01,kaolinite,U(+6),bell,spline,9.0,
+aotka82_f2aa,aotka82,alumina,Th(+4),rising,logistic,9.0,edge_not_bracketed;wide_interval
+ns91_f4a,ns91,boehmite,Np(+5),rising,logistic,9.0,edge_not_bracketed;wide_interval
+d01_f7-12ba,d01,kaolinite,U(+6),bell,spline,9.0,
+d01_f4-14a,d01,ferrihydrite,U(+6),bell,spline,9.0,
+bbs03_f2a,bbs03,goethite,Ni(+2),rising,logistic,9.0,
+bb99_f5a,bb99,montmorillonite,Ni(+2),bell,spline,9.0,
+aotka82_f2db,aotka82,alumina,Np(+5),rising,logistic,9.0,edge_not_bracketed;wide_interval
+sd90_f2a,sd90,clay,Am(+3),falling,logistic,9.0,too_few_points;edge_not_bracketed;wide_interval;bootstrap_unstable
+c96_fIV12b,c96,hematite,U(+6),bell,spline,9.0,edge_not_bracketed
+ljaw03_f1ba,ljaw03,kaolinite,Citric acid,flat,logistic,9.0,
+bb97_f5a,bb97,montmorillonite,Ni(+2),rising,spline,9.0,poor_fit
+d01_f4-5b,d01,ferrihydrite,U(+6),bell,spline,8.0,
+sjs14_f1cd,sjs14,hydroxyapatite,Citric acid,flat,logistic,8.0,
+mbgk18_f4aa,mbgk18,illite,Co(+2),rising,spline,8.0,poor_fit
+bb99_f4aa,bb99,montmorillonite,Ni(+2),rising,spline,8.0,poor_fit
+d01_f4-5a,d01,ferrihydrite,U(+6),bell,spline,8.0,
+k62_ESR8,k62,ferrihydrite,Sr(+2),rising,logistic,8.0,edge_not_bracketed;wide_interval
+d01_f4-4a,d01,ferrihydrite,U(+6),bell,spline,8.0,
+ptbp98_f8bb,ptbp98,montmorillonite,U(+6),bell,spline,8.0,
+bm87_f2a,bm87,goethite,Oxalic acid,falling,logistic,8.0,edge_not_bracketed;wide_interval
+kasw00_f5,kasw00,illite,Eu(+3),rising,logistic,8.0,edge_not_bracketed
+dlfjr03_f3f,dlfjr03,hematite,Se(+6),flat,logistic,8.0,
+hchk01_f5a,hchk01,montmorillonite,U(+6),falling,logistic,8.0,wide_interval
+nea94_f4c,nea94,alumina,Eu(+3),bell,spline,8.0,
+d01_f7-8b,d01,kaolinite,U(+6),bell,spline,8.0,
+kikk09_f1b,kikk09,montmorillonite,Citric acid,bell,spline,8.0,
+zb04_fa13a,zb04,heulandite,Eu(+3),bell,spline,8.0,poor_fit
+nea94_f1bd,nea94,quartz,Eu(+3),flat,logistic,8.0,
+d01_f7-2a,d01,kaolinite,U(+6),bell,spline,8.0,
+fwr95_f3db,fwr95,quartz,Eu(+3),unclassified,spline,8.0,
+dw14_f3d,dw14,quartz,U(+6),bell,spline,8.0,
+rgrjh14_f1d,rgrjh14,smectite,Oxalic acid,falling,logistic,8.0,
+lyljd14_f5aa,lyljd14,magnetite,U(+6),bell,spline,8.0,
+fwr95_f1bc,fwr95,kaolinite,Humic acid,falling,logistic,8.0,
+mso92_f1a,mso92,alumina,Am(+3),rising,logistic,8.0,too_few_points;edge_not_bracketed;wide_interval
+nl15_f3a,nl15,hematite,Citric acid,falling,logistic,8.0,edge_not_bracketed;wide_interval
+pbb99a_f20bpsi,pbb99a,illite,Cs(+1),flat,logistic,8.0,
+dl80_f4a,dl80,ferrihydrite,Se(+6),falling,logistic,8.0,too_few_points;narrow_span;edge_not_bracketed;bootstrap_unstable
+sph08_f2c,sph08,goethite,U(+6),bell,spline,8.0,edge_not_bracketed
+ns91_f3aa,ns91,goethite,Np(+5),rising,logistic,8.0,
+pbb99a_f18psi,pbb99a,illite,Cs(+1),flat,logistic,8.0,
+d01_f4-10ac,d01,ferrihydrite,U(+6),bell,spline,8.0,
+dlfjr03_f4c,dlfjr03,hematite,Se(+4),falling,logistic,8.0,edge_not_bracketed;wide_interval
+bb05_fa2aa,bb05,montmorillonite,Ni(+2),flat,logistic,8.0,
+bb09_f5b,bb09,illite,Eu(+3),multi_step,spline,8.0,edge_not_bracketed
+lkda94_f4b,lkda94,goethite,Eu(+3),multi_step,spline,8.0,edge_not_bracketed
+c96_fIV3b,c96,hematite,Co(+2),rising,spline,8.0,edge_not_bracketed;poor_fit;wide_interval
+yhlgmw10_f5a,yhlgmw10,bentonite,U(+6),unclassified,spline,8.0,
+snbsw03_f3ac,snbsw03,manganite,Pu(+6),bell,spline,8.0,edge_not_bracketed
+bpa98_f2a,bpa98,clinoptilolite,Np(+5),flat,logistic,8.0,
+bb05a_f108,bb05a,illite,Eu(+3),rising,logistic,8.0,edge_not_bracketed;wide_interval
+BBGR05_f4b,BBGR05,illite,Cm(+3),flat,logistic,8.0,
+ptbp98_f5Ab,ptbp98,quartz,U(+6),bell,spline,8.0,
+mgahs05_f2,mgahs05,hydroxyapatite,Pu(+6),flat,spline,8.0,
+bpa98_f1b,bpa98,quartz,Np(+5),flat,logistic,8.0,
+mbldb17_f1da,mbldb17,illite,Pu,flat,logistic,8.0,
+ta99_f6c,ta99,ferrihydrite,Sr(+2),multi_step,spline,8.0,
+bb97_f6psi,bb97,montmorillonite,Zn(+2),rising,spline,8.0,poor_fit
+ptbp98_f13Ba,ptbp98,quartz,U(+6),flat,logistic,8.0,
+d01_f5-7b,d01,quartz,U(+6),rising,logistic,8.0,narrow_span
+ptbp98_f13Bb,ptbp98,quartz,U(+6),bell,spline,8.0,edge_not_bracketed
+dmbc97_f6a,dmbc97,gibbsite,Np(+5),rising,logistic,8.0,narrow_span
+bb05a_f101b,bb05a,illite,Ni(+2),rising,logistic,8.0,
+gdb09_f2ab,gdb09,ferrihydrite,U(+6),rising,logistic,8.0,
+bb05_fa5aa,bb05,montmorillonite,U(+6),bell,spline,8.0,edge_not_bracketed
+aa95_f4b,aa95,ferrihydrite,Sr(+2),multi_step,spline,8.0,wide_interval;bootstrap_unstable
+fwr95_f1ca,fwr95,montmorillonite,Humic acid,falling,logistic,8.0,edge_not_bracketed;wide_interval
+bb05_fa4cb,bb05,montmorillonite,Np(+5),rising,logistic,8.0,edge_not_bracketed
+bb06_f2a,bb06,montmorillonite,Np(+5),rising,logistic,8.0,edge_not_bracketed
+w16_s16a,w16,hematite,Np(+5),bell,spline,8.0,
+bb05a_f1013psi,bb05a,illite,U(+6),rising,spline,8.0,edge_not_bracketed;poor_fit
+yhlgmw10_f6b,yhlgmw10,bentonite,U(+6),bell,spline,8.0,edge_not_bracketed
+pt97_f5b,pt97,montmorillonite,U(+6),bell,spline,8.0,
+eicg03_f3c,eicg03,illite,Ni(+2),rising,logistic,8.0,wide_interval
+s83_III9a_1hr,s83,silica,Pu(+5),flat,logistic,7.0,too_few_points;bootstrap_unstable
+kkt12_f2b,kkt12,silica,Pu(+4),rising,logistic,7.0,too_few_points;edge_not_bracketed;wide_interval;bootstrap_unstable
+d01_f4-11c,d01,ferrihydrite,U(+6),bell,spline,7.0,
+tpb98_f4ba,tpb98,montmorillonite,Np(+5),multi_step,spline,7.0,
+mg07_f3bb,mg07,bentonite,Sr(+2),flat,logistic,7.0,too_few_points
+aotka82_f2ca,aotka82,alumina,U(+6),bell,spline,7.0,too_few_points;edge_not_bracketed;wide_interval;bootstrap_unstable
+nkm14_f3b,nkm14,goethite,As(+5),falling,logistic,7.0,
+rhv07a_f4b,rhv07a,goethite,C(+4),falling,logistic,7.0,too_few_points;bootstrap_unstable
+s83_IV7b_5d,s83,montmorillonite,Pu(+5),flat,logistic,7.0,
+ptbp98_f13Bc,ptbp98,quartz,U(+6),bell,spline,7.0,
+SSLWF08_f5b,SSLWF08,quartz,Am(+3),rising,logistic,7.0,edge_not_bracketed
+ksktn07_f6a,ksktn07,goethite,Pu(+5),rising,logistic,7.0,too_few_points;edge_not_bracketed
+bb05a_f109_1dpsi,bb05a,illite,Eu(+3),rising,logistic,7.0,edge_not_bracketed
+mg07_f5be,mg07,bentonite,Co(+2),rising,logistic,7.0,
+rgrjh14_f1a,rgrjh14,smectite,Oxalic acid,flat,logistic,7.0,
+sem81_f6d,sem81,alumina,Sr(+2),rising,logistic,7.0,edge_not_bracketed
+aotka82_f2fa,aotka82,alumina,Am(+3),rising,logistic,7.0,edge_not_bracketed;wide_interval
+d01_f7-3a,d01,kaolinite,U(+6),bell,spline,7.0,
+d01_f4-14b,d01,ferrihydrite,U(+6),bell,spline,7.0,
+bb05a_f1012,bb05a,illite,Eu(+3),rising,logistic,7.0,edge_not_bracketed;wide_interval
+tpb98_f5bc,tpb98,montmorillonite,Np(+5),rising,logistic,7.0,edge_not_bracketed;wide_interval
+khl99_f5b,khl99,hematite,Np(+5),rising,logistic,7.0,too_few_points
+d01_f7-12ab,d01,kaolinite,U(+6),bell,spline,7.0,
+d01_f4-14c,d01,ferrihydrite,Humic acid,falling,logistic,7.0,edge_not_bracketed;wide_interval
+bb97_f5apsi,bb97,montmorillonite,Ni(+2),rising,logistic,7.0,
+d01_f4-16ba,d01,ferrihydrite,U(+6),bell,spline,7.0,
+cl86_f6aa,cl86,birnessite,Cu(+2),rising,logistic,7.0,
+khl99_f9c,khl99,hematite,Np(+5),bell,spline,7.0,
+nea94_f3d,nea94,quartz,Fulvic acid,flat,logistic,7.0,
+d01_f4-11a,d01,ferrihydrite,U(+6),bell,spline,7.0,
+zkm85_f1a,zkm85,hematite,Citric acid,flat,logistic,7.0,
+jrsws14_f1a,jrsws14,maghemite,Se(+4),falling,logistic,7.0,wide_interval
+hchk01_f2ac,hchk01,montmorillonite,U(+6),flat,logistic,7.0,
+hchk01_f2ab,hchk01,montmorillonite,U(+6),falling,logistic,7.0,edge_not_bracketed;wide_interval
+zs90a_f1,zs90a,goethite,Se(+6),falling,logistic,7.0,
+ss00_f1ac,ss00,ferrihydrite,Se(+6),falling,logistic,7.0,
+mbgk18_f5aa,mbgk18,illite,Co(+2),rising,logistic,7.0,wide_interval
+bpa98_f2c,bpa98,clinoptilolite,Np(+5),flat,logistic,7.0,
+c96_f239bc,c96,hematite,U(+6),bell,spline,7.0,
+mdf99_f5b,mdf99,magnetite,Cs(+1),flat,logistic,7.0,
+fw98_f1bb,fw98,goethite,Humic acid,falling,logistic,7.0,
+kbbb21_f2bpsi,kbbb21,montmorillonite,Ba(+2),rising,spline,7.0,poor_fit
+lbhka80_fA37c,lbhka80,ferrihydrite,Se(+4),falling,logistic,7.0,
+bb05_fa3cb,bb05,montmorillonite,Am(+3),rising,logistic,7.0,
+bm11_f3cc,bm11,montmorillonite,U(+6),bell,spline,7.0,
+bm11_f3cb,bm11,montmorillonite,U(+6),bell,spline,7.0,
+bb97_f6,bb97,montmorillonite,Zn(+2),bell,spline,7.0,poor_fit
+mbgk18_f5abpsi,mbgk18,illite,Co(+2),rising,logistic,7.0,edge_not_bracketed;wide_interval
+cl86_f6cb,cl86,birnessite,Pb(+2),rising,logistic,7.0,
+hl85_f4ba,hl85,goethite,U(+6),bell,spline,7.0,edge_not_bracketed
+aa95_f4a,aa95,ferrihydrite,Sr(+2),rising,logistic,7.0,wide_interval
+sjs14_f1ac,sjs14,hydroxyapatite,Citric acid,falling,logistic,7.0,wide_interval
+bs00_f4a,bs00,goethite,Ra(+2),rising,logistic,7.0,
+mgm03_f6aa,mgm03,goethite,U(+6),rising,logistic,7.0,wide_interval
+jhlch99_f1ba,jhlch99,goethite,U(+6),bell,spline,7.0,
+jwb16_f4a,jwb16,gibbsite,C(+4),flat,logistic,7.0,too_few_points;bootstrap_unstable
+bm82_f5a,bm82,goethite,Zn(+2),rising,logistic,7.0,too_few_points
+tad01_f2ad,tad01,goethite,Ni(+2),rising,logistic,7.0,
+d01_f5-6a,d01,quartz,U(+6),bell,spline,7.0,
+fwr95_f1dd,fwr95,quartz,Humic acid,flat,logistic,7.0,
+sksz06_f1a,sksz06,bentonite,Pu(+4),bell,spline,7.0,edge_not_bracketed
+hchk01_f6b,hchk01,montmorillonite,U(+6),rising,logistic,7.0,edge_not_bracketed;wide_interval
+d01_f4-10aa,d01,ferrihydrite,U(+6),bell,spline,7.0,
+c96_f238aa,c96,hematite,Th(+4),rising,logistic,7.0,wide_interval
+jpk15_f4b,jpk15,hematite,Se(+4),falling,logistic,7.0,edge_not_bracketed;wide_interval
+dl80_f5c,dl80,corundum,Cr(+6),falling,logistic,7.0,edge_not_bracketed;wide_interval
+fwr95_f1bd,fwr95,kaolinite,Humic acid,falling,logistic,6.0,
+d01_f7-9b,d01,kaolinite,U(+6),bell,spline,6.0,
+fwr95_f1da,fwr95,quartz,Humic acid,bell,spline,6.0,
+hpl88_f4aa,hpl88,ferrihydrite,Se(+4),falling,logistic,6.0,
+fwr95_f1bb,fwr95,kaolinite,Humic acid,falling,logistic,6.0,wide_interval
+kbbb21_f1bpsi,kbbb21,montmorillonite,Ra(+2),unclassified,spline,6.0,
+c96_fIV11b,c96,hematite,Np(+5),rising,logistic,6.0,edge_not_bracketed;wide_interval
+mbgk18_f3a,mbgk18,illite,Sr(+2),multi_step,spline,6.0,edge_not_bracketed
+bbs85_f4a,bbs85,montmorillonite,Ra(+2),rising,logistic,6.0,edge_not_bracketed;wide_interval
+c96_f240ab,c96,hematite,U(+6),rising,logistic,6.0,wide_interval
+hpq72_f1eb,hpq72,gibbsite,Se(+4),falling,logistic,6.0,wide_interval
+ss00_f1ab,ss00,ferrihydrite,Se(+6),falling,logistic,6.0,
+fvb15_f2b,fvb15,illite,Eu(+3),rising,spline,6.0,edge_not_bracketed;poor_fit
+mbgk18_f4ac,mbgk18,illite,Co(+2),multi_step,spline,6.0,
+c96_f239ba,c96,hematite,U(+6),bell,spline,6.0,
+mh20_f1a,mh20,ferrihydrite,Ra(+2),rising,logistic,6.0,too_few_points;bootstrap_unstable
+wat01c_f7bb,wat01c,goethite,Se(+4),falling,logistic,6.0,wide_interval
+bb05a_f107b,bb05a,illite,Eu(+3),flat,logistic,6.0,
+bb09a_f4bpsi,bb09a,illite,U(+6),unclassified,spline,6.0,
+pjtp01_f1a,pjtp01,quartz,U(+6),bell,spline,6.0,
+c96_fIV12a,c96,hematite,U(+6),bell,spline,6.0,
+bc87_f3aa,bc87,goethite,Se(+4),falling,logistic,6.0,edge_not_bracketed;wide_interval
+ftons95_f3a,ftons95,goethite,Np(+5),rising,logistic,6.0,
+bc90_f6ac,bc90,ferrihydrite,Se(+4),falling,logistic,6.0,narrow_span
+ftons95_f3b,ftons95,magnetite,Np(+5),rising,logistic,6.0,edge_not_bracketed;wide_interval
+csb18_f4c,csb18,goethite,U(+6),rising,logistic,6.0,wide_interval
+d01_f4-13d,d01,ferrihydrite,P(+5),falling,logistic,6.0,
+bc90_f1bc,bc90,vernadite,Se(+4),falling,logistic,6.0,edge_not_bracketed
+e14_a,e14,hematite,Np(+5),rising,logistic,6.0,
+e14_b,e14,hematite,Np(+5),rising,logistic,6.0,
+pbb99a_f20cpsi,pbb99a,illite,Cs(+1),flat,logistic,6.0,
+d01_f4-7b,d01,ferrihydrite,U(+6),bell,spline,6.0,
+pbb99a_f20apsi,pbb99a,illite,Cs(+1),flat,logistic,6.0,
+d01_f4-11b,d01,ferrihydrite,U(+6),bell,spline,6.0,
+dlfjr03_f4b,dlfjr03,hematite,Se(+4),falling,logistic,6.0,too_few_points;narrow_span;bootstrap_unstable
+dlfjr03_f4d,dlfjr03,goethite,Se(+4),falling,logistic,6.0,wide_interval
+dlfjr03_f4e,dlfjr03,hydroxyapatite,Se(+4),bell,spline,6.0,
+d01_f4-10ab,d01,ferrihydrite,U(+6),bell,spline,6.0,
+mbdsb12_f2a,mbdsb12,montmorillonite,U(+6),bell,spline,6.0,
+mgf03_f5e,mgf03,magnetite,U(+6),bell,spline,6.0,too_few_points;edge_not_bracketed;bootstrap_unstable
+kv13_f1ca,kv13,goethite,Se(+6),falling,logistic,6.0,edge_not_bracketed
+ddbbj13_f1b,ddbbj13,kaolinite,Citric acid,flat,logistic,6.0,
+yhlgmw10_f1a,yhlgmw10,bentonite,U(+6),rising,logistic,6.0,
+nea94_f2ba,nea94,quartz,Sr(+2),flat,logistic,6.0,
+hchk01_f6a,hchk01,montmorillonite,U(+6),flat,logistic,6.0,
+dw14_f3aa,dw14,goethite,U(+6),rising,logistic,6.0,
+mf92a_f1d,mf92a,goethite,Oxalic acid,falling,logistic,6.0,
+sem81_f4c,sem81,alumina,Cs(+1),rising,logistic,6.0,edge_not_bracketed;wide_interval
+khl99_f5c,khl99,hematite,Np(+5),rising,logistic,6.0,too_few_points;bootstrap_unstable
+afi02_f1d,afi02,kaolinite,Phthalic acid,flat,logistic,6.0,
+afi02_f1c,afi02,goethite,Mellitic acid,flat,logistic,6.0,
+hl85_f8b,hl85,goethite,U(+6),bell,spline,6.0,
+cjgmw14_f4a,cjgmw14,bentonite,P(+5),flat,logistic,6.0,
+yhlgmw10_f6c,yhlgmw10,bentonite,U(+6),bell,spline,6.0,
+nrsgwy17_f2ca,nrsgwy17,bentonite,Np(+4),flat,logistic,6.0,too_few_points;bootstrap_unstable
+rcrfh11_f1a,rcrfh11,smectite,Citric acid,bell,spline,6.0,
+rh14_f1a,rh14,montmorillonite,Citric acid,bell,spline,6.0,
+smrlg15_f1ca,smrlg15,illite,Eu(+3),rising,logistic,6.0,edge_not_bracketed;wide_interval
+nl15_f3b,nl15,hematite,Citric acid,bell,spline,6.0,edge_not_bracketed
+nl15_f1b,nl15,hematite,Citric acid,falling,logistic,6.0,edge_not_bracketed;wide_interval
+yhlgmw10_f5b,yhlgmw10,bentonite,U(+6),rising,logistic,6.0,
+sph08_f2e,sph08,goethite,U(+6),bell,spline,6.0,
+jysb04_f1b,jysb04,corundum,Oxalic acid,flat,logistic,6.0,
+ddbbj13_f1a,ddbbj13,kaolinite,Citric acid,falling,logistic,6.0,edge_not_bracketed;wide_interval
+m80_f1ae,m80,birnessite,Zn(+2),rising,logistic,6.0,too_few_points;edge_not_bracketed;wide_interval;bootstrap_unstable
+wkm03_f7,wkm03,ferrihydrite,U(+6),bell,spline,6.0,
+s83_IV5c_4d,s83,montmorillonite,Pu(+5),bell,spline,6.0,edge_not_bracketed
+dmrgb04_f2bc,dmrgb04,magnetite,Pu,rising,logistic,6.0,
+ns91_f3ad,ns91,biotite,Np(+5),rising,logistic,6.0,
+lh99_f3ba,lh99,hematite,Humic acid,falling,logistic,6.0,edge_not_bracketed;wide_interval
+rbab91_f5a,rbab91,silica,Am(+3),rising,logistic,6.0,edge_not_bracketed
+sd90_f2b,sd90,clay,Am(+3),flat,logistic,6.0,too_few_points;bootstrap_unstable
+w16_s16c,w16,hematite,Np(+5),bell,spline,6.0,
+hchk01_f2bc,hchk01,montmorillonite,U(+6),rising,logistic,6.0,edge_not_bracketed;wide_interval
+s83_IV5b_24hr,s83,montmorillonite,Pu(+5),bell,spline,6.0,edge_not_bracketed
+cs91_f1b,cs91,pseudoboehmite,Citric acid,falling,logistic,6.0,edge_not_bracketed
+hchk01_f2aa,hchk01,montmorillonite,U(+6),falling,logistic,6.0,wide_interval
+ta99_f6e,ta99,hydrous manganese oxide,Sr(+2),rising,logistic,6.0,
+mf92_f2bd,mf92,goethite,Oxalic acid,bell,spline,6.0,edge_not_bracketed
+wlclbtg13_f1ba,wlclbtg13,vernadite,U(+6),rising,logistic,6.0,wide_interval
+bm11_f3ea,bm11,bentonite,U(+6),falling,logistic,6.0,
+wlclbtg13_f1ac,wlclbtg13,vernadite,U(+6),bell,spline,6.0,
+fs06_f2c,fs06,magnetite,Cs(+1),rising,logistic,6.0,wide_interval
+wdpwx94_f5d,wdpwx94,ferrihydrite,U(+6),bell,spline,6.0,
+ns91_f3ac,ns91,magnetite,Np(+5),rising,logistic,6.0,edge_not_bracketed;wide_interval
+bc87_f3ad,bc87,goethite,Se(+4),falling,logistic,5.0,wide_interval
+iwja05a_f5c,iwja05a,montmorillonite,Aminotriazole,falling,logistic,5.0,
+yhlgmw10_f6a,yhlgmw10,bentonite,U(+6),rising,logistic,5.0,
+bb02_f5,bb02,montmorillonite,Eu(+3),rising,logistic,5.0,
+bbs85_f3b,bbs85,montmorillonite,Ra(+2),rising,logistic,5.0,wide_interval
+sjs14_f1bc,sjs14,hydroxyapatite,Citric acid,falling,logistic,5.0,wide_interval
+bm81_f6c,bm81,goethite,Mg(+2),flat,logistic,5.0,
+bm11_f3da,bm11,montmorillonite,U(+6),falling,logistic,5.0,wide_interval
+rl16_f1,rl16,kaolinite,Ra(+2),unclassified,spline,5.0,
+aotka82_f2ac,aotka82,quartz,Th(+4),multi_step,spline,5.0,edge_not_bracketed;wide_interval
+wat01c_f7ba,wat01c,goethite,Se(+4),falling,logistic,5.0,edge_not_bracketed
+fvb15_f2ab,fvb15,illite,Eu(+3),rising,logistic,5.0,edge_not_bracketed;wide_interval
+bb05a_f91a,bb05a,illite,Sr(+2),rising,logistic,5.0,edge_not_bracketed;wide_interval
+fsh09_f2b,fsh09,brucite,Pu(+4),flat,logistic,5.0,
+bsl83_f4d,bsl83,quartz,Ra(+2),rising,logistic,5.0,wide_interval
+cl86_f6ba,cl86,birnessite,Zn(+2),rising,logistic,5.0,
+wlclbtg13_fS2a,wlclbtg13,vernadite,U(+6),rising,logistic,5.0,wide_interval
+bb05a_f109_7dpsi,bb05a,illite,Eu(+3),rising,logistic,5.0,edge_not_bracketed
+ksktn07_f6c,ksktn07,goethite,Pu(+5),rising,logistic,5.0,
+cl86_f4a,cl86,birnessite,Cu(+2),rising,logistic,5.0,
+cl86_f3b,cl86,birnessite,Zn(+2),rising,logistic,5.0,
+ksktn07_f9a,ksktn07,goethite,Pu(+5),rising,logistic,5.0,
+bb05a_f102bpsi,bb05a,illite,Ni(+2),unclassified,spline,5.0,
+ta01a_f2bf,ta01a,hydrous manganese oxide,Ni(+2),rising,logistic,5.0,
+fvb15_f2aa,fvb15,illite,Eu(+3),rising,logistic,5.0,edge_not_bracketed
+hyz05_f2b,hyz05,gibbsite,U(+6),rising,logistic,5.0,
+jmlg09_f5b,jmlg09,hematite,Se(+4),falling,logistic,5.0,too_few_points;edge_not_bracketed;wide_interval
+bsssn17_f1ab,bsssn17,hematite,Se(+4),falling,logistic,5.0,edge_not_bracketed;wide_interval
+bsssn17_f1aa,bsssn17,hematite,Se(+4),falling,logistic,5.0,edge_not_bracketed;wide_interval
+fb19_f2a,fb19,illite,Pb(+2),rising,logistic,5.0,wide_interval
+ta01a_f2ae,ta01a,hydrous manganese oxide,Ca(+2),rising,logistic,5.0,
+fs06_f2b,fs06,bentonite,Sr(+2),flat,logistic,5.0,
+tad01_f2ac,tad01,goethite,Ni(+2),rising,logistic,5.0,
+fb19_f2apsi,fb19,illite,Pb(+2),rising,logistic,5.0,
+fb19_f2bapsi,fb19,montmorillonite,Pb(+2),multi_step,spline,5.0,edge_not_bracketed
+fghgwsy22_f10b,fghgwsy22,hematite,Dodecylamine,rising,logistic,5.0,too_few_points;edge_not_bracketed;wide_interval;bootstrap_unstable
+ea08_f2aa,ea08,gibbsite,Ketogluconate,flat,logistic,5.0,
+pbb99a_f23aapsi,pbb99a,illite,Cs(+1),flat,logistic,5.0,
+dlfjr03_f3b,dlfjr03,hematite,Se(+4),falling,logistic,5.0,too_few_points;narrow_span
+nrsgwy17_f2cc,nrsgwy17,bentonite,Np(+4),flat,logistic,5.0,
+ab90a_f3c,ab90a,ferrihydrite,Se(+4),falling,logistic,5.0,edge_not_bracketed;wide_interval
+nea94_f3c,nea94,quartz,Fulvic acid,flat,logistic,5.0,
+dw14_f3c,dw14,kaolinite,U(+6),bell,spline,5.0,
+d01_f4-16aa,d01,ferrihydrite,U(+6),bell,spline,5.0,
+zrhsk05_f10,zrhsk05,calcite,Np(+5),falling,logistic,5.0,narrow_span;wide_interval
+khl99_f10b,khl99,goethite,Np(+5),bell,spline,5.0,
+d01_f7-3d,d01,kaolinite,U(+6),rising,logistic,5.0,too_few_points;narrow_span
+lh99_f1b,lh99,hematite,U(+6),bell,spline,5.0,
+s83_IV6a_7d,s83,montmorillonite,Pu(+5),bell,spline,5.0,too_few_points;edge_not_bracketed;bootstrap_unstable
+lds03_f6,lds03,zirconia,U(+6),rising,logistic,5.0,
+mlh99_f1a,mlh99,hematite,U(+6),bell,spline,5.0,
+zsbus09_f1bb,zsbus09,hematite,U(+6),rising,logistic,5.0,too_few_points;narrow_span
+d01_f7-9c,d01,kaolinite,P(+5),bell,spline,5.0,
+lkda94_f4a,lkda94,hematite,Eu(+3),rising,logistic,5.0,edge_not_bracketed
+lyljd14_f5ac,lyljd14,magnetite,U(+6),bell,spline,5.0,edge_not_bracketed
+cl86_f6ca,cl86,birnessite,Pb(+2),rising,logistic,5.0,
+fwr95_f3b,fwr95,kaolinite,Eu(+3),rising,logistic,5.0,wide_interval
+w16_s14a,w16,hematite,Np(+5),bell,spline,5.0,
+bpa98_f2b,bpa98,clinoptilolite,Np(+5),flat,spline,5.0,
+jhlch99_f4c,jhlch99,quartz,U(+6),bell,spline,5.0,
+d01_f4-13c,d01,ferrihydrite,P(+5),falling,logistic,5.0,
+ssfxcw09_f4a,ssfxcw09,bentonite,Eu(+3),rising,logistic,5.0,
+d01_f4-8ba,d01,ferrihydrite,U(+6),falling,logistic,5.0,narrow_span
+mbgk18_f5ab,mbgk18,illite,Co(+2),rising,logistic,5.0,edge_not_bracketed;wide_interval
+nfhpl17_f2aa,nfhpl17,goethite,Sr(+2),rising,logistic,5.0,wide_interval
+dlfjr03_f4g,dlfjr03,fluoroapatite,Se(+4),flat,logistic,5.0,
+bm82_f8b,bm82,goethite,Zn(+2),rising,logistic,5.0,narrow_span
+mgm03_f6ab,mgm03,goethite,U(+6),rising,logistic,5.0,edge_not_bracketed;wide_interval
+d01_f4-8ad,d01,ferrihydrite,U(+6),rising,logistic,5.0,too_few_points;narrow_span;bootstrap_unstable
+d01_f4-10ad,d01,ferrihydrite,U(+6),bell,spline,5.0,
+jhlch99_f1aa,jhlch99,goethite,U(+6),rising,logistic,5.0,edge_not_bracketed;wide_interval
+bm82_f4bc,bm82,goethite,Cd(+2),rising,logistic,5.0,edge_not_bracketed;wide_interval
+sjs14_f1cb,sjs14,hydroxyapatite,Citric acid,flat,logistic,4.0,
+sjs14_f1bb,sjs14,hydroxyapatite,Citric acid,falling,logistic,4.0,too_few_points;narrow_span;edge_not_bracketed;wide_interval;bootstrap_unstable
+lhclx16_f3bc,lhclx16,bentonite,Pu,rising,logistic,4.0,too_few_points;edge_not_bracketed;wide_interval;bootstrap_unstable
+bm87_f2b,bm87,goethite,Oxalic acid,falling,logistic,4.0,edge_not_bracketed
+bbs85_f2b,bbs85,kaolinite,Ra(+2),rising,logistic,4.0,edge_not_bracketed;wide_interval
+lyt14_t5c,lyt14,goethite,Se(-2),falling,logistic,4.0,wide_interval
+sjs14_f1cc,sjs14,hydroxyapatite,Citric acid,flat,logistic,4.0,
+w16_s8a,w16,hematite,Np(+5),bell,spline,4.0,
+fwr95_f1a,fwr95,bentonite,Humic acid,falling,logistic,4.0,wide_interval
+bm87_f1a,bm87,goethite,Oxalic acid,falling,logistic,4.0,wide_interval
+fw98_f1ac,fw98,boehmite,Humic acid,falling,logistic,4.0,edge_not_bracketed;wide_interval
+mbgk18_f3b,mbgk18,illite,Sr(+2),rising,logistic,4.0,edge_not_bracketed;wide_interval
+mf92a_f4b,mf92a,goethite,Oxalic acid,falling,logistic,4.0,
+lyt14_t3b,lyt14,magnetite,Se(+4),falling,spline,4.0,edge_not_bracketed;poor_fit
+fb19_f2b,fb19,montmorillonite,Pb(+2),unclassified,spline,4.0,
+awj06a_f2a,awj06a,goethite,Mellitic acid,flat,logistic,4.0,
+zkm85_f1b,zkm85,hematite,Citric acid,flat,logistic,4.0,
+lyt14_t8b,lyt14,magnetite,Se(-2),falling,spline,4.0,poor_fit
+nl15_f3d,nl15,hematite,Citric acid,bell,spline,4.0,edge_not_bracketed
+rh14_f1b,rh14,montmorillonite,Citric acid,flat,logistic,4.0,
+e14_d,e14,hematite,Np(+5),multi_step,spline,4.0,
+wa01_f4,wa01,corundum,Pu(+4),rising,logistic,4.0,too_few_points;edge_not_bracketed;wide_interval;bootstrap_unstable
+mf92a_f1b,mf92a,goethite,Oxalic acid,falling,logistic,4.0,
+awj06a_f2b,awj06a,goethite,Mellitic acid,flat,logistic,4.0,
+lyt14_t5b,lyt14,goethite,Se(-2),falling,spline,4.0,
+sbbf14_f3a,sbbf14,montmorillonite,Fe(+2),rising,spline,4.0,edge_not_bracketed;poor_fit
+awj06a_f2e,awj06a,goethite,Mellitic acid,falling,logistic,4.0,
+kv13_f1ab,kv13,goethite,Se(+6),falling,logistic,4.0,edge_not_bracketed
+kv13_f1bi,kv13,goethite,Se(+6),falling,logistic,4.0,edge_not_bracketed
+bs14_f4c,bs14,goethite,Ra(+2),rising,logistic,4.0,edge_not_bracketed
+fhr97_f1bd,fhr97,goethite,Citric acid,flat,logistic,4.0,too_few_points;narrow_span
+mf92_f2bc,mf92,goethite,Oxalic acid,falling,logistic,4.0,
+pa05_f1c,pa05,goethite,Malonic acid,falling,logistic,4.0,too_few_points;edge_not_bracketed;wide_interval;bootstrap_unstable
+bm82_f1aa,bm82,goethite,Cu(+2),rising,logistic,4.0,too_few_points;narrow_span;edge_not_bracketed
+bc90_f6bd,bc90,vernadite,Se(+4),falling,logistic,4.0,narrow_span
+eicg03_f3f,eicg03,illite,Ni(+2),rising,logistic,4.0,wide_interval
+cjgmw14_f2b,cjgmw14,bentonite,Eu(+3),rising,logistic,4.0,
+bb05_fa4ba,bb05,montmorillonite,Th(+4),flat,logistic,4.0,
+bb05_fa5ab,bb05,montmorillonite,U(+6),rising,logistic,4.0,edge_not_bracketed;wide_interval
+kdse04_f1d,kdse04,montmorillonite,U(+6),rising,logistic,4.0,edge_not_bracketed
+bpa98_f1c,bpa98,quartz,Np(+5),flat,logistic,4.0,
+smrlg15_f1cc,smrlg15,illite,Eu(+3),rising,logistic,4.0,
+mzst95_f4b,mzst95,montmorillonite,U(+6),rising,logistic,4.0,
+mzst95_f4c,mzst95,montmorillonite,U(+6),rising,spline,4.0,poor_fit
+aotka82_f2ea,aotka82,alumina,Pu,rising,logistic,4.0,edge_not_bracketed;wide_interval
+aotka82_f2da,aotka82,alumina,Np(+5),rising,logistic,4.0,edge_not_bracketed;wide_interval
+nkm14_f6a,nkm14,rutile,U(+6),rising,logistic,4.0,
+zb04_fa17,zb04,heulandite,Np(+5),rising,logistic,4.0,edge_not_bracketed;wide_interval
+vt98_f1bd,vt98,hematite,U(+6),rising,logistic,4.0,wide_interval
+hl85_f4bb,hl85,goethite,U(+6),rising,logistic,4.0,
+m80_f1ad,m80,birnessite,Co(+2),rising,logistic,4.0,too_few_points;edge_not_bracketed;wide_interval;bootstrap_unstable
+d01_f4-11d,d01,ferrihydrite,U(+6),bell,spline,4.0,
+sem81_f3c,sem81,alumina,Cs(+1),flat,logistic,4.0,
+sem81_f4d,sem81,alumina,Cs(+1),rising,logistic,4.0,
+emibsgg17_f2ab,emibsgg17,montmorillonite,Np(+5),rising,logistic,4.0,edge_not_bracketed;wide_interval
+s83_IV7a_1hr,s83,montmorillonite,Pu(+5),rising,logistic,4.0,too_few_points;wide_interval
+bb09_f3ba,bb09,illite,Ni(+2),rising,logistic,4.0,
+khl99_f3,khl99,hematite,C(+4),bell,spline,4.0,
+hl85_f8a,hl85,goethite,U(+6),rising,logistic,4.0,
+bchssy98_f4b,bchssy98,goethite,Se(+4),multi_step,spline,4.0,wide_interval
+mgm03_f6ac,mgm03,goethite,U(+6),rising,logistic,4.0,edge_not_bracketed;wide_interval
+sph08_f2b,sph08,goethite,U(+6),rising,logistic,4.0,
+T83_TVI-5b,t83,goethite,U(+6),bell,spline,4.0,narrow_span
+vl00_f6b,vl00,goethite,C(+4),flat,logistic,4.0,too_few_points;narrow_span;bootstrap_unstable
+mg07_f5bb,mg07,bentonite,Co(+2),rising,logistic,4.0,edge_not_bracketed
+nrsgwy17_f2aa,nrsgwy17,illite,Np(+4),flat,logistic,4.0,too_few_points;bootstrap_unstable
+khl99_f6a,khl99,hematite,Np(+5),rising,logistic,4.0,
+bb09_f3cf,bb09,illite,Ni(+2),rising,logistic,4.0,too_few_points;edge_not_bracketed;wide_interval
+hchk01_f2bb,hchk01,montmorillonite,U(+6),rising,logistic,4.0,
+tad01_f2bb,tad01,goethite,Zn(+2),rising,logistic,4.0,edge_not_bracketed
+ksj75_f2CaAl,ksj75,Al(OH)3,Ca(+2),rising,logistic,4.0,
+hchk01_f2ad,hchk01,montmorillonite,U(+6),bell,spline,4.0,
+bchssy98_f3,bchssy98,goethite,U(+6),rising,logistic,4.0,edge_not_bracketed;wide_interval
+zlqwwzy16_f4b,zlqwwzy16,bentonite,U(+6),rising,logistic,4.0,edge_not_bracketed
+lh99_f2c,lh99,hematite,U(+6),bell,spline,4.0,
+s83_III8a_1hr,s83,silica,Pu(+5),rising,logistic,4.0,too_few_points;edge_not_bracketed;wide_interval;bootstrap_unstable
+sem81_f6b,sem81,alumina,Sr(+2),rising,logistic,4.0,wide_interval
+dw14_f3b,dw14,goethite,U(+6),rising,logistic,4.0,
+hpq71_f2ca,hpq71,goethite,Se(+4),falling,logistic,4.0,
+jrsws14_f1b,jrsws14,maghemite,Se(+4),falling,logistic,4.0,wide_interval
+lbhka80_fA37d,lbhka80,ferrihydrite,Se(+4),falling,logistic,4.0,
+fdz06_f6a,fdz06,ferrihydrite,U(+6),falling,logistic,4.0,too_few_points;narrow_span
+wlclbtg13_f1ab,wlclbtg13,vernadite,U(+6),bell,spline,4.0,
+cl86_f7c,cl86,birnessite,Pb(+2),rising,logistic,4.0,
+ss00_f2bf,ss00,goethite,Se(+4),falling,logistic,4.0,wide_interval
+tpb98_f4bb,tpb98,montmorillonite,Np(+5),rising,logistic,4.0,
+cl86_f6bb,cl86,birnessite,Zn(+2),rising,logistic,4.0,
+bbs03_f3b,bbs03,goethite,Cd(+2),rising,logistic,4.0,edge_not_bracketed
+hl85_f4aa,hl85,ferrihydrite,U(+6),rising,logistic,4.0,wide_interval
+bc87_f2,bc87,goethite,Se(+4),falling,logistic,4.0,edge_not_bracketed
+wat01c_f7bc,wat01c,goethite,Se(+4),falling,logistic,4.0,wide_interval
+wdpwx94_f4ab,wdpwx94,ferrihydrite,U(+6),bell,spline,4.0,
+c96_f240ba,c96,hematite,U(+6),bell,spline,4.0,
+wdpwx94_f4bb,wdpwx94,ferrihydrite,U(+6),bell,spline,4.0,
+c96_fIV2c,c96,hematite,Co(+2),rising,logistic,4.0,
+tpb98_f2d,tpb98,montmorillonite,Np(+5),rising,logistic,4.0,
+ta01a_f2ab,ta01a,hydrous aluminum oxide,Ca(+2),rising,logistic,4.0,edge_not_bracketed;wide_interval
+bb06_f1abpsi,bb06,montmorillonite,Eu(+3),rising,spline,4.0,edge_not_bracketed;poor_fit
+wdpwx94_f6b,wdpwx94,ferrihydrite,U(+6),bell,spline,4.0,
+bb05a_f109_60dpsi,bb05a,illite,Eu(+3),rising,logistic,4.0,edge_not_bracketed;wide_interval
+hpl88_f3ac,hpl88,goethite,Se(+6),falling,logistic,4.0,
+wmdv98_f3a,wmdv98,illite,Eu(+3),rising,logistic,4.0,edge_not_bracketed;wide_interval
+cl86_f6ab,cl86,birnessite,Cu(+2),rising,logistic,4.0,
+pjtp01_f1b,pjtp01,quartz,U(+6),rising,logistic,4.0,
+lp09_f1b,lp09,goethite,Citric acid,falling,logistic,3.0,edge_not_bracketed;wide_interval
+mhsh09_f1b,mhsh09,montmorillonite,Citric acid,flat,logistic,3.0,
+rgkb98_f2b,rgkb98,hematite,Eu(+3),rising,spline,3.0,
+wmdv98_f3c,wmdv98,illite,Eu(+3),rising,logistic,3.0,narrow_span
+hchk01_f5b,hchk01,montmorillonite,U(+6),rising,logistic,3.0,
+rbmb88_f2a,rbmb88,alumina,Am(+3),rising,logistic,3.0,
+afi02_f2a,afi02,goethite,Phthalic acid,falling,logistic,3.0,
+ea08_f2ab,ea08,gibbsite,Ketogluconate,flat,logistic,3.0,
+ksktn07_f6b,ksktn07,goethite,Pu(+5),rising,logistic,3.0,too_few_points;edge_not_bracketed;wide_interval;bootstrap_unstable
+afi02_f2d,afi02,kaolinite,Phthalic acid,flat,logistic,3.0,
+zcr91_f2af,zcr91,calcite,Ba(+2),flat,logistic,3.0,narrow_span
+bm82_f1ab,bm82,goethite,Cu(+2),rising,logistic,3.0,
+bm82_f1bc,bm82,goethite,Cu(+2),rising,logistic,3.0,
+hchk01_f3aa,hchk01,kaolinite,U(+6),rising,logistic,3.0,
+mhsh09_f1a,mhsh09,goethite,Citric acid,falling,logistic,3.0,
+ta01_f4ac,ta01,goethite,Ni(+2),rising,logistic,3.0,
+tpb98_f5bd,tpb98,montmorillonite,Np(+5),rising,logistic,3.0,
+sem81_f3b,sem81,alumina,Cs(+1),rising,logistic,3.0,wide_interval
+snbsw03_f3bb,snbsw03,hausmannite,Pu(+6),bell,spline,3.0,edge_not_bracketed;wide_interval
+kv13_f1bc,kv13,goethite,Se(+6),falling,logistic,3.0,wide_interval
+sem81_f6a,sem81,alumina,Sr(+2),rising,logistic,3.0,wide_interval
+sms85_f3,sms85,goethite,Pu(+4),rising,logistic,3.0,
+bb09a_f2ab,bb09a,illite,Am(+3),rising,logistic,3.0,
+mf92a_f3a,mf92a,goethite,Oxalic acid,falling,logistic,3.0,
+kv13_f1ch,kv13,goethite,Se(+6),falling,logistic,3.0,edge_not_bracketed;wide_interval
+m80_f2bc,m80,goethite,Zn(+2),rising,logistic,3.0,too_few_points;edge_not_bracketed;bootstrap_unstable
+rll98_f7,rll98,gibbsite,U(+6),rising,logistic,3.0,
+dkt91_f1a,dkt91,goethite,Oxalic acid,flat,logistic,3.0,
+jpk15_f4c,jpk15,hematite,Se(+6),falling,logistic,3.0,edge_not_bracketed;wide_interval
+DKM14_f1,DKM14,quartz,Am(+3),flat,logistic,3.0,too_few_points
+bm11_f3ab,bm11,kaolinite,U(+6),rising,logistic,3.0,wide_interval
+bm82_f2bd,bm82,goethite,Pb(+2),rising,logistic,3.0,narrow_span
+sd90_f3b_des,sd90,clay,Am(+3),rising,logistic,3.0,too_few_points;edge_not_bracketed;wide_interval;bootstrap_unstable
+lyt14_t7b,lyt14,ferrous oxide,Se(-2),falling,spline,3.0,poor_fit
+lyt14_t7a,lyt14,ferrous oxide,Se(-2),falling,logistic,3.0,
+yhlgmw10_f1b,yhlgmw10,bentonite,U(+6),rising,logistic,3.0,
+emibsgg17_f2aa,emibsgg17,montmorillonite,Np(+5),rising,logistic,3.0,wide_interval
+EABFY13_f5a,EABFY13,hematite,Eu(+3),flat,logistic,3.0,
+sem81_f7e,sem81,alumina,Sr(+2),rising,logistic,3.0,wide_interval
+lyt14_t2b,lyt14,ferrous oxide,Se(+4),falling,logistic,3.0,edge_not_bracketed
+sd90_f2c,sd90,clay,Am(+3),rising,logistic,3.0,too_few_points;edge_not_bracketed;wide_interval;bootstrap_unstable
+tpb98_f5bb,tpb98,montmorillonite,Np(+5),flat,logistic,3.0,narrow_span
+bb02_f2,bb02,montmorillonite,Eu(+3),rising,spline,3.0,poor_fit
+mzst95_f4a,mzst95,montmorillonite,U(+6),falling,spline,3.0,
+fb95_f1b,fb95,alumina,Oxalic acid,falling,logistic,3.0,
+mbgk18_f6ba,mbgk18,illite,Zn(+2),flat,logistic,3.0,
+zs90a_f4,zs90a,goethite,Se(+4),falling,logistic,3.0,
+hrbhl87_f2f,hrbhl87,goethite,Se(+4),falling,logistic,3.0,too_few_points;narrow_span
+c96_fIV4c,c96,hematite,Am(+3),rising,logistic,3.0,
+hpl88_f5aa,hpl88,ferrihydrite,Se(+6),falling,logistic,3.0,edge_not_bracketed;wide_interval
+chm93_f5b,chm93,ferrihydrite,Zn(+2),rising,spline,3.0,poor_fit
+pbb99a_f13a,pbb99a,illite,Eu(+3),rising,logistic,3.0,wide_interval
+dlfjr03_f3g,dlfjr03,fluoroapatite,Se(+4),flat,logistic,3.0,
+c96_fIV8b,c96,hematite,Th(+4),multi_step,spline,3.0,edge_not_bracketed
+bbs85_f2a,bbs85,kaolinite,Ra(+2),rising,logistic,3.0,edge_not_bracketed;wide_interval
+bc90_f6bb,bc90,vernadite,Se(+4),falling,logistic,3.0,
+pbb99a_f20dpsi,pbb99a,illite,Cs(+1),flat,logistic,3.0,
+bm82_f9a,bm82,goethite,Cd(+2),rising,logistic,3.0,
+bc90_f5a,bc90,ferrihydrite,Se(+6),falling,logistic,3.0,
+bc90_f2a,bc90,ferrihydrite,Se(+4),falling,logistic,3.0,
+c96_fIV12c,c96,hematite,U(+6),bell,spline,3.0,edge_not_bracketed
+mbgk18_f6c,mbgk18,illite,Zn(+2),flat,logistic,3.0,
+c96_f240aa,c96,hematite,U(+6),bell,spline,3.0,
+d01_f4-13a,d01,ferrihydrite,P(+5),falling,logistic,3.0,
+c96_f239bb,c96,hematite,U(+6),bell,spline,3.0,edge_not_bracketed
+bb09a_f5bapsi,bb09a,illite,Pa(+5),flat,logistic,3.0,
+bb06_f1aapsi,bb06,montmorillonite,Am(+3),rising,spline,3.0,edge_not_bracketed;poor_fit
+bb05a_f107a,bb05a,illite,Eu(+3),rising,logistic,3.0,wide_interval
+mf92_f2aa,mf92,goethite,Oxalic acid,falling,logistic,3.0,
+mf92_f2cc,mf92,goethite,Oxalic acid,falling,logistic,3.0,wide_interval
+fb19_f2bpsi,fb19,montmorillonite,Pb(+2),unclassified,spline,3.0,poor_fit
+bbs03_f1b,bbs03,goethite,Cu(+2),rising,logistic,3.0,
+bbs03_f3a,bbs03,goethite,Cd(+2),rising,logistic,3.0,
+c96_f235ba,c96,hematite,Co(+2),rising,spline,3.0,edge_not_bracketed;poor_fit
+c96_f237cb,c96,hematite,Th(+4),multi_step,spline,3.0,edge_not_bracketed
+rgmmd08_f4ba,rgmmd08,goethite,Se(+6),falling,logistic,3.0,too_few_points;edge_not_bracketed;wide_interval;bootstrap_unstable
+sjs14_f1ca,sjs14,hydroxyapatite,Citric acid,flat,logistic,3.0,
+bsl83_f1a,bsl83,ferrihydrite,Ra(+2),rising,logistic,3.0,
+sblvd14_f2c,sblvd14,goethite,Ra(+2),rising,logistic,3.0,edge_not_bracketed
+bc87_f4aa,bc87,goethite,Se(+4),falling,logistic,3.0,edge_not_bracketed
+rbab91_f7b,rbab91,silica,Np(+5),rising,logistic,3.0,
+d01_f4-4b,d01,ferrihydrite,U(+6),bell,spline,3.0,
+zrhsk05_f12a,zrhsk05,calcite,Pu(+4),falling,logistic,3.0,narrow_span;wide_interval
+hl85_f2c,hl85,hematite,U(+6),rising,logistic,3.0,
+pbb99_f7b,pbb99,illite,Cs(+1),flat,spline,3.0,
+zsbus09_f1be,zsbus09,hematite,U(+6),rising,logistic,3.0,edge_not_bracketed;wide_interval
+lcv99_f4a,lcv99,hematite,U(+6),rising,logistic,3.0,
+mlh99_f7a,mlh99,hematite,U(+6),bell,spline,3.0,
+bm82_f4ba,bm82,goethite,Cd(+2),rising,logistic,3.0,too_few_points;edge_not_bracketed;wide_interval
+nea94_f1ba,nea94,quartz,Eu(+3),rising,logistic,3.0,edge_not_bracketed
+nea94_f2ab,nea94,alumina,Sr(+2),rising,logistic,3.0,edge_not_bracketed;wide_interval
+fwr95_f3c,fwr95,montmorillonite,Eu(+3),flat,logistic,3.0,
+nea94_f2ad,nea94,alumina,Sr(+2),rising,logistic,3.0,wide_interval
+nea94_f3b,nea94,alumina,Fulvic acid,flat,logistic,3.0,
+ns91_f3ab,ns91,hematite,Np(+5),rising,logistic,3.0,edge_not_bracketed;wide_interval
+sph08_f2d,sph08,goethite,U(+6),rising,logistic,3.0,
+rbab91_f5b,rbab91,silica,Np(+5),rising,logistic,3.0,
+mdf99_f3c,mdf99,magnetite,Yb(+3),rising,logistic,3.0,narrow_span
+zsbus09_f1ce,zsbus09,hematite,U(+6),bell,spline,3.0,edge_not_bracketed;wide_interval
+bm82_f7b,bm82,goethite,Pb(+2),rising,logistic,3.0,too_few_points;narrow_span
+lkda94_f3c,lkda94,ferrihydrite,Eu(+3),rising,logistic,3.0,edge_not_bracketed
+bb05_fa3b,bb05,montmorillonite,Eu(+3),rising,spline,3.0,poor_fit
+d01_f4-13e,d01,ferrihydrite,P(+5),falling,logistic,3.0,
+zb04_fb4,zb04,calcite,Pu(+5),unclassified,spline,3.0,narrow_span
+zb04_fa22,zb04,calcite,Np(+5),flat,logistic,3.0,narrow_span
+bpa98_f1a,bpa98,quartz,Np(+5),flat,logistic,3.0,
+kdse04_f1b,kdse04,montmorillonite,U(+6),rising,logistic,3.0,
+dk52_t1b,dk52,ferrihydrite,Co(+2),rising,logistic,3.0,too_few_points;narrow_span;bootstrap_unstable
+bb05_fa4a,bb05,montmorillonite,Sn(+4),flat,spline,3.0,
+lh99_f3ab,lh99,hematite,Humic acid,bell,spline,3.0,edge_not_bracketed;wide_interval;bootstrap_unstable
+bpa98_f3c,bpa98,montmorillonite,Np(+5),rising,logistic,3.0,
+lh99_f4ab,lh99,hematite,U(+6),bell,spline,3.0,
+bpa98_f5a,bpa98,quartz,Np(+5),flat,logistic,3.0,
+khl99_f8b,khl99,hematite,Np(+5),rising,logistic,3.0,
+bm82_f4ad,bm82,goethite,Cd(+2),rising,logistic,2.0,
+fb95_f1a,fb95,alumina,Oxalic acid,falling,logistic,2.0,
+jysb04_f1a,jysb04,corundum,Oxalic acid,flat,logistic,2.0,
+bm82_f7c,bm82,goethite,Pb(+2),rising,logistic,2.0,narrow_span
+bm82_f9b,bm82,goethite,Cd(+2),rising,logistic,2.0,wide_interval
+bm82_f5d,bm82,goethite,Zn(+2),rising,logistic,2.0,
+bm81_f3b,bm81,goethite,Mg(+2),rising,logistic,2.0,too_few_points;narrow_span;bootstrap_unstable
+rbab91_f7a,rbab91,silica,Am(+3),rising,logistic,2.0,wide_interval
+wmdv98_f3e,wmdv98,illite,Eu(+3),rising,logistic,2.0,
+zcr91_f2ad,zcr91,calcite,Co(+2),bell,spline,2.0,narrow_span
+jhlch99_f4d,jhlch99,quartz,U(+6),rising,logistic,2.0,edge_not_bracketed;wide_interval
+bsl83_f4c,bsl83,quartz,Ra(+2),rising,logistic,2.0,edge_not_bracketed
+ptbp98_f5Ac,ptbp98,quartz,U(+6),bell,spline,2.0,
+c96_f235ab,c96,hematite,Co(+2),bell,spline,2.0,edge_not_bracketed
+c96_f235ac,c96,hematite,Co(+2),rising,spline,2.0,poor_fit;wide_interval
+bs14_f4d,bs14,goethite,Ra(+2),rising,logistic,2.0,too_few_points
+bsl83_f1c,bsl83,ferrihydrite,Ra(+2),rising,logistic,2.0,
+c96_f238ab,c96,hematite,Th(+4),rising,spline,2.0,edge_not_bracketed;poor_fit;wide_interval
+c96_fIV5b,c96,hematite,Am(+3),rising,logistic,2.0,
+c96_fIV9a,c96,hematite,Th(+4),rising,spline,2.0,edge_not_bracketed;poor_fit
+d01_f4-13b,d01,ferrihydrite,P(+5),falling,logistic,2.0,
+bpa98_f1d,bpa98,quartz,Np(+5),flat,logistic,2.0,
+bpa98_f4b,bpa98,alumina,Np(+5),flat,logistic,2.0,
+k62_ESR2,k62,ferrihydrite,Sr(+2),rising,logistic,2.0,
+k62_ESR6,k62,ferrihydrite,Sr(+2),rising,logistic,2.0,edge_not_bracketed
+k62_ESR7,k62,ferrihydrite,Sr(+2),rising,logistic,2.0,
+ksj75_f2SrFe,ksj75,ferrihydrite,Sr(+2),rising,logistic,2.0,
+bm81_f4b,bm81,goethite,Ca(+2),rising,logistic,2.0,too_few_points;narrow_span;edge_not_bracketed;bootstrap_unstable
+rbab91_f8b,rbab91,alumina,Np(+5),rising,logistic,2.0,
+rbmb88_f2b,rbmb88,alumina,Am(+3),rising,logistic,2.0,
+mf92a_f4a,mf92a,goethite,Oxalic acid,falling,logistic,2.0,
+mf92a_f3b,mf92a,goethite,Oxalic acid,falling,logistic,2.0,
+rgrjh14_f1c,rgrjh14,smectite,Oxalic acid,flat,logistic,2.0,
+sms85_f1ad,sms85,goethite,Pu(+4),rising,logistic,2.0,edge_not_bracketed;wide_interval
+tpb98_f2b,tpb98,montmorillonite,Np(+5),flat,logistic,2.0,narrow_span
+nl15_f3c,nl15,hematite,Citric acid,falling,logistic,2.0,wide_interval
+nl15_f1a,nl15,hematite,Citric acid,bell,spline,2.0,edge_not_bracketed
+bm81_f4a,bm81,goethite,Ca(+2),rising,logistic,2.0,narrow_span
+bb09a_f1bpsi,bb09a,illite,Am(+3),rising,spline,2.0,edge_not_bracketed;poor_fit
+bm81_f5a,bm81,goethite,S(+6),falling,logistic,2.0,
+mgf03_f5d,mgf03,magnetite,U(+6),rising,logistic,2.0,wide_interval
+zrhsk05_f11b,zrhsk05,calcite,Pu(+5),unclassified,spline,2.0,narrow_span
+sfbd13_f1abpsi,sfbd13,montmorillonite,Fe(+2),rising,spline,2.0,edge_not_bracketed
+zrhsk05_f9,zrhsk05,calcite,Sm(+3),bell,spline,2.0,narrow_span
+cphtw11_f3b,cphtw11,anatase/rutile,U(+6),rising,logistic,2.0,
+cphtw11_f1a,cphtw11,anatase,U(+6),rising,logistic,2.0,wide_interval
+mzst95_f3c,mzst95,quartz,U(+6),rising,logistic,2.0,
+fwr95_f1de,fwr95,quartz,Humic acid,falling,logistic,2.0,
+fw98_f3ab,fw98,boehmite,Eu(+3),rising,logistic,2.0,
+bb05_fa1cb,bb05,montmorillonite,Cd(+2),rising,logistic,2.0,narrow_span;edge_not_bracketed;wide_interval
+bb05_fa1b,bb05,montmorillonite,Co(+2),rising,logistic,2.0,too_few_points;edge_not_bracketed;wide_interval
+lkda94_f3a,lkda94,hematite,Eu(+3),rising,logistic,2.0,edge_not_bracketed;wide_interval
+bc90_f1aa,bc90,ferrihydrite,Se(+6),falling,logistic,2.0,
+lyljd14_f5ab,lyljd14,magnetite,U(+6),bell,spline,2.0,
+zsbus09_f1ca,zsbus09,hematite,U(+6),rising,logistic,2.0,
+lh99_f1a,lh99,hematite,U(+6),rising,logistic,2.0,
+hl85_f2d,hl85,hematite,U(+6),rising,logistic,2.0,edge_not_bracketed
+nea94_f2aa,nea94,alumina,Sr(+2),rising,logistic,2.0,
+khl99_f6b,khl99,hematite,Np(+5),rising,logistic,2.0,
+T83_TVI-4a,t83,goethite,U(+6),rising,logistic,2.0,too_few_points;narrow_span;bootstrap_unstable
+mgm03_f9b,mgm03,goethite,U(+6),rising,logistic,2.0,
+awj06a_f2d,awj06a,goethite,Mellitic acid,falling,logistic,2.0,
+afi02_f1a,afi02,goethite,Phthalic acid,falling,spline,2.0,poor_fit
+sbbf14_f1apsi,sbbf14,montmorillonite,Fe(+2),unclassified,spline,2.0,poor_fit
+bc90_f1ab,bc90,ferrihydrite,Se(+6),falling,logistic,2.0,
+bm81_f5b,bm81,goethite,S(+6),falling,logistic,2.0,too_few_points;edge_not_bracketed;wide_interval
+lbhka80_fA34d,lbhka80,ferrihydrite,Se(+6),flat,logistic,2.0,too_few_points;narrow_span;bootstrap_unstable
+bb09a_f3bpsi,bb09a,illite,Th(+4),flat,spline,2.0,poor_fit
+bb17_f31psi,bb17,montmorillonite,Co(+2),rising,spline,2.0,poor_fit
+bb02_f5psi,bb02,montmorillonite,Eu(+3),rising,spline,2.0,poor_fit
+wat01c_f20a,wat01c,ferrihydrite,Se(+4),falling,logistic,2.0,
+wat01c_f7ab,wat01c,goethite,Se(+4),falling,logistic,2.0,
+wat01c_f5a,wat01c,ferrihydrite,Se(+6),falling,logistic,2.0,
+ss00_f2ac,ss00,goethite,Se(+6),falling,logistic,2.0,edge_not_bracketed
+ss00_f1bc,ss00,ferrihydrite,Se(+6),falling,logistic,2.0,
+ss00_f1ae,ss00,ferrihydrite,Se(+4),falling,logistic,2.0,edge_not_bracketed
+lbhka80_fA37b,lbhka80,ferrihydrite,Se(+4),falling,logistic,2.0,too_few_points;edge_not_bracketed;wide_interval
+bc87_f8b,bc87,goethite,Se(+4),falling,logistic,2.0,edge_not_bracketed;wide_interval
+bc90_f1ac,bc90,ferrihydrite,Se(+4),falling,logistic,2.0,
+bc87_f3ab,bc87,goethite,Se(+4),falling,logistic,2.0,edge_not_bracketed
+mbgk18_f4bb,mbgk18,illite,Co(+2),unclassified,spline,2.0,narrow_span
+masgg09_f3ac,masgg09,magnetite,Se(+4),falling,logistic,2.0,edge_not_bracketed;wide_interval
+masgg09_f3ab,masgg09,magnetite,Se(+4),multi_step,spline,2.0,edge_not_bracketed
+mbgk18_f6bc,mbgk18,illite,Zn(+2),flat,logistic,2.0,
+hrbhl87_f2d,hrbhl87,goethite,Se(+6),falling,logistic,2.0,
+hpl88_f3aa,hpl88,goethite,Se(+6),falling,logistic,2.0,
+dlfjr03_f3d,dlfjr03,goethite,Se(+4),falling,logistic,2.0,wide_interval
+dl80_f5a,dl80,corundum,Cr(+6),falling,logistic,2.0,
+bc90_f6ab,bc90,ferrihydrite,Se(+4),falling,logistic,2.0,
+afi02_f1b,afi02,goethite,Trimesic acid,falling,logistic,2.0,wide_interval
+hchk01_f3bb,hchk01,chlorite,U(+6),rising,logistic,2.0,
+iwja05a_f5b,iwja05a,montmorillonite,Aminotriazole,falling,logistic,2.0,wide_interval
+snbsw03_f3ab,snbsw03,manganite,Pu(+6),bell,spline,2.0,too_few_points;edge_not_bracketed;bootstrap_unstable
+akbn96_f1a,akbn96,ferrihydrite,U(+6),rising,logistic,2.0,too_few_points;narrow_span;bootstrap_unstable
+ksktn07_f5a,ksktn07,manganese dioxide,Pu(+4),rising,logistic,2.0,wide_interval
+ta99_f6d,ta99,hydrous manganese oxide,Sr(+2),rising,logistic,2.0,
+ta99_f6b,ta99,hydrous aluminum oxide,Sr(+2),rising,logistic,2.0,edge_not_bracketed;wide_interval
+ta99_f6a,ta99,hydrous aluminum oxide,Sr(+2),rising,logistic,2.0,edge_not_bracketed;wide_interval
+ta01a_f2be,ta01a,hydrous manganese oxide,Ni(+2),rising,logistic,2.0,
+ta01a_f2aa,ta01a,hydrous aluminum oxide,Ca(+2),rising,logistic,2.0,
+tad01_f2ab,tad01,goethite,Ni(+2),rising,logistic,2.0,
+ta01_f4da,ta01,ferrihydrite,Zn(+2),rising,logistic,2.0,wide_interval
+ta01_f4bb,ta01,goethite,Zn(+2),rising,logistic,2.0,
+ta01_f4ad,ta01,goethite,Ni(+2),rising,logistic,2.0,
+zlqwwzy16_f4a,zlqwwzy16,bentonite,U(+6),rising,logistic,2.0,
+mdf99_f3d,mdf99,magnetite,Yb(+3),rising,logistic,2.0,narrow_span
+ljaw03_f1aa,ljaw03,goethite,Citric acid,falling,logistic,2.0,
+mdf99_f3b,mdf99,magnetite,Yb(+3),rising,logistic,2.0,
+mdf99_f3a,mdf99,magnetite,Yb(+3),rising,logistic,2.0,narrow_span
+eicg03_f3g,eicg03,illite,Ni(+2),rising,logistic,2.0,edge_not_bracketed;wide_interval
+fhr97_f1ac,fhr97,goethite,Oxalic acid,falling,logistic,2.0,wide_interval
+sjs14_f1aa,sjs14,hydroxyapatite,Citric acid,falling,logistic,2.0,
+sjs14_f1ad,sjs14,hydroxyapatite,Citric acid,flat,logistic,2.0,too_few_points;bootstrap_unstable
+bm81_f7b,bm81,goethite,Ca(+2),rising,logistic,2.0,edge_not_bracketed;wide_interval
+bm81_f6a,bm81,goethite,Mg(+2),rising,logistic,2.0,narrow_span
+dmrgb04_f2bb,dmrgb04,magnetite,Pu,rising,logistic,2.0,
+gdb09_f2aa,gdb09,ferrihydrite,U(+6),rising,logistic,2.0,edge_not_bracketed;wide_interval
+gdb09_f2bb,gdb09,ferrihydrite,U(+6),flat,logistic,2.0,narrow_span
+hl85_f4ab,hl85,ferrihydrite,U(+6),flat,logistic,2.0,
+bm11_f3dc,bm11,montmorillonite,U(+6),falling,logistic,2.0,
+bm11_f3db,bm11,montmorillonite,U(+6),falling,logistic,2.0,wide_interval
+bm11_f3bc,bm11,kaolinite,U(+6),rising,logistic,2.0,wide_interval
+emibsgg17_f2ac,emibsgg17,corundum,Np(+5),rising,logistic,2.0,
+lyt14_t1a,lyt14,goethite,Se(+4),falling,logistic,2.0,wide_interval
+lyt14_t8a,lyt14,magnetite,Se(-2),falling,logistic,2.0,wide_interval
+smrlg15_f1cb,smrlg15,illite,Eu(+3),rising,logistic,2.0,
+jmlg09_f5a,jmlg09,hematite,Se(+4),falling,logistic,2.0,too_few_points;edge_not_bracketed;wide_interval
+j95_f15bc,j95,gibbsite,U(+6),rising,logistic,2.0,narrow_span
+kv13_f1aa,kv13,goethite,Se(+6),falling,logistic,2.0,
+j95_f15bb,j95,gibbsite,U(+6),rising,logistic,2.0,narrow_span;edge_not_bracketed;wide_interval
+kv13_f1ac,kv13,goethite,Se(+6),falling,logistic,2.0,edge_not_bracketed
+kv13_f1ae,kv13,goethite,Se(+6),falling,logistic,2.0,
+kv13_f1af,kv13,goethite,Se(+6),falling,logistic,2.0,
+kv13_f1ag,kv13,goethite,Se(+6),falling,logistic,2.0,
+kv13_f1ah,kv13,goethite,Se(+6),falling,logistic,2.0,
+kv13_f1ai,kv13,goethite,Se(+6),falling,logistic,2.0,
+kv13_f1bd,kv13,goethite,Se(+6),falling,logistic,2.0,
+dmbc97_f6d,dmbc97,gibbsite,Np(+5),rising,logistic,2.0,
+dmbc97_f6b,dmbc97,gibbsite,Np(+5),rising,logistic,2.0,
+LBSSVRS10_f5b,LBSSVRS10,hematite,Am(+3),rising,logistic,2.0,wide_interval
+j95_f15ac,j95,gibbsite,U(+6),rising,spline,2.0,narrow_span;edge_not_bracketed;poor_fit
