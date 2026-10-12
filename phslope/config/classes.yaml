@@ -1,10 +1,125 @@
 # Mineral-class and sorbate-class assignments (Stage 2, task 2.1).
-# Human-edited: Samuel and Dr. Black fill and confirm these. Do not tune them
-# after seeing results. Every mineral/sorbate in the data must appear exactly
-# once; unassigned names are reported, not guessed.
+# Human-edited: Samuel and Dr. Black confirm these. Do not tune them after
+# seeing results. Every mineral/sorbate in the data must appear exactly once;
+# unassigned names are reported, not guessed.
+#
+# STATUS: PROPOSED by Claude on 2026-10-12, written before any Stage 2 result
+# existed. Stage 2 variance split and class tests refuse to run until
+# `confirmed: true` is set by Samuel after review with Dr. Black.
+confirmed: false
 
 mineral_classes: [iron_oxide_hydroxide, aluminum_oxide, silica, clay, carbonate, other]
 sorbate_classes: [divalent_cation, trivalent_cation, tetravalent_cation, actinide, oxyanion, organic_acid, other]
 
-minerals: {}     # e.g.  goethite: iron_oxide_hydroxide
-sorbates: {}     # e.g.  Se(+4): oxyanion
+# Proposed rules:
+#   minerals: by dominant chemistry. Mn oxides, Ti oxides, phosphates, zeolites,
+#     feldspars and mixed materials have no class of their own in the spec's
+#     starting list, so they go to `other` (question: add manganese_oxide?).
+#     Micas and chlorite are sheet silicates and are put with clay (check).
+#   sorbates: actinides (U, Np, Pu, Am, Cm, Th, Pa) are `actinide` whatever their
+#     oxidation state; other cations by charge; oxyanions by species formed in
+#     water (Se(+4) selenite, Se(+6) selenate, C(+4) carbonate, P(+5) phosphate,
+#     S(+6) sulfate, Cr(+6) chromate, As(+5) arsenate); humic and fulvic acids are
+#     put with organic acids (check).
+minerals:
+  goethite: iron_oxide_hydroxide
+  hematite: iron_oxide_hydroxide
+  ferrihydrite: iron_oxide_hydroxide
+  magnetite: iron_oxide_hydroxide
+  maghemite: iron_oxide_hydroxide
+  lepidocrosite: iron_oxide_hydroxide
+  ferrous oxide: iron_oxide_hydroxide
+  alumina: aluminum_oxide
+  gibbsite: aluminum_oxide
+  corundum: aluminum_oxide
+  boehmite: aluminum_oxide
+  pseudoboehmite: aluminum_oxide
+  hydrous aluminum oxide: aluminum_oxide
+  Al(OH)3: aluminum_oxide
+  quartz: silica
+  silica: silica
+  montmorillonite: clay
+  illite: clay
+  kaolinite: clay
+  bentonite: clay
+  smectite: clay
+  clay: clay
+  chlorite: clay            # sheet silicate (check)
+  biotite: clay             # mica (check)
+  muscovite: clay           # mica (check)
+  calcite: carbonate
+  birnessite: other         # Mn oxide
+  vernadite: other          # Mn oxide
+  manganese dioxide: other  # Mn oxide
+  hydrous manganese oxide: other
+  manganite: other          # Mn oxyhydroxide
+  hausmannite: other        # Mn oxide
+  hydroxyapatite: other     # phosphate
+  fluoroapatite: other      # phosphate
+  anatase/rutile: other     # Ti oxide
+  rutile: other
+  anatase: other
+  TiO2: other
+  zirconia: other
+  heulandite: other         # zeolite
+  clinoptilolite: other     # zeolite
+  andesine: other           # feldspar
+  albite: other             # feldspar
+  brucite: other            # Mg hydroxide
+  shale: other              # mixed
+  bauxite: other            # mixed (mostly Al hydroxides)
+  iron oxide coated allophane: other   # mixed
+
+sorbates:
+  U(+6): actinide
+  Np(+5): actinide
+  Np(+4): actinide
+  Pu: actinide              # oxidation state not given
+  Pu(+4): actinide
+  Pu(+5): actinide
+  Pu(+6): actinide
+  Am(+3): actinide
+  Cm(+3): actinide
+  Th(+4): actinide
+  Pa(+5): actinide
+  Eu(+3): trivalent_cation
+  Sm(+3): trivalent_cation
+  Yb(+3): trivalent_cation
+  Cr(+3): trivalent_cation
+  Sn(+4): tetravalent_cation
+  Ni(+2): divalent_cation
+  Ra(+2): divalent_cation
+  Sr(+2): divalent_cation
+  Zn(+2): divalent_cation
+  Co(+2): divalent_cation
+  Cd(+2): divalent_cation
+  Pb(+2): divalent_cation
+  Cu(+2): divalent_cation
+  Ca(+2): divalent_cation
+  Mg(+2): divalent_cation
+  Mn(+2): divalent_cation
+  Ba(+2): divalent_cation
+  Fe(+2): divalent_cation
+  Se(+4): oxyanion
+  Se(+6): oxyanion
+  C(+4): oxyanion
+  P(+5): oxyanion
+  S(+6): oxyanion
+  Cr(+6): oxyanion
+  As(+5): oxyanion
+  Oxalic acid: organic_acid
+  Citric acid: organic_acid
+  Mellitic acid: organic_acid
+  Phthalic acid: organic_acid
+  Malonic acid: organic_acid
+  Trimesic acid: organic_acid
+  Ketogluconate: organic_acid
+  Humic acid: organic_acid  # humic substance (check)
+  Fulvic acid: organic_acid # humic substance (check)
+  Cs(+1): other             # monovalent cation; no class in the starting list
+  Se(-2): other             # selenide
+  Si(+4): other             # silicic acid
+  Aminotriazole: other
+  Dodecylamine: other
+  Anthracene: other
+  COM: other                # meaning of label unknown (check)
