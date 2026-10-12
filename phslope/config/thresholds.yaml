@@ -1,0 +1,38 @@
+# Stage pass/fail numbers (PH_ONLY_DEV_SPEC.md section 7).
+# Written down BEFORE any results are seen. Must be committed and frozen before
+# Stage 3 runs; the Stage 3 entry script will refuse to run if this file is
+# uncommitted or modified after the freezing commit.
+# Values marked "proposed" need confirmation from Samuel / Dr. Black.
+
+stage0:
+  pair_min_points: 50
+  pair_min_ph_span: 4.0
+  pair_min_references: 2
+  min_passing_pairs: 60
+
+stage1:
+  synthetic_median_slope_error_frac: 0.20   # of curve range
+  real_min_core_fraction: 0.80              # of census-set curves surviving QC with a usable shape class
+  multi_shape_warn_fraction: 0.30
+
+qc:
+  too_few_points: 8
+  narrow_span: 3.0
+  edge_bracket_ph: 0.5
+  poor_fit_replicate_multiple: 2.0
+  poor_fit_ceiling: 0.10                    # fraction sorbed, used when no replicates (proposed)
+  wide_interval_p50: 1.0
+  bootstrap_fail_frac: 0.20
+
+stage2:
+  permutation_p: 0.05
+  n_permutations: 2000
+
+stage3:
+  median_p50_error_max: 0.5                 # pH units (proposed; Dr. Black to confirm)
+  coverage_min: 0.80
+  coverage_max: 0.95
+  margin_over_baseline: null                # to be set before freezing
+
+stage4:
+  version_a_margin_of_b: null               # to be set before freezing

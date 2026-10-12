@@ -1,0 +1,45 @@
+# phslope run configuration. Changing any value changes the config hash
+# recorded next to every output (see phslope/common.py).
+
+data:
+  # Precedence: --data CLI flag > SORPTION_DATA_FILE env var > this value
+  # (null = fall back to data_audit.CONFIG["DATA_FILE"]).
+  file: null
+
+response:
+  mode: fraction_sorbed        # or log_kd
+  # Section 2: a curve is flagged unit_mismatch if more than max_out_of_range_frac
+  # of its fraction-sorbed values are above upper or below lower.
+  upper: 1.05
+  lower: -0.05
+  max_out_of_range_frac: 0.05
+
+ph:
+  valid_min: 0.0               # rows outside [valid_min, valid_max] get bad_ph = True
+  valid_max: 14.0
+
+curves:
+  # A Set is a candidate pH curve if it has at least min_ph_levels distinct pH
+  # values (rounded to ph_round decimals) and a pH span of at least min_span.
+  min_ph_levels: 3
+  ph_round: 2
+  min_span: 1.0
+  # Electrolyte-signature members treated as plain background electrolyte.
+  # Anything else in a curve's signature (e.g. P(+5), S(+6), Humic acid, a
+  # second sorbate) sets has_cosolute = True. Scientific choice: see OPEN_QUESTIONS.md.
+  background_ions: ["Na(+1)", "K(+1)", "Li(+1)", "Cl(-1)", "Cl(+7)", "N(+5)", "Ca(+2)", "Mg(+2)", "Cs(+1)", "Br(-1)", "I(-1)"]
+
+grid:
+  ph_min: 2.0
+  ph_max: 11.0
+  step: 0.25
+
+census:
+  dense_block_minerals: 12     # gap list looks at the top-N minerals x top-N sorbates by usable points
+  dense_block_sorbates: 12
+
+seeds:
+  global: 20261012
+
+bootstrap:
+  B: 200

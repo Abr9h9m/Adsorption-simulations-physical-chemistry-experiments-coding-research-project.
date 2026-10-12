@@ -1,0 +1,10 @@
+# Mineral-class and sorbate-class assignments (Stage 2, task 2.1).
+# Human-edited: Samuel and Dr. Black fill and confirm these. Do not tune them
+# after seeing results. Every mineral/sorbate in the data must appear exactly
+# once; unassigned names are reported, not guessed.
+
+mineral_classes: [iron_oxide_hydroxide, aluminum_oxide, silica, clay, carbonate, other]
+sorbate_classes: [divalent_cation, trivalent_cation, tetravalent_cation, actinide, oxyanion, organic_acid, other]
+
+minerals: {}     # e.g.  goethite: iron_oxide_hydroxide
+sorbates: {}     # e.g.  Se(+4): oxyanion
