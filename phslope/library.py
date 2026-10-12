@@ -9,7 +9,8 @@ Files written to the library directory:
   library.npz   grid, curve_ids, G, lower, upper, mask, G_logistic, G_spline, fitted
                 (primary-model response), F_logistic, F_spline (each model's response)
   meta.csv      one row per curve: identity, conditions, fit parameters, QC flags, shape
-  draws.npz     bootstrap slope draws of the primary model (curves x B x grid, float32);
+  draws.npz     bootstrap slope draws of the primary model (draws) and of the smoother
+                (draws_spline), curves x B x grid, float32;
                 large and regenerable, so not committed (see .gitignore)
 """
 import os
@@ -27,8 +28,9 @@ def build_library(results, grid):
     for k in ARRAYS:
         lib[k] = np.vstack([r["arrays"][k] for r in results]) if results else np.empty((0, len(grid)))
     lib["mask"] = lib["mask"].astype(bool)
-    lib["draws"] = (np.stack([r["arrays"]["draws"] for r in results]).astype(np.float32)
-                    if results else np.empty((0, 0, len(grid)), np.float32))
+    for k in ("draws", "draws_spline"):
+        lib[k] = (np.stack([r["arrays"][k] for r in results]).astype(np.float32)
+                  if results else np.empty((0, 0, len(grid)), np.float32))
     return lib
 
 
@@ -38,7 +40,8 @@ def save_library(lib, out_dir, include_draws=True):
                         **{k: lib[k] for k in ARRAYS})
     lib["meta"].to_csv(os.path.join(out_dir, "meta.csv"), index=False)
     if include_draws:
-        np.savez_compressed(os.path.join(out_dir, "draws.npz"), curve_ids=lib["curve_ids"], draws=lib["draws"])
+        np.savez_compressed(os.path.join(out_dir, "draws.npz"), curve_ids=lib["curve_ids"], draws=lib["draws"],
+                            draws_spline=lib["draws_spline"])
 
 
 def load_library(out_dir, with_draws=False):
@@ -50,7 +53,7 @@ def load_library(out_dir, with_draws=False):
     if with_draws:
         d = np.load(os.path.join(out_dir, "draws.npz"), allow_pickle=False)
         assert (d["curve_ids"] == lib["curve_ids"]).all()
-        lib["draws"] = d["draws"]
+        lib["draws"], lib["draws_spline"] = d["draws"], d["draws_spline"]
     return lib
 
 

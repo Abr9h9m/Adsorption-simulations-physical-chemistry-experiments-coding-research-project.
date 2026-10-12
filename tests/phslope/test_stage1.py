@@ -30,7 +30,7 @@ def test_library_shapes_and_nan_outside_mask(small_run):
     for k in ("G", "lower", "upper", "G_logistic", "G_spline", "fitted", "F_logistic", "F_spline"):
         assert lib[k].shape == (n, G)
         assert np.isnan(lib[k][~lib["mask"]]).all()
-    assert lib["draws"].shape == (n, 30, G)
+    assert lib["draws"].shape == lib["draws_spline"].shape == (n, 30, G)
 
 
 def test_library_roundtrip(tmp_path, small_run):

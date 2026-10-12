@@ -34,7 +34,8 @@ def curve_seed(global_seed, curve_id):
 def _nan_arrays(G, B):
     nan = np.full(G, np.nan)
     return {"G": nan, "lower": nan, "upper": nan, "mask": np.zeros(G, bool), "G_logistic": nan,
-            "G_spline": nan, "fitted": nan, "F_logistic": nan, "F_spline": nan, "draws": np.full((B, G), np.nan, np.float32)}
+            "G_spline": nan, "fitted": nan, "F_logistic": nan, "F_spline": nan, "draws": np.full((B, G), np.nan, np.float32),
+            "draws_spline": np.full((B, G), np.nan, np.float32)}
 
 
 def process_curve(curve_id, pH, y, config, thr, grid, seed, unit_mismatch=False, extra=None):
@@ -130,7 +131,8 @@ def process_curve(curve_id, pH, y, config, thr, grid, seed, unit_mismatch=False,
               "fitted": on_grid(lambda p: mod.predict(pfit, p), grid, mask),
               "F_logistic": on_grid(lambda p: fit_edge.predict(logit, p), grid, mask) if logit else np.full(G, np.nan),
               "F_spline": on_grid(lambda p: fit_smooth.predict(spline, p), grid, mask) if spline else np.full(G, np.nan),
-              "draws": pb["slopes"].astype(np.float32)}
+              "draws": pb["slopes"].astype(np.float32),
+              "draws_spline": (boot["spline"]["slopes"] if spline else np.full((B, G), np.nan)).astype(np.float32)}
     return {"meta": meta, "arrays": arrays}
 
 
