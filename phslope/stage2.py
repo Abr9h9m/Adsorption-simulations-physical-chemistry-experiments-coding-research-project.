@@ -1,7 +1,12 @@
 """stage2.py -- Stage 2: do mineral and sorbate classes matter? (spec section 7, Stage 2)
 
-    python -m phslope.stage2            # Part A always; Part B only if classes.yaml is confirmed
+    python -m phslope.stage2                 # Part A always; Part B only if classes.yaml is confirmed
+    python -m phslope.stage2 --exploratory   # Parts A, B (proposed classes) and C, all labelled EXPLORATORY
     options: --B (variance bootstrap), --perms (permutations), --out
+
+EXPLORATORY mode exists because Stage 1 failed its survival rule and Samuel chose
+(2026-10-12) to continue with the core library. It also lets Part B run with the
+PROPOSED, unconfirmed classes; the report says so on every page.
 
 Part A (task 2.2, no class labels needed): registration of single-edge core
 curves, variance removed by registration, FPCA of the registered smoother
@@ -11,6 +16,11 @@ Part B (tasks 2.3-2.5, needs `confirmed: true` in classes.yaml): variance
 split for edge position, log width, height and the FPCA scores; the same
 with conditions as fixed effects; within-reference permutation test; Ward
 clustering with ARI and PERMANOVA; the go/no-go verdict.
+
+Part C (exploratory only, config/schemes.yaml): mineral-property splits from
+Samuel's property table, mineral / sorbate / ionic-condition schemes, each
+tested with a variance share and a within-reference permutation test, with
+Benjamini-Hochberg false-discovery-rate correction across all tests.
 """
 import argparse
 import os
@@ -18,7 +28,7 @@ import os
 import numpy as np
 import pandas as pd
 
-from phslope import cluster, fpca as fpca_mod, registration, report, variance
+from phslope import cluster, fpca as fpca_mod, registration, report, schemes, variance
 from phslope.common import REPORTS_DIR, load_config, load_thresholds, load_yaml, run_stamp, write_stamp
 from phslope.library import load_library
 
@@ -124,12 +134,28 @@ def part_b(meta, classes, scores, config, thr_all, out_dir, B, n_perm, seed):
             "unassigned": unassigned, "table": t}
 
 
+def part_c(meta, scores, out_dir, n_perm, seed):
+    cfg = schemes.load_schemes()
+    t = analysis_table(meta, scores)
+    props, prop_report = schemes.load_mineral_properties(cfg, meta["mineral"].unique())
+    res, groupings = schemes.run_exploratory(t, cfg, props, n_perm, seed)
+    res.to_csv(os.path.join(out_dir, "exploratory_groupings.csv"), index=False)
+    labels = t[["curve_id", "mineral", "sorbate", "reference"]].copy()
+    for g in groupings:
+        labels[g["name"]] = g["labels"]
+    labels.to_csv(os.path.join(out_dir, "exploratory_group_labels.csv"), index=False)
+    report.stage2_part_c_figure(out_dir, res)
+    return {"results": res, "property_report": prop_report, "n_curves": len(t), "n_groupings": len(groupings)}
+
+
 def main():
     ap = argparse.ArgumentParser(description="Stage 2: do the classes matter?")
     ap.add_argument("--library", default=os.path.join(REPORTS_DIR, "stage1", "library"))
     ap.add_argument("--B", type=int, default=200, help="cluster-bootstrap resamples for variance shares")
     ap.add_argument("--perms", type=int)
     ap.add_argument("--out", default=os.path.join(REPORTS_DIR, "stage2"))
+    ap.add_argument("--exploratory", action="store_true",
+                    help="run Part B with unconfirmed classes and Part C; label everything exploratory")
     args = ap.parse_args()
 
     config, thr_all = load_config(), load_thresholds()
@@ -139,13 +165,16 @@ def main():
     stamp = run_stamp(f"library: {args.library}")
     write_stamp(args.out, stamp)
 
+    seed = config["seeds"]["global"]
     a = part_a(lib, config, args.out)
     confirmed, classes = classes_confirmed()
-    b = None
-    if confirmed:
-        b = part_b(lib["meta"], classes, a["scores"], config, thr_all, args.out, args.B, n_perm,
-                   config["seeds"]["global"])
-    report.stage2_summary(args.out, lib, a, b, thr_all, stamp)
+    b = c = None
+    if confirmed or args.exploratory:
+        b = part_b(lib["meta"], classes, a["scores"], config, thr_all, args.out, args.B, n_perm, seed)
+    if args.exploratory:
+        c = part_c(lib["meta"], a["scores"], args.out, n_perm, seed)
+    report.stage2_summary(args.out, lib, a, b, thr_all, stamp,
+                          exploratory=args.exploratory, classes_confirmed=confirmed, c=c)
 
 
 if __name__ == "__main__":

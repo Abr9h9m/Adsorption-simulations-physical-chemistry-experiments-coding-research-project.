@@ -2,7 +2,7 @@
 
 Build spec: `PH_ONLY_DEV_SPEC.md` (project root). This README holds the decisions the spec asks to be written down, the conventions, and how to run each stage.
 
-**Status (2026-10-12):** Stage 0 done and curve definition confirmed. Stage 1 in progress.
+**Status (2026-10-12):** Stage 0 PASS. Stage 1: synthetic PASS, real data **FAIL** (46.8% of census-set curves survive QC; 80% required). Samuel chose to continue with the 745-curve core library, so **everything from Stage 2 on is EXPLORATORY**. Stage 2 runs with `--exploratory`: Part A (registration + FPCA), Part B (proposed, unconfirmed classes) and Part C (exploratory groupings from `config/schemes.yaml` and Samuel's mineral property table).
 
 ## How to run
 
@@ -13,6 +13,9 @@ python -m pytest                      # all phslope tests (real-data tests skip 
 python -m phslope.load                # load + clean the raw file, print unit report
 python -m phslope.census              # Stage 0 -> reports/phslope/stage0/
 python -m phslope.census --data PATH  # use a different raw file
+python -m phslope.stage1 --synthetic  # Stage 1 synthetic check
+python -m phslope.stage1              # Stage 1 on the real file (~25 min, 11 workers)
+python -m phslope.stage2 --exploratory  # Stage 2, all parts, labelled exploratory
 ```
 
 The raw file is found in this order: `--data` flag, `SORPTION_DATA_FILE` environment variable, `data.file` in `phslope/config/config.yaml`, then `data_audit.CONFIG["DATA_FILE"]`.
@@ -83,4 +86,4 @@ Co-solute curves are **kept and flagged** (Samuel, 2026-10-12). Ca(+2) and Mg(+2
 
 ## Not built yet
 
-Work-order items 4–11: `synth.py`, `fit_edge.py`, `fit_smooth.py`, `slope.py`, `bootstrap.py`, `qc.py`, `library.py`, `registration.py`, `fpca.py`, `variance.py`, `cluster.py`, `descriptors.py`, `baselines.py`, `cv.py`, `transfer.py`, `report.py`, `export.py`.
+Work-order items 9–11: `export.py`, `descriptors.py`, `baselines.py`, `cv.py`, `transfer.py`, Stage 3–5. (Items 4–8 are built: `synth`, `fit_edge`, `fit_smooth`, `slope`, `bootstrap`, `qc`, `library`, `registration`, `fpca`, `reml`, `variance`, `cluster`, `schemes`, `report`, `stage1`, `stage2`.)

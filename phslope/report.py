@@ -338,15 +338,45 @@ def stage2_part_b_figures(out_dir, split, t):
     plt.close(fig)
 
 
-def stage2_summary(out_dir, lib, a, b, thr_all, stamp):
+def stage2_part_c_figure(out_dir, res):
+    """Group share of edge position per grouping, FDR-significant groupings highlighted."""
+    r = res[res["parameter"] == "edge_pH"].dropna(subset=["group_share"]).sort_values("group_share")
+    if not len(r):
+        return
+    fig, ax = plt.subplots(figsize=(7.5, 0.25 * len(r) + 1.2))
+    sig = r["significant_fdr"].to_numpy(bool)
+    y = np.arange(len(r))
+    ax.hlines(y, 0, r["group_share"], color="#dcdbd5", lw=1)
+    ax.scatter(r["group_share"][~sig], y[~sig], s=22, color=GRAY, zorder=3, label="not significant (q >= 0.05)")
+    ax.scatter(r["group_share"][sig], y[sig], s=26, color=BLUE, zorder=3, label="significant after FDR (q < 0.05)")
+    ax.set_yticks(y, [f"{g}  [{k.replace('_', ' ')}]" for g, k in zip(r["grouping"], r["kind"])], fontsize=6.5)
+    ax.set_xlabel("share of edge-position variance (model with study as a second random effect)", fontsize=8)
+    ax.set_title(f"EXPLORATORY: which groupings track edge position? ({len(r)} groupings)", fontsize=10,
+                 loc="left")
+    ax.legend(frameon=False, fontsize=7, loc="lower right")
+    _style(ax)
+    fig.tight_layout()
+    fig.savefig(os.path.join(out_dir, "exploratory_groupings.png"), dpi=150)
+    plt.close(fig)
+
+
+def stage2_summary(out_dir, lib, a, b, thr_all, stamp, exploratory=False, classes_confirmed=False, c=None):
     f, vr = a["fpca"], a["variance_removed"]
     n_core = int(lib["meta"]["in_core_library"].sum())
     src = a["scores"]["slope_source"].value_counts().to_dict()
     sd_cols = [c for c in a["scores"].columns if c.endswith("_sd")]
     unc = ", ".join(f"{c[:-3].upper()} {np.nanmedian(a['scores'][c]):.3g} vs spread "
                     f"{np.nanstd(a['scores'][c[:-3]]):.3g}" for c in sd_cols)
+    banner = []
+    if exploratory:
+        banner = [
+            "> **EXPLORATORY.** Stage 1 did not meet its pre-set survival rule (46.8% of census-set curves "
+            "survived QC; 80% required). Samuel chose on 2026-10-12 to continue with the core library. "
+            + ("The classes in Part B are the PROPOSED assignment in classes.yaml, **not yet confirmed** by "
+               "Samuel and Dr. Black. " if not classes_confirmed else "")
+            + "Nothing here is a confirmatory result.", ""]
     lines = [
-        "# Stage 2 summary: do mineral and sorbate classes matter?", "", _stamp_line(stamp), "",
+        "# Stage 2 summary: do mineral and sorbate classes matter?", "", *banner, _stamp_line(stamp), "",
         "## Part A: registration and shape components (task 2.2)", "",
         f"- Single-edge (rising/falling) core curves registered: {len(a['reg']['idx'])} of {n_core} core curves. "
         f"Registered slope source: {src}.",
@@ -391,7 +421,40 @@ def stage2_summary(out_dir, lib, a, b, thr_all, stamp):
             ("Stage 2 passes: continue to Stage 3 (descriptor tables, then freeze thresholds.yaml)."
              if v["verdict"] == "PASS" else
              "Stage 2 does not pass: stop, write up the negative result, and decide whether conditions as "
-             "covariates (not classes) is the next thing to test."),
+             "covariates (not classes) is the next thing to test.")
+            + (" (Exploratory: the verdict uses unconfirmed classes and a library that failed Stage 1.)"
+               if exploratory else ""),
+        ]
+    if c is not None:
+        r, pr = c["results"], c["property_report"]
+        edge = r[r["parameter"] == "edge_pH"]
+        sig = r[r["significant_fdr"]]
+        lines += [
+            "", "## Part C: exploratory groupings (config/schemes.yaml)", "",
+            f"{c['n_groupings']} groupings tested on {c['n_curves']} core edge curves: one T-vs-F split per "
+            "usable column of the mineral property table, two mineral schemes built from it, four sorbate "
+            "schemes and four ionic-condition schemes. Each was tested for edge position (all) and log width and "
+            "height (schemes only): variance share in a model with study as a second random effect, and a "
+            "within-reference permutation test of the between-group share. "
+            f"{len(r)} tests in total; q = Benjamini-Hochberg adjusted p. Significant after FDR: {len(sig)}.", "",
+            "Mineral property table: " + f"`{os.path.basename(pr['file'])}`; cell codes {pr['cell_codes']} "
+            "(only T and F used; TO/O/FO treated as missing). "
+            f"Rows left out pending correction: {', '.join(pr['excluded_rows'])}. "
+            f"Minerals in the library with no row: {', '.join(pr.get('data_minerals_without_row', [])) or 'none'}. "
+            "The table has no source column, so these are uncited properties.", "",
+            "### Edge position, all groupings (sorted by q)", "",
+            md_table(edge[["grouping", "kind", "n_curves", "n_groups", "group_share", "reference_share",
+                           "between_group_R2", "p_value", "q_value", "curves_shufflable"]]), "",
+            "### Width and height, schemes", "",
+            md_table(r[r["parameter"] != "edge_pH"][["grouping", "parameter", "n_curves", "group_share",
+                                                    "reference_share", "p_value", "q_value"]]), "",
+            "How to read this: `group_share` is the share of variance the grouping takes when study is also in "
+            "the model; `between_group_R2` is the plain share between groups (what the permutation test uses); "
+            "`curves_shufflable` counts curves in papers that contain more than one group (only those carry "
+            "information in the within-paper test). Groupings tested here are correlated (e.g. iron-containing "
+            "and oxyhydroxide pick out almost the same minerals), so several significant rows can be one effect.",
+            "", "Files: `exploratory_groupings.csv`, `exploratory_group_labels.csv` (label of every curve under "
+            "every grouping), `exploratory_groupings.png`.",
         ]
     with open(os.path.join(out_dir, "SUMMARY.md"), "w", encoding="utf-8") as fh:
         fh.write("\n".join(lines) + "\n")

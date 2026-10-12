@@ -132,11 +132,14 @@ def cell_share(y, cell_codes):
     return float(between / tot)
 
 
-def within_reference_permutation_test(df, value, n_perm=2000, seed=0):
-    """Is the class-cell share larger than when labels are shuffled inside each paper?
+def within_reference_permutation_test(df, value, n_perm=2000, seed=0,
+                                      label_cols=("mineral_class", "sorbate_class")):
+    """Is the share of variance between label cells larger than when the labels are
+    shuffled inside each paper? Cells = combinations of label_cols (default: the class
+    cell, i.e. both main effects and their interaction).
     Returns dict observed, p_value, null (array), n_refs, n_refs_shufflable."""
-    d = df[["mineral_class", "sorbate_class", "reference", value]].dropna()
-    cells = pd.factorize(d["mineral_class"].astype(str) + "|" + d["sorbate_class"].astype(str))[0]
+    d = df[list(label_cols) + ["reference", value]].dropna()
+    cells = pd.factorize(d[list(label_cols)].astype(str).agg("|".join, axis=1))[0]
     y = d[value].to_numpy(float)
     refs = pd.factorize(d["reference"])[0]
     obs = cell_share(y, cells)

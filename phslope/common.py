@@ -45,9 +45,9 @@ def resolve_data_file(cli_path=None, config=None):
 
 
 def config_hash():
-    """Short hash over all three config files, in a fixed order."""
+    """Short hash over the config files, in a fixed order."""
     h = hashlib.sha256()
-    for name in ("config.yaml", "thresholds.yaml", "classes.yaml"):
+    for name in ("config.yaml", "thresholds.yaml", "classes.yaml", "schemes.yaml"):
         with open(os.path.join(CONFIG_DIR, name), "rb") as f:
             h.update(name.encode() + b"\0" + f.read().replace(b"\r\n", b"\n"))
     return h.hexdigest()[:12]

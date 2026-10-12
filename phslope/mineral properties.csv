@@ -1,0 +1,49 @@
+,Mineral,Silicates,Aluminum-containing,Iron-containing,Manganese-containing,Magnesium-containing,Calcium-containing,Sodium-containing,Potassium-containing,Titanium-containing,Zirconium-containing,Phosphate minerals,Carbonate minerals,Oxides,Hydroxides,Oxyhydroxides,Dioxides (MO2),Hydrous minerals,Anhydrous minerals,Mixed metal oxides,Clay minerals,Zeolite group,Aluminosilicates,Silica-rich minerals,Layered structure,Framework structure,Chain silicates,Sheet silicates (phyllosilicates),Framework silicates (tectosilicates),Isometric crystals,Monoclinic crystals,Hexagonal crystals,Orthorhombic crystals,Amorphous (non-crystalline),Polymorphs,Radionuclide sorbents,Ion exchangers,Radiation resistant,Thermally stable,Redox active,Redox inactive,Alpha particle resistant,Gamma radiation resistant
+TiO2,TiO2,F,F,F,F,F,F,F,F,T,F,F,F,T,F,F,T,F,T,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,T,T,F,T,T,F,T,T,T
+Albite,Albite,T,T,F,F,F,F,T,F,F,F,F,F,F,F,F,F,F,T,F,F,F,T,T,F,T,F,F,T,F,F,F,F,F,T,F,T,F,T,F,T,F,F
+Alumina,Alumina,F,T,F,F,F,F,F,F,F,F,F,F,T,F,F,F,F,T,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,T,T,F,T,T,F,T,T,T
+Anatase,Anatase,F,F,F,F,F,F,F,F,T,F,F,F,T,F,F,T,F,T,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,T,T,F,T,F,F,T,T,T
+Anatase/Rutile ,Anatase/Rutile ,F,F,F,F,F,F,F,F,T,F,F,F,T,F,F,T,F,T,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,T,T,F,T,T,F,T,T,T
+Andesine,Andesine,T,T,F,F,F,F,T,F,F,F,F,F,F,F,F,F,F,T,F,F,F,T,T,F,T,F,F,T,F,F,F,F,F,T,F,T,F,T,F,T,F,F
+Aragonite,Aragonite,F,F,F,F,F,T,F,F,F,F,F,T,F,F,F,F,F,T,F,F,F,F,F,F,F,F,F,F,F,F,F,T,F,T,F,F,F,F,F,T,F,F
+Bauxite,Bauxite,F,T,F,F,F,F,F,F,F,F,F,F,T,T,T,F,T,F,F,F,F,F,F,TO,F,F,TO,F,F,F,F,F,TO,F,T,F,F,T,F,T,T,T
+Bentonite,Bentonite,T,T,F,F,T,F,F,F,F,F,F,F,F,F,F,F,T,F,F,T,F,T,T,T,F,F,T,F,F,T,F,F,F,F,T,T,T,F,F,T,F,F
+Biotite,Biotite,T,T,T,F,T,F,F,T,F,F,F,F,F,F,F,F,T,F,F,T,F,T,T,T,F,F,T,F,F,T,F,F,F,F,F,T,F,F,T,F,F,F
+Birnessite,Birnessite,F,F,F,T,F,F,F,F,F,F,F,F,T,TO,TO,O,T,FO,T,F,F,F,F,T,F,F,F,F,F,T,F,F,TO,F,T,T,F,F,T,F,T,T
+Boehmite,Boehmite,F,T,F,F,F,F,F,F,F,F,F,F,T,T,T,F,T,F,F,F,F,F,F,T,F,F,F,F,F,F,F,T,F,T,T,F,F,T,F,T,T,T
+Brucite,Brucite,F,F,F,F,T,F,F,F,F,F,F,F,F,T,F,F,T,F,F,F,F,F,F,T,F,F,F,F,F,F,T,F,F,F,T,F,F,F,F,T,F,F
+Calcite,Calcite,F,F,F,F,F,T,F,F,F,F,F,F,F,F,F,F,F,T,F,F,F,F,F,F,F,F,F,F,F,F,T,F,F,T,T,F,F,F,F,T,F,F
+Chlorite,Chlorite,T,T,T,F,T,F,F,O,F,F,F,F,F,T,F,F,T,F,F,T,F,T,T,T,F,T,T,F,F,T,F,F,F,F,F,T,F,F,T,F,F,F
+Clay,Clay,T,T,TO,F,TO,O,O,O,F,F,F,F,F,TO,TO,F,T,FO,F,T,F,T,T,T,F,F,T,F,F,T,F,F,TO,F,T,T,T,F,F,T,F,F
+Clinoptilolite,Clinoptilolite,T,T,F,F,F,T,T,F,F,F,F,F,F,F,F,F,T,F,F,F,T,T,T,F,T,F,F,F,F,T,F,F,F,F,T,T,T,T,F,T,F,F
+Corundum,Corundum,F,T,F,F,F,F,F,F,F,F,F,F,T,F,F,F,F,T,F,F,F,F,F,F,F,F,F,T,F,F,F,F,F,F,F,F,T,T,F,T,T,T
+Ferrihydrite,Ferrihydrite,F,F,T,F,F,F,F,F,F,F,F,F,T,T,T,F,T,F,T,F,F,F,F,F,F,F,F,F,F,F,F,F,T,F,T,F,F,F,T,F,T,T
+Ferrous Oxide,Ferrous Oxide,F,F,T,F,F,F,F,F,F,F,F,F,T,F,F,F,F,T,F,F,F,F,F,F,F,F,F,F,T,F,F,F,F,F,F,F,F,T,T,F,T,T
+Fluorapatite,Fluorapatite,F,F,F,F,F,T,F,F,F,F,T,F,F,F,F,F,F,T,F,F,F,F,F,F,F,F,F,F,F,F,T,F,F,F,T,F,T,T,F,T,T,T
+?-MnO2,?-MnO2,F,F,F,T,F,F,F,F,F,F,F,F,T,TO,TO,T,TO,FO,F,F,F,F,F,TO,F,F,F,F,F,F,F,T,F,T,T,T,F,F,T,F,T,T
+Gibbsite,Gibbsite,F,T,F,F,F,F,F,F,F,F,F,F,F,T,F,F,T,F,F,F,F,F,F,T,F,F,F,F,F,T,F,F,F,T,T,F,F,F,F,T,F,F
+Goethite,Goethite,F,F,T,F,F,F,F,F,F,F,F,F,T,T,T,F,T,F,F,F,F,F,F,F,F,F,F,F,F,F,F,T,F,T,T,F,F,F,T,F,T,T
+Hausmannite,Hausmannite,F,F,F,T,F,F,F,F,F,F,F,F,T,O,F,F,TO,FO,T,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,T,T,F,T,T
+Heulandite,Heulandite,T,T,F,F,F,T,T,F,F,F,F,F,F,F,F,F,T,F,F,F,T,T,T,F,T,F,F,T,F,T,F,F,F,F,T,T,T,T,F,T,F,F
+Hydrous aluminium oxide,Hydrous aluminium oxide,F,T,F,F,F,F,F,F,F,F,F,F,T,T,T,F,T,F,F,F,F,F,F,TO,F,F,F,F,F,T,F,F,TO,T,T,F,F,F,F,T,F,F
+Hydrous manganese oxide,Hydrous manganese oxide,F,F,F,T,F,F,F,F,F,F,F,F,T,T,TO,O,T,F,TO,F,F,F,F,TO,F,F,F,F,F,T,F,F,T,T,T,T,F,F,T,F,T,T
+Hydroxyapatite,Hydroxyapatite,F,F,F,F,F,T,F,F,F,F,T,F,F,T,F,F,T,F,F,F,F,F,F,F,F,F,F,F,F,F,T,F,F,F,T,T,T,T,F,T,T,T
+Illite,Illite,T,T,TO,F,TO,O,O,T,F,F,F,F,F,TO,F,F,T,F,F,T,F,T,T,T,F,F,T,F,F,T,F,F,F,F,T,T,T,F,F,T,F,F
+Iron oxide coated allophane,Iron oxide coated allophane,F,T,T,F,F,F,F,F,F,F,F,F,T,T,T,F,T,F,T,O,F,O,TO,TO,F,F,TO,F,F,F,F,F,T,F,T,T,F,F,T,F,T,T
+Kaolinite,Kaolinite,T,T,F,F,F,F,F,F,F,F,F,F,F,T,F,F,T,F,F,T,F,T,T,T,F,F,T,F,F,F,F,F,F,T,T,T,T,F,F,T,F,F
+Lepidocrocite,Lepidocrocite,F,F,T,F,F,F,F,F,F,F,F,F,T,T,T,F,T,F,F,F,F,F,F,T,F,F,F,F,F,F,F,T,F,T,T,F,F,F,T,F,T,T
+Maghemite,Maghemite,F,F,F,T,F,F,F,F,F,F,F,F,T,F,F,F,F,T,F,F,F,F,F,F,F,F,F,F,T,F,F,F,F,T,T,F,T,T,T,F,T,T
+Magnetite,Magnetite,F,F,T,F,F,F,F,F,F,F,F,F,T,F,F,F,F,T,T,F,F,F,F,F,F,F,F,F,T,F,F,F,F,F,T,F,T,T,T,F,T,T
+Manganese dioxide,Manganese dioxide,F,F,F,T,F,F,F,F,F,F,F,F,T,O,F,T,TO,FO,F,F,F,F,F,TO,F,F,F,F,F,F,F,F,F,T,T,T,F,F,T,F,T,T
+Manganite,Manganite,F,F,F,T,F,F,F,F,F,F,F,F,T,T,T,F,T,F,F,F,F,F,F,T,F,F,F,F,F,T,F,F,F,F,T,F,F,F,T,F,T,T
+Montmorillonite,Montmorillonite,T,T,TO,F,T,O,O,O,F,F,F,F,F,TO,F,F,T,F,F,T,F,T,T,T,F,F,T,F,F,T,F,F,F,F,T,T,T,F,F,T,F,F
+Muscovite,Muscovite,T,T,F,F,F,F,F,T,F,F,F,F,F,F,F,F,T,F,F,T,F,T,T,T,F,F,T,F,F,T,F,F,F,F,F,T,F,T,F,T,F,F
+Pseudoboehmite,Pseudoboehmite,F,T,F,F,F,F,F,F,F,F,F,F,T,T,T,F,T,F,F,F,F,F,F,TO,F,F,F,F,F,F,F,T,T,T,T,F,F,F,F,T,F,F
+Quartz,Quartz,T,F,F,F,F,F,F,F,F,F,F,F,F,F,F,T,F,T,F,F,F,F,T,F,T,F,F,T,F,F,T,F,F,T,F,F,F,T,F,T,T,T
+Rutile,Rutile,F,F,F,F,F,F,F,F,T,F,F,F,T,F,F,T,F,T,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,T,T,F,T,T,F,T,T,T
+Shale,Shale,T,TO,TO,F,TO,O,O,O,F,F,F,F,F,O,TO,F,TO,FO,TO,T,F,TO,TO,T,F,F,T,F,F,T,F,F,TO,F,T,T,F,F,F,T,F,F
+Silica,Silica,T,F,F,F,F,F,F,F,F,F,F,F,F,F,F,T,F,T,F,F,F,F,T,F,F,F,F,F,F,F,T,F,TO,T,T,F,F,T,F,T,T,T
+Smectite,Smectite,T,T,TO,F,T,O,O,O,F,F,F,F,F,TO,F,F,T,F,F,T,F,T,T,T,F,F,T,F,F,T,F,F,F,F,T,T,T,F,F,T,F,F
+Vernadite,Vernadite,F,F,F,T,F,F,F,F,F,F,F,F,T,O,TO,O,TO,FO,T,F,F,F,F,T,F,F,F,F,F,F,F,F,T,T,T,T,F,F,T,F,T,T
+Zirconia,Zirconia,F,F,F,F,F,F,F,F,F,T,F,F,T,F,F,T,F,T,F,F,F,F,F,F,F,F,F,F,T,F,F,F,F,T,T,F,T,T,F,T,T,T
+Al(OH)3,Al(OH)3,F,T,F,F,F,F,F,F,F,F,F,F,F,T,F,F,T,F,F,F,F,F,F,T,F,F,F,F,F,T,F,F,F,T,T,F,F,F,F,T,F,F

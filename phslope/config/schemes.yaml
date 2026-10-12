@@ -1,0 +1,251 @@
+# EXPLORATORY grouping schemes for Stage 2 (added 2026-10-12 at Samuel's request).
+# The spec's pre-specified classes stay in classes.yaml; everything here is a
+# second look, reported with false-discovery-rate correction, never used for the
+# Stage 2 go/no-go. All assignments below are PROPOSED (Claude) and unconfirmed.
+# Written before any Stage 2 result existed. Changing them after seeing results
+# must be recorded (spec section 13).
+
+# --------------------------------------------------------------- minerals
+# Source: Samuel's mineral property table (true/false per property).
+mineral_properties:
+  file: "phslope/mineral properties.csv"
+  # Cell codes other than T and F (TO 46 cells, O 24, FO 7). Meaning not yet
+  # confirmed (OPEN_QUESTIONS 16). Default: only T counts as true, only F as
+  # false; TO / O / FO are treated as missing for that property.
+  true_codes: [T]
+  false_codes: [F]
+  # Name differences between the table and the data (spelling only).
+  aliases:
+    fluorapatite: fluoroapatite
+    lepidocrocite: lepidocrosite
+    hydrous aluminium oxide: hydrous aluminum oxide
+  # Rows with entries that contradict the mineral's formula. Left out of every
+  # property-based grouping until Samuel corrects them (values are never fixed
+  # here). See OPEN_QUESTIONS 16.
+  exclude_rows:
+    Calcite: "Carbonate minerals = F, but calcite is CaCO3"
+    Maghemite: "Manganese-containing = T and Iron-containing = F, but maghemite is gamma-Fe2O3"
+    Corundum: "Framework silicates = T, but corundum is Al2O3 (not a silicate)"
+  # One two-group split per property column (T vs F) is screened, if each side
+  # has at least this many minerals with curves.
+  min_minerals_per_side: 2
+
+# Categorical schemes built from the property table: a mineral gets the label
+# of the FIRST property in the list that is T for it, otherwise `other`.
+mineral_schemes:
+  mineral_metal:
+    from_properties:
+      Silicates: silicate
+      Iron-containing: iron
+      Manganese-containing: manganese
+      Titanium-containing: titanium
+      Zirconium-containing: zirconium
+      Aluminum-containing: aluminum
+      Calcium-containing: calcium
+      Magnesium-containing: magnesium
+  mineral_structure:
+    from_properties:
+      Clay minerals: clay
+      Zeolite group: zeolite
+      Framework silicates (tectosilicates): framework_silicate
+      Sheet silicates (phyllosilicates): sheet_silicate
+      Carbonate minerals: carbonate
+      Phosphate minerals: phosphate
+      Oxyhydroxides: oxyhydroxide
+      Hydroxides: hydroxide
+      Oxides: oxide
+      Dioxides (MO2): oxide
+
+# --------------------------------------------------------------- sorbates
+# Explicit mappings. Names missing from a scheme are excluded from that scheme.
+sorbate_schemes:
+  sorbate_charge_form:        # dominant dissolved form at moderate pH (proposed)
+    Cs(+1): cation_1plus
+    Ni(+2): cation_2plus
+    Ra(+2): cation_2plus
+    Sr(+2): cation_2plus
+    Zn(+2): cation_2plus
+    Co(+2): cation_2plus
+    Cd(+2): cation_2plus
+    Pb(+2): cation_2plus
+    Cu(+2): cation_2plus
+    Ca(+2): cation_2plus
+    Mg(+2): cation_2plus
+    Mn(+2): cation_2plus
+    Ba(+2): cation_2plus
+    Fe(+2): cation_2plus
+    Eu(+3): cation_3plus
+    Sm(+3): cation_3plus
+    Yb(+3): cation_3plus
+    Cr(+3): cation_3plus
+    Am(+3): cation_3plus
+    Cm(+3): cation_3plus
+    Th(+4): cation_4plus
+    Np(+4): cation_4plus
+    Pu(+4): cation_4plus
+    Sn(+4): cation_4plus
+    U(+6): actinyl            # UO2(2+)
+    Pu(+6): actinyl           # PuO2(2+)
+    Np(+5): actinyl           # NpO2(+)
+    Pu(+5): actinyl           # PuO2(+)
+    Se(+4): oxyanion
+    Se(+6): oxyanion
+    C(+4): oxyanion
+    P(+5): oxyanion
+    S(+6): oxyanion
+    Cr(+6): oxyanion
+    As(+5): oxyanion
+    Se(-2): other_anion
+    Si(+4): neutral           # silicic acid
+    Oxalic acid: organic_acid
+    Citric acid: organic_acid
+    Mellitic acid: organic_acid
+    Phthalic acid: organic_acid
+    Malonic acid: organic_acid
+    Trimesic acid: organic_acid
+    Ketogluconate: organic_acid
+    Humic acid: humic_substance
+    Fulvic acid: humic_substance
+    # not assigned: Pu (no oxidation state), Pa(+5), Aminotriazole, Dodecylamine, Anthracene, COM
+  sorbate_element_group:
+    Cs(+1): alkali
+    Ca(+2): alkaline_earth
+    Mg(+2): alkaline_earth
+    Sr(+2): alkaline_earth
+    Ba(+2): alkaline_earth
+    Ra(+2): alkaline_earth
+    Ni(+2): transition_metal
+    Zn(+2): transition_metal
+    Co(+2): transition_metal
+    Cd(+2): transition_metal
+    Cu(+2): transition_metal
+    Mn(+2): transition_metal
+    Fe(+2): transition_metal
+    Cr(+3): transition_metal
+    Cr(+6): transition_metal
+    Pb(+2): post_transition_metal
+    Sn(+4): post_transition_metal
+    Eu(+3): lanthanide
+    Sm(+3): lanthanide
+    Yb(+3): lanthanide
+    U(+6): actinide
+    Np(+5): actinide
+    Np(+4): actinide
+    Pu: actinide
+    Pu(+4): actinide
+    Pu(+5): actinide
+    Pu(+6): actinide
+    Am(+3): actinide
+    Cm(+3): actinide
+    Th(+4): actinide
+    Pa(+5): actinide
+    Se(+4): chalcogen
+    Se(+6): chalcogen
+    Se(-2): chalcogen
+    S(+6): chalcogen
+    P(+5): pnictogen
+    As(+5): pnictogen
+    C(+4): carbon_silicon
+    Si(+4): carbon_silicon
+    Oxalic acid: organic
+    Citric acid: organic
+    Mellitic acid: organic
+    Phthalic acid: organic
+    Malonic acid: organic
+    Trimesic acid: organic
+    Ketogluconate: organic
+    Humic acid: organic
+    Fulvic acid: organic
+    Aminotriazole: organic
+    Dodecylamine: organic
+    Anthracene: organic
+  sorbate_hsab:               # Pearson hard/soft acid class, metal cations only (proposed, check)
+    Cs(+1): hard
+    Ca(+2): hard
+    Mg(+2): hard
+    Sr(+2): hard
+    Ba(+2): hard
+    Ra(+2): hard
+    Mn(+2): hard
+    Cr(+3): hard
+    Eu(+3): hard
+    Sm(+3): hard
+    Yb(+3): hard
+    Am(+3): hard
+    Cm(+3): hard
+    Th(+4): hard
+    Np(+4): hard
+    Pu(+4): hard
+    Sn(+4): hard
+    U(+6): hard
+    Pu(+6): hard
+    Np(+5): hard
+    Pu(+5): hard
+    Fe(+2): borderline
+    Co(+2): borderline
+    Ni(+2): borderline
+    Cu(+2): borderline
+    Zn(+2): borderline
+    Pb(+2): borderline
+    Cd(+2): soft
+  sorbate_redox:              # can change oxidation state under ordinary environmental conditions (proposed)
+    U(+6): redox_sensitive
+    Np(+5): redox_sensitive
+    Np(+4): redox_sensitive
+    Pu: redox_sensitive
+    Pu(+4): redox_sensitive
+    Pu(+5): redox_sensitive
+    Pu(+6): redox_sensitive
+    Se(+4): redox_sensitive
+    Se(+6): redox_sensitive
+    Se(-2): redox_sensitive
+    Cr(+3): redox_sensitive
+    Cr(+6): redox_sensitive
+    As(+5): redox_sensitive
+    Fe(+2): redox_sensitive
+    Mn(+2): redox_sensitive
+    Cs(+1): redox_stable
+    Ca(+2): redox_stable
+    Mg(+2): redox_stable
+    Sr(+2): redox_stable
+    Ba(+2): redox_stable
+    Ra(+2): redox_stable
+    Ni(+2): redox_stable
+    Zn(+2): redox_stable
+    Co(+2): redox_stable
+    Cd(+2): redox_stable
+    Cu(+2): redox_stable
+    Pb(+2): redox_stable
+    Eu(+3): redox_stable
+    Sm(+3): redox_stable
+    Yb(+3): redox_stable
+    Am(+3): redox_stable
+    Cm(+3): redox_stable
+    Th(+4): redox_stable
+    Sn(+4): redox_stable
+    S(+6): redox_stable
+    P(+5): redox_stable
+    C(+4): redox_stable
+
+# --------------------------------------------------------------- ionic conditions
+# Built per curve from the data (not from a table).
+condition_schemes:
+  ionic_strength_band:        # mol/L, from the corrected ionic strength
+    bins: [0.0, 0.01, 0.1, .inf]
+    labels: [low_below_0.01M, medium_0.01_to_0.1M, high_above_0.1M]
+  background_anion:           # which simple anion carries the background salt
+    members:
+      Cl(-1): chloride
+      N(+5): nitrate
+      Cl(+7): perchlorate
+    none_label: no_simple_anion
+    mixed_label: mixed
+  carbonate: co2_present      # True/False column from load.py
+  cosolute: has_cosolute      # True/False column from curves.py
+
+# --------------------------------------------------------------- testing
+testing:
+  parameters: [edge_pH, log_width, height]   # scheme tests; the property screen uses edge_pH only
+  min_curves_per_group: 5     # groups with fewer curves are merged into `other` for that scheme
+  fdr: benjamini_hochberg
+  alpha: 0.05
