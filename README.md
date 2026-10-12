@@ -9,6 +9,11 @@ a mineral/sorbate "fingerprint". See `CLAUDE.md` for full status, conventions an
 ```
 *.py                         pipeline code (flat; run everything from this folder)
 synthetic_pilot_data.csv     synthetic dataset read by the modules' self-tests
+phslope/                     pH-only slope library (PH_ONLY_DEV_SPEC.md); see phslope/README.md
+tests/phslope/               pytest tests for phslope
+reports/phslope/             phslope stage outputs
+data/descriptors/            mineral/sorbate descriptor tables (human-filled, cited)
+OPEN_QUESTIONS.md            decisions waiting on Samuel / Dr. Black
 results/
   pipeline_synthetic/        run_pipeline.py output, synthetic mode
   pipeline_real/             run_pipeline.py output, real mode (first pass, NOT findings)
@@ -23,7 +28,9 @@ Real data (LLNL compiled set) lives outside this folder: `C:\Users\itzju\sc.data
 ## Commands
 
 ```
-python test_fixes.py                       # regression tests
+python test_fixes.py                       # regression tests (two-axis pipeline)
+python -m pytest                           # phslope tests
+python -m phslope.census                   # phslope Stage 0
 python generate_synthetic_dataset.py       # rewrites synthetic_pilot_data.csv
 PIPELINE_MODE=synthetic python run_pipeline.py
 PIPELINE_MODE=real PIPELINE_DATA=C:\Users\itzju\sc.dataset.csv python run_pipeline.py

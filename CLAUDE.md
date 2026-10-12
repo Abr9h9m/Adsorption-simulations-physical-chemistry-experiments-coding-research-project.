@@ -58,6 +58,8 @@ All code is flat Python at the project root (no package). Run everything from th
 | `results/data_audit/` | Older audit export: pilot subsets and per-reference breakdowns |
 | `Adsorption-simulations-project/` | Abraham's GitHub clone (`origin` = github.com/Abr9h9m/...). Older code copies (Sept/early Oct), `Codebase_Documentation.md`, `Surrogate_Module_Spec.md`, `README.md`, stale `TODO.md`, newer audit plots in `Data_Audit_outputs/`. Has 2 uncommitted deletions. Not imported by the root code. Do not commit or push to it without asking |
 
+| `phslope/`, `tests/phslope/`, `reports/phslope/`, `data/descriptors/`, `OPEN_QUESTIONS.md` | pH-only direction, built from `PH_ONLY_DEV_SPEC.md`. Status and decisions in `phslope/README.md`. Branch `ph-slope` |
+
 Not on disk (§0): `model_based_fit.py`, `compare_numerical_vs_model.py`, `identifiability_probe.py`, `Mathematical_Formulation.md`, `Analysis_Plan.md`, `Data_Audit_Protocol.md`, `Defining_Similarity.md`, `Literature_Review.md`.
 
 Dependencies: numpy, pandas, scipy, matplotlib (`requirements.txt`). `ndarray.ptp()` is gone in new numpy; use `np.ptp`.
