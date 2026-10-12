@@ -21,6 +21,8 @@ qc:
   edge_bracket_ph: 0.5
   poor_fit_replicate_multiple: 2.0
   poor_fit_ceiling: 0.10                    # fraction sorbed, used when no replicates (proposed)
+  replicate_min_groups: 2                   # pH levels with >= 2 points needed to trust a replicate scatter
+  disagree_min_points: 2                    # Stage 1.4: grid points where logistic and smoother differ by more than their 95% half-widths
   wide_interval_p50: 1.0
   bootstrap_fail_frac: 0.20
 

@@ -7,3 +7,5 @@ results/data_audit_selftest/
 # Abraham's GitHub clone: separate repo, not tracked here
 Adsorption-simulations-project/
 .pytest_cache/
+reports/phslope/**/draws.npz
+reports/phslope/**/diagnostics.pdf

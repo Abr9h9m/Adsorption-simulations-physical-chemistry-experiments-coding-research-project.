@@ -43,3 +43,30 @@ seeds:
 
 bootstrap:
   B: 200
+
+fit:                           # 4-parameter logistic edge fit (spec 4.2)
+  n_starts: 20
+  bootstrap_starts: 3          # bootstrap refits start from the full fit + (n-1) random starts
+  w_min: 0.05
+  w_max: 3.0
+  level_min: -0.1
+  level_max: 1.1
+  p50_pad: 1.0                 # p50 bounded to observed pH range +/- this
+
+smooth:                        # penalised cubic spline (spec 4.3)
+  lam_min: 1.0e-5              # roughness-penalty grid, log-spaced; chosen by leave-one-pH-level-out CV
+  lam_max: 1.0e+3
+  lam_n: 25
+  min_unique_ph: 5             # make_smoothing_spline needs >= 5 distinct x
+  ph_decimals: 2               # replicates = same pH after rounding; averaged (weighted) before fitting
+
+shape:                         # shape classification (spec 4.5); scientific choices, see phslope/README.md
+  dense_n: 200
+  flat_height: 0.15            # fitted response range below this -> flat
+  min_step: 0.15               # a rise or fall must change the response by at least this to count
+  multi_step_valley: 0.3       # two slope peaks separated by a valley below this fraction of the smaller peak
+  edge_track_window: 1.0       # smoother bootstrap draws follow the full-fit edge within +/- this many pH units
+
+stage1:
+  workers: 8
+  diagnostics_pdf: true
