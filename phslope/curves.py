@@ -1,6 +1,6 @@
 """curves.py -- define curves (single pH sweeps) from the observation table (Stage 0.2-0.4).
 
-CURVE DEFINITION (provisional until Samuel confirms; see phslope/README.md):
+CURVE DEFINITION (confirmed by Samuel 2026-10-12; see phslope/README.md):
     one curve = one `Set`.
 Evidence (2025 file, 38,906 rows, 3,125 Sets): `Set` is one plotted series in
 one paper (e.g. "azbn00_f1" = paper azbn00, figure 1); `SetID` is only a row

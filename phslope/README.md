@@ -2,7 +2,7 @@
 
 Build spec: `PH_ONLY_DEV_SPEC.md` (project root). This README holds the decisions the spec asks to be written down, the conventions, and how to run each stage.
 
-**Status (2026-10-12):** work-order items 1–3 done (Stage 0). Stage 1 is blocked until Samuel confirms the curve definition below (spec Task 0.2).
+**Status (2026-10-12):** Stage 0 done and curve definition confirmed. Stage 1 in progress.
 
 ## How to run
 
@@ -19,7 +19,7 @@ The raw file is found in this order: `--data` flag, `SORPTION_DATA_FILE` environ
 
 Every stage writes `RUN_INFO.json` (git commit, config hash, data file, time) next to its outputs. A commit ending in `-dirty` means tracked files had uncommitted changes when it ran.
 
-## Curve definition (Task 0.2) — PROVISIONAL, needs Samuel's confirmation
+## Curve definition (Task 0.2) — confirmed by Samuel 2026-10-12
 
 **One curve = one `Set`.**
 
@@ -53,7 +53,7 @@ What the extra signature members are: mostly **co-solutes** that change the chem
 - `has_cosolute`: 237 of 1,680 clean curves.
 - `co2_present`: CO2(g) reported with partial pressure > 0, or a C(+4) electrolyte (1,052 clean curves).
 
-Co-solute curves are **kept** for now and flagged. Whether to exclude them from the core library is open question 9.
+Co-solute curves are **kept and flagged** (Samuel, 2026-10-12). Ca(+2) and Mg(+2) count as background salt.
 
 ## Conventions
 
