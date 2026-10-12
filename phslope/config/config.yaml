@@ -65,6 +65,7 @@ shape:                         # shape classification (spec 4.5); scientific cho
   flat_height: 0.15            # fitted response range below this -> flat
   min_step: 0.15               # a rise or fall must change the response by at least this to count
   multi_step_valley: 0.3       # two slope peaks separated by a valley below this fraction of the smaller peak
+  multi_step_min_sep: 1.5      # ... and at least this many pH units apart
   edge_track_window: 1.0       # smoother bootstrap draws follow the full-fit edge within +/- this many pH units
 
 stage1:

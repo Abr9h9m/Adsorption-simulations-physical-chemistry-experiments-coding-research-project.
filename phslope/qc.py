@@ -9,7 +9,8 @@ Shape class, from the fitted curve on a dense grid inside the observed range:
        anything else -> unclassified
   3. A single rise or fall whose slope has two separate peaks, each carrying a
      step of at least min_step, with the slope between them dropping below
-     multi_step_valley x the smaller peak -> multi_step.
+     multi_step_valley x the smaller peak, and the peaks at least multi_step_min_sep pH
+     apart (so wiggles in a fitted curve are not read as separate steps) -> multi_step.
 
 Flags (none of them deletes data; they decide core-library membership):
   too_few_points, narrow_span, edge_not_bracketed, poor_fit, wide_interval,
@@ -55,7 +56,7 @@ def moves(f, h):
     return out
 
 
-def _n_steps(p, g_dir, h, valley_frac):
+def _n_steps(p, g_dir, h, valley_frac, min_sep=0.0):
     """Number of separate steps inside one monotone move. g_dir = slope in the
     move's direction (positive where the curve moves that way)."""
     g = np.clip(g_dir, 0, None)
@@ -77,7 +78,7 @@ def _n_steps(p, g_dir, h, valley_frac):
         return len(big)
     n = 1
     for a, b in zip(big[:-1], big[1:]):
-        if g[a:b + 1].min() < valley_frac * min(g[a], g[b]):
+        if p[b] - p[a] >= min_sep and g[a:b + 1].min() < valley_frac * min(g[a], g[b]):
             n += 1
     return n
 
@@ -92,7 +93,8 @@ def shape_class(p, f, g, cfg):
         return "bell"
     if dirs in ([1], [-1]):
         d, i, j = found[0]
-        if _n_steps(p[i:j + 1], d * g[i:j + 1], cfg["min_step"], cfg["multi_step_valley"]) >= 2:
+        if _n_steps(p[i:j + 1], d * g[i:j + 1], cfg["min_step"], cfg["multi_step_valley"],
+                    cfg["multi_step_min_sep"]) >= 2:
             return "multi_step"
         return "rising" if d == 1 else "falling"
     if not dirs:
