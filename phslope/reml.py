@@ -53,7 +53,7 @@ def _neg2_reml(eta, y, X, Z, ZtZ, Zty, ZtX, slices, n, p):
         return a_t_b - (lam[:, None] * Zta).T @ cho_solve(cf, lam[:, None] * Ztb, check_finite=False)
 
     XtVX = vinv_quad(X.T @ X, ZtX, ZtX)
-    XtVy = vinv_quad(X.T @ y, ZtX, Zty[:, None]).ravel()
+    XtVy = vinv_quad((X.T @ y)[:, None], ZtX, Zty[:, None]).ravel()
     try:
         cx = cho_factor(XtVX, lower=True, check_finite=False)
     except np.linalg.LinAlgError:
@@ -91,7 +91,10 @@ def fit_reml(df, response, factors, fixed=None):
                      bounds=[LOG_RATIO_BOUNDS] * len(slices))
         if best is None or r.fun < best.fun:
             best = r
-    _, (beta, s2) = _neg2_reml(best.x, *args)
+    val, sol = _neg2_reml(best.x, *args)
+    if sol is None:
+        raise ValueError("REML fit is singular (e.g. a constant or collinear fixed covariate)")
+    beta, s2 = sol
     comps = {name: float(np.exp(e) * s2) for name, e in zip(slices, best.x)}
     comps = {k: (0.0 if v < 1e-10 * s2 else v) for k, v in comps.items()}
     comps["residual"] = float(s2)

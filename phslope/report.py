@@ -262,3 +262,137 @@ def diagnostics_pdf(path, lib, curve_obs, max_pages=None):
             pdf.savefig(fig)
             plt.close(fig)
     print(f"Wrote {path}")
+
+
+# ------------------------------------------------------------------ stage 2
+
+CAT = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300", "#6250d6", "#e34948"]
+
+
+def stage2_part_a_figures(out_dir, reg, f):
+    u = reg["u"]
+    fig, (a1, a2) = plt.subplots(1, 2, figsize=(10, 3.6))
+    for r in reg["R"][:400]:
+        a1.plot(u, r, color=GRAY, lw=.5, alpha=.25)
+    a1.plot(u, reg["reference"], color=BLUE, lw=2, label="mean registered curve")
+    s = 1 / (1 + np.exp(-u))
+    a1.plot(u, s * (1 - s), color=ORANGE, lw=1.5, ls="--", label="exact logistic")
+    a1.set_xlabel("registered pH, u = (pH - edge) / width", fontsize=9)
+    a1.set_ylabel("slope x width / height", fontsize=9)
+    a1.set_title(f"Registered single-edge curves (n = {len(reg['R'])})", fontsize=10, loc="left")
+    a1.legend(frameon=False, fontsize=8)
+    _style(a1)
+    uk = u[f["columns"]]
+    for j in range(f["n_components"]):
+        a2.plot(uk, f["components"][j], color=CAT[j], lw=2,
+                label=f"FPC{j + 1} ({f['explained'][j]:.0%} of variance)")
+    a2.axhline(0, color="#c9c8c3", lw=.8)
+    a2.set_xlabel("registered pH, u", fontsize=9)
+    a2.set_title("Main shape variations after registration", fontsize=10, loc="left")
+    a2.legend(frameon=False, fontsize=8)
+    _style(a2)
+    fig.tight_layout()
+    fig.savefig(os.path.join(out_dir, "registration_and_fpca.png"), dpi=150)
+    plt.close(fig)
+
+
+def stage2_part_b_figures(out_dir, split, t):
+    params = list(dict.fromkeys(split["parameter"]))
+    comps = ["mineral_class", "sorbate_class", "mineral_sorbate", "reference", "residual"]
+    fig, ax = plt.subplots(figsize=(7.5, 0.6 + 0.55 * len(params)))
+    left = np.zeros(len(params))
+    for j, c in enumerate(comps):
+        vals = np.array([split[(split.parameter == p) & (split.component == c)]["share"].sum() for p in params])
+        ax.barh(params, vals, left=left, color=CAT[j] if c != "residual" else "#c9c8c3", height=.6,
+                edgecolor="white", linewidth=1, label=c.replace("_", " "))
+        left += vals
+    ax.set_xlim(0, 1)
+    ax.set_xlabel("share of variance", fontsize=9)
+    ax.set_title(f"Variance split (n = {len(t)} core edge curves; intervals in variance_split.csv)",
+                 fontsize=10, loc="left")
+    ax.legend(frameon=False, fontsize=8, ncol=5, loc="upper center", bbox_to_anchor=(.5, -.25))
+    _style(ax)
+    fig.tight_layout()
+    fig.savefig(os.path.join(out_dir, "variance_shares.png"), dpi=150)
+    plt.close(fig)
+
+    g = t.groupby(["mineral", "sorbate"])["edge_pH"].agg(["mean", "size"]).reset_index()
+    top_m = t["mineral"].value_counts().head(15).index
+    top_s = t["sorbate"].value_counts().head(20).index
+    piv = g.pivot(index="mineral", columns="sorbate", values="mean").reindex(index=top_m, columns=top_s)
+    cnt = g.pivot(index="mineral", columns="sorbate", values="size").reindex(index=top_m, columns=top_s)
+    fig, ax = plt.subplots(figsize=(10, 5.5))
+    im = ax.imshow(piv.to_numpy(), cmap="Blues", vmin=2, vmax=11, aspect="auto")
+    for (i, j), v in np.ndenumerate(cnt.to_numpy()):
+        if np.isfinite(v):
+            ax.text(j, i, int(v), ha="center", va="center", fontsize=6,
+                    color="white" if piv.to_numpy()[i, j] > 7.5 else INK)
+    ax.set_xticks(range(len(top_s)), top_s, rotation=60, ha="right", fontsize=7)
+    ax.set_yticks(range(len(top_m)), top_m, fontsize=7)
+    cb = fig.colorbar(im, ax=ax, fraction=.03)
+    cb.set_label("mean edge pH", fontsize=8)
+    ax.set_title("Mean edge position per mineral-sorbate pair (numbers = curves; blank = no data)",
+                 fontsize=10, loc="left")
+    fig.tight_layout()
+    fig.savefig(os.path.join(out_dir, "edge_grid.png"), dpi=150)
+    plt.close(fig)
+
+
+def stage2_summary(out_dir, lib, a, b, thr_all, stamp):
+    f, vr = a["fpca"], a["variance_removed"]
+    n_core = int(lib["meta"]["in_core_library"].sum())
+    src = a["scores"]["slope_source"].value_counts().to_dict()
+    sd_cols = [c for c in a["scores"].columns if c.endswith("_sd")]
+    unc = ", ".join(f"{c[:-3].upper()} {np.nanmedian(a['scores'][c]):.3g} vs spread "
+                    f"{np.nanstd(a['scores'][c[:-3]]):.3g}" for c in sd_cols)
+    lines = [
+        "# Stage 2 summary: do mineral and sorbate classes matter?", "", _stamp_line(stamp), "",
+        "## Part A: registration and shape components (task 2.2)", "",
+        f"- Single-edge (rising/falling) core curves registered: {len(a['reg']['idx'])} of {n_core} core curves. "
+        f"Registered slope source: {src}.",
+        f"- Slope variance removed by registration alone (aligning edge position, width and height): "
+        f"{vr['all']:.1%} overall; rising {vr['rising']:.1%}; falling {vr['falling']:.1%}.",
+        f"- FPCA: {f['n_components']} component(s) kept (rule: >= 90% of variance, max 5). Explained: "
+        + ", ".join(f"FPC{j + 1} {f['explained'][j]:.1%}" for j in range(f["n_components"]))
+        + f". {f['filled_fraction']:.1%} of the cells were filled by iterative SVD imputation, so these shares "
+        "are somewhat optimistic.",
+        f"- Score uncertainty (median bootstrap SD of projected scores vs the spread of scores across curves): {unc}.",
+        "", "Files: `registration_and_scores.csv` (warp a, b, w per curve, ratios to the median curve, FPC "
+        "scores and SDs), `fpca_components.csv`, `registration_and_fpca.png`.", "",
+        "## Part B: class tests (tasks 2.3-2.5)", "",
+    ]
+    if b is None:
+        lines += [
+            "**Not run.** `phslope/config/classes.yaml` holds a PROPOSED class assignment with `confirmed: false`. "
+            "Samuel and Dr. Black review it (spec task 2.1) and set `confirmed: true`; then re-run "
+            "`python -m phslope.stage2`. The classes must not be changed after seeing Part B results.",
+        ]
+    else:
+        v, perm, cond = b["verdict"], b["perm"], b["cond"]
+        lines += [
+            f"### Go/no-go: **{v['verdict']}**", "",
+            f"{v['reason']}. For edge position: class share (mineral class + sorbate class + pair) = "
+            f"{v['class_share']:.1%}, reference (study) share = {v['reference_share']:.1%}; within-reference "
+            f"permutation p = {perm['p_value']:.4f} ({len(perm['null'])} permutations).", "",
+            f"Permutation informativeness: {perm['n_refs_shufflable']} of {perm['n_refs']} references "
+            f"({perm['n_curves_shufflable']} of {perm['n']} curves) contain more than one class cell and can be "
+            "shuffled; the rest are fixed under the null, which makes the test conservative.", "",
+            "Unassigned names (excluded): " + str(b["unassigned"]), "",
+            "### Variance shares (95% cluster-bootstrap intervals over references)", "",
+            md_table(b["split"][["parameter", "component", "share", "share_lo", "share_hi"]]), "",
+            f"### Edge position with conditions as fixed effects (n = {cond.attrs['n']}, "
+            f"{cond.attrs['dropped_rows']} curves dropped for a missing covariate; temperature "
+            f"{'included' if cond.attrs['temp_used'] else 'not included (reported for < 80% of curves)'}; "
+            f"constant covariates dropped: {cond.attrs.get('constant_covariates_dropped') or 'none'})", "",
+            md_table(cond[["component", "share"]]), "",
+            "### Clustering vs class labels (within-reference permutations)", "", md_table(b["tests"]), "",
+            "Figures: `variance_shares.png`, `edge_grid.png`.", "",
+            "### Next decision", "",
+            ("Stage 2 passes: continue to Stage 3 (descriptor tables, then freeze thresholds.yaml)."
+             if v["verdict"] == "PASS" else
+             "Stage 2 does not pass: stop, write up the negative result, and decide whether conditions as "
+             "covariates (not classes) is the next thing to test."),
+        ]
+    with open(os.path.join(out_dir, "SUMMARY.md"), "w", encoding="utf-8") as fh:
+        fh.write("\n".join(lines) + "\n")
+    print("Stage 2 summary written" + ("" if b else " (Part B not run: classes not confirmed)"))

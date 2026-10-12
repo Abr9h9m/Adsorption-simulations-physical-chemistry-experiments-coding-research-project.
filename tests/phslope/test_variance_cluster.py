@@ -102,3 +102,16 @@ def test_fast_reml_matches_statsmodels():
     slow = fit_components_statsmodels(curves, "p50")["components"]
     for k in fast:
         assert fast[k] == pytest.approx(slow[k], rel=0.05, abs=1e-3), (k, fast[k], slow[k])
+
+
+def test_fast_reml_with_fixed_effects_matches_statsmodels():
+    from phslope.variance import fit_components_statsmodels
+    curves, _ = planted_class_structure(n_references=25, seed=9)
+    rng = np.random.default_rng(0)
+    curves["x1"] = rng.normal(size=len(curves))
+    curves["x2"] = rng.normal(size=len(curves))
+    curves["p50"] = curves["p50"] + 0.5 * curves["x1"]
+    fast = fit_components(curves, "p50", fixed=["x1", "x2"])["components"]
+    slow = fit_components_statsmodels(curves, "p50", fixed=["x1", "x2"])["components"]
+    for k in fast:
+        assert fast[k] == pytest.approx(slow[k], rel=0.05, abs=1e-3), (k, fast[k], slow[k])
