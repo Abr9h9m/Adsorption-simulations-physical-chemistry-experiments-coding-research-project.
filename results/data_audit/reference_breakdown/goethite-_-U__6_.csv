@@ -1,0 +1,11 @@
+reference,n_points,n_distinct_I_levels,I_min,I_max,pH_span,sufficient_for_local_I_derivative
+t83,205,3,0.1,0.7,3.9800000000000004,True
+hl85,121,2,0.1,0.105,5.527100000000001,False
+mgm03,120,2,0.001,0.1,7.3944,False
+sph08,93,1,0.1,0.1,7.0,False
+jhlch99,39,1,0.1,0.1,6.405999999999999,False
+da96,24,13,0.037,0.188,5.1,True
+dw14,20,1,0.01,0.01,5.478,False
+bchssy98,17,1,0.01,0.01,6.892899999999999,False
+nkm14,13,1,0.001,0.001,6.010300000000001,False
+csb18,11,1,0.01,0.01,6.786,False

@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+# scratch figures written by module self-tests (e.g. python viz.py)
+*_test.png
+results/data_audit_selftest/
+
+# Abraham's GitHub clone: separate repo, not tracked here
+Adsorption-simulations-project/
+.pytest_cache/

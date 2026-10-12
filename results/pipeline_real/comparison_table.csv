@@ -1,0 +1,7 @@
+system_1,system_2,same_mineral,same_sorbate,tier1_z_distance,tier2_shape_sim,tier2_shape_sim_signless,tier2_angle_deg,n_matched
+goethite-Cl(-1)+Na(+1)+P(+5)-Se(+4),ferrihydrite-N(+5)+Na(+1)+P(+5)-U(+6),False,False,5.388,0.203,0.211,85.577,31
+goethite-Cl(-1)+Na(+1)+P(+5)-Se(+4),montmorillonite-Cl(-1)+Na(+1)-U(+6),False,False,5.706,,,,0
+goethite-Cl(-1)+Na(+1)+P(+5)-Se(+4),goethite-N(+5)+Na(+1)-U(+6),True,False,5.04,,,,0
+ferrihydrite-N(+5)+Na(+1)+P(+5)-U(+6),montmorillonite-Cl(-1)+Na(+1)-U(+6),False,True,4.624,,,,0
+ferrihydrite-N(+5)+Na(+1)+P(+5)-U(+6),goethite-N(+5)+Na(+1)-U(+6),False,True,2.484,0.816,0.816,22.157,47
+montmorillonite-Cl(-1)+Na(+1)-U(+6),goethite-N(+5)+Na(+1)-U(+6),False,True,3.669,,,,0

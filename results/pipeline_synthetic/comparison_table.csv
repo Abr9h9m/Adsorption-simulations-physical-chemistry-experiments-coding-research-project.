@@ -1,0 +1,7 @@
+system_1,system_2,same_mineral,same_sorbate,tier1_z_distance,tier2_shape_sim,tier2_shape_sim_signless,tier2_angle_deg,n_matched
+goethite-U(+6),goethite-Se(+4),True,False,4.239,-0.886,0.912,13.913,48
+goethite-U(+6),montmorillonite-U(+6),False,True,3.723,0.434,0.669,27.497,48
+goethite-U(+6),ferrihydrite-U(+6),False,True,2.503,0.774,0.853,29.165,48
+goethite-Se(+4),montmorillonite-U(+6),False,False,4.837,-0.391,0.79,24.152,78
+goethite-Se(+4),ferrihydrite-U(+6),False,False,5.512,-0.793,0.873,27.835,48
+montmorillonite-U(+6),ferrihydrite-U(+6),False,True,6.011,0.133,0.571,43.123,48
