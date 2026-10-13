@@ -1,0 +1,5 @@
+model,baseline,n_common,median_diff,diff_lo,diff_hi,model_median,baseline_median,matching,lab_id
+B3_matched_fb,B0_all_other,218,0.0,0.0,0.0,0.5348280811207355,0.6421723985160099,any lab,lab_exact
+B3_matched_fb,B0_all_other,214,0.0,0.0,0.0,0.5664538604312099,0.6584572410562344,different lab (lab_exact),lab_exact
+B3_matched_fb,B0_all_other,218,0.0,0.0,0.0,0.5348280811207355,0.6421723985160099,any lab,lab_coarse
+B3_matched_fb,B0_all_other,209,0.0,0.0,0.0,0.6423682353818272,0.7107516015712356,different lab (lab_coarse),lab_coarse

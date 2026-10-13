@@ -89,8 +89,9 @@ def choose_breakpoint(train, grid):
 
 
 class E1Model:
-    def __init__(self, cfg, covariates=True):
-        self.cfg, self.covariates = cfg, covariates
+    def __init__(self, cfg, covariates=True, extra_covs=()):
+        """extra_covs: additional level covariates (columns of the curve table), e.g. for E7 / E9."""
+        self.cfg, self.covariates, self.extra_covs = cfg, covariates, list(extra_covs)
 
     def fit(self, train):
         t = train.copy()
@@ -98,7 +99,7 @@ class E1Model:
         t["a_c"] = t["a"] + t["b"] * t["pH_c"]
         self.bp = choose_breakpoint(t, self.cfg["hinge_grid"]) if self.covariates else np.nan
         t = add_covariates(t, self.bp) if self.covariates else t
-        self.level_fixed = ["falling"] + (LEVEL_COVS if self.covariates else [])
+        self.level_fixed = ["falling"] + (LEVEL_COVS if self.covariates else []) + self.extra_covs
         self.level_fixed = [c for c in self.level_fixed if t[c].nunique(dropna=True) > 1]
         t = t.dropna(subset=self.level_fixed + ["a_c", "b"])
         self.train = t
@@ -154,10 +155,12 @@ class E1Model:
         return d
 
 
-def logk_metrics(pred, obs):
-    """RMSE and 90% coverage of log10 K at the held-out curve's mid-range points."""
+def logk_metrics(pred, obs, min_pH=None):
+    """RMSE and 90% coverage of log10 K at the held-out curve's mid-range points (optionally pH > min_pH)."""
     rows = []
     o = obs[obs["mid"] & obs["log10K"].notna()]
+    if min_pH is not None:
+        o = o[o["pH"] > min_pH]
     by = {k: g for k, g in o.groupby("curve_id")}
     for r in pred.itertuples():
         g = by.get(r.curve_id)
@@ -196,13 +199,13 @@ def baseline_logk(c, obs):
     return pd.DataFrame(rows)
 
 
-def cross_validate(c, obs, cfg, covariates=True, seed=0):
+def cross_validate(c, obs, cfg, covariates=True, seed=0, extra_covs=()):
     rng = np.random.default_rng(seed)
     preds = []
     for u in c["unit"].unique():
         test = c[c["unit"] == u]
         train = c[c["unit"] != u]
-        m = E1Model(cfg, covariates).fit(train)
+        m = E1Model(cfg, covariates, extra_covs).fit(train)
         p = m.predict(test, rng)
         p["bp"] = m.bp
         preds.append(p)

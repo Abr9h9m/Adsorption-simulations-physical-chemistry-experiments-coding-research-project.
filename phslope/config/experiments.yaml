@@ -95,3 +95,10 @@ e8:
                    "Ketogluconate", "Humic acid", "Fulvic acid"]
   same_within: 0.10             # within-paper series: solids, total sorbate, temperature equal within 10%
   decision: "outer-sphere within-paper effect 95% interval excludes zero AND differs from inner-sphere (interval excludes zero)"
+
+# Clarification added 2026-10-13 AFTER the first E4 run (recorded in REGISTRY.md): "paired 95% interval"
+# in the decision rules means the interval of the DIFFERENCE OF MEDIANS (model minus baseline) on the same
+# curves, resampling units. The first E4 run used the median of per-curve differences, which is 0 whenever
+# most curves are tied (B3 falls back to B0 when no paper matches), so it could not detect any gain.
+# E4 is re-run with the clarified statistic; both runs stay in the registry.
+paired_statistic: difference_of_medians

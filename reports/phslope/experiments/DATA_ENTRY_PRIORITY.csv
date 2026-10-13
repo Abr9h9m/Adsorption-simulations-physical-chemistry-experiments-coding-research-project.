@@ -1,0 +1,133 @@
+reference,curves_in_pairs_with_3plus_papers,pairs,priority_rank,fill_first
+c96,40,hematite | Am(+3); hematite | Np(+5); hematite | Th(+4); hematite | U(+6),1,True
+d01,37,ferrihydrite | U(+6); kaolinite | U(+6); quartz | U(+6),2,True
+kv13,27,goethite | Se(+6),3,True
+ss00,23,ferrihydrite | Se(+4); ferrihydrite | Se(+6); goethite | Se(+4); goethite | Se(+6),4,True
+bm82,20,goethite | Cu(+2); goethite | Zn(+2),5,True
+bb05a,15,illite | Eu(+3); illite | Ni(+2); illite | Sr(+2),6,True
+hchk01,13,kaolinite | U(+6); montmorillonite | U(+6),7,True
+bc87,12,goethite | Se(+4); goethite | Se(+6),8,True
+wat01c,12,ferrihydrite | Se(+4); ferrihydrite | Se(+6); goethite | Se(+4),9,True
+hpl88,12,ferrihydrite | Se(+4); ferrihydrite | Se(+6); goethite | Se(+4); goethite | Se(+6),10,True
+khl99,12,goethite | Np(+5); hematite | Np(+5),11,True
+mf92,11,goethite | Oxalic acid,12,True
+bc90,11,ferrihydrite | Se(+4); ferrihydrite | Se(+6),13,True
+k62,11,ferrihydrite | Sr(+2),14,True
+ZB04a,11,hematite | Am(+3),15,True
+ta01,11,ferrihydrite | Ni(+2); ferrihydrite | Zn(+2); goethite | Ni(+2); goethite | Zn(+2),16,True
+bb05,11,montmorillonite | Am(+3); montmorillonite | Eu(+3); montmorillonite | Ni(+2); montmorillonite | Np(+5); montmorillonite | U(+6); montmorillonite | Zn(+2),17,True
+bbs03,10,goethite | Cu(+2); goethite | Ni(+2),18,True
+mf92a,9,goethite | Oxalic acid,19,True
+bm11,9,bentonite | U(+6); kaolinite | U(+6); montmorillonite | U(+6),20,True
+pbb99a,9,illite | Eu(+3); illite | Ni(+2); illite | Sr(+2),21,True
+bsl83,8,ferrihydrite | Ra(+2),22,True
+hl85,8,ferrihydrite | U(+6); goethite | U(+6); hematite | U(+6),23,True
+jhlch99,8,goethite | U(+6); hematite | U(+6); quartz | U(+6),24,True
+lbhka80,8,ferrihydrite | Se(+4); ferrihydrite | Se(+6),25,True
+mgm03,8,goethite | U(+6),26,True
+dlfjr03,8,goethite | Se(+4); hematite | Se(+4),27,True
+masgg09,7,goethite | Se(+4); magnetite | Se(+4),28,True
+j95,7,gibbsite | U(+6),29,True
+hrbhl87,7,goethite | Se(+4); goethite | Se(+6),30,True
+sblvd14,7,ferrihydrite | Ra(+2); goethite | Ra(+2),31,True
+hpq71,7,goethite | Se(+4),32,True
+tad01,7,goethite | Ni(+2); goethite | Zn(+2),33,True
+mzst95,7,gibbsite | U(+6); montmorillonite | U(+6); quartz | U(+6),34,True
+zsbus09,7,hematite | U(+6),35,True
+bs14,7,ferrihydrite | Ra(+2); goethite | Ra(+2),36,True
+tpb98,6,montmorillonite | Np(+5),37,True
+zlqwwzy16,6,bentonite | U(+6),38,True
+lyt14,6,goethite | Se(+4); magnetite | Se(+4),39,True
+smrlg15,6,illite | Eu(+3); montmorillonite | Eu(+3),40,True
+bb06,6,montmorillonite | Am(+3); montmorillonite | Eu(+3); montmorillonite | Np(+5),41,False
+eicg03,6,illite | Ni(+2),42,False
+t83,6,goethite | U(+6),43,False
+fhr97,5,goethite | Citric acid; goethite | Oxalic acid,44,False
+kdse04,5,montmorillonite | U(+6),45,False
+bb09,5,illite | Ni(+2),46,False
+bb97,5,montmorillonite | Ni(+2); montmorillonite | Zn(+2),47,False
+jmlg09,5,hematite | Se(+4),48,False
+wmdv98,5,illite | Eu(+3),49,False
+rbmb88,4,alumina | Am(+3); alumina | Np(+5),50,False
+ns91,4,alumina | Np(+5); goethite | Np(+5); hematite | Np(+5),51,False
+dl80,4,ferrihydrite | Se(+6),52,False
+aotka82,4,alumina | Am(+3); alumina | Np(+5),53,False
+rk14,4,hematite | Np(+5); hematite | Th(+4); hematite | U(+6),54,False
+ssfxcw09,4,bentonite | Eu(+3),55,False
+akbn96,4,ferrihydrite | U(+6),56,False
+fdz06,4,ferrihydrite | U(+6); quartz | U(+6),57,False
+vt98,4,hematite | U(+6),58,False
+yhlgmw10,4,bentonite | U(+6),59,False
+rgmmd08,3,goethite | Se(+4); goethite | Se(+6); hematite | Se(+4),60,False
+bb02,3,montmorillonite | Eu(+3),61,False
+sph08,3,goethite | U(+6),62,False
+mh20,3,ferrihydrite | Ra(+2),63,False
+mbdsb12,3,montmorillonite | U(+6),64,False
+m80,3,goethite | Cu(+2); goethite | Ni(+2); goethite | Zn(+2),65,False
+wdpwx94,3,ferrihydrite | U(+6),66,False
+bm87,3,goethite | Oxalic acid,67,False
+bb99,3,montmorillonite | Ni(+2); montmorillonite | Zn(+2),68,False
+gdb09,3,ferrihydrite | U(+6),69,False
+e14,3,hematite | Np(+5),70,False
+hyz05,3,gibbsite | U(+6),71,False
+bs00,3,goethite | Ra(+2),72,False
+hm86,3,hematite | U(+6),73,False
+fvb15,3,illite | Eu(+3),74,False
+bpa98,3,montmorillonite | Np(+5),75,False
+cjgmw14,3,bentonite | Eu(+3),76,False
+ck18,2,ferrihydrite | Ra(+2); goethite | Ra(+2),77,False
+chm93,2,ferrihydrite | Ni(+2); ferrihydrite | Zn(+2),78,False
+kasw00,2,illite | Eu(+3),79,False
+rbab91,2,alumina | Am(+3); alumina | Np(+5),80,False
+rhv01,2,goethite | Se(+6),81,False
+rhv07a,2,goethite | C(+4),82,False
+kckd96,2,quartz | U(+6),83,False
+bsssn17,2,hematite | Se(+4),84,False
+ambts89,2,alumina | Am(+3),85,False
+fwr95,2,bentonite | Eu(+3); quartz | Eu(+3),86,False
+ta01a,2,ferrihydrite | Ni(+2),87,False
+ab90a,2,ferrihydrite | Se(+4); ferrihydrite | Zn(+2),88,False
+vl00,2,goethite | C(+4),89,False
+emibsgg17,2,montmorillonite | Np(+5),90,False
+aa95,2,ferrihydrite | Sr(+2),91,False
+dw14,2,goethite | U(+6),92,False
+zs90a,2,goethite | Se(+4); goethite | Se(+6),93,False
+pa05,2,goethite | Oxalic acid,94,False
+BB06,2,montmorillonite | Am(+3),95,False
+bge00,2,goethite | Ni(+2),96,False
+bb81,2,ferrihydrite | Se(+6),97,False
+lp09,2,goethite | Citric acid; goethite | Oxalic acid,98,False
+jpk15,2,hematite | Se(+4),99,False
+ljaw03,2,goethite | Citric acid,100,False
+mso92,2,alumina | Am(+3),101,False
+dmb98,1,gibbsite | U(+6),102,False
+kmps97,1,montmorillonite | Eu(+3),103,False
+wkm03,1,ferrihydrite | U(+6),104,False
+csb18,1,goethite | U(+6),105,False
+ksj75,1,ferrihydrite | Sr(+2),106,False
+ftons95,1,goethite | Np(+5),107,False
+bchssy98,1,goethite | U(+6),108,False
+vrl94,1,goethite | C(+4),109,False
+lcv99,1,hematite | U(+6),110,False
+usbr08,1,ferrihydrite | U(+6),111,False
+epb99,1,goethite | Oxalic acid,112,False
+LBSSVRS10,1,hematite | Am(+3),113,False
+ldt91,1,goethite | Oxalic acid,114,False
+lh99,1,hematite | U(+6),115,False
+nea94,1,quartz | Eu(+3),116,False
+lkda94,1,quartz | Eu(+3),117,False
+syw09,1,goethite | Citric acid,118,False
+nfhpl17,1,goethite | Se(+4),119,False
+ghv98,1,goethite | Citric acid,120,False
+jlmge09,1,magnetite | Se(+4),121,False
+rll98,1,gibbsite | U(+6),122,False
+dlf06,1,hematite | Se(+4),123,False
+mbgk18,1,illite | Sr(+2),124,False
+jdb07,1,ferrihydrite | U(+6),125,False
+hm10,1,bentonite | Eu(+3),126,False
+mgdrd06,1,magnetite | Se(+4),127,False
+ra91,1,goethite | C(+4),128,False
+mhsh09,1,goethite | Citric acid,129,False
+mlh99,1,hematite | Th(+4),130,False
+hpq72,1,goethite | Se(+4),131,False
+pjtp01,1,quartz | U(+6),132,False

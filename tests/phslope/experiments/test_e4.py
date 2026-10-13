@@ -23,3 +23,16 @@ def test_baselines_can_require_a_different_lab():
     p_diff = H.baseline_predictions(c, unit_col="unit", also_differ=("lab",)).set_index("curve_id")
     assert p_any.loc["c0", "B1_nearest1"] == 5.1          # same-lab paper is the closest match
     assert p_diff.loc["c0", "B1_nearest1"] == 7.0         # forced to another lab
+
+
+def test_paired_uses_difference_of_medians_robust_to_ties():
+    rng = np.random.default_rng(1)
+    n = 200
+    base = np.abs(rng.normal(0, 1, n))
+    model = base.copy()
+    model[:60] = base[:60] * 0.3                               # better on 30% of curves, tied elsewhere
+    L = pd.concat([pd.DataFrame({"curve_id": np.arange(n), "unit": np.arange(n) % 40, "model": m, "edge_error": e})
+                   for m, e in (("m", model), ("b", base))])
+    d = H.paired(L, "m", ["b"], B=300).iloc[0]
+    assert d["median_of_diffs"] == 0 and d["share_tied"] >= 0.6     # the degenerate statistic
+    assert d["median_diff"] < 0 and d["diff_hi"] < 0               # the decision statistic sees the gain

@@ -7,3 +7,9 @@
 | 2026-10-13 16:32 | data |  |  | INCLUDES LOCKED PAPERS | test: harness regression check |
 | 2026-10-13 16:32 | data |  |  | INCLUDES LOCKED PAPERS | test: harness regression check |
 | 2026-10-13 16:35 | E3 | 2419b6b | 88b1c3a1b769 | done (no decision rule) | 74 duplicate pairs, 28 cross-paper; 17 papers in multi-paper lineage clusters |
+| 2026-10-13 16:54 | E5 | 353c5ee-dirty | 88b1c3a1b769 | DOES NOT MEET RULE | retained 0.0%; validated median error nan |
+| 2026-10-13 16:57 | E5 | b5c03f2 | 88b1c3a1b769 | MEETS RULE | retained 93.4%; validated median error 0.11 |
+| 2026-10-13 16:58 | E4 | b5c03f2-dirty | 88b1c3a1b769 | GAIN DOES NOT SURVIVE (partly a lab effect, or not significant) | lab proxy from reference code; 2 proxies |
+| 2026-10-13 16:58 | E8 | b5c03f2-dirty | 88b1c3a1b769 | EFFECT FOUND (meets rule) | 13 tests; 81 within-paper series |
+| 2026-10-13 16:58 | data |  |  | INCLUDES LOCKED PAPERS | data-entry templates and priority list (no outcomes used) |
+| 2026-10-13 17:00 | E4 |  |  | RERUN SCHEDULED | first run used median of per-curve differences (degenerate with ties); paired statistic clarified to difference of medians in experiments.yaml |

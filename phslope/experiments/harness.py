@@ -131,7 +131,10 @@ def summarize(L, B=500, seed=0, metric="edge_error"):
 
 
 def paired(L, model, baselines, B=500, seed=0, metric="edge_error"):
-    """Median paired difference (model - baseline) over curves both predicted; 95% interval over units."""
+    """Paired comparison on curves both models predicted. `median_diff` (used for decisions) is the
+    DIFFERENCE OF MEDIANS, median(model) - median(baseline); its 95% interval resamples units and uses the
+    same resampled curves for both models. `median_of_diffs` (with interval) is also reported; it is
+    degenerate when many differences are exactly zero (e.g. B3 falling back to B0 when no paper matches)."""
     rng = np.random.default_rng(seed)
     a = L[L["model"] == model].set_index("curve_id")
     rows = []
@@ -140,12 +143,25 @@ def paired(L, model, baselines, B=500, seed=0, metric="edge_error"):
         common = a.index.intersection(bb.index)
         if not len(common):
             continue
-        diff = (a.loc[common, metric] - bb.loc[common, metric]).to_numpy()
+        ea, eb = a.loc[common, metric].to_numpy(), bb.loc[common, metric].to_numpy()
+        diff = ea - eb
         units = a.loc[common, "unit"].to_numpy()
-        lo, hi = _boot_median(diff, units, B, rng) if B else (np.nan, np.nan)
-        rows.append({"model": model, "baseline": b, "n_common": len(common), "median_diff": np.median(diff),
-                     "diff_lo": lo, "diff_hi": hi, "model_median": np.median(a.loc[common, metric]),
-                     "baseline_median": np.median(bb.loc[common, metric])})
+        lo = hi = mlo = mhi = np.nan
+        if B:
+            u = np.unique(units)
+            idx = {k: np.where(units == k)[0] for k in u}
+            dm, md = [], []
+            for _ in range(B):
+                pick = np.concatenate([idx[k] for k in rng.choice(u, len(u))])
+                dm.append(np.median(ea[pick]) - np.median(eb[pick]))
+                md.append(np.median(diff[pick]))
+            lo, hi = np.percentile(dm, [2.5, 97.5])
+            mlo, mhi = np.percentile(md, [2.5, 97.5])
+        rows.append({"model": model, "baseline": b, "n_common": len(common),
+                     "median_diff": np.median(ea) - np.median(eb), "diff_lo": lo, "diff_hi": hi,
+                     "median_of_diffs": np.median(diff), "mod_lo": mlo, "mod_hi": mhi,
+                     "model_median": np.median(ea), "baseline_median": np.median(eb),
+                     "share_model_better": float(np.mean(diff < 0)), "share_tied": float(np.mean(diff == 0))})
     return pd.DataFrame(rows)
 
 
