@@ -1,0 +1,9 @@
+index,curves_flagged
+f_out_of_range,1
+response_maybe_percent,0
+pH_out_of_range,3
+solids_nonpositive_or_implausible,1
+total_sorbate_nonpositive,0
+ionic_strength_not_finite,0
+slope_sign_contradicts_shape,1
+fewer_than_3_pH_values,0

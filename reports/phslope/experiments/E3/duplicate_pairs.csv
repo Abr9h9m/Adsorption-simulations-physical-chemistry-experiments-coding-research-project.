@@ -1,0 +1,75 @@
+curve_a,curve_b,mineral,sorbate,reference_a,reference_b,match_share,cross_paper
+yhlgmw10_f1a,yhlgmw10_f5b,bentonite,U(+6),yhlgmw10,yhlgmw10,0.9375,False
+yhlgmw10_f1a,yhlgmw10_f6a,bentonite,U(+6),yhlgmw10,yhlgmw10,0.9375,False
+yhlgmw10_f5b,yhlgmw10_f6a,bentonite,U(+6),yhlgmw10,yhlgmw10,0.9375,False
+zb04_fb4,zrhsk05_f11b,calcite,Pu(+5),zb04,zrhsk05,0.9,True
+bc90_f2a,bc90_f6ab,ferrihydrite,Se(+4),bc90,bc90,0.8181818181818182,False
+d01_f4-5b,wdpwx94_f5c,ferrihydrite,U(+6),d01,wdpwx94,0.8888888888888888,True
+d01_f4-5c,d01_f4-8ac,ferrihydrite,U(+6),d01,d01,0.8571428571428571,False
+d01_f4-5d,wdpwx94_f5a,ferrihydrite,U(+6),d01,wdpwx94,0.8,True
+d01_f4-8ac,d01_f4-11a,ferrihydrite,U(+6),d01,d01,0.9523809523809523,False
+d01_f4-8ba,d01_f4-12a,ferrihydrite,U(+6),d01,d01,1.0,False
+d01_f4-8bb,d01_f4-8bc,ferrihydrite,U(+6),d01,d01,1.0,False
+d01_f4-8bb,d01_f4-12e,ferrihydrite,U(+6),d01,d01,1.0,False
+d01_f4-8bc,d01_f4-12e,ferrihydrite,U(+6),d01,d01,1.0,False
+d01_f4-11c,d01_f4-12d,ferrihydrite,U(+6),d01,d01,0.8571428571428571,False
+d01_f4-11d,d01_f4-12f,ferrihydrite,U(+6),d01,d01,0.8181818181818182,False
+d01_f4-12b,d01_f4-12c,ferrihydrite,U(+6),d01,d01,1.0,False
+awj06a_f2b,afi02_f1c,goethite,Mellitic acid,awj06a,afi02,0.9142857142857143,True
+mf92_f1a,mf92_f2ab,goethite,Oxalic acid,mf92,mf92,0.9411764705882353,False
+mf92_f1a,mf92_f2bb,goethite,Oxalic acid,mf92,mf92,0.9411764705882353,False
+mf92_f1a,mf92_f2ca,goethite,Oxalic acid,mf92,mf92,0.9411764705882353,False
+mf92_f1a,mf92a_f1c,goethite,Oxalic acid,mf92,mf92a,0.8823529411764706,True
+mf92_f1a,mf92a_f4b,goethite,Oxalic acid,mf92,mf92a,0.9375,True
+mf92_f2aa,mf92a_f4a,goethite,Oxalic acid,mf92,mf92a,0.8,True
+mf92_f2ab,mf92_f2bb,goethite,Oxalic acid,mf92,mf92,0.9444444444444444,False
+mf92_f2ab,mf92_f2ca,goethite,Oxalic acid,mf92,mf92,0.9444444444444444,False
+mf92_f2ab,mf92a_f1c,goethite,Oxalic acid,mf92,mf92a,0.9444444444444444,True
+mf92_f2ab,mf92a_f4b,goethite,Oxalic acid,mf92,mf92a,1.0,True
+mf92_f2ac,mf92a_f2a,goethite,Oxalic acid,mf92,mf92a,0.8888888888888888,True
+mf92_f2ad,mf92a_f2b,goethite,Oxalic acid,mf92,mf92a,0.9230769230769231,True
+mf92_f2ad,mf92a_f3a,goethite,Oxalic acid,mf92,mf92a,0.9230769230769231,True
+mf92_f2ad,mf92a_f3b,goethite,Oxalic acid,mf92,mf92a,0.9230769230769231,True
+mf92_f2bb,mf92_f2ca,goethite,Oxalic acid,mf92,mf92,1.0,False
+mf92_f2bb,mf92a_f4b,goethite,Oxalic acid,mf92,mf92a,0.9375,True
+mf92_f2ca,mf92a_f4b,goethite,Oxalic acid,mf92,mf92a,0.9375,True
+mf92a_f1c,mf92a_f4b,goethite,Oxalic acid,mf92a,mf92a,0.875,False
+mf92a_f2b,mf92a_f3a,goethite,Oxalic acid,mf92a,mf92a,1.0,False
+mf92a_f3a,mf92a_f3b,goethite,Oxalic acid,mf92a,mf92a,0.9230769230769231,False
+sblvd14_f2a,bs14_f4a,goethite,Ra(+2),sblvd14,bs14,1.0,True
+sblvd14_f2b,bs14_f4b,goethite,Ra(+2),sblvd14,bs14,1.0,True
+sblvd14_f2c,bs14_f4c,goethite,Ra(+2),sblvd14,bs14,1.0,True
+sblvd14_f2d,bs14_f4d,goethite,Ra(+2),sblvd14,bs14,0.8,True
+hpl88_f2aa,hrbhl87_f2a,goethite,Se(+4),hpl88,hrbhl87,0.8571428571428571,True
+ss00_f2ae,ss00_f2af,goethite,Se(+4),ss00,ss00,1.0,False
+hpl88_f3ac,hrbhl87_f2e,goethite,Se(+6),hpl88,hrbhl87,0.8333333333333334,True
+mgm03_f6ab,mgm03_f6ac,goethite,U(+6),mgm03,mgm03,0.8888888888888888,False
+mgm03_f6ab,mgm03_f9b,goethite,U(+6),mgm03,mgm03,0.8888888888888888,False
+nl15_f1a,nl15_f3d,hematite,Citric acid,nl15,nl15,0.8,False
+nl15_f1b,nl15_f3a,hematite,Citric acid,nl15,nl15,0.8,False
+c96_f235ac,c96_fIV3a,hematite,Co(+2),c96,c96,0.8333333333333334,False
+c96_f235ba,c96_fIV3a,hematite,Co(+2),c96,c96,0.8333333333333334,False
+w16_s8a,w16_s14a,hematite,Np(+5),w16,w16,0.9333333333333333,False
+w16_s8b,w16_s16a,hematite,Np(+5),w16,w16,0.9285714285714286,False
+w16_s8c,w16_s18a,hematite,Np(+5),w16,w16,1.0,False
+w16_s8d,w16_s20a,hematite,Np(+5),w16,w16,1.0,False
+w16_s12b,w16_s14c,hematite,Np(+5),w16,w16,1.0,False
+w16_s12d,w16_s16c,hematite,Np(+5),w16,w16,1.0,False
+w16_s12f,w16_s18c,hematite,Np(+5),w16,w16,1.0,False
+w16_s12h,w16_s20c,hematite,Np(+5),w16,w16,1.0,False
+c96_f238ab,c96_fIV9a,hematite,Th(+4),c96,c96,0.8181818181818182,False
+c96_fIV8a,c96_fIV9b,hematite,Th(+4),c96,c96,0.8,False
+pbb99_f7a,pbb99a_f23apsi,illite,Cs(+1),pbb99,pbb99a,0.8275862068965517,True
+pbb99_f7a,pbb99a_f23aapsi,illite,Cs(+1),pbb99,pbb99a,1.0,True
+pbb99_f7c,pbb99a_f23bpsi,illite,Cs(+1),pbb99,pbb99a,1.0,True
+mbgk18_f6ab,mbgk18_f6abpsi,illite,Zn(+2),mbgk18,mbgk18,0.8125,False
+d01_f7-6c,d01_f7-17ba,kaolinite,U(+6),d01,d01,0.9,False
+bb06_f1aapsi,BB06_f1a,montmorillonite,Am(+3),bb06,BB06,0.8275862068965517,True
+bb02_f5,bb02_f5psi,montmorillonite,Eu(+3),bb02,bb02,0.8928571428571429,False
+bb97_f5c,bb97_f5cpsi,montmorillonite,Ni(+2),bb97,bb97,0.95,False
+d01_f5-5a,d01_f5-7a,quartz,U(+6),d01,d01,0.8181818181818182,False
+d01_f5-5c,d01_f5-6b,quartz,U(+6),d01,d01,0.9090909090909091,False
+d01_f5-6e,d01_f5-8g,quartz,U(+6),d01,d01,0.9333333333333333,False
+d01_f5-6e,kckd96_f2a,quartz,U(+6),d01,kckd96,0.9333333333333333,True
+d01_f5-6f,kckd96_f2b,quartz,U(+6),d01,kckd96,1.0,True
+d01_f5-8g,kckd96_f2a,quartz,U(+6),d01,kckd96,0.9333333333333333,True
