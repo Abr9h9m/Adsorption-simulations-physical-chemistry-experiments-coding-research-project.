@@ -2,7 +2,7 @@
 
 **Plain English.** Papers from the same research group often reuse the same recipe, so their curves may agree for reasons that do not carry over to other labs. We asked whether the benefit of matching experimental conditions survives when the matched paper must come from a different group. Result (exact-initials grouping): **GAIN DOES NOT SURVIVE (partly a lab effect, or not significant)**.
 
-> EXPLORATORY. The file has no author fields, so labs are a proxy built from the reference code (letters = author initials). 180 exact-initial groups, 141 first-two-letter groups. The exact proxy under-counts same-lab pairs (a lab with changing co-authors is split); the coarse proxy over-counts (unrelated authors with the same initials are merged). Development papers only; leave-out unit = lineage cluster. Locked set hash `88b1c3a1b769`. Commit `b5c03f2-dirty`.
+> EXPLORATORY. The file has no author fields, so labs are a proxy built from the reference code (letters = author initials). 180 exact-initial groups, 141 first-two-letter groups. The exact proxy under-counts same-lab pairs (a lab with changing co-authors is split); the coarse proxy over-counts (unrelated authors with the same initials are merged). Development papers only; leave-out unit = lineage cluster. Locked set hash `88b1c3a1b769`. Commit `4f79b50`.
 
 ## 2. Matched-gain survival (core single-edge curves, logistic edge)
 
@@ -27,12 +27,12 @@
 
 Paired B3 minus B0 (negative = matching helps):
 
-| model | baseline | n_common | median_diff | diff_lo | diff_hi | model_median | baseline_median | matching | lab_id |
-|---|---|---|---|---|---|---|---|---|---|
-| B3_matched_fb | B0_all_other | 218 | 0 | 0 | 0 | 0.535 | 0.642 | any lab | lab_exact |
-| B3_matched_fb | B0_all_other | 214 | 0 | 0 | 0 | 0.566 | 0.658 | different lab (lab_exact) | lab_exact |
-| B3_matched_fb | B0_all_other | 218 | 0 | 0 | 0 | 0.535 | 0.642 | any lab | lab_coarse |
-| B3_matched_fb | B0_all_other | 209 | 0 | 0 | 0 | 0.642 | 0.711 | different lab (lab_coarse) | lab_coarse |
+| model | baseline | n_common | median_diff | diff_lo | diff_hi | median_of_diffs | mod_lo | mod_hi | model_median | baseline_median | share_model_better | share_tied | matching | lab_id |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| B3_matched_fb | B0_all_other | 218 | -0.107 | -0.26 | 0.00501 | 0 | 0 | 0 | 0.535 | 0.642 | 0.0688 | 0.876 | any lab | lab_exact |
+| B3_matched_fb | B0_all_other | 214 | -0.092 | -0.267 | 0.000897 | 0 | 0 | 0 | 0.566 | 0.658 | 0.0701 | 0.874 | different lab (lab_exact) | lab_exact |
+| B3_matched_fb | B0_all_other | 218 | -0.107 | -0.26 | 0.00501 | 0 | 0 | 0 | 0.535 | 0.642 | 0.0688 | 0.876 | any lab | lab_coarse |
+| B3_matched_fb | B0_all_other | 209 | -0.0684 | -0.203 | 0.045 | 0 | 0 | 0 | 0.642 | 0.711 | 0.0526 | 0.89 | different lab (lab_coarse) | lab_coarse |
 
 Decision (exact proxy): paired 95% interval below zero: NO; B3 median 0.566 <= 0.5: NO -> **GAIN DOES NOT SURVIVE (partly a lab effect, or not significant)**.
 
@@ -52,3 +52,10 @@ Decision (exact proxy): paired 95% interval below zero: NO; B3 median 0.566 <= 0
 | lab_exact | 2 | 669 | 0.253 | 0.455 |  |
 | lab_coarse | 28 | 643 | 1.75 | 0.445 | 0.00015 |
 
+
+## Analyst notes
+
+- This is the second E4 run. The first used the median of per-curve differences, which is 0 when most curves tie (B3 falls back to B0 for 87% of curves); the paired statistic is now the difference of medians (experiments.yaml, REGISTRY.md).
+- **The conditions-matching gain is weak on development papers even before any lab exclusion**: B3 minus B0 = -0.107 pH, 95% interval [-0.26, +0.005], once copies are grouped into lineage clusters (E3). Requiring a different lab changes it little (-0.092 [-0.27, +0.001]). So the "does not survive" verdict reflects a gain that is small and borderline overall, not mainly a lab effect.
+- The lab random effect takes 8% of the level variance (exact proxy) and the paper share falls from 37% to 30%: some paper-to-paper variation is shared within a lab.
+- Test 3 is not informative with the exact proxy (2 same-lab pairs); the coarse proxy's 28 same-lab pairs differ MORE than different-lab pairs, which suggests the coarse proxy merges unrelated authors.

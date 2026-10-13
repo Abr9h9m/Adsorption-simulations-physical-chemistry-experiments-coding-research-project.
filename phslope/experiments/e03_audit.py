@@ -165,3 +165,65 @@ def run():
 
 if __name__ == "__main__":
     run()
+
+
+# ------------------------------------------------------------------ outlier review (after E1)
+
+def outlier_review(n_worst=None):
+    """Pages and review table for: the n worst held-out Stage 3 curves (development papers only, best
+    baseline model at the study level), the n largest E1 held-out errors, and curves with data flags."""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    from matplotlib.backends.backend_pdf import PdfPages
+    from phslope.experiments.registry import read_locked
+    from phslope.report import BLUE, GRAY, ORANGE, _style
+    n_worst = n_worst or load_exp_config()["e3"]["n_worst"]
+    curves, obs = build(purpose="E3 outlier review")
+    locked = read_locked()
+    s3 = pd.read_csv(os.path.join(EXP_DIR, "..", "stage3", "per_curve_worst_first.csv"))
+    s3 = s3[(s3["level"] == "study") & (s3["model"] == "sorbate_class_mean") & ~s3["reference"].isin(locked)]
+    s3 = s3.sort_values("p50_error", ascending=False).head(n_worst)
+    e1 = pd.read_csv(os.path.join(EXP_DIR, "E1", "per_curve_worst_first.csv"))
+    e1 = e1[e1["model"] == "E1"].sort_values("edge_error", ascending=False).head(n_worst)
+    flags = pd.read_csv(os.path.join(OUT, "data_flags.csv")).fillna("")
+    flags = flags[flags["data_flag"] != ""]
+    rows = ([{"curve_id": r.curve_id, "why": f"Stage 3 worst (edge error {r.p50_error:.2f} pH)"} for r in s3.itertuples()]
+            + [{"curve_id": r.curve_id, "why": f"E1 largest held-out error ({r.edge_error:.2f} pH)"} for r in e1.itertuples()]
+            + [{"curve_id": r.curve_id, "why": f"data flag: {r.data_flag}"} for r in flags.itertuples()])
+    R = pd.DataFrame(rows).groupby("curve_id")["why"].agg("; ".join).reset_index()
+    meta = curves.set_index("curve_id")
+    R = R[R["curve_id"].isin(meta.index)]
+    for col in ("reference", "mineral", "sorbate", "shape", "solids_g_L", "total_sorbate_mol_L", "ionic_strength",
+                "atmosphere", "electrolyte_sig"):
+        R[col] = R["curve_id"].map(meta[col])
+    R["reviewer"], R["verdict"], R["notes"] = "", "", ""
+    R.to_csv(os.path.join(OUT, "outlier_review.csv"), index=False)
+    by = {k: g for k, g in obs.groupby("curve_id")}
+    with PdfPages(os.path.join(OUT, "outlier_pages.pdf")) as pdf:
+        for r in R.itertuples():
+            m = meta.loc[r.curve_id]
+            fig, ax = plt.subplots(figsize=(8, 4))
+            others = curves[(curves["mineral"] == m["mineral"]) & (curves["sorbate"] == m["sorbate"])
+                            & (curves["reference"] != m["reference"])]
+            for oc in others["curve_id"].head(6):
+                g = by.get(oc)
+                if g is not None:
+                    ax.plot(g["pH"], g["response"], color=GRAY, lw=0.8, alpha=.6)
+            g = by.get(r.curve_id)
+            if g is not None:
+                ax.scatter(g["pH"], g["response"], s=16, color=BLUE, zorder=3, label="this curve")
+            if np.isfinite(m.get("logistic_p50", np.nan)):
+                ax.axvline(m["logistic_p50"], color=ORANGE, lw=1, ls="--", label="its logistic edge")
+            ax.set_xlabel("pH", fontsize=9)
+            ax.set_ylabel("fraction sorbed", fontsize=9)
+            ax.set_title(f"{r.curve_id} | {m['mineral']} | {m['sorbate']} | {m['reference']} | solids "
+                         f"{m['solids_g_L']:.3g} g/L | total {m['total_sorbate_mol_L']:.2g} M\n{r.why}", fontsize=7,
+                         loc="left")
+            ax.legend(frameon=False, fontsize=7, title="grey: same pair, other papers", title_fontsize=7)
+            _style(ax)
+            fig.tight_layout()
+            pdf.savefig(fig)
+            plt.close(fig)
+    print(f"E3 outlier review: {len(R)} curves -> outlier_review.csv, outlier_pages.pdf")
+    return R
