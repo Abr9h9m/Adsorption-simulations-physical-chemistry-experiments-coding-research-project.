@@ -14,3 +14,4 @@ Locked test set: 20% of papers, seeded (decision D1 default). Each adjustment en
 | E1 log10 K mixed model (two-step) as the core model | ACCEPT | multi-unit pairs: median edge error E1 0.882 vs B3 0.962 pH; logK paired diff vs B3 -0.018 [-0.158, 0.096]; coverage 0.85; usage 0.81 |
 | E7 log10 pCO2 level covariate (step 1a) | DO NOT KEEP log10 pCO2 (rule not met) | carbonate-sensitive: 0.059 [-0.073, 0.149]; control: 0.014 [-0.025, 0.043] |
 | E21 interval method | PREFER conformal | parametric coverage 0.85 width 5.91; conformal 0.90 width 5.87 |
+| E11 slope as a chemical descriptor (library field) | UNDECIDED (ratio interval includes 1) | sorbate/paper variance ratio 1.29 [0.56, 2.42] |
