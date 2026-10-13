@@ -611,3 +611,80 @@ def pooled_pdf(path, res):
                 pdf.savefig(fig)
                 plt.close(fig)
     print(f"Wrote {path}")
+
+
+# ------------------------------------------------------------------ stage 3
+
+def stage3_verdicts(summ, diffs, thr):
+    """Per level and model: pass if median p50 error <= limit, slope-interval coverage within
+    [coverage_min, coverage_max], and the 95% interval of the paired difference vs EVERY baseline is
+    below zero for both p50_error and curve_error (margin_over_baseline, if set, must also be met)."""
+    margin = thr.get("margin_over_baseline") or 0.0
+    rows = []
+    for (level, model), s in summ.set_index(["level", "model"]).iterrows():
+        if not model.startswith("version"):
+            continue
+        d = diffs[(diffs["level"] == level) & (diffs["model"] == model)]
+        beats = (len(d) > 0 and (d["p50_diff_hi"] < -margin).all() and (d["curve_diff_hi"] < 0).all())
+        cov_ok = thr["coverage_min"] <= s["interval_coverage"] <= thr["coverage_max"]
+        p50_ok = s["median_p50_error"] <= thr["median_p50_error_max"]
+        rows.append({"level": level, "model": model, "median_p50_error": s["median_p50_error"],
+                     "p50_ok": p50_ok, "interval_coverage": s["interval_coverage"], "coverage_ok": cov_ok,
+                     "beats_every_baseline": beats, "verdict": "PASS" if (p50_ok and cov_ok and beats) else "FAIL"})
+    return pd.DataFrame(rows)
+
+
+def stage3_summary(out_dir, D, fsets, skipped, summ, diffs, thr_all, stamp):
+    thr = thr_all["stage3"]
+    ver = stage3_verdicts(summ, diffs, thr)
+    ver.to_csv(os.path.join(out_dir, "verdicts.csv"), index=False)
+
+    # figure: median p50 error per model and level
+    levels = list(dict.fromkeys(summ["level"]))
+    models = list(dict.fromkeys(summ["model"]))
+    fig, ax = plt.subplots(figsize=(8, 0.35 * len(models) + 1.5))
+    for k, lev in enumerate(levels):
+        s = summ[summ["level"] == lev].set_index("model").reindex(models)
+        ax.scatter(s["median_p50_error"], np.arange(len(models)) + (k - 1.5) * 0.15, s=18, color=CAT[k],
+                   label=f"leave one {lev} out", zorder=3)
+    ax.axvline(thr["median_p50_error_max"], color=MUTED, lw=1, ls="--")
+    ax.set_yticks(range(len(models)), models, fontsize=7)
+    ax.set_xlabel("median |predicted - observed edge| (pH)", fontsize=9)
+    ax.set_title(f"Held-out edge error by model (n = {len(D['t'])} single-edge core curves)", fontsize=10,
+                 loc="left")
+    ax.legend(frameon=False, fontsize=7)
+    _style(ax)
+    fig.tight_layout()
+    fig.savefig(os.path.join(out_dir, "p50_error_by_model.png"), dpi=150)
+    plt.close(fig)
+
+    banner = []
+    if stamp.get("exploratory"):
+        banner = ["> **EXPLORATORY.** Stage 1 failed its survival rule; classes "
+                  + ("are confirmed" if stamp.get("classes_confirmed") else "are the unconfirmed proposal")
+                  + f"; {stamp.get('thresholds')}. Feature sets other than `descriptors` use the uncited mineral "
+                  "property table and Claude's proposed sorbate schemes. Nothing here is a confirmatory result.", ""]
+    lines = [
+        "# Stage 3 summary: can we predict a held-out system's slope curve?", "", *banner, _stamp_line(stamp), "",
+        f"Data: {len(D['t'])} single-edge (rising/falling) core curves, {D['t']['reference'].nunique()} papers, "
+        f"{D['t']['pair'].nunique()} mineral-sorbate pairs.", "",
+        "Feature sets used: " + ", ".join(f"`{k}` ({v[1]['n_features']} features, {v[1]['n_complete']} curves "
+                                          "with every feature)" for k, v in fsets.items()) + ".",
+        "Not used: " + ("; ".join(f"`{k}`: {v}" for k, v in skipped.items()) or "none") + ".", "",
+        "Without the descriptor tables the edge-position rule baseline (edge from PZC and first hydrolysis "
+        "constant), the one the spec says decides whether the project says anything new, cannot run."
+        if "edge_position_rule" not in set(summ["model"]) else "", "",
+        "## Verdict per model and level (thresholds.yaml stage3)", "",
+        f"Pass = median edge error <= {thr['median_p50_error_max']} pH, slope-interval coverage in "
+        f"[{thr['coverage_min']}, {thr['coverage_max']}], and better than every baseline (95% interval of the paired "
+        "difference below zero, for edge error and curve error).", "",
+        md_table(ver), "",
+        "## Metrics by model", "", md_table(summ), "",
+        "## Paired differences vs baselines (model minus baseline; negative = model better; 95% intervals over "
+        "held-out papers)", "", md_table(diffs), "",
+        "Files: `per_curve_worst_first.csv` (every held-out curve, worst first), `metrics_by_model.csv`, "
+        "`paired_differences.csv`, `verdicts.csv`, `p50_error_by_model.png`.",
+    ]
+    with open(os.path.join(out_dir, "SUMMARY.md"), "w", encoding="utf-8") as fh:
+        fh.write("\n".join(lines) + "\n")
+    print("Stage 3 summary written")

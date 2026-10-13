@@ -177,3 +177,45 @@ def observations_for(curves, rng, n_points=(10, 20), noise_sd=0.03):
         pH, y = sample_curve(truth, rng, int(rng.integers(n_points[0], n_points[1] + 1)), noise_sd)
         obs.append(pd.DataFrame({"curve_id": row.curve_id, "pH": pH, "response": y}))
     return pd.concat(obs, ignore_index=True)
+
+
+def transfer_dataset(planted=True, n_minerals=12, n_sorbates=12, n_references=40, pairs_per_reference=(2, 3),
+                     curves_per_pair=(1, 3), study_sd=0.15, noise_sd=0.1, seed=0):
+    """Items 4 and 5: a Stage 3 dataset in the stage3 format (dict t, R, G, lower, upper, mask, grid, u).
+    planted=True : edge = 6 + 1.0 * d1(mineral) - 0.8 * d2(sorbate) + study offset + noise
+    planted=False: edge = 6 + an effect per pair that is unrelated to d1 and d2 (same total spread)
+    All curves are rising logistic edges; registered shapes are exact plus small noise."""
+    rng = np.random.default_rng(seed)
+    d1 = dict((f"m{i}", rng.normal(0, 1)) for i in range(n_minerals))
+    d2 = dict((f"s{i}", rng.normal(0, 1)) for i in range(n_sorbates))
+    mclass = {m: f"MC{i % 3}" for i, m in enumerate(d1)}
+    sclass = {s: f"SC{i % 3}" for i, s in enumerate(d2)}
+    pair_effect = {}
+    grid = np.round(np.arange(2.0, 11.0 + 1e-9, 0.25), 10)
+    u = np.round(np.arange(-6, 6 + 1e-9, 0.25), 10)
+    rows, G, M = [], [], []
+    for r in range(n_references):
+        off = rng.normal(0, study_sd)
+        for _ in range(int(rng.integers(pairs_per_reference[0], pairs_per_reference[1] + 1))):
+            m, s = f"m{rng.integers(n_minerals)}", f"s{rng.integers(n_sorbates)}"
+            if (m, s) not in pair_effect:
+                pair_effect[(m, s)] = rng.normal(0, np.sqrt(1.0 + 0.64))
+            base = 1.0 * d1[m] - 0.8 * d2[s] if planted else pair_effect[(m, s)]
+            for k in range(int(rng.integers(curves_per_pair[0], curves_per_pair[1] + 1))):
+                edge = 6 + base + off + rng.normal(0, noise_sd)
+                lw = np.log(0.4) + rng.normal(0, 0.15)
+                lo, hi = max(2.0, edge - rng.uniform(2, 3)), min(11.0, edge + rng.uniform(2, 3))
+                mask = (grid >= lo) & (grid <= hi)
+                g = np.where(mask, logistic_slope(grid, 0.0, 0.9, edge, np.exp(lw)), np.nan)
+                rows.append({"curve_id": f"r{r}_{m}_{s}_{k}", "reference": f"r{r}", "mineral": m, "sorbate": s,
+                             "pair": f"{m} | {s}", "mineral_class": mclass[m], "sorbate_class": sclass[s],
+                             "edge_pH": edge, "log_width": lw, "height": 0.9, "shape": "rising",
+                             "d1": d1[m], "d2": d2[s], "solids_g_L": 1.0, "total_sorbate_mol_L": 1e-6,
+                             "ionic_strength": 0.1, "co2_present": False})
+                G.append(g)
+                M.append(mask)
+    t = pd.DataFrame(rows)
+    G, M = np.array(G), np.array(M)
+    sig = 1 / (1 + np.exp(-u))
+    R = np.tile(sig * (1 - sig), (len(t), 1)) + rng.normal(0, 0.005, (len(t), len(u)))
+    return {"t": t, "R": R, "G": G, "lower": G - 0.03, "upper": G + 0.03, "mask": M, "grid": grid, "u": u}

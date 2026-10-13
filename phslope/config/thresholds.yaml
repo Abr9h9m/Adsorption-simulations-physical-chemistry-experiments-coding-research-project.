@@ -3,6 +3,9 @@
 # Stage 3 runs; the Stage 3 entry script will refuse to run if this file is
 # uncommitted or modified after the freezing commit.
 # Values marked "proposed" need confirmation from Samuel / Dr. Black.
+# To freeze: set frozen: true, fill the null values, commit. phslope.stage3 then
+# refuses to run if this file is uncommitted or changed after that commit.
+frozen: false
 
 stage0:
   pair_min_points: 50
