@@ -27,3 +27,4 @@
 | 2026-10-13 21:29 | E23/M-Power | 53f0944 | 88b1c3a1b769 | PLACEBO FAILURE: tighten rules | a 0.48; b 0.08; c 0.06; e 1.00 |
 | 2026-10-13 21:36 | E23-a2 |  |  | rerun of placebo a with loading kept real | {'solids_r': 0.48, 'solids_f': 0.46} |
 | 2026-10-13 21:39 | E23-a3 |  |  | placebo a with within-between split | {'solids_r': 0.06, 'solids_f': 0.12} |
+| 2026-10-13 21:47 | E2 | c835343 | 88b1c3a1b769 | KEEP W0 (0.03, 0.97) | 5 schemes, 4 paired tests |
