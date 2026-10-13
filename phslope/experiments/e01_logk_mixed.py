@@ -210,7 +210,9 @@ def cross_validate(c, obs, cfg, covariates=True, seed=0):
     return P.merge(logk_metrics(P, obs), on="curve_id", how="left")
 
 
-def run(seed=None):
+def run(seed=None, reuse=False):
+    """reuse=True loads the saved held-out predictions (cv_with_covariates.csv, cv_without_covariates.csv)
+    instead of re-running the cross-validation."""
     ecfg = load_exp_config()
     cfg = ecfg["e1"]
     seed = ecfg["seed"] if seed is None else seed
@@ -222,8 +224,15 @@ def run(seed=None):
     usage = len(c) / len(base)
     n_with_cov = c.dropna(subset=["log10_I"]).shape[0]
 
-    P = cross_validate(c, obs, cfg, covariates=True, seed=seed)
-    P0 = cross_validate(c, obs, cfg, covariates=False, seed=seed)
+    os.makedirs(OUT, exist_ok=True)
+    f1, f0 = os.path.join(OUT, "cv_with_covariates.csv"), os.path.join(OUT, "cv_without_covariates.csv")
+    if reuse and os.path.exists(f1) and os.path.exists(f0):
+        P, P0 = pd.read_csv(f1), pd.read_csv(f0)
+    else:
+        P = cross_validate(c, obs, cfg, covariates=True, seed=seed)
+        P.to_csv(f1, index=False)
+        P0 = cross_validate(c, obs, cfg, covariates=False, seed=seed)
+        P0.to_csv(f0, index=False)
 
     # baselines on the same curves, line-based native edge as input and target
     cb = H.prepare(c, "pH_native")
@@ -247,8 +256,7 @@ def run(seed=None):
     d_multi = H.paired(Lm, "E1", ["B3_matched_fb", "B0_all_other", "B1_nearest1", "B5_global_mean", "E1_no_covariates"],
                        B=B, seed=seed)
     d_single = H.paired(Ls, "E1", ["B4_class_mean", "B5_global_mean"], B=B, seed=seed)
-    falling = Lm.merge(cb[["curve_id", "shape"]], on="curve_id")
-    d_fall = H.paired(falling[falling["shape"] == "falling"], "E1", ["B3_matched_fb"], B=B, seed=seed)
+    d_fall = H.paired(Lm[Lm["shape"] == "falling"], "E1", ["B3_matched_fb"], B=B, seed=seed)
     nc = H.noise_ceiling(Lm, "E1", B=B, seed=seed)
 
     # log K rmse vs baselines
@@ -385,4 +393,5 @@ def _write_summary(stamp, verdict, chk, s_multi, s_single, d_multi, d_single, d_
 
 
 if __name__ == "__main__":
-    run()
+    import sys
+    run(reuse="--reuse" in sys.argv)

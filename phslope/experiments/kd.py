@@ -49,16 +49,20 @@ def add_kd(df, cfg):
     return out
 
 
-def line_fit(pH, log10K):
-    """OLS of log10K on pH. Returns a (intercept), b (slope), r2, n, covariance of (a, b), residual SD."""
+def line_fit(pH, log10K, w=None):
+    """(Weighted) least squares of log10K on pH. Returns a (intercept), b (slope), r2, n,
+    covariance of (a, b), residual SD. w = point weights (inverse variances, up to a constant)."""
     pH, y = np.asarray(pH, float), np.asarray(log10K, float)
     n = len(pH)
+    w = np.ones(n) if w is None else np.asarray(w, float)
     X = np.column_stack([np.ones(n), pH])
-    beta, *_ = np.linalg.lstsq(X, y, rcond=None)
+    sw = np.sqrt(w)
+    beta, *_ = np.linalg.lstsq(X * sw[:, None], y * sw, rcond=None)
     res = y - X @ beta
     dof = max(n - 2, 1)
-    s2 = float(res @ res / dof)
-    cov = s2 * np.linalg.pinv(X.T @ X)
-    tss = float(((y - y.mean()) ** 2).sum())
-    r2 = 1 - float(res @ res) / tss if tss > 0 else np.nan
+    s2 = float(w @ res ** 2 / dof)
+    cov = s2 * np.linalg.pinv((X * w[:, None]).T @ X)
+    ybar = np.sum(w * y) / np.sum(w)
+    tss = float(np.sum(w * (y - ybar) ** 2))
+    r2 = 1 - float(w @ res ** 2) / tss if tss > 0 else np.nan
     return {"a": beta[0], "b": beta[1], "r2": r2, "n": n, "cov": cov, "sd": np.sqrt(s2)}

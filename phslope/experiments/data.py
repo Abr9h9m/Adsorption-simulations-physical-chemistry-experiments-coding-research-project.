@@ -73,13 +73,15 @@ def curve_extras(obs):
     return pd.DataFrame(rows)
 
 
-def line_fits(obs, cfg_exp):
-    """Per-curve log10 K line over mid-range points (>= 3 points spanning >= 0.5 pH)."""
+def line_fits(obs, cfg_exp, window=None, weight=None):
+    """Per-curve log10 K line over mid-range points (>= 3 points spanning >= 0.5 pH).
+    window=(lo, hi) overrides the fraction-sorbed window; weight(g) -> array of point weights (WLS)."""
     rows = []
-    for cid, g in obs[obs["mid"] & obs["log10K"].notna()].groupby("curve_id"):
+    sel = obs["mid"] if window is None else (obs["response"] > window[0]) & (obs["response"] < window[1])
+    for cid, g in obs[sel & obs["log10K"].notna()].groupby("curve_id"):
         if len(g) < 3 or np.ptp(g["pH"]) < 0.5:
             continue
-        f = kdmod.line_fit(g["pH"], g["log10K"])
+        f = kdmod.line_fit(g["pH"], g["log10K"], None if weight is None else weight(g))
         if abs(f["b"]) < 1e-6:
             continue
         rows.append({"curve_id": cid, "a": f["a"], "b": f["b"], "r2": f["r2"], "n_mid": f["n"], "line_sd": f["sd"],
@@ -115,6 +117,14 @@ def build(include_locked=False, data_file=None, purpose=""):
     curves["cosolute"] = curves["has_cosolute"].astype(float)
     curves["co2"] = curves["co2_present"].astype(float)
     curves["direction"] = np.where(curves["shape"] == "falling", -1, np.where(curves["shape"] == "rising", 1, 0))
+    curves = finish_curves(curves)
+    obs = obs.merge(curves[["curve_id", "reference"]], on="curve_id", how="left")
+    return curves, obs
+
+
+def finish_curves(curves):
+    """Derived line columns (edges, direction checks); used after any (re)fit of the lines."""
+    curves = curves.copy()
     curves["pH_native"] = -curves["a"] / curves["b"]
     curves["pH_S1"] = (curves["log10_solids"] - curves["a"]) / curves["b"]
     ok_dir = np.where(curves["direction"] == 1, curves["b"] > 0,
@@ -122,5 +132,13 @@ def build(include_locked=False, data_file=None, purpose=""):
     curves["line_dir_ok"] = ok_dir & curves["b"].notna()
     curves["line_in_range"] = (curves["pH_native"] > curves["mid_pH_lo"] - 0.5) & \
                               (curves["pH_native"] < curves["mid_pH_hi"] + 0.5)
-    obs = obs.merge(curves[["curve_id", "reference"]], on="curve_id", how="left")
-    return curves, obs
+    return curves
+
+
+LINE_COLS = ["a", "b", "r2", "n_mid", "line_sd", "var_a", "var_b", "cov_ab", "mid_pH_lo", "mid_pH_hi"]
+
+
+def refit_lines(curves, obs, window=None, weight=None):
+    """Replace the per-curve line columns with a fit using another window and/or point weights."""
+    new = line_fits(obs, None, window, weight)
+    return finish_curves(curves.drop(columns=LINE_COLS).merge(new, on="curve_id", how="left"))
