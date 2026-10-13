@@ -2,7 +2,7 @@
 
 Build spec: `PH_ONLY_DEV_SPEC.md` (project root). This README holds the decisions the spec asks to be written down, the conventions, and how to run each stage.
 
-**Status (2026-10-12):** Stage 0 PASS. Stage 1: synthetic PASS, real data **FAIL** (46.8% of census-set curves survive QC; 80% required). Samuel chose to continue with the 745-curve core library, so **everything from Stage 2 on is EXPLORATORY**. Stage 2 runs with `--exploratory`: Part A (registration + FPCA), Part B (proposed, unconfirmed classes) and Part C (exploratory groupings from `config/schemes.yaml` and Samuel's mineral property table).
+**Status (2026-10-13):** Stage 0 PASS. Stage 1: synthetic PASS, real data **FAIL** (46.8% < 80%); Samuel chose to continue with the 745-curve core library, so **everything from Stage 2 on is EXPLORATORY**. Stage 2 (`--exploratory`): go/no-go rule met with the unconfirmed classes (signal is mostly sorbate class and the specific pair; mineral class adds little). Stage 3 (`--exploratory`, no descriptors yet): every model fails (median edge error 1.1-1.8 pH vs 0.5); the same pair measured in another paper predicts to 0.6 pH. Pooled-pair comparison: pooling across papers widens edges ~1.4x. Export tables in `export/`. Blocked for confirmatory runs: classes confirmation, descriptor tables, freezing thresholds.yaml.
 
 ## How to run
 
@@ -16,6 +16,9 @@ python -m phslope.census --data PATH  # use a different raw file
 python -m phslope.stage1 --synthetic  # Stage 1 synthetic check
 python -m phslope.stage1              # Stage 1 on the real file (~25 min, 11 workers)
 python -m phslope.stage2 --exploratory  # Stage 2, all parts, labelled exploratory
+python -m phslope.pooled              # pooled-pair comparison (exploratory)
+python -m phslope.stage3 --exploratory  # Stage 3 (~75 min); without --exploratory it needs frozen thresholds
+python -m phslope.export              # tables for the web interface -> export/
 ```
 
 The raw file is found in this order: `--data` flag, `SORPTION_DATA_FILE` environment variable, `data.file` in `phslope/config/config.yaml`, then `data_audit.CONFIG["DATA_FILE"]`.
@@ -86,4 +89,4 @@ Co-solute curves are **kept and flagged** (Samuel, 2026-10-12). Ca(+2) and Mg(+2
 
 ## Not built yet
 
-Work-order items 9–11: `export.py`, `descriptors.py`, `baselines.py`, `cv.py`, `transfer.py`, Stage 3–5. (Items 4–8 are built: `synth`, `fit_edge`, `fit_smooth`, `slope`, `bootstrap`, `qc`, `library`, `registration`, `fpca`, `reml`, `variance`, `cluster`, `schemes`, `report`, `stage1`, `stage2`.)
+Work-order item 11: Stage 4 predictor (`predict_slope_curve`) and the Stage 5 report. (Items 9–10 are built: `export`, `descriptors`, `transfer` (baselines live here), `cv`, `stage3`.) (Items 4–8 are built: `synth`, `fit_edge`, `fit_smooth`, `slope`, `bootstrap`, `qc`, `library`, `registration`, `fpca`, `reml`, `variance`, `cluster`, `schemes`, `report`, `stage1`, `stage2`.)
