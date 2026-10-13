@@ -20,3 +20,6 @@
 | 2026-10-13 17:23 | E7 | 3e5912d | 88b1c3a1b769 | DO NOT KEEP log10 pCO2 (rule not met) | step 1a only (pCO2); DIC waits for D5 |
 | 2026-10-13 21:14 | E21/M2/M3 | c835343-dirty | 88b1c3a1b769 | PREFER conformal | from cached E1 predictions |
 | 2026-10-13 21:16 | E11 | 2cdce27 | 88b1c3a1b769 | UNDECIDED (ratio interval includes 1) | ratio 1.29 [0.56, 2.42] |
+| 2026-10-13 21:22 | E20 | c80a5b8 | 88b1c3a1b769 | reported | 3 temperature series |
+| 2026-10-13 21:23 | E13 | c80a5b8-dirty | 88b1c3a1b769 | DO NOT KEEP competitor term (rule not met) | oxyanion (test)/log10 K : -0.110; oxyanion (test)/native e: 0.299; cations (control)/log10 K : -0.168; cations (control)/native e: 0.342 |
+| 2026-10-13 21:24 | E13 | c80a5b8-dirty | 88b1c3a1b769 | DO NOT KEEP competitor term (rule not met) | oxyanion (test)/log10 K : -0.110; oxyanion (test)/native e: 0.299; cations (control)/log10 K : -0.150; cations (control)/native e: 0.300 |

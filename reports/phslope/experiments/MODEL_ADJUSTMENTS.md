@@ -15,3 +15,5 @@ Locked test set: 20% of papers, seeded (decision D1 default). Each adjustment en
 | E7 log10 pCO2 level covariate (step 1a) | DO NOT KEEP log10 pCO2 (rule not met) | carbonate-sensitive: 0.059 [-0.073, 0.149]; control: 0.014 [-0.025, 0.043] |
 | E21 interval method | PREFER conformal | parametric coverage 0.85 width 5.91; conformal 0.90 width 5.87 |
 | E11 slope as a chemical descriptor (library field) | UNDECIDED (ratio interval includes 1) | sorbate/paper variance ratio 1.29 [0.56, 2.42] |
+| E13 competitor molarity term | DO NOT KEEP competitor term (rule not met) | oxyanion (test), log10 K at pair reference pH: -0.110 [-0.525, 0.306]; oxyanion (test), native edge (pH): 0.299 [-0.577, 1.176]; cations (control), log10 K at pair reference pH: -0.168 [-0.285, -0.051]; cations (control), native edge (pH): 0.342 [0.104, 0.581] |
+| E13 competitor molarity term | DO NOT KEEP competitor term (rule not met) | oxyanion (test), log10 K at pair reference pH: -0.110 [-0.525, 0.306]; oxyanion (test), native edge (pH): 0.299 [-0.577, 1.176]; cations (control), log10 K at pair reference pH: -0.150 [-0.255, -0.046]; cations (control), native edge (pH): 0.300 [0.087, 0.512] |
