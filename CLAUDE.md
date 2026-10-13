@@ -14,7 +14,7 @@ Read this first. It is the handoff from a long claude.ai chat into Claude Code (
 
 - **Question:** Treat sorption A(pH, ionic strength I) as a scalar field. Estimate its local gradient and Hessian from real compiled data using local weighted quadratic regression. Test whether that gradient/Hessian field is a mineral- or sorbate-specific "fingerprint" that can be compared across systems.
 - **Origin:** extends the user's earlier pH-only derivative work (the "Information Overload" NOVELS poster).
-- **Data:** LLNL compiled sorption dataset (~80k rows, "Appendix A" schema), at `C:\Users\itzju\sc.dataset.csv` (outside the project folder). Pilot systems: goethite–U(VI), goethite–Se(IV), montmorillonite–U(VI), ferrihydrite–U(VI).
+- **Data:** LLNL L-SCIE compiled sorption dataset (**38,906 rows in the file in use, not ~80k; corrected 2026-10-13**;  "Appendix A" schema), at `C:\Users\itzju\sc.dataset.csv` (outside the project folder). Pilot systems: goethite–U(VI), goethite–Se(IV), montmorillonite–U(VI), ferrihydrite–U(VI). NOTE: the active direction is now the pH-only library (`phslope/`, `PH_ONLY_DEV_SPEC.md`, `PH_ONLY_TEST_PROTOCOL.md`); the ionic-strength fingerprint sections below are historical, and the goethite–Se(IV) ionic-strength candidate is superseded (the pooled ionic-strength effect is null).
 - **People:** Samuel Uwechue (NSU chemistry undergrad, owner, itzjustsam01@gmail.com); Dr. Suely Black (PI, not a specialist in the field, so anything for her must be plain-English, gen-chem level); Abraham (CS collaborator).
 - **Timeline:** 15-week project; the current plan covers the next 7 weeks starting 2026-10-12.
 - **Goal now:** the user wants a paper. Realistic framing is a **methods/feasibility paper**, not a mechanistic one (see §7).

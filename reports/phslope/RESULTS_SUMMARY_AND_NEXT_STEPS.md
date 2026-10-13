@@ -11,7 +11,7 @@ Written 2026-10-13 from the contents of the project folder (Stage 0–3 reports,
 1. **The data are smaller than we thought.** The file in use has **38,906 rows**, not ~80,000. The earlier "census" numbers in my pH-only design doc (105 pairs, ~27,700 rows) came from an old audit table and should be replaced by the Stage 0 numbers below.
 2. **There is real structure, and it is mostly in the sorbate.** Sorbate class explains most of what differs between curves: it sets whether the edge rises (cations) or falls (anions) and how tall it is, and it shifts where the edge sits. Mineral class adds little once the sorbate is known.
 3. **Predicting an unseen system's edge position is not working yet.** Held-out median error is **1.1–1.8 pH units** for every model, against a target of 0.5. No model beats the simple baselines. This is a real negative result for the "classes and properties predict the curve" idea as currently built.
-4. **The target of 0.5 pH may be unreachable even in principle.** If you predict a curve's edge from the *same mineral–sorbate pair measured in a different paper*, the median error is still **about 0.6 pH [checked: 0.63]**. That is the data's own reproducibility ceiling. A fair goal has to be set relative to it.
+4. **The target of 0.5 pH is hard, but not shown to be unreachable (corrected 2026-10-13).** If you predict a curve's edge from the *same mineral–sorbate pair measured in a different paper*, the median error is still **about 0.6 pH [checked: 0.63]**. That is the ceiling for a *plain average of other papers*, not an irreducible floor: the pooling follow-up showed that matching on conditions (ionic strength, solids, loading) beats it (0.25-0.44 pH on matched curves). A fair goal should be reported relative to both the plain-average ceiling and the conditions-matched baseline.
 5. **What is predictable today:** edge direction (rising vs falling) from the sorbate class alone is right about **98%** of the time, against 66% for a global average. Edge position to roughly ±1.2 pH is the best any current model does.
 6. **Only 46.8% of curves survived Stage 1 QC** (target 80%), mostly because the edge falls in a gap in the data or its position is too uncertain. We continued with the 745-curve core library by choice.
 
@@ -78,7 +78,7 @@ Registration alone (aligning edge position, width and height) removes 86% of slo
 - The **conditions-only** models (solids loading, total sorbate, ionic strength, carbonate) are no better than the global average.
 - **Shape is where classes help:** with the sorbate-class average, rising-vs-falling is correct for about 98% of held-out curves (global average 66%) and slope sign for roughly 84% (vs 57%).
 - **Why Stage 2 passed and Stage 3 failed (the central point):** Stage 2's "class" share includes the specific-pair component (32%). That is real, but it is the part that **does not transfer to an unmeasured pair**. The part that transfers (sorbate class) cuts squared edge error by only about 14% (per the report's analyst note).
-- **Noise ceiling:** predicting a curve's edge from the same pair in other papers gives ~0.6 pH median error (the report says 0.60; I get 0.63, RMSE 1.22 **[checked]**) for the 287 curves whose pair appears in more than one paper. The 118 curves whose pair appears in only one paper have nothing better than the class mean (1.73 pH).
+- **Noise ceiling:** predicting a curve's edge from the same pair in other papers gives ~0.6 pH median error (the report says 0.60; I get 0.63, RMSE 1.22 **[checked]**; this is the plain-average ceiling only) for the 287 curves whose pair appears in more than one paper. The 118 curves whose pair appears in only one paper have nothing better than the class mean (1.73 pH).
 - Spec baseline that decides novelty (edge from PZC and first hydrolysis constant) **did not run**: the descriptor tables are empty.
 
 ### Other things I checked from the curve table **[checked]**
@@ -91,7 +91,7 @@ Registration alone (aligning edge position, width and height) removes 86% of slo
 
 ## 4. How I read it
 
-- **The slope-library idea is not dead; the prediction target was set too tight.** The data's own reproducibility is ~0.6 pH, so 0.5 pH is below what even a repeat experiment would give. A sensible framing has three tiers: (a) edge direction and height from sorbate; (b) edge position to about 1 pH; (c) full curve. Tier (a) already works.
+- **The slope-library idea is not dead; the prediction target was set too tight.** A plain average of the same pair in other papers gives ~0.6 pH, and conditions-matched baselines do better, so 0.5 pH is demanding but not below the data's floor. A sensible framing has three tiers: (a) edge direction and height from sorbate; (b) edge position to about 1 pH; (c) full curve. Tier (a) already works.
 - **The sorbate is the lever; the mineral is not (yet).** To get tier (b) we probably need numeric sorbate properties (hydrolysis constants, charge) and mineral surface properties (PZC), not class labels. That is the experiment that has not run.
 - **Specific pairs matter more than classes.** The 32% pair component is large. This favours a **library lookup** (use the measured pair if it exists, with a paper-aware uncertainty) over a class-based guess, and a model that borrows strength within a pair across papers.
 - **The two-step approach (fit each curve, then regress the fitted edge) throws away 55% of curves and treats noisy edges as exact.** A single model fitted to the raw points, with random effects for pair and paper, would use every curve and carry uncertainty through. This is probably the biggest methodological improvement available.
@@ -102,13 +102,13 @@ Registration alone (aligning edge position, width and height) removes 86% of slo
 ## 5. Caveats and things to double-check
 
 1. **Choices made by Claude Code, not you:** QC thresholds, shape rules (flat if change <0.15; two steps ≥1.5 pH apart), sorbate schemes (hard/soft, charge form), the mineral-class assignments (`confirmed: false`), the ionic-strength bands. All were fixed before results, but none is confirmed. Open questions 13, 15 and 17 in `OPEN_QUESTIONS.md`.
-2. **The ~0.5 pH threshold was proposed, not agreed.** Changing it now is allowed (thresholds are not frozen) but must be recorded as a decision made *after seeing that the data's own floor is ~0.6 pH*, with Dr. Black's agreement. Do not hide that.
+2. **The ~0.5 pH threshold was proposed, not agreed.** Changing it now is allowed (thresholds are not frozen) but must be recorded as a decision made *after seeing that the plain-average ceiling is ~0.6 pH and conditions-matched baselines reach 0.25-0.44 pH*, with Dr. Black's agreement. Do not hide that.
 3. **Stage 2 and Stage 3 use different curve sets** (576 core edge curves vs 405 single-edge curves). Both are stated in the reports, but the numbers are not directly comparable.
 4. **The inverse-variance curve error rewards flat predictions.** The report added an unweighted version and shape/sign accuracy. Read all three together.
 5. **Mineral property table is uncited** and has errors (open question 16: hematite missing, calcite, maghemite and corundum rows contradict their formulas). Mineral-property results are screening hints only.
 6. **Carbonate flag counts air-equilibrated systems** (1,052 curves), which blurs the effect it is meant to isolate (open question 10).
 7. **Smoother-based edge intervals are too narrow** (~55–70% coverage), which understates uncertainty for bell and two-step curves.
-8. **Stale text elsewhere:** the Project Update doc, the Lab Meeting doc, `CLAUDE.md` and my own pH-only design doc still carry old claims (pipeline re-run pending, goethite–Se(IV) as an ionic-strength candidate, ~80k rows, 105 pairs). See next steps.
+8. **Stale text elsewhere (repo docs fixed 2026-10-13; Claude Docs pending):** the Project Update doc, the Lab Meeting doc, `CLAUDE.md` and my own pH-only design doc still carry old claims (pipeline re-run pending, goethite–Se(IV) as an ionic-strength candidate, ~80k rows, 105 pairs). See next steps.
 9. I did not review the per-curve diagnostic PDFs. The worst held-out errors (up to ~5.8 pH, e.g. silica `rbab91_f5c`, goethite `lyt14_t5a/b`) deserve a look for data-entry or unit problems before being treated as model failures.
 
 ---
@@ -118,7 +118,7 @@ Registration alone (aligning edge position, width and height) removes 86% of slo
 ### A. Decisions (this week; Samuel and Dr. Black)
 | # | Decision | Recommendation |
 |---|---|---|
-| A1 | What "close" means | Replace the single 0.5 pH rule with the three tiers above, and report every model as a fraction of the **noise ceiling** (same pair in another paper, ~0.6 pH) alongside the global-average baseline. Record the rationale. |
+| A1 | What "close" means | Replace the single 0.5 pH rule with the three tiers above, and report every model as a fraction of the **noise ceiling** (plain average of the same pair in other papers, ~0.6 pH, plus the conditions-matched baseline) alongside the global-average baseline. Record the rationale. |
 | A2 | Confirm class assignments (open question 13) | Review `classes.yaml`; decide on manganese oxides, micas, humic acids, actinides, Cs(I). Set `confirmed: true` only before any confirmatory run. |
 | A3 | Is the slope library a deliverable on its own? | Yes: it is a table with uncertainty and it works regardless of Stage 3. |
 | A4 | Carbonate definition and ionic-strength bands (Q10, Q17) | Choose before the next variance run. |
@@ -164,7 +164,7 @@ We turned each lab experiment into a curve of "how much sticks as pH changes" an
 
 The biggest difference between curves is the **sorbate** (the thing being absorbed). Whether sorption goes up or down with pH, and by how much, is mostly set by the sorbate, and we can guess that direction correctly about 98% of the time without knowing anything about the mineral. The mineral type adds little on its own.
 
-Guessing **where** the curve turns for a system nobody has measured works only to about 1 to 1.5 pH units. That is no better than simple averages. A fair comparison matters here: when two different labs measured the same mineral and sorbate, their curves still differ by about 0.6 pH, so a prediction accurate to 0.5 pH would be better than a repeat experiment. We suggest setting the goal relative to that, and adding real chemical properties (surface charge of the mineral, how readily the sorbate reacts with water) rather than category labels. Those values still need to be filled in from published sources.
+Guessing **where** the curve turns for a system nobody has measured works only to about 1 to 1.5 pH units. That is no better than simple averages. A fair comparison matters here: when we average what other labs found for the same mineral and sorbate, we still miss by about 0.6 pH. Part of that gap is explainable (different amounts of mineral, salt, and sorbate), so a target near 0.5 pH is demanding but reachable. We suggest setting the goal relative to both, and adding real chemical properties (surface charge of the mineral, how readily the sorbate reacts with water) rather than category labels. Those values still need to be filled in from published sources.
 
 Questions for you: what accuracy would count as useful; whether you agree with the mineral and sorbate groupings we proposed; and which published tables you prefer for the mineral surface charge and sorbate reaction constants.
 
