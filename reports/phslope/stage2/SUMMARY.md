@@ -2,7 +2,7 @@
 
 > **EXPLORATORY.** Stage 1 did not meet its pre-set survival rule (46.8% of census-set curves survived QC; 80% required). Samuel chose on 2026-10-12 to continue with the core library. The classes in Part B are the PROPOSED assignment in classes.yaml, **not yet confirmed** by Samuel and Dr. Black. Nothing here is a confirmatory result.
 
-Run: commit `fa0386e`, config `cf2a6ba65bec`, data `library: C:\Users\itzju\Mineral Fingerprinting\reports\phslope\stage1\library`, 2026-10-12T23:48:44Z.
+Run: commit `a1e7451`, config `9bb7572104f8`, data `library: C:\Users\itzju\Mineral Fingerprinting\reports\phslope\stage1\library`, 2026-10-13T12:28:33Z.
 
 ## Part A: registration and shape components (task 2.2)
 
@@ -23,50 +23,50 @@ Permutation informativeness: 31 of 141 references (217 of 576 curves) contain mo
 
 Unassigned names (excluded): {'minerals': [], 'sorbates': []}
 
-### Variance shares (95% cluster-bootstrap intervals over references)
+### Variance shares (95% parametric-bootstrap intervals: simulate from the fitted model, refit)
 
 | parameter | component | share | share_lo | share_hi |
 |---|---|---|---|---|
-| edge_pH | mineral_class | 0.0269 | 1.41e-06 | 0.0826 |
-| edge_pH | sorbate_class | 0.257 | 0.087 | 0.406 |
-| edge_pH | mineral_sorbate | 0.324 | 0.294 | 0.57 |
-| edge_pH | reference | 0.24 | 0.0855 | 0.25 |
-| edge_pH | residual | 0.152 | 0.0902 | 0.19 |
-| log_width | mineral_class | 0.0283 | 4.25e-07 | 0.132 |
-| log_width | sorbate_class | 0.14 | 0.0541 | 0.188 |
-| log_width | mineral_sorbate | 0.193 | 0.239 | 0.46 |
-| log_width | reference | 0.153 | 5.55e-08 | 0.159 |
-| log_width | residual | 0.485 | 0.332 | 0.532 |
-| height | mineral_class | 3.21e-07 | 2.22e-09 | 0.00351 |
-| height | sorbate_class | 0.755 | 0.711 | 0.827 |
-| height | mineral_sorbate | 0.064 | 0.0564 | 0.133 |
-| height | reference | 0.105 | 0.0269 | 0.121 |
-| height | residual | 0.0759 | 0.0412 | 0.0943 |
-| fpc1 | mineral_class | 5.7e-09 | 0 | 0.0157 |
-| fpc1 | sorbate_class | 9.6e-08 | 1.81e-10 | 0.0257 |
-| fpc1 | mineral_sorbate | 9.65e-07 | 0.00458 | 0.79 |
-| fpc1 | reference | 0.175 | 0 | 0.352 |
-| fpc1 | residual | 0.825 | 0.178 | 0.946 |
-| fpc2 | mineral_class | 0.0491 | 7.68e-09 | 0.136 |
-| fpc2 | sorbate_class | 0.012 | 1.08e-09 | 0.138 |
-| fpc2 | mineral_sorbate | 0.131 | 0.182 | 0.639 |
-| fpc2 | reference | 0.0791 | 0 | 0.0875 |
-| fpc2 | residual | 0.729 | 0.31 | 0.742 |
-| fpc3 | mineral_class | 0.0286 | 4.35e-08 | 0.0838 |
-| fpc3 | sorbate_class | 0.056 | 3.96e-08 | 0.135 |
-| fpc3 | mineral_sorbate | 0.0368 | 0.103 | 0.472 |
-| fpc3 | reference | 0.0546 | 0 | 0.13 |
-| fpc3 | residual | 0.824 | 0.427 | 0.856 |
-| fpc4 | mineral_class | 6.31e-08 | 0 | 0.0269 |
-| fpc4 | sorbate_class | 0.0559 | 7.44e-10 | 0.22 |
-| fpc4 | mineral_sorbate | 0.232 | 0.243 | 0.656 |
-| fpc4 | reference | 0.0692 | 0 | 0.0402 |
-| fpc4 | residual | 0.643 | 0.259 | 0.733 |
-| fpc5 | mineral_class | 0.0211 | 1.78e-09 | 0.0719 |
-| fpc5 | sorbate_class | 2.52e-07 | 0 | 0.184 |
-| fpc5 | mineral_sorbate | 0.209 | 0.212 | 0.642 |
-| fpc5 | reference | 0.078 | 0 | 0.105 |
-| fpc5 | residual | 0.692 | 0.332 | 0.741 |
+| edge_pH | mineral_class | 0.0269 | 3.37e-07 | 0.121 |
+| edge_pH | sorbate_class | 0.257 | 2.21e-05 | 0.462 |
+| edge_pH | mineral_sorbate | 0.324 | 0.191 | 0.48 |
+| edge_pH | reference | 0.24 | 0.15 | 0.368 |
+| edge_pH | residual | 0.152 | 0.105 | 0.222 |
+| log_width | mineral_class | 0.0283 | 8.95e-08 | 0.0907 |
+| log_width | sorbate_class | 0.14 | 7.22e-07 | 0.305 |
+| log_width | mineral_sorbate | 0.193 | 0.0957 | 0.289 |
+| log_width | reference | 0.153 | 0.0759 | 0.24 |
+| log_width | residual | 0.485 | 0.368 | 0.613 |
+| height | mineral_class | 3.21e-07 | 1.1e-09 | 0.0201 |
+| height | sorbate_class | 0.755 | 0.269 | 0.876 |
+| height | mineral_sorbate | 0.064 | 0.0248 | 0.207 |
+| height | reference | 0.105 | 0.0488 | 0.3 |
+| height | residual | 0.0759 | 0.0376 | 0.222 |
+| fpc1 | mineral_class | 5.7e-09 | 1.27e-10 | 0.0447 |
+| fpc1 | sorbate_class | 9.6e-08 | 8.57e-11 | 0.0439 |
+| fpc1 | mineral_sorbate | 9.65e-07 | 2.4e-10 | 0.0751 |
+| fpc1 | reference | 0.175 | 0.062 | 0.27 |
+| fpc1 | residual | 0.825 | 0.704 | 0.921 |
+| fpc2 | mineral_class | 0.0491 | 1.28e-08 | 0.204 |
+| fpc2 | sorbate_class | 0.012 | 6.38e-09 | 0.0774 |
+| fpc2 | mineral_sorbate | 0.131 | 0.0187 | 0.241 |
+| fpc2 | reference | 0.0791 | 1.25e-06 | 0.173 |
+| fpc2 | residual | 0.729 | 0.584 | 0.868 |
+| fpc3 | mineral_class | 0.0286 | 6.95e-09 | 0.133 |
+| fpc3 | sorbate_class | 0.056 | 9.93e-09 | 0.171 |
+| fpc3 | mineral_sorbate | 0.0368 | 3.89e-08 | 0.133 |
+| fpc3 | reference | 0.0546 | 2.65e-07 | 0.141 |
+| fpc3 | residual | 0.824 | 0.691 | 0.954 |
+| fpc4 | mineral_class | 6.31e-08 | 3.65e-09 | 0.0593 |
+| fpc4 | sorbate_class | 0.0559 | 1.39e-08 | 0.184 |
+| fpc4 | mineral_sorbate | 0.232 | 0.106 | 0.342 |
+| fpc4 | reference | 0.0692 | 1.02e-06 | 0.16 |
+| fpc4 | residual | 0.643 | 0.515 | 0.792 |
+| fpc5 | mineral_class | 0.0211 | 3.33e-09 | 0.139 |
+| fpc5 | sorbate_class | 2.52e-07 | 4.02e-09 | 0.0602 |
+| fpc5 | mineral_sorbate | 0.209 | 0.0833 | 0.317 |
+| fpc5 | reference | 0.078 | 7.66e-06 | 0.174 |
+| fpc5 | residual | 0.692 | 0.561 | 0.834 |
 
 ### Edge position with conditions as fixed effects (n = 567, 9 curves dropped for a missing covariate; temperature not included (reported for < 80% of curves); constant covariates dropped: none)
 
@@ -95,7 +95,7 @@ Stage 2 passes: continue to Stage 3 (descriptor tables, then freeze thresholds.y
 
 ## Part C: exploratory groupings (config/schemes.yaml)
 
-48 groupings tested on 576 core edge curves: one T-vs-F split per usable column of the mineral property table, two mineral schemes built from it, four sorbate schemes and four ionic-condition schemes. Each was tested for edge position (all) and log width and height (schemes only): variance share in a model with study as a second random effect, and a within-reference permutation test of the between-group share. 68 tests in total; q = Benjamini-Hochberg adjusted p. Significant after FDR: 10.
+50 groupings tested on 576 core edge curves: one T-vs-F split per usable column of the mineral property table, two mineral schemes built from it, four sorbate schemes and four ionic-condition schemes. Each was tested for edge position (all) and log width and height (schemes only): variance share in a model with study as a second random effect, and a within-reference permutation test of the between-group share. 74 tests in total; q = Benjamini-Hochberg adjusted p over the exploratory groupings. Significant after FDR: 10. The two pre-specified classes from classes.yaml are included as reference rows (kind `prespecified_class`), tested the same way, with their raw p and no q: they are not part of the exploratory screen.
 
 Mineral property table: `mineral properties.csv`; cell codes {'F': 1407, 'T': 532, 'TO': 46, 'O': 24, 'FO': 7} (only T and F used; TO/O/FO treated as missing). Rows left out pending correction: Calcite, Maghemite, Corundum. Minerals in the library with no row: hematite. The table has no source column, so these are uncited properties.
 
@@ -151,6 +151,8 @@ Mineral property table: `mineral properties.csv`; cell codes {'F': 1407, 'T': 53
 | property: Calcium-containing | mineral_property | 399 | 2 | 0.0929 | 0.492 | 0.00227 | 1 | 1 | 0 |
 | property: Sodium-containing | mineral_property | 399 | 2 | 5.4e-08 | 0.544 | 5.99e-06 | 1 | 1 | 0 |
 | property: Zeolite group | mineral_property | 477 | 2 | 5.06e-05 | 0.557 | 1.92e-05 | 1 | 1 | 3 |
+| sorbate_class (classes.yaml) | prespecified_class | 576 | 6 | 0.264 | 0.378 | 0.112 | 0.0005 |  | 142 |
+| mineral_class (classes.yaml) | prespecified_class | 576 | 5 | 0.0599 | 0.502 | 0.0992 | 0.013 |  | 154 |
 
 ### Width and height, schemes
 
@@ -176,6 +178,10 @@ Mineral property table: `mineral properties.csv`; cell codes {'F': 1407, 'T': 53
 | sorbate_hsab | log_width | 420 | 0.051 | 0.364 | 0.95 | 1 |
 | mineral_metal | log_width | 477 | 0.00286 | 0.48 | 0.963 | 1 |
 | cosolute | height | 576 | 0.0123 | 0.833 | 0.988 | 1 |
+| sorbate_class (classes.yaml) | log_width | 576 | 0.208 | 0.283 | 0.0005 |  |
+| sorbate_class (classes.yaml) | height | 576 | 0.71 | 0.191 | 0.0005 |  |
+| mineral_class (classes.yaml) | height | 576 | 0.0212 | 0.82 | 0.159 |  |
+| mineral_class (classes.yaml) | log_width | 576 | 0.0167 | 0.468 | 0.52 |  |
 
 How to read this: `group_share` is the share of variance the grouping takes when study is also in the model; `between_group_R2` is the plain share between groups (what the permutation test uses); `curves_shufflable` counts curves in papers that contain more than one group (only those carry information in the within-paper test). Groupings tested here are correlated (e.g. iron-containing and oxyhydroxide pick out almost the same minerals), so several significant rows can be one effect.
 
@@ -183,9 +189,8 @@ Files: `exploratory_groupings.csv`, `exploratory_group_labels.csv` (label of eve
 
 ## Analyst notes (added after the run, 2026-10-13)
 
-- **Bootstrap intervals for the pair component are biased upward.** Several 95% intervals do not contain their own point estimate (e.g. edge_pH mineral_sorbate 0.324 with interval 0.294-0.570; log_width mineral_sorbate 0.193 with 0.239-0.460). Cause: the cluster bootstrap relabels a reference drawn twice as two references, but its curves keep the same mineral-sorbate pair, so the pair looks better replicated than it is. Point shares come from the full data and are not affected; treat the intervals, especially for `mineral_sorbate`, as unreliable until a crossed-design bootstrap replaces this one.
+- **Interval method changed.** This run uses a parametric bootstrap (simulate from the fitted model, refit). The previous run's cluster bootstrap over references biased the pair share upward and gave intervals that did not contain their own estimate; that is fixed here. Class-level intervals are wide because there are only 5-7 classes per side (e.g. sorbate class for edge position 0.26, interval ~0-0.46).
 - **The permutation test rests on few papers.** Only 31 of 141 references (217 of 576 curves) contain more than one class cell; the other papers cannot be shuffled. p = 0.0005 is the smallest value 2,000 permutations can give.
-- **Mineral class adds little once sorbate and pair are known** (edge position share 2.7%); the "class" signal for edge position is mostly sorbate class (25.7%) and the specific pair (32.4%). Height is almost entirely sorbate class (75.5%: rising cation edges vs falling anion edges).
+- **Mineral class adds little once sorbate and pair are known** (edge position share 2.7%). Tested on its own with study in the model (Part C reference row) it takes 6% (p = 0.013); sorbate class takes 26% (p = 0.0005). Height is almost entirely sorbate class (75.5%: rising cation edges vs falling anion edges).
 - **Shape beyond position/width/height (FPCA) shows no class structure**; for FPC2-FPC5 the bootstrap SD of a curve's score is close to the spread of scores across curves, so only FPC1 is resolved.
-- Part C: some property splits are exact complements or duplicates (Redox active / inactive; Clay minerals / Sheet silicates; Silicates / Silica-rich), so they repeat one test. "Manganese-containing" (q = 0.038) rests on 25 shufflable curves.
-- Run time was 11.7 h wall clock because the computer slept overnight; CPU time was about 40 min.
+- Part C: some property splits are exact complements or duplicates (Redox active / inactive; Clay minerals / Sheet silicates; Silicates / Silica-rich), so they repeat one test.
