@@ -1,0 +1,57 @@
+sorbate_label,element,oxidation_state,species_form,status,note
+Am(+3),Am,3.0,,parsed,
+Aminotriazole,,,,needs_review,not an element label (organic or unknown); shown under 'Other sorbates'
+Anthracene,,,,needs_review,not an element label (organic or unknown); shown under 'Other sorbates'
+As(+5),As,5.0,,parsed,
+Ba(+2),Ba,2.0,,parsed,
+C(+4),C,4.0,,parsed,
+COM,,,,needs_review,not an element label (organic or unknown); shown under 'Other sorbates'
+Ca(+2),Ca,2.0,,parsed,
+Cd(+2),Cd,2.0,,parsed,
+Citric acid,,,,needs_review,not an element label (organic or unknown); shown under 'Other sorbates'
+Cm(+3),Cm,3.0,,parsed,
+Co(+2),Co,2.0,,parsed,
+Cr(+3),Cr,3.0,,parsed,
+Cr(+6),Cr,6.0,,parsed,
+Cs(+1),Cs,1.0,,parsed,
+Cu(+2),Cu,2.0,,parsed,
+Dodecylamine,,,,needs_review,not an element label (organic or unknown); shown under 'Other sorbates'
+Eu(+3),Eu,3.0,,parsed,
+Fe(+2),Fe,2.0,,parsed,
+Fulvic acid,,,,needs_review,not an element label (organic or unknown); shown under 'Other sorbates'
+H(+1),H,1.0,,parsed,
+Humic acid,,,,needs_review,not an element label (organic or unknown); shown under 'Other sorbates'
+K(+1),K,1.0,,parsed,
+Ketogluconate,,,,needs_review,not an element label (organic or unknown); shown under 'Other sorbates'
+Malonic acid,,,,needs_review,not an element label (organic or unknown); shown under 'Other sorbates'
+Mellitic acid,,,,needs_review,not an element label (organic or unknown); shown under 'Other sorbates'
+Mg(+2),Mg,2.0,,parsed,
+Mn(+2),Mn,2.0,,parsed,
+Na(+1),Na,1.0,,parsed,
+Ni(+2),Ni,2.0,,parsed,
+Np(+4),Np,4.0,,parsed,
+Np(+5),Np,5.0,,parsed,
+Oxalic acid,,,,needs_review,not an element label (organic or unknown); shown under 'Other sorbates'
+P(+5),P,5.0,,parsed,
+Pa(+5),Pa,5.0,,parsed,
+Pb(+2),Pb,2.0,,parsed,
+Phthalic acid,,,,needs_review,not an element label (organic or unknown); shown under 'Other sorbates'
+Pu,Pu,,,needs_review,element without oxidation state
+Pu(+4),Pu,4.0,,parsed,
+Pu(+5),Pu,5.0,,parsed,
+Pu(+6),Pu,6.0,,parsed,
+Ra(+2),Ra,2.0,,parsed,
+Rb(+1),Rb,1.0,,parsed,
+S(+6),S,6.0,,parsed,
+Se(+4),Se,4.0,,parsed,
+Se(+6),Se,6.0,,parsed,
+Se(-2),Se,-2.0,,parsed,
+Si(+4),Si,4.0,,parsed,
+Sm(+3),Sm,3.0,,parsed,
+Sn(+4),Sn,4.0,,parsed,
+Sr(+2),Sr,2.0,,parsed,
+Th(+4),Th,4.0,,parsed,
+Trimesic acid,,,,needs_review,not an element label (organic or unknown); shown under 'Other sorbates'
+U(+6),U,6.0,,parsed,
+Yb(+3),Yb,3.0,,parsed,
+Zn(+2),Zn,2.0,,parsed,

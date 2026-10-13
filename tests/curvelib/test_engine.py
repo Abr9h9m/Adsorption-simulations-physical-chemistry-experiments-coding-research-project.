@@ -97,3 +97,27 @@ def test_census_parity_on_real_file(real_file):
     if os.path.exists(s0):
         t = pd.read_csv(s0).merge(cov, left_on=["mineral", "sorbate"], right_on=["group_a", "group_b"])
         assert len(t) == 277 and (t["n_points"] == t["points"]).all() and (t["n_references"] == t["clusters"]).all()
+
+
+def test_sorbate_label_parsing_never_drops():
+    from packs.sorption.entities import parse_label, propose_sorbate_map
+    assert parse_label("U(+6)") == {"element": "U", "oxidation_state": 6, "status": "parsed"}
+    assert parse_label("Se(-2)")["oxidation_state"] == -2
+    assert parse_label("Pu")["status"] == "needs_review" and parse_label("Pu")["element"] == "Pu"
+    assert parse_label("Oxalic acid")["element"] is None
+    m = propose_sorbate_map(["U(+6)", "Oxalic acid", "COM"])
+    assert len(m) == 3 and set(m["status"]) == {"parsed", "needs_review"}
+
+
+def test_element_counts_equal_engine_counts(real_file):
+    from packs.sorption.entities import entity_counts, propose_sorbate_map
+    m = M.load(SORPTION)
+    r = E.run(pd.read_csv(real_file, low_memory=False), m)
+    smap = propose_sorbate_map(r["curves"]["group_b"].unique())
+    counts, other = entity_counts(r["curves"], r["coverage"], smap)
+    clean = r["curves"][r["curves"]["clean"]]
+    assert counts["curves"].sum() + other["curves"].sum() == len(clean)
+    assert counts["points"].sum() + other["points"].sum() == clean["n_points"].sum()
+    u = counts.set_index("element").loc["U"]
+    direct = clean[clean["group_b"] == "U(+6)"]
+    assert u["curves"] == len(direct) and u["papers"] == direct["cluster"].nunique()
