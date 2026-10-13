@@ -1,0 +1,26 @@
+# Locked test papers (PH_ONLY_TEST_PROTOCOL.md section 3). Do not edit; do not load in development.
+# created 2026-10-13; 24 of 120 papers; stratified by dominant sorbate class x pair-in-other-paper; seeded
+SSLWF08
+bb05
+bb09
+bm11
+bm82
+bpa98
+dw14
+fb19
+fwr95
+hchk01
+hpq71
+hyz05
+jrfsw13
+lcv99
+lyt14
+mg07
+mhsh09
+pjtp01
+rka11
+sem81
+smrlg15
+usbr08
+wat01c
+zs90a

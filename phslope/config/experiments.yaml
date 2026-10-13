@@ -1,0 +1,97 @@
+# Improvement program (PH_ONLY_TEST_PROTOCOL.md). Decision rules and settings are
+# written here BEFORE each experiment runs and are not changed afterwards; a change
+# means a new, separately labelled exploratory run (protocol section 10).
+# Written 2026-10-13 by Claude Code, before any experiment result existed.
+
+seed: 20261013
+
+locked_set:                     # protocol section 3, decision D1 (default accepted: yes, 20%, seeded)
+  fraction: 0.20
+  population: "papers with >= 1 single-edge (rising/falling) core-library curve (Stage 1)"
+  stratify_by: [dominant_sorbate_class, pair_in_other_paper]
+  file: phslope/config/locked_test_papers.txt
+
+kd:                             # E0.2
+  mid_range: [0.03, 0.97]       # fraction sorbed window for log K line fits (E2 revisits)
+  mass_balance_tolerance: 0.10  # |Aq - (total - sorbed)| / total within this -> consistent
+
+e0:
+  mass_balance_pass_fraction: 0.90
+  benchmark:                    # numbers the harness must reproduce (+/- tolerance), from the pooling follow-up Part 4
+    tolerance: 0.02
+    n_curves: 285
+    all_other_median: 0.595
+    nearest1_median: 0.375
+    nearest3_median: 0.420
+    matched_fb_median: 0.437
+    matched_subset_n: 79
+    matched_subset_plain_median: 0.679
+    matched_subset_matched_median: 0.250
+
+harness:
+  interval: 0.90
+  coverage_ok: [0.80, 0.95]
+  paper_bootstrap_B: 500
+  # conditions matching (B3), as in the follow-up: solids within 0.5 decade, total sorbate within 1 decade,
+  # same CO2 flag, same co-solute flag
+  match_solids_decades: 0.5
+  match_total_decades: 1.0
+
+e1:
+  line_r2_min: 0.5              # main set: per-curve line fit R2 >= this, slope sign matching the direction
+  covariates: [log10_solids, loading_hinge, log10_total, cosolute, co2, log10_I]
+  direction_specific: [log10_solids, loading_hinge]
+  hinge_grid: [-7.0, -6.5, -6.0, -5.5, -5.0, -4.75, -4.5, -4.0]   # breakpoint estimated inside each training fold
+  prediction_draws: 400
+  decision:
+    primary: "median native edge_error <= B3 AND logK_rmse not worse than B3 (paired 95% interval over papers not above zero)"
+    coverage: [0.80, 0.95]
+    curve_usage_min: 0.70       # share of rising/falling curves (with solids and total) contributing
+    guards: ["not worse than B0 on pairs with >= 2 papers", "no degradation on falling edges"]
+
+e2:
+  windows: [[0.01, 0.99], [0.03, 0.97], [0.10, 0.90]]
+  schemes: [W0_unweighted, W1_empirical, W2_logit_delta]
+  decision:
+    rmse_gain_min: 0.05         # relative reduction of held-out logK_rmse vs W0
+    coverage: [0.80, 0.95]
+  note: "W3 (censored/Tobit) is listed in the protocol; implemented only if W1/W2 run cleanly (see SUMMARY)"
+
+e3:
+  match_pH: 0.02
+  match_f: 0.01
+  match_share: 0.80
+  validity:
+    f_range: [-0.05, 1.05]
+    solids_max_g_L: 500
+    percent_response_max: 1.5   # max response above this suggests percent units
+  n_worst: 30
+
+e4:
+  decision: "B3 beats B0 excluding same-lab matches (paired 95% interval below zero) AND median error <= 0.5 pH"
+
+e5:
+  select: {min_span: 6.0, min_r2: 0.9, min_points: 12}
+  windows: [2, 3, 4, 5]
+  draws_per_window: 5
+  min_mid_points: 3
+  decision: {retain_min: 0.70, median_error_max: 0.5}
+
+e7:
+  sensitive_sorbates: ["U(+6)", "Np(+5)", "Eu(+3)", "Am(+3)"]
+  control_sorbates: ["Se(+4)", "Oxalic acid", "Ni(+2)"]
+  pco2_floor_log10: -6.0        # log10 pCO2 (bar) assigned to "no CO2 reported"; documented choice
+  decision: "improves held-out logK_rmse at pH > 7 for sensitive set (paired 95% interval below zero) and control interval includes zero"
+  step1_dic: "waits for carbonate constants and their source (decision D5)"
+
+e8:
+  classes:                      # pre-declared, protocol E8
+    outer_sphere_prone: ["Cs(+1)", "Sr(+2)", "Ba(+2)", "Ca(+2)", "Ra(+2)", "Mg(+2)"]
+    inner_sphere_prone: ["U(+6)", "Np(+5)", "Np(+4)", "Pu", "Pu(+4)", "Pu(+5)", "Pu(+6)", "Am(+3)", "Cm(+3)", "Th(+4)",
+                         "Pa(+5)", "Ni(+2)", "Zn(+2)", "Co(+2)", "Cd(+2)", "Pb(+2)", "Cu(+2)", "Mn(+2)", "Fe(+2)",
+                         "Cr(+3)", "Sn(+4)", "Eu(+3)", "Sm(+3)", "Yb(+3)"]
+    oxyanion: ["Se(+4)", "Se(+6)", "C(+4)", "P(+5)", "S(+6)", "Cr(+6)", "As(+5)"]
+    organic_acid: ["Oxalic acid", "Citric acid", "Mellitic acid", "Phthalic acid", "Malonic acid", "Trimesic acid",
+                   "Ketogluconate", "Humic acid", "Fulvic acid"]
+  same_within: 0.10             # within-paper series: solids, total sorbate, temperature equal within 10%
+  decision: "outer-sphere within-paper effect 95% interval excludes zero AND differs from inner-sphere (interval excludes zero)"
