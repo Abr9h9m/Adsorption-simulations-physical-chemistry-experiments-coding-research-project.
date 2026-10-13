@@ -2,7 +2,7 @@
 
 **Plain English.** Instead of fitting an S-curve to each experiment and throwing away the ones that do not show a full S, we fitted a straight line to how strongly the sorbate sticks (on a log scale) against pH, which works even for partial curves, and let a statistical model learn how the lines differ between sorbates, mineral-sorbate pairs and papers, and with the amount of mineral used. For a paper the model has not seen, it predicts where the curve crosses 50% to a median of 0.88 pH units, against 0.96 for the best simple rule (copying the closest-conditions papers). Verdict on the pre-declared rule: **ACCEPT**.
 
-> EXPLORATORY. Development papers only; leave-out unit = E3 lineage cluster. Locked set hash `88b1c3a1b769`. Commit `353c5ee-dirty`.
+> EXPLORATORY. Development papers only; leave-out unit = E3 lineage cluster. Locked set hash `88b1c3a1b769`. Commit `e0652b2`.
 
 ## Formulation
 
@@ -31,13 +31,13 @@ Two-step (allowed by the protocol): per-curve log10 K lines, then REML models of
 | B4_class_mean | 535 | 107 | 1.14 | 0.977 | 1.35 | 0.53 | 2.05 | 1.93 | 0.245 | 0.437 | 0 |
 | B5_global_mean | 535 | 107 | 1.34 | 1 | 1.56 | 0.606 | 2.17 | 1.99 | 0.207 | 0.413 | 0 |
 
-| model | baseline | n_common | median_diff | diff_lo | diff_hi | model_median | baseline_median |
-|---|---|---|---|---|---|---|---|
-| E1 | B3_matched_fb | 535 | -0.0808 | -0.157 | 0.00238 | 0.882 | 0.962 |
-| E1 | B0_all_other | 535 | -0.0861 | -0.163 | 0.00024 | 0.882 | 0.988 |
-| E1 | B1_nearest1 | 535 | -0.126 | -0.203 | -0.0094 | 0.882 | 0.973 |
-| E1 | B5_global_mean | 535 | -0.35 | -0.712 | -0.105 | 0.882 | 1.34 |
-| E1 | E1_no_covariates | 535 | -0.101 | -0.19 | -0.0307 | 0.882 | 0.992 |
+| model | baseline | n_common | median_diff | diff_lo | diff_hi | median_of_diffs | mod_lo | mod_hi | model_median | baseline_median | share_model_better | share_tied |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| E1 | B3_matched_fb | 535 | -0.0799 | -0.249 | 0.111 | -0.0808 | -0.157 | 0.00238 | 0.882 | 0.962 | 0.563 | 0 |
+| E1 | B0_all_other | 535 | -0.106 | -0.265 | 0.0274 | -0.0861 | -0.163 | 0.00024 | 0.882 | 0.988 | 0.574 | 0 |
+| E1 | B1_nearest1 | 535 | -0.091 | -0.344 | 0.191 | -0.126 | -0.203 | -0.0094 | 0.882 | 0.973 | 0.579 | 0 |
+| E1 | B5_global_mean | 535 | -0.457 | -0.828 | -0.0809 | -0.35 | -0.712 | -0.105 | 0.882 | 1.34 | 0.6 | 0 |
+| E1 | E1_no_covariates | 535 | -0.11 | -0.279 | 0.0523 | -0.101 | -0.19 | -0.0307 | 0.882 | 0.992 | 0.632 | 0 |
 
 Noise-ceiling fraction (share of the gap between the global mean B5 and the plain average B0 that E1 closes; 1 = as good as B0): 1.30 [-0.97, 7.26], n = 535.
 
@@ -50,23 +50,23 @@ Noise-ceiling fraction (share of the gap between the global mean B5 and the plai
 | B4_class_mean | 221 | 65 | 1.71 | 1.53 | 1.93 | 0.929 | 2.47 | 2.17 | 0.131 | 0.29 | 0 |
 | B5_global_mean | 222 | 66 | 1.94 | 1.55 | 2.26 | 0.88 | 2.86 | 2.32 | 0.108 | 0.27 | 0 |
 
-| model | baseline | n_common | median_diff | diff_lo | diff_hi | model_median | baseline_median |
-|---|---|---|---|---|---|---|---|
-| E1 | B4_class_mean | 221 | 0.0694 | -0.0711 | 0.122 | 1.72 | 1.71 |
-| E1 | B5_global_mean | 222 | -0.187 | -0.472 | 0.0558 | 1.73 | 1.94 |
+| model | baseline | n_common | median_diff | diff_lo | diff_hi | median_of_diffs | mod_lo | mod_hi | model_median | baseline_median | share_model_better | share_tied |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| E1 | B4_class_mean | 221 | 0.00958 | -0.224 | 0.169 | 0.0694 | -0.0711 | 0.122 | 1.72 | 1.71 | 0.443 | 0 |
+| E1 | B5_global_mean | 222 | -0.211 | -0.665 | 0.0819 | -0.187 | -0.472 | 0.0558 | 1.73 | 1.94 | 0.563 | 0 |
 
 ## Falling edges (guard)
 
-| model | baseline | n_common | median_diff | diff_lo | diff_hi | model_median | baseline_median |
-|---|---|---|---|---|---|---|---|
-| E1 | B3_matched_fb | 166 | -0.268 | -0.501 | -0.04 | 0.958 | 1.19 |
+| model | baseline | n_common | median_diff | diff_lo | diff_hi | median_of_diffs | mod_lo | mod_hi | model_median | baseline_median | share_model_better | share_tied |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| E1 | B3_matched_fb | 166 | -0.233 | -0.513 | 0.0662 | -0.268 | -0.501 | -0.04 | 0.958 | 1.19 | 0.645 | 0 |
 
 ## log10 K RMSE at the held-out curve's mid-range points (pairs with >= 2 units)
 
-| model | baseline | n_common | median_diff | diff_lo | diff_hi | model_median | baseline_median |
-|---|---|---|---|---|---|---|---|
-| E1 | B3_matched_fb | 535 | -0.0202 | -0.0707 | 0.0381 | 0.689 | 0.706 |
-| E1 | B0_all_other | 535 | -0.0239 | -0.0683 | 0.0334 | 0.689 | 0.706 |
+| model | baseline | n_common | median_diff | diff_lo | diff_hi | median_of_diffs | mod_lo | mod_hi | model_median | baseline_median | share_model_better | share_tied |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| E1 | B3_matched_fb | 535 | -0.0176 | -0.158 | 0.0961 | -0.0202 | -0.0707 | 0.0381 | 0.689 | 0.706 | 0.523 | 0 |
+| E1 | B0_all_other | 535 | -0.0175 | -0.134 | 0.0866 | -0.0239 | -0.0683 | 0.0334 | 0.689 | 0.706 | 0.536 | 0 |
 
 ## Variance components (full development fit)
 
@@ -105,3 +105,12 @@ Files: `heldout_predictions.csv`, `per_curve_worst_first.csv`, `summary_edge.csv
 - Two-step: per-curve line uncertainty is not propagated into step 2 (lines are treated as exact); intervals rest on the fitted variance components.
 - Lines are fitted over 3-97% sorbed only; bell and multi-step curves are excluded by the R2 >= 0.5 and direction rules (E2 revisits the window).
 - The class labels are the unconfirmed proposal in classes.yaml.
+
+## Analyst notes
+
+- **ACCEPT means the pre-declared rule is met, not that E1 is clearly better.** The rule compares median errors directly (0.882 vs 0.962 for B3); the paired difference of medians is -0.08 pH with a 95% interval of [-0.25, +0.11] over units, which includes zero. E1's clear gains are elsewhere: it uses 81% of rising/falling curves (Stage 1 core: 34% of the same population), gives calibrated 90% intervals (coverage 0.85-0.90), and is clearly better than the class and global means.
+- These errors (~0.9 pH) are larger than the follow-up's 0.4-0.6 pH because the population is harder: partial curves are included (the point of E1), edges are line-based, and copies are grouped into lineage clusters (E3).
+- **Solids effect on the level of log10 K:** +0.11 per decade (rising) and +0.36 (falling) against the +1.0 expected for linear sorption. Binding per gram falls strongly as more mineral is added (a particle-concentration effect), more so for cations. Saturation above the loading breakpoint lowers log10 K for both directions. Ionic strength lowers it overall (-0.17 per decade; E8 shows the effect differs by sorbate type), and co-solutes by 0.27.
+- **Variance:** sorbate class adds nothing to the level once the pair is known (share ~0); paper/lineage is the largest part (37%), then the pair (17%). For the slope, class 19%, pair 31%, paper 16%.
+- The noise-ceiling fraction is uninformative here (the gap between B5 and B0 is small and its interval spans negative to >7).
+- Pairs measured by a single unit: E1 is no better than the sorbate-class mean (1.73 vs 1.71 pH).
