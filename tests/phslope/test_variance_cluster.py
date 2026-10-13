@@ -136,3 +136,20 @@ def test_parametric_intervals_contain_point_estimate():
     assert s.attrs["method"] == "parametric" and s.attrs["n_boot"] >= 35
     big = s[s["share"] > 0.05]
     assert ((big["share_lo"] <= big["share"]) & (big["share"] <= big["share_hi"])).all(), big
+
+
+def test_blups_recover_planted_level_effects():
+    from phslope.reml import fit_reml, predict_effects
+    rng = np.random.default_rng(3)
+    n_g, per = 40, 10
+    g = np.repeat([f"g{i}" for i in range(n_g)], per)
+    u = rng.normal(0, 1.0, n_g)
+    x = rng.normal(size=n_g * per)
+    y = 2.0 + 0.5 * x + np.repeat(u, per) + rng.normal(0, 0.3, n_g * per)
+    d = pd.DataFrame({"y": y, "g": g, "x": x})
+    fit = fit_reml(d, "y", {"grp": "g"}, fixed=["x"])
+    eff, cov = predict_effects(d, "y", {"grp": "g"}, fit, fixed=["x"])
+    e = eff["grp"].set_index("level")["blup"].reindex([f"g{i}" for i in range(n_g)]).to_numpy()
+    assert np.corrcoef(e, u)[0, 1] > 0.98
+    assert fit["beta"][1] == pytest.approx(0.5, abs=3 * np.sqrt(cov[1, 1]))
+    assert (eff["grp"]["pev"] < 0.3 ** 2 / per * 1.5).all()

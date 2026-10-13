@@ -112,3 +112,36 @@ def fit_reml(df, response, factors, fixed=None):
     comps = {k: (0.0 if v < 1e-10 * s2 else v) for k, v in comps.items()}
     comps["residual"] = float(s2)
     return {"components": comps, "beta": beta, "n": n, "converged": bool(best.success)}
+
+
+def predict_effects(df, response, factors, fit, fixed=None):
+    """Best linear unbiased predictions (BLUPs) of every random-effect level and their
+    prediction-error variances, at the fitted variances:
+        u_hat = L M^-1 L Z' r,   Var(u_hat - u) = s^2 L M^-1 L,
+    with r = y - X beta, L = diag(sqrt(s_k^2 / s^2)), M = I + L Z'Z L.
+    Returns {factor: DataFrame(level, blup, pev)} and the fixed-effect covariance."""
+    cols = [response] + list(factors.values()) + list(fixed or [])
+    d = df[cols].dropna()
+    n = len(d)
+    y = d[response].to_numpy(float)
+    X = np.column_stack([np.ones(n)] + [d[c].to_numpy(float) for c in (fixed or [])])
+    Z, slices = design(d, factors)
+    s2 = fit["components"]["residual"]
+    lam = np.empty(Z.shape[1])
+    for name, sl in slices.items():
+        lam[sl] = np.sqrt(fit["components"][name] / s2)
+    ZtZ = (Z.T @ Z).toarray()
+    M = np.eye(len(lam)) + lam[:, None] * ZtZ * lam[None, :]
+    Minv = np.linalg.inv(M)
+    r = y - X @ fit["beta"]
+    u = lam * (Minv @ (lam * (Z.T @ r)))
+    pev = s2 * lam ** 2 * np.diag(Minv)
+    out = {}
+    for name, col in factors.items():
+        _, levels = pd.factorize(d[col].astype(str))
+        sl = slices[name]
+        out[name] = pd.DataFrame({"level": list(levels), "blup": u[sl], "pev": pev[sl]})
+    # fixed-effect covariance: s^2 (X' V0^-1 X)^-1
+    ZtX = np.asarray(Z.T @ X)
+    XtVX = X.T @ X - (lam[:, None] * ZtX).T @ (Minv @ (lam[:, None] * ZtX))
+    return out, s2 * np.linalg.inv(XtVX)
