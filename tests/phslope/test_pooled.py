@@ -74,3 +74,15 @@ def test_pooling_without_offsets_is_harmless():
     assert 0.7 < t["width_ratio"] < 1.3
     assert abs(t["edge_shift"]) < 0.15
     assert t["resid_ref_R2"] < 0.15
+
+
+def test_summary_runs_on_both_modes(tmp_path):
+    from phslope import report
+    curves, obs, meta = _data(study_sd=0.5, seed=3, n_refs=8, I_values=(0.001, 0.5))
+    out = run(curves, obs, meta, _cfg(), load_thresholds()["qc"], BANDS, workers=1)
+    for m in ("pair_band", "pair_all"):
+        assert {"n_points", "width_ratio", "cluster_edge_lo"} <= set(out[m]["table"].columns)
+    stamp = {"git_commit": "x", "config_hash": "y", "data_file": "z", "run_at_utc": "t"}
+    report.pooled_summary(str(tmp_path), out, stamp, BANDS)
+    report.pooled_pdf(str(tmp_path / "p.pdf"), out)
+    assert "Same pair" in (tmp_path / "SUMMARY.md").read_text(encoding="utf-8")

@@ -170,7 +170,9 @@ def run(curves, curve_obs, lib_meta, config, thr, bands, workers, modes=("pair_b
         results = run_curves_pool(jobs, workers)
         meta = pd.DataFrame([r["meta"] for r in results])
         comp = compare_with_curves(meta, pools, lib_meta) if len(pools) else pd.DataFrame()
-        table = pools.drop(columns="curve_ids").merge(meta.drop(columns=["mode"]), left_on="pool_id",
+        # the fit's own n_points / pH range duplicate the pool columns; keep the pool's
+        dup = [c for c in meta.columns if c in pools.columns and c != "pool_id"] + ["mode"]
+        table = pools.drop(columns="curve_ids").merge(meta.drop(columns=dup), left_on="pool_id",
                                                       right_on="curve_id", how="left").merge(comp, on="pool_id")
         out[mode] = {"pools": pools, "obs": pobs, "table": table, "results": results}
     return out
