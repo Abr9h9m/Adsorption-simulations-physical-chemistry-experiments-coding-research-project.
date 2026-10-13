@@ -138,7 +138,8 @@ def part_c(meta, scores, out_dir, n_perm, seed):
     cfg = schemes.load_schemes()
     t = analysis_table(meta, scores)
     props, prop_report = schemes.load_mineral_properties(cfg, meta["mineral"].unique())
-    res, groupings = schemes.run_exploratory(t, cfg, props, n_perm, seed)
+    _, classes = classes_confirmed()
+    res, groupings = schemes.run_exploratory(t, cfg, props, n_perm, seed, classes=classes)
     res.to_csv(os.path.join(out_dir, "exploratory_groupings.csv"), index=False)
     labels = t[["curve_id", "mineral", "sorbate", "reference"]].copy()
     for g in groupings:

@@ -115,3 +115,24 @@ def test_fast_reml_with_fixed_effects_matches_statsmodels():
     slow = fit_components_statsmodels(curves, "p50", fixed=["x1", "x2"])["components"]
     for k in fast:
         assert fast[k] == pytest.approx(slow[k], rel=0.05, abs=1e-3), (k, fast[k], slow[k])
+
+
+def test_simulate_then_refit_recovers_variances():
+    from phslope.reml import fit_reml, simulate
+    from phslope.variance import FACTORS, _prep
+    curves, _ = planted_class_structure(seed=10, **BIG)
+    d = _prep(curves, "p50")
+    comps = {"mineral_class": 0.5, "sorbate_class": 0.5, "mineral_sorbate": 0.3, "reference": 0.4, "residual": 0.1}
+    rng = np.random.default_rng(0)
+    est = [fit_reml(d.assign(y=simulate(d, FACTORS, None, comps, np.array([6.0]), rng)), "y", FACTORS)["components"]
+           for _ in range(8)]
+    for k in ("mineral_sorbate", "reference", "residual"):           # many levels -> should be close on average
+        assert np.mean([e[k] for e in est]) == pytest.approx(comps[k], rel=0.3), k
+
+
+def test_parametric_intervals_contain_point_estimate():
+    curves, _ = planted_class_structure(seed=11, **BIG)
+    s = variance_split(curves, "p50", B=40, seed=0)
+    assert s.attrs["method"] == "parametric" and s.attrs["n_boot"] >= 35
+    big = s[s["share"] > 0.05]
+    assert ((big["share_lo"] <= big["share"]) & (big["share"] <= big["share_hi"])).all(), big

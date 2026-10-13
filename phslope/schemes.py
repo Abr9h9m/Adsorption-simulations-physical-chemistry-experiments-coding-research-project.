@@ -101,10 +101,17 @@ def merge_small(labels, min_n):
     return labels.where(~labels.isin(small), "other") if len(small) else labels
 
 
-def build_groupings(t, cfg, props=None):
-    """Returns list of dicts: name, kind, labels (Series aligned to t; NaN = not in this grouping)."""
+def build_groupings(t, cfg, props=None, classes=None):
+    """Returns list of dicts: name, kind, labels (Series aligned to t; NaN = not in this grouping).
+    `classes` (classes.yaml) adds the two pre-specified classes as reference rows (kind
+    `prespecified_class`), tested the same way so they can be compared side by side."""
     min_n = cfg["testing"]["min_curves_per_group"]
     g = []
+    if classes is not None:
+        g.append({"name": "mineral_class (classes.yaml)", "kind": "prespecified_class",
+                  "labels": t["mineral"].map(classes.get("minerals") or {})})
+        g.append({"name": "sorbate_class (classes.yaml)", "kind": "prespecified_class",
+                  "labels": t["sorbate"].map(classes.get("sorbates") or {})})
     if props is not None:
         min_side = cfg["mineral_properties"]["min_minerals_per_side"]
         present = props.loc[props.index.isin(t["mineral"].unique())]
@@ -160,8 +167,10 @@ def evaluate_grouping(t, labels, param, n_perm, seed):
             "p_value": perm["p_value"], "curves_shufflable": perm["n_curves_shufflable"]}
 
 
-def run_exploratory(t, cfg, props, n_perm, seed):
-    groupings = build_groupings(t, cfg, props)
+def run_exploratory(t, cfg, props, n_perm, seed, classes=None):
+    """q values (BH) are computed over the exploratory groupings only; the pre-specified
+    classes are reference rows with their raw p value (they are not part of the screen)."""
+    groupings = build_groupings(t, cfg, props, classes)
     params = cfg["testing"]["parameters"]
     rows = []
     for gdef in groupings:
@@ -171,6 +180,8 @@ def run_exploratory(t, cfg, props, n_perm, seed):
             rows.append({"grouping": gdef["name"], "kind": gdef["kind"],
                          **evaluate_grouping(t, gdef["labels"], p, n_perm, seed)})
     res = pd.DataFrame(rows)
-    res["q_value"] = bh_adjust(res["p_value"])
+    explo = res["kind"] != "prespecified_class"
+    res["q_value"] = np.nan
+    res.loc[explo, "q_value"] = bh_adjust(res.loc[explo, "p_value"])
     res["significant_fdr"] = res["q_value"] < cfg["testing"]["alpha"]
     return res.sort_values(["q_value", "p_value"]).reset_index(drop=True), groupings

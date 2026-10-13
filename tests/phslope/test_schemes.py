@@ -91,3 +91,20 @@ def test_build_groupings_drops_single_group_schemes():
                       "has_cosolute": [False] * 10})
     names = [g["name"] for g in build_groupings(t, CFG, None)]
     assert names == []
+
+
+def test_prespecified_classes_are_reference_rows_outside_fdr():
+    from phslope.schemes import run_exploratory
+    rng = np.random.default_rng(1)
+    n = 120
+    t = pd.DataFrame({"mineral": rng.choice(["goethite", "quartz"], n), "sorbate": rng.choice(["U(+6)", "Se(+4)"], n),
+                      "reference": rng.choice([f"r{i}" for i in range(15)], n), "ionic_strength": 0.1,
+                      "electrolyte_sig": "N(+5)+Na(+1)", "co2_present": rng.random(n) < .5,
+                      "has_cosolute": False, "edge_pH": rng.normal(6, 1, n), "log_width": 0.0, "height": 1.0})
+    classes = {"minerals": {"goethite": "iron_oxide_hydroxide", "quartz": "silica"},
+               "sorbates": {"U(+6)": "actinide", "Se(+4)": "oxyanion"}}
+    res, _ = run_exploratory(t, CFG, None, n_perm=50, seed=0, classes=classes)
+    pre = res[res["kind"] == "prespecified_class"]
+    assert set(pre["grouping"]) == {"mineral_class (classes.yaml)", "sorbate_class (classes.yaml)"}
+    assert pre["q_value"].isna().all() and pre["p_value"].notna().all()
+    assert res.loc[res["kind"] != "prespecified_class", "q_value"].notna().any()

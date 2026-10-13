@@ -69,6 +69,19 @@ def _neg2_reml(eta, y, X, Z, ZtZ, Zty, ZtX, slices, n, p):
     return val, (beta, s2)
 
 
+def simulate(df, factors, fixed, components, beta, rng):
+    """One parametric-bootstrap response vector from a fitted model:
+    y* = X beta + sum_k Z_k u_k + e, with u_k ~ N(0, s_k^2) per level and e ~ N(0, s^2).
+    `df` must already be restricted to complete rows (same rows as the fit)."""
+    n = len(df)
+    X = np.column_stack([np.ones(n)] + [df[c].to_numpy(float) for c in (fixed or [])])
+    y = X @ beta + rng.normal(0, np.sqrt(components["residual"]), n)
+    for name, col in factors.items():
+        codes, levels = pd.factorize(df[col].astype(str))
+        y += rng.normal(0, np.sqrt(components[name]), len(levels))[codes]
+    return y
+
+
 def fit_reml(df, response, factors, fixed=None):
     """factors: {component name: column}. fixed: list of numeric covariate columns.
     Returns dict components (variances, incl. 'residual'), beta, n, converged."""

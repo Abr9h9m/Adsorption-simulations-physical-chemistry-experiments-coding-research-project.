@@ -19,6 +19,14 @@
    temperature if reported for enough curves) to see how much of the "study"
    share is really conditions. Rows missing a covariate are dropped and counted.
 
+   Interval method (2026-10-13): PARAMETRIC bootstrap. New responses are simulated
+   from the fitted model (each random effect redrawn at its fitted variance, plus
+   residual noise), the model is refitted, and the 2.5/97.5 percentiles of the
+   refitted shares are reported. It replaced a cluster bootstrap over references,
+   which biased the pair share upward: a paper drawn twice became two papers but
+   kept the same mineral-sorbate pair, so pairs looked better replicated than they
+   are. `bootstrap_shares` (the old method) is kept for comparison.
+
 2. Go/no-go permutation test (spec Stage 2 pass rule). Statistic: the share of
    variance between class cells (mineral_class x sorbate_class, i.e. both main
    effects and their interaction), = between-cell sum of squares / total.
@@ -102,18 +110,42 @@ def bootstrap_shares(df, value, B, seed, fixed=None):
     return pd.DataFrame(rows)
 
 
-def variance_split(df, value, B=100, seed=0, fixed=None):
-    """Point shares + 95% cluster-bootstrap intervals for one parameter."""
-    fit = fit_components(df, value, fixed)
+def parametric_bootstrap_shares(df, value, B, seed, fixed=None, fit=None):
+    """Simulate from the fitted model, refit, collect shares. Returns DataFrame (rows = successful refits)."""
+    from phslope.reml import simulate
+    d = _prep(df, value) if fixed is None else _prep_fixed(df, value, fixed)
+    if fit is None:
+        fit = fit_reml(d, "y", FACTORS, fixed)
+    rng = np.random.default_rng(seed)
+    rows = []
+    for _ in range(B):
+        d2 = d.assign(y=simulate(d, FACTORS, fixed, fit["components"], fit["beta"], rng))
+        try:
+            rows.append(shares(fit_reml(d2, "y", FACTORS, fixed)["components"]))
+        except (np.linalg.LinAlgError, ValueError):
+            continue
+    return pd.DataFrame(rows)
+
+
+def variance_split(df, value, B=100, seed=0, fixed=None, method="parametric"):
+    """Point shares + 95% bootstrap intervals for one parameter (method: parametric | cluster)."""
+    d = _prep(df, value) if fixed is None else _prep_fixed(df, value, fixed)
+    full = fit_reml(d, "y", FACTORS, fixed)
+    fit = {"components": full["components"], "n": full["n"], "converged": full["converged"]}
     sh = shares(fit["components"])
-    boot = bootstrap_shares(df, value, B, seed, fixed) if B else pd.DataFrame()
+    if not B:
+        boot = pd.DataFrame()
+    elif method == "parametric":
+        boot = parametric_bootstrap_shares(df, value, B, seed, fixed, fit=full)
+    else:
+        boot = bootstrap_shares(df, value, B, seed, fixed)
     rows = []
     for k, v in sh.items():
         lo, hi = (np.nanpercentile(boot[k], [2.5, 97.5]) if k in boot and len(boot) else (np.nan, np.nan))
         rows.append({"parameter": value, "component": k, "share": v, "share_lo": lo, "share_hi": hi,
                      "variance": fit["components"][k]})
     out = pd.DataFrame(rows)
-    out.attrs.update(n=fit["n"], converged=fit["converged"], n_boot=len(boot))
+    out.attrs.update(n=fit["n"], converged=fit["converged"], n_boot=len(boot), method=method)
     return out
 
 

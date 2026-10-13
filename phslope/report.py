@@ -341,6 +341,7 @@ def stage2_part_b_figures(out_dir, split, t):
 def stage2_part_c_figure(out_dir, res):
     """Group share of edge position per grouping, FDR-significant groupings highlighted."""
     r = res[res["parameter"] == "edge_pH"].dropna(subset=["group_share"]).sort_values("group_share")
+    r = r.assign(significant_fdr=r["significant_fdr"].fillna(False).astype(bool))
     if not len(r):
         return
     fig, ax = plt.subplots(figsize=(7.5, 0.25 * len(r) + 1.2))
@@ -408,7 +409,7 @@ def stage2_summary(out_dir, lib, a, b, thr_all, stamp, exploratory=False, classe
             f"({perm['n_curves_shufflable']} of {perm['n']} curves) contain more than one class cell and can be "
             "shuffled; the rest are fixed under the null, which makes the test conservative.", "",
             "Unassigned names (excluded): " + str(b["unassigned"]), "",
-            "### Variance shares (95% cluster-bootstrap intervals over references)", "",
+            "### Variance shares (95% parametric-bootstrap intervals: simulate from the fitted model, refit)", "",
             md_table(b["split"][["parameter", "component", "share", "share_lo", "share_hi"]]), "",
             f"### Edge position with conditions as fixed effects (n = {cond.attrs['n']}, "
             f"{cond.attrs['dropped_rows']} curves dropped for a missing covariate; temperature "
@@ -436,7 +437,10 @@ def stage2_summary(out_dir, lib, a, b, thr_all, stamp, exploratory=False, classe
             "schemes and four ionic-condition schemes. Each was tested for edge position (all) and log width and "
             "height (schemes only): variance share in a model with study as a second random effect, and a "
             "within-reference permutation test of the between-group share. "
-            f"{len(r)} tests in total; q = Benjamini-Hochberg adjusted p. Significant after FDR: {len(sig)}.", "",
+            f"{len(r)} tests in total; q = Benjamini-Hochberg adjusted p over the exploratory groupings. "
+            f"Significant after FDR: {len(sig)}. The two pre-specified classes from classes.yaml are included as "
+            "reference rows (kind `prespecified_class`), tested the same way, with their raw p and no q: they "
+            "are not part of the exploratory screen.", "",
             "Mineral property table: " + f"`{os.path.basename(pr['file'])}`; cell codes {pr['cell_codes']} "
             "(only T and F used; TO/O/FO treated as missing). "
             f"Rows left out pending correction: {', '.join(pr['excluded_rows'])}. "
