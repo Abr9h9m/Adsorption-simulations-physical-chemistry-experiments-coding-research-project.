@@ -102,3 +102,20 @@ e8:
 # most curves are tied (B3 falls back to B0 when no paper matches), so it could not detect any gain.
 # E4 is re-run with the clarified statistic; both runs stay in the registry.
 paired_statistic: difference_of_medians
+
+# ---------------------------------------------------------------- Addendum 1 (written before these ran)
+e21:
+  decision: "prefer the interval method whose edge coverage lies in [0.85, 0.95] with the narrower median width"
+  coverage: [0.85, 0.95]
+e11:
+  decision: "slope b interpretable if between-sorbate variance of b exceeds between-paper variance (ratio > 1, 95% interval excluding 1)"
+  bootstrap_B: 200
+e16:
+  decision: "report only; useful = median edge error below the class-mean baseline with the paired interval excluding zero"
+e23:
+  reps: 50
+  decision: "false-positive rate of each decision statistic under its placebo <= 0.10 (nominal 0.05); otherwise tighten the rule"
+mpower:
+  power: 0.80
+  alpha: 0.05
+  reps: 100

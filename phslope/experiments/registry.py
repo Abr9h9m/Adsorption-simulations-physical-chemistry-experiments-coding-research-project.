@@ -111,8 +111,29 @@ def final_papers(confirm=False):
 
 # ------------------------------------------------------------------ registry and stamps
 
+_DATA_VERSION = {}
+
+
+def data_version(path=None):
+    """M10: tie results to a dataset version (file hash, size, modification date; release if known)."""
+    from phslope.common import load_config, resolve_data_file
+    path = path or resolve_data_file(None, load_config())
+    if path not in _DATA_VERSION:
+        st = os.stat(path)
+        with open(path, "rb") as f:
+            h = hashlib.sha256(f.read()).hexdigest()[:16]
+        _DATA_VERSION[path] = {"file": path, "sha256_16": h, "bytes": st.st_size,
+                               "modified_utc": datetime.fromtimestamp(st.st_mtime, timezone.utc).strftime("%Y-%m-%d"),
+                               "release": "unknown (L-SCIE release not recorded in the file)"}
+    return _DATA_VERSION[path]
+
+
 def exp_stamp(data_file=None, extra=None):
     s = run_stamp(data_file)
+    try:
+        s["data_version"] = data_version(data_file)
+    except OSError:
+        s["data_version"] = None
     try:
         s["locked_set_hash"] = locked_hash()
     except FileNotFoundError:

@@ -36,3 +36,11 @@ def test_paired_uses_difference_of_medians_robust_to_ties():
     d = H.paired(L, "m", ["b"], B=300).iloc[0]
     assert d["median_of_diffs"] == 0 and d["share_tied"] >= 0.6     # the degenerate statistic
     assert d["median_diff"] < 0 and d["diff_hi"] < 0               # the decision statistic sees the gain
+
+
+def test_paper_weighted_median_counts_each_unit_once():
+    # unit u1 has 9 curves with error 0.1, units u2..u4 one curve each with error 2.0
+    L = pd.DataFrame({"curve_id": range(12), "unit": ["u1"] * 9 + ["u2", "u3", "u4"], "model": "m",
+                      "edge_error": [0.1] * 9 + [2.0] * 3})
+    s = H.summarize(L, B=0).iloc[0]
+    assert s["median"] == 0.1 and s["median_paper_weighted"] == 2.0

@@ -116,7 +116,14 @@ def _boot_median(err, units, B, rng):
     return np.percentile(meds, [2.5, 97.5])
 
 
+def weighted_median(x, w):
+    o = np.argsort(x)
+    cw = np.cumsum(np.asarray(w, float)[o])
+    return float(np.asarray(x)[o][np.searchsorted(cw, cw[-1] / 2)])
+
+
 def summarize(L, B=500, seed=0, metric="edge_error"):
+    """Curve-weighted metrics plus M1 paper-weighted ones (each unit counts once: weight 1 / curves in unit)."""
     rng = np.random.default_rng(seed)
     rows = []
     for m, d in L.groupby("model", sort=False):
@@ -126,7 +133,9 @@ def summarize(L, B=500, seed=0, metric="edge_error"):
                      "median_hi": hi, "q25": np.percentile(e, 25), "q75": np.percentile(e, 75),
                      "rmse": float(np.sqrt(np.mean(e ** 2))) if metric == "edge_error" else np.nan,
                      "within_0_5": float(np.mean(e < 0.5)), "within_1": float(np.mean(e < 1.0)),
-                     "coverage": float(d["covered"].mean()) if "covered" in d and d["covered"].notna().any() else np.nan})
+                     "coverage": float(d["covered"].mean()) if "covered" in d and d["covered"].notna().any() else np.nan,
+                     "median_paper_weighted": weighted_median(e, 1.0 / d.groupby("unit")["unit"].transform("size")),
+                     "within_0_5_paper_weighted": float(np.average(e < 0.5, weights=1.0 / d.groupby("unit")["unit"].transform("size")))})
     return pd.DataFrame(rows)
 
 
