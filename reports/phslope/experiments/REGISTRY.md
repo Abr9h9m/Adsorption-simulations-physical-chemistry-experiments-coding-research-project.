@@ -17,3 +17,4 @@
 | 2026-10-13 17:02 | E9 | 4f79b50 | 88b1c3a1b769 | DO NOT ADOPT area normalisation (rule not met) | R2 gain +13%; breakpoint narrowing +7% |
 | 2026-10-13 17:07 | E1 | 353c5ee-dirty | 88b1c3a1b769 | ACCEPT | edge median E1 0.882 vs B3 0.962; coverage 0.85; usage 0.81 |
 | 2026-10-13 17:07 | E1 | e0652b2 | 88b1c3a1b769 | ACCEPT | edge median E1 0.882 vs B3 0.962; coverage 0.85; usage 0.81 |
+| 2026-10-13 17:23 | E7 | 3e5912d | 88b1c3a1b769 | DO NOT KEEP log10 pCO2 (rule not met) | step 1a only (pCO2); DIC waits for D5 |
