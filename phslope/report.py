@@ -459,3 +459,151 @@ def stage2_summary(out_dir, lib, a, b, thr_all, stamp, exploratory=False, classe
     with open(os.path.join(out_dir, "SUMMARY.md"), "w", encoding="utf-8") as fh:
         fh.write("\n".join(lines) + "\n")
     print("Stage 2 summary written" + ("" if b else " (Part B not run: classes not confirmed)"))
+
+
+# ------------------------------------------------------------------ pooled comparison
+
+MODE_LABEL = {"pair_band": "pooled within ionic-strength band", "pair_all": "pooled across all ionic strengths"}
+
+
+def _pool_stats(t):
+    edge = t[t["shape"].isin(("rising", "falling", "bell", "multi_step"))]
+    pt_w = edge["edge_hi"] - edge["edge_lo"]
+    cl_w = edge["cluster_edge_hi"] - edge["cluster_edge_lo"]
+    ok = pt_w.notna() & cl_w.notna() & (pt_w > 0)
+    return {
+        "pools": len(t),
+        "median_refs": float(t["n_references"].median()) if len(t) else np.nan,
+        "core_fraction": float(t["in_core_library"].mean()) if len(t) else np.nan,
+        "shape_counts": t["shape"].value_counts().to_dict(),
+        "shape_agrees": float((edge["shape"] == edge["curves_majority_shape"])[edge["curves_majority_shape"] != ""].mean())
+        if len(edge) else np.nan,
+        "width_ratio_median": float(edge["width_ratio"].median()),
+        "width_ratio_iqr": (float(edge["width_ratio"].quantile(.25)), float(edge["width_ratio"].quantile(.75))),
+        "width_ratio_gt_1_5": float((edge["width_ratio"] > 1.5).mean()),
+        "abs_edge_shift_median": float(edge["edge_shift"].abs().median()),
+        "cluster_over_point_interval": float((cl_w[ok] / pt_w[ok]).median()) if ok.any() else np.nan,
+        "resid_ref_R2_median": float(t["resid_ref_R2"].median()),
+        "n_with_comparison": int(edge["width_ratio"].notna().sum()),
+    }
+
+
+def pooled_summary(out_dir, res, stamp, bands):
+    stats = {m: _pool_stats(r["table"]) for m, r in res.items()}
+    # same pair, pooled within one band vs pooled across all bands
+    a, b = res["pair_band"]["table"], res["pair_all"]["table"]
+    multi = b[b["n_I_bands"] >= 2][["mineral", "sorbate", "width", "edge_pH", "I_span_decades"]]
+    a_best = (a.sort_values("n_points", ascending=False).drop_duplicates(["mineral", "sorbate"])
+              [["mineral", "sorbate", "width", "edge_pH", "band"]])
+    ab = multi.merge(a_best, on=["mineral", "sorbate"], suffixes=("_all", "_band"))
+    ab["width_ratio_all_vs_band"] = ab["width_all"] / ab["width_band"]
+    ab["edge_shift_all_vs_band"] = ab["edge_pH_all"] - ab["edge_pH_band"]
+    ab.to_csv(os.path.join(out_dir, "band_vs_all_same_pair.csv"), index=False)
+
+    # figure: width ratio by mode
+    fig, (a1, a2) = plt.subplots(1, 2, figsize=(10, 3.6))
+    for k, (m, r) in enumerate(res.items()):
+        v = r["table"]["width_ratio"].dropna()
+        v = v[v > 0]
+        a1.scatter(np.log2(v), k + np.random.default_rng(k).uniform(-.15, .15, len(v)), s=10,
+                   color=[BLUE, ORANGE][k], alpha=.6, linewidths=0)
+        a1.text(np.log2(v).max() + .2 if len(v) else 0, k, f"n={len(v)}", fontsize=7, color=MUTED, va="center")
+    a1.axvline(0, color=MUTED, lw=1, ls="--")
+    a1.set_yticks(range(len(res)), [MODE_LABEL[m] for m in res], fontsize=8)
+    a1.set_xlabel("log2(pooled width / median single-curve width);  > 0 = pooling smears the edge", fontsize=8)
+    a1.set_title("Edge width after pooling", fontsize=10, loc="left")
+    _style(a1)
+    for k, (m, r) in enumerate(res.items()):
+        t = r["table"]
+        a2.scatter(t["curves_edge_median"], t["edge_pH"], s=12, color=[BLUE, ORANGE][k], alpha=.6, linewidths=0,
+                   label=MODE_LABEL[m])
+    a2.plot([2, 11], [2, 11], color=MUTED, lw=1, ls="--")
+    a2.set_xlabel("median edge of the pool's single curves (pH)", fontsize=8)
+    a2.set_ylabel("edge of the pooled curve (pH)", fontsize=8)
+    a2.set_title("Edge position after pooling", fontsize=10, loc="left")
+    a2.legend(frameon=False, fontsize=7)
+    _style(a2)
+    fig.tight_layout()
+    fig.savefig(os.path.join(out_dir, "pooling_effects.png"), dpi=150)
+    plt.close(fig)
+
+    def block(m):
+        s = stats[m]
+        lo, hi = s["width_ratio_iqr"]
+        return [
+            f"### {MODE_LABEL[m]} (`pools_{m}.csv`)", "",
+            f"- Pools: {s['pools']} (median {s['median_refs']:.0f} references per pool). Pools passing the same QC "
+            f"as single curves: {s['core_fraction']:.1%}. Shapes: {s['shape_counts']}.",
+            f"- Pooled shape equals the majority shape of the pool's own core curves: {s['shape_agrees']:.1%}.",
+            f"- Width ratio (pooled / median single-curve width), {s['n_with_comparison']} pools: median "
+            f"{s['width_ratio_median']:.2f} (IQR {lo:.2f}-{hi:.2f}); {s['width_ratio_gt_1_5']:.0%} of pools above 1.5.",
+            f"- |pooled edge - median single-curve edge|: median {s['abs_edge_shift_median']:.2f} pH.",
+            f"- Edge interval from resampling whole papers vs resampling points: median ratio "
+            f"{s['cluster_over_point_interval']:.1f}x wider. The point bootstrap treats points from one paper as "
+            "independent and is too narrow for pooled data.",
+            f"- Share of the pooled fit's residual scatter that lies between papers: median "
+            f"{s['resid_ref_R2_median']:.1%}.", "",
+        ]
+
+    show = ["pool_id", "n_curves", "n_references", "n_points", "shape", "edge_pH", "cluster_edge_lo",
+            "cluster_edge_hi", "width", "width_ratio", "edge_shift", "resid_ref_R2", "qc_flags"]
+    lines = [
+        "# Pooled-pair comparison: what if curves are pooled instead of fitted one by one?", "",
+        "> **EXPLORATORY**, not in the spec (added at Samuel's request, 2026-10-12). Uses all clean curves, "
+        "including the ones Stage 1 QC rejected.", "", _stamp_line(stamp), "",
+        "Two pooling modes: all points of a mineral-sorbate pair inside one ionic-strength band "
+        f"({', '.join(bands['labels'])}), across Sets and papers; and all points of a pair whatever the ionic "
+        "strength. Other conditions (total sorbate, solids loading, carbonate) are NOT held constant in either "
+        "mode; their spread per pool is in the CSVs (`total_sorbate_span_decades`, `solids_span_ratio`, "
+        "`co2_fraction`).", "",
+        "Each pool is fitted exactly like a single curve (logistic + smoother, shape class, QC flags). Smoother "
+        "points are averaged into 0.1-pH levels for pooled data. Comparison is with the pool's own curves that "
+        "are in the core library.", "",
+        "## Results", "", *block("pair_band"), *block("pair_all"),
+        "## Same pair: one ionic-strength band vs all bands together", "",
+        f"{len(ab)} pairs have curves in two or more bands. Pooling across bands vs within the best-covered band: "
+        f"median width ratio {ab['width_ratio_all_vs_band'].median():.2f}, median |edge shift| "
+        f"{ab['edge_shift_all_vs_band'].abs().median():.2f} pH. Table: `band_vs_all_same_pair.csv`.", "",
+        "## Largest pools (pooled across all ionic strengths)", "",
+        md_table(res["pair_all"]["table"].sort_values("n_points", ascending=False).head(20)[show]), "",
+        "## How to read this", "",
+        "If pooling across papers were harmless, pooled widths would match single-curve widths (ratio ~1), pooled "
+        "edges would sit on the single-curve median, and little residual scatter would line up with papers. A "
+        "ratio well above 1 and a large between-paper residual share mean the pooled curve mixes study offsets "
+        "into its shape: the pooled slope is flatter and wider than any single experiment's.", "",
+        "Files: `pools_pair_band.csv`, `pools_pair_all.csv`, `band_vs_all_same_pair.csv`, `pooling_effects.png`, "
+        "`pooled_diagnostics.pdf` (one page per pool; not committed).",
+    ]
+    with open(os.path.join(out_dir, "SUMMARY.md"), "w", encoding="utf-8") as fh:
+        fh.write("\n".join(lines) + "\n")
+    print("Pooled summary written")
+    return stats
+
+
+def pooled_pdf(path, res):
+    from phslope import fit_edge
+    with PdfPages(path) as pdf:
+        for m, r in res.items():
+            t = r["table"].set_index("pool_id")
+            for pid, o in r["obs"].groupby("pool_id", sort=False):
+                row = t.loc[pid]
+                fig, ax = plt.subplots(figsize=(8, 4))
+                refs = o["reference"].unique()
+                for k, ref in enumerate(refs):
+                    sub = o[o["reference"] == ref]
+                    ax.scatter(sub["pH"], sub["response"], s=10, color=CAT[k] if len(refs) <= 8 else GRAY,
+                               alpha=.7, linewidths=0, label=ref if len(refs) <= 8 else None)
+                if np.isfinite(row.get("logistic_p50", np.nan)):
+                    p = np.linspace(o["pH"].min(), o["pH"].max(), 200)
+                    q = {k: row[f"logistic_{k}"] for k in ("lo", "hi", "p50", "w")}
+                    ax.plot(p, fit_edge.predict(q, p), color=INK, lw=2, label="pooled logistic")
+                ax.set_xlabel("pH", fontsize=9)
+                ax.set_ylabel("fraction sorbed", fontsize=9)
+                ax.set_title(f"{MODE_LABEL[m]}: {pid} | {int(row['n_curves'])} curves, {int(row['n_references'])} "
+                             f"papers | width ratio {row['width_ratio']:.2f}", fontsize=8, loc="left")
+                ax.legend(frameon=False, fontsize=6, ncol=2)
+                _style(ax)
+                fig.tight_layout()
+                pdf.savefig(fig)
+                plt.close(fig)
+    print(f"Wrote {path}")

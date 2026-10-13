@@ -9,3 +9,4 @@ Adsorption-simulations-project/
 .pytest_cache/
 reports/phslope/**/draws.npz
 reports/phslope/**/diagnostics.pdf
+reports/phslope/**/pooled_diagnostics.pdf

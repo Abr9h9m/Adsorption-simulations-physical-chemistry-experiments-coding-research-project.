@@ -83,3 +83,10 @@ fpca:                          # spec 4.7
   min_column_frac: 0.30        # registered-grid columns observed in fewer curves than this are dropped
   max_iter: 500
   tol: 1.0e-7
+
+pooled:                        # pooled-pair comparison (exploratory; not in the spec)
+  min_curves: 2                # a pool needs at least this many curves
+  min_points: 15
+  ph_decimals: 1               # smoother averages pooled points into 0.1-pH levels (keeps leave-one-out CV affordable)
+  point_bootstrap_B: 100       # point bootstrap (treats points as independent; too narrow for pooled data)
+  cluster_bootstrap_B: 200     # bootstrap over references (whole papers resampled): the honest interval
