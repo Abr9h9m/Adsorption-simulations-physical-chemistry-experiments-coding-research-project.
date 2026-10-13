@@ -1,0 +1,83 @@
+column,dtype,missing_share,n_distinct,examples
+Reference,object,0.0,334,azbn00 | azzbn01 | jhlch99 | pjtp01
+Set,object,0.0,3125,azbn00_f1 | azzbn01_f1a | jhlch99_f4a | jhlch99_f4b
+SetID,int64,0.0,107,1 | 2 | 3 | 4
+Mineral,object,0.0,49,quartz | alumina | hematite | chlorite
+Mineral_formula,object,0.361,29,SiO2 | alpha-Al2O3 | alpha-Fe2O3 | Fe(OH)3
+Mineral_source,object,0.153,133,Merck | Sigma | Wedron #510 | Min-U-Sil 30
+Temp,float64,0.904,25,26.0 | 38.0 | 50.0 | 76.0
+Electrolyte1,object,0.013,11,Na(+1) | K(+1) | Ca(+2) | Ba(+2)
+Electrolyte1_val,float64,0.016,446,0.1 | 0.01 | 0.005 | 0.002
+Electrolyte1_SD,float64,0.017,443,0.005 | 0.0005 | 0.00025 | 0.0001
+Electrolyte1_units,object,0.014,3,mol/L | ppm | mol/dm3
+Electrolyte2,object,0.018,13,Cl(+7) | N(+5) | Cl(-1) | C(+4)
+Electrolyte2_val,float64,0.02,242,0.1 | 0.01 | 0.005 | 0.002
+Electrolyte2_SD,float64,0.022,241,0.005 | 0.0005 | 0.00025 | 0.0001
+Electrolyte2_units,object,0.018,3,mol/L | ppm | mol/dm3
+Electrolyte3,object,0.902,26,F(-1) | P(+5) | Si(+4) | C(+4)
+Electrolyte3_val,float64,0.902,321,0.0001 | 0.0005 | 2e-06 | 5e-05
+Electrolyte3_SD,float64,0.915,239,5e-06 | 2.5e-05 | 1e-07 | 2.5e-06
+Electrolyte3_units,object,0.903,2,mol/L | ppm
+Electrolyte4,object,0.983,4,K(+1) | Mg(+2) | S(+6) | Na(+1)
+Electrolyte4_val,float64,0.983,18,0.01 | 0.054 | 1.43e-05 | 0.000143
+Electrolyte4_SD,float64,0.983,17,0.0005 | 0.0027 | 7.15e-07 | 7.15e-06
+Electrolyte4_units,object,0.983,2,mol/L | ppm
+Electrolyte5,object,0.983,6,Cl(-1) | S(+6) | Mg(+2) | Ca(+2)
+Electrolyte5_val,float64,0.983,19,0.52 | 3.81e-05 | 0.000381 | 0.00178
+Electrolyte5_SD,float64,0.983,18,0.026 | 1.905e-06 | 1.905e-05 | 8.9e-05
+Electrolyte5_units,object,0.983,2,mol/L | ppm
+Electrolyte6,object,0.985,4,S(+6) | K(+1) | Ca(+2) | Cl(-1)
+Electrolyte6_val,float64,0.985,17,0.0267 | 0.0082 | 0.00011 | 0.028
+Electrolyte6_SD,float64,0.985,16,0.001335 | 0.00041 | 5.5e-06 | 0.0014
+Electrolyte6_units,object,0.985,2,mol/L | ppm
+Electrolyte7,object,0.992,3,C(+4) | Cl(-1) | S(+6)
+Electrolyte7_val,float64,0.992,6,0.00016 | 0.0018 | 0.00061 | 0.000543
+Electrolyte7_SD,float64,0.992,5,8e-06 | 9e-05 | 3.05e-05 | 2.715e-05
+Electrolyte7_units,object,0.992,2,mol/L | ppm
+pH,float64,0.016,25903,3.5471 | 4.0765 | 4.6333 | 5.0254
+pH_SD,float64,0.016,1,0.1
+Sorbate,object,0.0,56,U(+6) | Am(+3) | Co(+2) | Th(+4)
+Sorbate_val,float64,0.223,5515,1e-06 | 1e-05 | 0.0001 | 2.03e-07
+Sorbate_SD,float64,0.223,5519,5e-08 | 5e-07 | 5e-06 | 1.015e-08
+Sorbate_units,object,0.216,2,mol/L | nmol/L
+Aq_val,float64,0.228,27649,1.06023e-06 | 1.04955e-06 | 9.86833e-07 | 8.74288e-07
+Aq_SD,float64,0.25,13686,7.07107e-08 | 7.07107e-07 | 7.07107e-06 | 1.02202e-08
+Aq_units,object,0.0,1,mol/L
+Sorbed_val,float64,0.231,27728,-6.0231e-08 | -4.9555e-08 | 1.3167e-08 | 1.25712e-07
+Sorbed_SD,float64,0.253,13308,5e-08 | 5e-07 | 5e-06 | 1.4404e-08
+Sorbed_units,object,0.212,1,mol/L
+SurfCharge_val,float64,0.796,7771,0.00135441 | 0.00127839 | 0.00121822 | 0.00115432
+SurfCharge_SD,float64,0.796,7674,0.000135441 | 0.000127839 | 0.000121822 | 0.000115432
+SurfCharge_units,object,0.791,1,mol/L
+Mineral_val,float64,0.026,445,12.0 | 12.5 | 28.6 | 50.0
+Mineral_SD,float64,0.05,435,1.2 | 1.25 | 2.86 | 5.0
+Mineral_units,object,0.026,6,g/L | m2/L | mg/L | mg/mL
+MineralSA,float64,0.147,274,0.2 | 10.0 | 0.31 | 0.03
+MineralSA_SD,float64,0.147,243,0.02 | 1.0 | 0.031 | 0.01
+MineralSA_units,object,0.144,1,m2/g
+Mineralsites,float64,0.0,2,2.31 | 10.8
+Mineralsites_SD,float64,0.0,3,0.231 | 1.08 | 0.033
+Mineralsites_units,object,0.0,1,sites/nm2
+CEC,float64,0.806,36,24.2 | 18.2 | 20.1 | 20.0
+CEC_SD,float64,0.806,39,2.42 | 1.82 | 2.01 | 2.0
+CEC_units,object,0.807,5,meq/100g | cmol/kg | meq/kg | eq/kg
+Gas1,object,0.043,5,N2(g) | O2(g) | Ar(g) | CO2(g)
+Gas1_val,float64,0.046,5,0.8 | 1.0 | 0.0101325 | 0.000316
+Gas1_SD,float64,0.046,5,0.08 | 0.1 | 0.00101325 | 3.16e-05
+Gas1_units,object,0.063,1,bar
+Gas2,object,0.538,2,O2(g) | CO2(g)
+Gas2_val,float64,0.538,4,0.2 | 2e-06 | 0.0003678 | 0.0195
+Gas2_SD,float64,0.538,4,0.02 | 2e-07 | 3.678e-05 | 0.00195
+Gas2_units,object,0.538,1,bar
+Gas3,object,0.612,1,CO2(g)
+Gas3_val,float64,0.613,71,0.0003659 | 0.0003678 | 0.0003707 | 0.000362
+Gas3_SD,float64,0.612,72,3.659e-05 | 3.678e-05 | 3.707e-05 | 3.62e-05
+Gas3_units,object,0.612,1,bar
+X_axis,object,0.999,1,Sorbate
+X_val,float64,0.999,22,13.0566 | 10.9757 | 8.958 | 6.988
+X_SD,float64,1.0,0,
+X_units,object,0.999,1,-log(mol/L)
+Y_axis,object,0.745,6,Kd | charge | Sorbed | aqueous
+Y_val,float64,0.745,7590,0.0597 | 0.6749 | 1.6303 | 4.5243
+Y_SD,float64,0.769,6754,0.2307 | 0.233 | 0.5198 | 1.0988
+Y_units,object,0.745,9,mL/g | atoms/nm2 | mmol/kg | %
