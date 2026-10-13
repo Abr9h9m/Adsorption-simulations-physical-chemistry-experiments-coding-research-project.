@@ -66,7 +66,7 @@ def evaluate_scheme(curves, obs, cfg, name, window=None, weight=None, seed=0):
     return P, len(main), len(base)
 
 
-def run(seed=None):
+def run(seed=None, reuse=False):
     ecfg = load_exp_config()
     cfg = ecfg["e1"]
     seed = ecfg["seed"] if seed is None else seed
@@ -82,8 +82,17 @@ def run(seed=None):
                ("W0 (0.10, 0.90)", (0.10, 0.90), None), ("W1 empirical (0.03, 0.97)", (0.03, 0.97), weight_W1(tab)),
                ("W2 logit-delta (0.03, 0.97)", (0.03, 0.97), weight_W2)]
     res, counts = [], []
+    import re
     for name, window, weight in schemes:
-        P, n_main, n_base = evaluate_scheme(curves, obs, cfg, name, window, weight, seed)
+        cache = os.path.join(OUT, "cv_" + re.sub(r"[^A-Za-z0-9]+", "_", name).strip("_") + ".csv")
+        if reuse and os.path.exists(cache):
+            P = pd.read_csv(cache)
+            n_main, n_base = len(P), int((curves["shape"].isin(["rising", "falling"]) & (curves["solids_g_L"] > 0)
+                                          & (curves["total_sorbate_mol_L"] > 0)).sum())
+        else:
+            P, n_main, n_base = evaluate_scheme(curves, obs, cfg, name, window, weight, seed)
+            os.makedirs(OUT, exist_ok=True)
+            P.to_csv(cache, index=False)
         P["target_edge"] = P["curve_id"].map(target)
         P["covered"] = (P["target_edge"] >= P["edge_lo"]) & (P["target_edge"] <= P["edge_hi"])
         P["edge_error"] = (P["pred_edge"] - P["target_edge"]).abs()
@@ -94,8 +103,7 @@ def run(seed=None):
         print(f"E2 {name}: {n_main} curves")
     R = pd.concat(res, ignore_index=True)
     common = set.intersection(*[set(d["curve_id"]) for _, d in R.groupby("scheme")])
-    Rc = R[R["curve_id"].isin(common)]
-    Rc = Rc.merge(curves[["curve_id", "unit"]], on="curve_id")
+    Rc = R[R["curve_id"].isin(common)]                    # P already carries the unit column
     summ = Rc.groupby("scheme").agg(n=("curve_id", "size"), median_logK_rmse=("logK_rmse", "median"),
                                     median_edge_error=("edge_error", "median"), coverage=("covered", "mean")).reset_index()
     w0 = summ.set_index("scheme").loc["W0 (0.03, 0.97)", "median_logK_rmse"]
@@ -145,4 +153,5 @@ def run(seed=None):
 
 
 if __name__ == "__main__":
-    run()
+    import sys
+    run(reuse="--reuse" in sys.argv)

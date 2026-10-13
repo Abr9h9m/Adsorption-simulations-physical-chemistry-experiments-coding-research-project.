@@ -4,6 +4,29 @@ Build spec: `PH_ONLY_DEV_SPEC.md` (project root). This README holds the decision
 
 **Status (2026-10-13):** Stage 0 PASS. Stage 1: synthetic PASS, real data **FAIL** (46.8% < 80%); Samuel chose to continue with the 745-curve core library, so **everything from Stage 2 on is EXPLORATORY**. Stage 2 (`--exploratory`): go/no-go rule met with the unconfirmed classes (signal is mostly sorbate class and the specific pair; mineral class adds little). Stage 3 (`--exploratory`, no descriptors yet): every model fails (median edge error 1.1-1.8 pH vs 0.5); the same pair measured in another paper predicts to 0.6 pH. Pooled-pair comparison: pooling across papers widens edges ~1.4x. Export tables in `export/`. Blocked for confirmatory runs: classes confirmation, descriptor tables, freezing thresholds.yaml.
 
+## Improvement program (PH_ONLY_TEST_PROTOCOL.md)
+
+Code in `phslope/experiments/`, settings and pre-declared decision rules in `config/experiments.yaml`, outputs in
+`reports/phslope/experiments/E0 ... E9, F/`, every run in `REGISTRY.md`, accepted/rejected adjustments in
+`MODEL_ADJUSTMENTS.md`. A seeded 20% of papers (24 of 120) is LOCKED in `config/locked_test_papers.txt`;
+development code drops them (`registry.drop_locked`). The locked set is opened once, by
+`python -m phslope.experiments.integrate --open-locked-set "I understand this is the single final look"`.
+Status and plain-English summary: `reports/phslope/experiments/CHECKPOINT.md`.
+
+```
+python -m phslope.experiments.e00_inventory      # E0.1 raw inventory + mass balance
+python -m phslope.experiments.e03_audit          # E3 duplicates, lineage clusters, validity flags
+python -m phslope.experiments.e01_logk_mixed     # E1 log10 K mixed model (~14 min; --reuse to redo the summary)
+python -m phslope.experiments.e02_weights_censoring   # E2 (~40 min)
+python -m phslope.experiments.e04_lab_effect     # E4
+python -m phslope.experiments.e05_coverage       # E5
+python -m phslope.experiments.e07_carbonate      # E7 step 1a (~25 min)
+python -m phslope.experiments.e08_ionic_strength # E8
+python -m phslope.experiments.e09_surface_area   # E9
+python -m phslope.experiments.templates          # E6/E9/E10 data-entry templates + priority list
+python -m phslope.experiments.integrate          # F on development papers only
+```
+
 ## How to run
 
 From the project root:

@@ -66,6 +66,32 @@ Novelty claims below are **my reading of a short search, not a systematic review
 | Ionic strength null as inner/outer-sphere mixture | Selenate mixture work | Testing it across a compiled database is plausible but unverified |
 | Modular query interface for sorption data | L-SCIE is a database, I did not find a modular multi-dataset explorer | Possible software/tools note |
 
+## 4b. Additional sources from the second search pass (2026-10-13)
+
+- **L-SURF paper:** the search index lists it as *A chemistry-informed hybrid machine learning approach to predict metal adsorption onto mineral surfaces*, Applied Geochemistry 155 (2023), article 105731 (journal/volume taken from the ADS bibcode `2023ApGC..15505731C`; the ADS page itself was blocked, so **abstract not read**). [ScienceDirect](https://sciencedirect.com/science/article/pii/S0883292723001762) · [OSTI record](https://www.osti.gov/biblio/1989507) · [LLNL L-SURF software page](https://softwarelicensing.llnl.gov/product/l-surf-llnl-surface-complexation-ion-exchange-database) [title only]. **Action: read this paper before claiming novelty over it.**
+- **Selenium on goethite, Balistrieri & Chao 1987, Soil Sci. Soc. Am. J.** [read, abstract] [USGS record](https://www.usgs.gov/publications/selenium-adsorption-goethite). Directly relevant to three of our discrepancies: goethite sites are **heterogeneous**; **higher total selenite shifts the edge to lower pH** (a loading effect); and **carbonate/bicarbonate, phosphate, silicate etc. compete** with selenite (competition order given in the abstract). It also reports selenite binding far more strongly than selenate. This supports adding total sorbate, and competing anions (esp. carbonate, phosphate) as covariates for Se.
+- **Goethite site density, Villalobos, Trotz & Leckie 2003, J. Colloid Interface Sci. 268:273.** [read, abstract] [USF record](https://digitalcommons.usf.edu/egx_facpub/6). Three synthetic goethites differing ~2x in surface area had proton and carbonate uptake **inversely related to specific surface area**, explained by differing reactive **site density**; one set of affinity constants fit all after applying site-density ratios. So the same "goethite" from different labs differs in capacity per m², which contributes to paper effects and strengthens the case for the surface-area/site-density covariate (protocol E9).
+- **Clay-mineral ML:** [Prediction of adsorption of metal cations by clay minerals using machine learning (ScienceDirect, 2024)](https://www.sciencedirect.com/science/article/abs/pii/S004896972401876X) [title only; fetch blocked]. Another ML precedent for metal sorption on minerals; read before positioning.
+- Search also returned many biochar/heavy-metal ML papers; these are a different material class and not directly comparable.
+
+## 4c. Search log (what was actually searched)
+
+Scopus and Web of Science **were not searched** (institutional login required; not available to me). The open scholarly index API (OpenAlex) was unreachable from this environment (blocked/rate-limited). What I did instead is a **web-search sweep**, not a systematic review, with these queries (standard/extended web search, 2026-10-13):
+
+1. particle concentration effect Kd / solids concentration / Brownian pumping
+2. U(VI) goethite ferrihydrite carbonate ternary surface complex
+3. L-SCIE database machine learning sorption
+4. selenate adsorption goethite ionic strength inner/outer sphere
+5. LFER metal adsorption hydrous ferric oxide hydrolysis (Dzombak & Morel)
+6. machine learning sorption edge pH compiled literature database random forest
+7. Chang Zavarin L-SURF
+8. interlaboratory variability goethite surface area site density
+9. solid-to-liquid ratio effect on apparent Kd
+10. hierarchical mixed-effects, compiled adsorption data, leave-one-study-out
+11. selenite/selenate goethite ionic strength (Hayes, Peak & Sparks)
+
+Query 10 returned no relevant precedent for **paper-level mixed models with leave-one-paper-out validation on compiled sorption curves** (only unrelated results). That is weak evidence of a gap, not proof. **Dr. Black should run a proper Scopus/Web of Science search** with strings built from the list above; I can format them for her.
+
 ## 5. Gaps and what I could not verify
 
 - Not read: the OECD-NEA thermodynamic sorption models/Kd guidance report (fetch blocked), PubMed pages, James & Healy, Hayes, Hiemstra & van Riemsdijk 1999, the Dzombak & Morel book LFER chapter.

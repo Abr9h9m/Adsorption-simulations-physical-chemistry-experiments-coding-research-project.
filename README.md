@@ -31,6 +31,7 @@ Real data (LLNL compiled set) lives outside this folder: `C:\Users\itzju\sc.data
 python test_fixes.py                       # regression tests (two-axis pipeline)
 python -m pytest                           # phslope tests
 python -m phslope.census                   # phslope Stage 0
+python -m phslope.experiments.integrate    # improvement program, development papers (see phslope/README.md)
 python generate_synthetic_dataset.py       # rewrites synthetic_pilot_data.csv
 PIPELINE_MODE=synthetic python run_pipeline.py
 PIPELINE_MODE=real PIPELINE_DATA=C:\Users\itzju\sc.dataset.csv python run_pipeline.py
