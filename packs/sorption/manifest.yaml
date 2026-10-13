@@ -1,0 +1,36 @@
+# Sorption dataset manifest (LLNL L-SCIE compiled sorption data, "Appendix A" schema).
+# Thresholds reproduce the phslope Stage 0 census (76 passing pairs on the 38,906-row file).
+schema_version: 1
+pack: sorption
+dataset:
+  id: lscie_sorption
+  title: "Compiled sorption edges (L-SCIE, Appendix A schema)"
+  source: "LLNL L-SCIE compiled sorption dataset, file sc.dataset.csv (release not recorded in the file)"
+  status: exploratory
+columns:
+  - {name: Mineral, role: group_a, description: "mineral (material)"}
+  - {name: Sorbate, role: group_b, description: "sorbate with oxidation state, e.g. U(+6)"}
+  - {name: Reference, role: cluster, description: "paper code; independence unit"}
+  - {name: Set, role: series, description: "one plotted series = one curve"}
+  - {name: pH, role: sweep_x, units: pH}
+  - {name: Sorbed_val, role: value, units_from: Sorbed_units}
+  - {name: Aq_val, role: value, units_from: Aq_units}
+  - {name: Sorbate_val, role: value, units_from: Sorbate_units, convert_to: mol/L}
+  - {name: Mineral_val, role: covariate, units_from: Mineral_units, convert_to: g/L}
+  - {name: Ionic_strength, role: covariate, units: mol/L, derived_by: pack.sorption.ionic_strength}
+  - {name: Electrolyte_signature, role: label, derived_by: pack.sorption.electrolyte_signature}
+  - {name: Mineral_formula, role: label}
+  - {name: Temp, role: covariate, units: degC}
+unit_conversions:
+  mol/L: {"mol/L": 1.0, "mmol/L": 1.0e-3, "umol/L": 1.0e-6, "nmol/L": 1.0e-9}
+  g/L: {"g/L": 1.0, "mg/mL": 1.0, "mg/L": 1.0e-3}
+response_modes:
+  - {id: fraction, expr: pack.sorption.fraction, range: [0, 1], range_tolerance: 0.05, max_out_of_range_frac: 0.05,
+     description: "fraction sorbed = sorbed / total (total in mol/L); else 1 - aqueous / total"}
+  - {id: log_kd, expr: pack.sorption.log_kd, description: "log10(sorbed / aqueous), not solids-normalised"}
+curve: {key: [Reference, Set], x: pH, x_valid_range: [0, 14], min_x_levels: 3, x_round: 2, min_x_span: 1.0}
+pair_coverage: {min_points: 50, min_clusters: 2, min_x_span: 4.0}
+validity:
+  - {rule: "sweep value inside x_valid_range", action: exclude_row}
+  - {rule: "response more than 5% of points outside range +/- tolerance", action: flag_curve}
+flags: [response_out_of_range]
