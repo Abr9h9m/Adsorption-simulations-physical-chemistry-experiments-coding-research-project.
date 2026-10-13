@@ -680,6 +680,11 @@ def stage3_summary(out_dir, D, fsets, skipped, summ, diffs, thr_all, stamp):
         "difference below zero, for edge error and curve error).", "",
         md_table(ver), "",
         "## Metrics by model", "", md_table(summ), "",
+        "Note on curve error: the spec weights each grid point by the inverse of its bootstrap variance. "
+        "Plateau points have narrow intervals and slopes near zero, so they dominate, and a nearly flat "
+        "prediction (e.g. a global mean that averages rising and falling edges) can score well while getting "
+        "the edge direction wrong. Read `median_curve_error` together with `median_curve_error_unweighted`, "
+        "`shape_correct` and `sign_correct`.", "",
         "## Paired differences vs baselines (model minus baseline; negative = model better; 95% intervals over "
         "held-out papers)", "", md_table(diffs), "",
         "Files: `per_curve_worst_first.csv` (every held-out curve, worst first), `metrics_by_model.csv`, "

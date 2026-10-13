@@ -10,7 +10,10 @@ Per held-out curve (spec section 5):
   p50_error         |predicted - observed edge position| (pH)
   curve_error       RMS difference between predicted and observed slope over the curve's
                     observed grid points, weighted by inverse bootstrap variance, divided by
-                    the observed slope range
+                    the observed slope range (spec definition)
+  curve_error_unweighted  the same without weights. Added because the inverse-variance weights
+                    favour plateau points (narrow intervals, slope ~0), so a nearly flat
+                    prediction can score well on curve_error while getting the edge wrong
   shape_correct     predicted single-edge direction (sign of height) equals the observed shape
   sign_correct      predicted slope sign equals observed over the edge region (observed grid
                     points with |slope| >= 25% of the curve's peak |slope|), majority rule
@@ -36,10 +39,12 @@ def curve_metrics(g_pred, lo, hi, g_obs, mask, low, up, edge_pred, edge_obs, edg
     sd = (up[m] - low[m]) / 3.92
     w = 1 / np.where(np.isfinite(sd) & (sd > 0), sd, np.nanmedian(sd[sd > 0]) if (sd > 0).any() else 1) ** 2
     curve_err = np.sqrt(np.sum(w * (pred - obs) ** 2) / np.sum(w)) / rng_ if rng_ > 0 else np.nan
+    curve_err_unw = np.sqrt(np.mean((pred - obs) ** 2)) / rng_ if rng_ > 0 else np.nan
     region = np.abs(obs) >= 0.25 * np.abs(obs).max()
     sign_ok = np.mean(np.sign(pred[region]) == np.sign(obs[region])) > 0.5 if region.any() else np.nan
     pred_shape = "rising" if h_pred > 0 else "falling"
     return {"p50_error": abs(edge_pred - edge_obs), "curve_error": curve_err,
+            "curve_error_unweighted": curve_err_unw,
             "shape_correct": pred_shape == shape_obs, "sign_correct": sign_ok,
             "interval_coverage": float(np.mean((obs >= lo[m]) & (obs <= hi[m]))),
             "p50_covered": bool(abs(edge_pred - edge_obs) <= edge_q)}
@@ -137,6 +142,7 @@ def summarize(per_curve):
         "median_p50_error": g["p50_error"].median(),
         "p50_error_q25": g["p50_error"].quantile(.25), "p50_error_q75": g["p50_error"].quantile(.75),
         "median_curve_error": g["curve_error"].median(),
+        "median_curve_error_unweighted": g["curve_error_unweighted"].median(),
         "shape_correct": g["shape_correct"].mean(), "sign_correct": g["sign_correct"].mean(),
         "interval_coverage": g["interval_coverage"].mean(), "p50_coverage": g["p50_covered"].mean(),
     }).reset_index()
