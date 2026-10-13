@@ -54,11 +54,13 @@ def config_hash():
 
 
 def git_commit():
-    """Current commit, with '-dirty' appended if tracked files have uncommitted changes."""
+    """Current commit, with "-dirty" appended if tracked code, config or input files have uncommitted changes."""
     try:
         sha = subprocess.run(["git", "rev-parse", "--short", "HEAD"], cwd=PROJECT_ROOT,
                              capture_output=True, text=True, check=True).stdout.strip()
-        dirty = subprocess.run(["git", "status", "--porcelain", "--untracked-files=no"], cwd=PROJECT_ROOT,
+        # only code, configuration and inputs count; report outputs written by runs do not change results
+        dirty = subprocess.run(["git", "status", "--porcelain", "--untracked-files=no", "--", "phslope", "tests",
+                                "data", "*.py", "requirements.txt"], cwd=PROJECT_ROOT,
                                capture_output=True, text=True, check=True).stdout.strip()
         return sha + ("-dirty" if dirty else "")
     except (OSError, subprocess.CalledProcessError):

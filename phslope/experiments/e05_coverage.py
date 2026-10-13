@@ -29,6 +29,8 @@ from phslope.experiments.registry import (EXP_DIR, exp_stamp, load_exp_config, l
                                           write_run_info)
 
 OUT = os.path.join(EXP_DIR, "E5")
+MIN_SLOPE = 0.05      # |d log10 K / dpH| below this: the window is flat, no edge can be located
+MAX_EXTRAP = 5.0      # edge more than this many pH units from the window centre: no usable edge
 
 
 def truncations(curves, obs, cfg, seed):
@@ -56,9 +58,13 @@ def truncations(curves, obs, cfg, seed):
                 f = line_fit(m["pH"], m["log10K"])
                 if f["b"] * np.sign(r.b) <= 0:
                     rows.append({"curve_id": r.curve_id, "window": wdt, "draw": k, "edge": np.nan,
-                                 "sign_flip": True})
+                                 "sign_flip": True, "no_usable_edge": True})
                     continue
                 e = -f["a"] / f["b"]
+                if abs(f["b"]) < MIN_SLOPE or abs(e - (lo + wdt / 2)) > MAX_EXTRAP:
+                    rows.append({"curve_id": r.curve_id, "window": wdt, "draw": k, "edge": np.nan,
+                                 "sign_flip": False, "no_usable_edge": True})
+                    continue
                 try:
                     lp = fit_edge.fit_logistic(s["pH"], s["response"], fit_cfg, n_starts=4, seed=k)["p50"] \
                         if s["pH"].nunique() >= 4 else np.nan
@@ -66,6 +72,7 @@ def truncations(curves, obs, cfg, seed):
                     lp = np.nan
                 pts = s["pH"].to_numpy()
                 rows.append({"curve_id": r.curve_id, "window": wdt, "draw": k, "edge": e, "sign_flip": False,
+                             "no_usable_edge": False,
                              "edge_error": abs(e - full_edge), "logistic_error": abs(lp - full_logit),
                              "n_mid": len(m), "mid_span": float(np.ptp(m["pH"])),
                              "extrap_dist": float(np.min(np.abs(pts - e))) if not (pts.min() <= e <= pts.max())
@@ -97,6 +104,8 @@ def curve_features(curves, obs):
     rows = []
     by = {k: g for k, g in obs.groupby("curve_id")}
     for r in curves.dropna(subset=["a", "b"]).itertuples():
+        if abs(r.b) < MIN_SLOPE:
+            continue
         g = by.get(r.curve_id)
         if g is None:
             continue
@@ -156,7 +165,8 @@ def run(seed=None):
     by_w = ok.groupby("window").agg(n=("edge_error", "size"), median_line_error=("edge_error", "median"),
                                     median_logistic_error=("logistic_error", "median"),
                                     share_within_0_5=("edge_error", lambda s: (s <= 0.5).mean())).reset_index()
-    flips = T.groupby("window")["sign_flip"].mean().rename("share_slope_sign_flipped").reset_index()
+    flips = T.groupby("window").agg(share_slope_sign_flipped=("sign_flip", "mean"),
+                                    share_no_usable_edge=("no_usable_edge", "mean")).reset_index()
     by_w = by_w.merge(flips, on="window")
 
     census = curves[curves["in_census_set"].astype(bool) & curves["shape"].isin(["rising", "falling"])]

@@ -40,16 +40,23 @@ def prepare(curves, edge_col):
     return c
 
 
-def baseline_predictions(c, unit_col="reference", hcfg=None, sd=None):
-    """One row per curve with the six baseline edge predictions (NaN where undefined)."""
+def baseline_predictions(c, unit_col="reference", hcfg=None, sd=None, also_differ=()):
+    """One row per curve with the six baseline edge predictions (NaN where undefined).
+    also_differ: extra columns (e.g. a lab id) on which a usable other curve must ALSO differ."""
     hcfg = hcfg or {"match_solids_decades": 0.5, "match_total_decades": 1.0}
     sd = sd or {v: c[v].std() for v in FEATS}
     rows = []
     by_grp = {g: d for g, d in c.groupby("grp")}
     for i, r in c.iterrows():
-        other_all = c[c[unit_col] != r[unit_col]]
+        keep_all = c[unit_col] != r[unit_col]
+        for col in also_differ:
+            keep_all &= c[col] != r[col]
+        other_all = c[keep_all]
         o = by_grp[r["grp"]]
-        o = o[o[unit_col] != r[unit_col]]
+        keep = o[unit_col] != r[unit_col]
+        for col in also_differ:
+            keep &= o[col] != r[col]
+        o = o[keep]
         row = {"curve_id": r["curve_id"], "n_other_units": int(o[unit_col].nunique())}
         cls = other_all[(other_all["sorbate_class"] == r["sorbate_class"]) & (other_all["shape"] == r["shape"])]
         row["B4_class_mean"] = cls["edge"].mean() if len(cls) else np.nan
