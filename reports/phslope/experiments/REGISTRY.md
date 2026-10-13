@@ -23,3 +23,7 @@
 | 2026-10-13 21:22 | E20 | c80a5b8 | 88b1c3a1b769 | reported | 3 temperature series |
 | 2026-10-13 21:23 | E13 | c80a5b8-dirty | 88b1c3a1b769 | DO NOT KEEP competitor term (rule not met) | oxyanion (test)/log10 K : -0.110; oxyanion (test)/native e: 0.299; cations (control)/log10 K : -0.168; cations (control)/native e: 0.342 |
 | 2026-10-13 21:24 | E13 | c80a5b8-dirty | 88b1c3a1b769 | DO NOT KEEP competitor term (rule not met) | oxyanion (test)/log10 K : -0.110; oxyanion (test)/native e: 0.299; cations (control)/log10 K : -0.150; cations (control)/native e: 0.300 |
+| 2026-10-13 21:28 | E16 | 59dda0c | 88b1c3a1b769 | reported | useful: {'mineral': False, 'sorbate': False} |
+| 2026-10-13 21:29 | E23/M-Power | 53f0944 | 88b1c3a1b769 | PLACEBO FAILURE: tighten rules | a 0.48; b 0.08; c 0.06; e 1.00 |
+| 2026-10-13 21:36 | E23-a2 |  |  | rerun of placebo a with loading kept real | {'solids_r': 0.48, 'solids_f': 0.46} |
+| 2026-10-13 21:39 | E23-a3 |  |  | placebo a with within-between split | {'solids_r': 0.06, 'solids_f': 0.12} |

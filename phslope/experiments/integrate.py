@@ -40,6 +40,8 @@ def accepted_adjustments():
     e7 = os.path.join(EXP_DIR, "E7", "SUMMARY.md")
     if os.path.exists(e7) and "**KEEP log10 pCO2**" in open(e7, encoding="utf-8").read():
         acc["E7 log10 pCO2"] = {"covs": ["log10_pco2_f", "atmosphere_unknown"]}
+    if os.path.exists(os.path.join(EXP_DIR, "E23_MPower", "SUMMARY.md")):
+        acc["E1 within-between solids (E23)"] = {"within_between": ["solids_r", "solids_f"]}
     e2 = os.path.join(EXP_DIR, "E2", "scheme_summary.csv")
     if os.path.exists(e2):
         s = pd.read_csv(e2)
@@ -73,9 +75,8 @@ def prepare(curves, obs, ecfg, adjustments):
     return main
 
 
-def evaluate(c, obs, ecfg, covs, seed):
-    P = E1.cross_validate(c, obs, ecfg["e1"], covariates=True, seed=seed, extra_covs=covs)
-    return P
+def evaluate(c, obs, ecfg, covs, seed, wb=()):
+    return E1.cross_validate(c, obs, ecfg["e1"], covariates=True, seed=seed, extra_covs=covs, within_between=wb)
 
 
 def run_dev(seed=None):
@@ -88,14 +89,22 @@ def run_dev(seed=None):
     write_run_info(OUT, stamp)
     c = prepare(curves, obs, ecfg, acc)
     all_covs = [x for spec in acc.values() for x in spec.get("covs", [])]
-    variants = {"final model": all_covs, "E1 core only": []}
+    all_wb = [x for spec in acc.values() for x in spec.get("within_between", [])]
+    variants = {"final model": (all_covs, all_wb), "E1 core only": ([], [])}
     for name, spec in acc.items():
-        if spec.get("covs"):
-            variants[f"final without {name}"] = [x for x in all_covs if x not in spec["covs"]]
+        if spec.get("covs") or spec.get("within_between"):
+            variants[f"final without {name}"] = ([x for x in all_covs if x not in spec.get("covs", [])],
+                                                [x for x in all_wb if x not in spec.get("within_between", [])])
     preds = {}
-    for name, covs in variants.items():
+    for name, (covs, wb) in variants.items():
+        cache = os.path.join(OUT, "cv_" + "".join(ch if ch.isalnum() else "_" for ch in name) + ".csv")
+        if os.path.exists(cache):
+            preds[name] = pd.read_csv(cache)
+            continue
         print(f"F: {name}")
-        preds[name] = evaluate(c, obs, ecfg, covs, seed)
+        preds[name] = evaluate(c, obs, ecfg, covs, seed, wb)
+        os.makedirs(OUT, exist_ok=True)
+        preds[name].to_csv(cache, index=False)
     cb = H.prepare(c, "pH_native")
     base = H.baseline_predictions(cb, unit_col="unit")
     for name, P in preds.items():
@@ -144,8 +153,9 @@ def run_locked(phrase, seed=None):
     acc = accepted_adjustments()
     c = prepare(curves, obs, ecfg, acc)
     covs = [x for spec in acc.values() for x in spec.get("covs", [])]
+    wb = [x for spec in acc.values() for x in spec.get("within_between", [])]
     dev, test = c[~c["reference"].isin(locked)], c[c["reference"].isin(locked)]
-    m = E1.E1Model(ecfg["e1"], True, covs).fit(dev)
+    m = E1.E1Model(ecfg["e1"], True, covs, wb).fit(dev)
     P = m.predict(test, np.random.default_rng(seed))
     P.to_csv(os.path.join(OUT, "LOCKED_predictions.csv"), index=False)
     log_run("F-locked", "LOCKED SET EVALUATED", f"{len(P)} curves", exp_stamp())

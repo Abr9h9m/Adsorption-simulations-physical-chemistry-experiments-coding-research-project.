@@ -123,3 +123,6 @@ e13:
   competitors: ["P(+5)", "Si(+4)", "C(+4)", "S(+6)", "F(-1)"]   # plus organic anions (labels without an oxidation state in parentheses)
   floor_mol_L: 1.0e-7       # log10(competitor + floor), so curves without a competitor enter at the floor
   decision: "keep if the oxyanion coefficient on log10 K (and on the edge) has a 95% interval excluding zero in the expected (negative) direction AND the cation control interval includes zero"
+e1_within_between:   # added after E23 (registry E23-a3), before the integration run
+  covariates: [solids_r, solids_f]
+  decision: "include in the final model if the held-out median edge error is not worse than without it (difference-of-medians interval upper bound <= 0.05 pH); motivated by validity (E23), not by prediction"

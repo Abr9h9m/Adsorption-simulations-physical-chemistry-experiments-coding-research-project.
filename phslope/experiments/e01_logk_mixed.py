@@ -89,9 +89,13 @@ def choose_breakpoint(train, grid):
 
 
 class E1Model:
-    def __init__(self, cfg, covariates=True, extra_covs=()):
-        """extra_covs: additional level covariates (columns of the curve table), e.g. for E7 / E9."""
+    def __init__(self, cfg, covariates=True, extra_covs=(), within_between=()):
+        """extra_covs: additional level covariates (columns of the curve table), e.g. for E7 / E9.
+        within_between: covariates for which the pair mean (training data) is added as a separate term
+        (Mundlak / within-between split), so the covariate's own coefficient is identified only by
+        differences WITHIN a pair. Added after E23 showed between-pair confounding of the solids term."""
         self.cfg, self.covariates, self.extra_covs = cfg, covariates, list(extra_covs)
+        self.within_between = list(within_between)
 
     def fit(self, train):
         t = train.copy()
@@ -99,7 +103,10 @@ class E1Model:
         t["a_c"] = t["a"] + t["b"] * t["pH_c"]
         self.bp = choose_breakpoint(t, self.cfg["hinge_grid"]) if self.covariates else np.nan
         t = add_covariates(t, self.bp) if self.covariates else t
-        self.level_fixed = ["falling"] + (LEVEL_COVS if self.covariates else []) + self.extra_covs
+        self.pair_means = {v: t.groupby("pair_dir")[v].mean() for v in self.within_between}
+        for v in self.within_between:
+            t[v + "_pm"] = t["pair_dir"].map(self.pair_means[v])
+        self.level_fixed = ["falling"] + (LEVEL_COVS if self.covariates else []) + self.extra_covs             + [v + "_pm" for v in self.within_between]
         self.level_fixed = [c for c in self.level_fixed if t[c].nunique(dropna=True) > 1]
         t = t.dropna(subset=self.level_fixed + ["a_c", "b"])
         self.train = t
@@ -131,6 +138,8 @@ class E1Model:
         d = test.copy()
         d["pH_c"] = reference_pH(self.train, d)
         d = add_covariates(d, self.bp) if self.covariates else d
+        for v in self.within_between:                      # unseen pair: its own value is the best guess
+            d[v + "_pm"] = d["pair_dir"].map(self.pair_means[v]).fillna(d[v])
         ok = d[self.level_fixed].notna().all(axis=1)
         d = d[ok].copy()
         ma, va = self._mean(d, "a")
@@ -199,13 +208,13 @@ def baseline_logk(c, obs):
     return pd.DataFrame(rows)
 
 
-def cross_validate(c, obs, cfg, covariates=True, seed=0, extra_covs=()):
+def cross_validate(c, obs, cfg, covariates=True, seed=0, extra_covs=(), within_between=()):
     rng = np.random.default_rng(seed)
     preds = []
     for u in c["unit"].unique():
         test = c[c["unit"] == u]
         train = c[c["unit"] != u]
-        m = E1Model(cfg, covariates, extra_covs).fit(train)
+        m = E1Model(cfg, covariates, extra_covs, within_between).fit(train)
         p = m.predict(test, rng)
         p["bp"] = m.bp
         preds.append(p)
