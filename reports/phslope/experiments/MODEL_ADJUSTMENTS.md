@@ -22,3 +22,4 @@ Locked test set: 20% of papers, seeded (decision D1 default). Each adjustment en
 | E15b gradient boosting as the predictive model | ADOPT (rule met; intervals and ablation still to do) | edge 0.72 vs E1 0.80 (multi-unit pairs, n.s.), 1.08 vs 1.73 single-unit pairs (-0.65 [-1.01,-0.23]); vs B3 -0.24 [-0.40,-0.11] |
 | E15c GBM conformal intervals | reported | coverage 0.90, width 5.45 pH |
 | E12 two-site loading term | ACCEPT | Freundlich 0.66 [0.49, 0.82]; LOPO SSE one-site 224.7 vs two-site 189.1 |
+| E17 particle-concentration interaction | REJECT | rising solids x strength 0.193 [-0.026, 0.411] |

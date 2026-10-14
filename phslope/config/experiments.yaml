@@ -152,3 +152,8 @@ e12:   # written before E12 ran
   min_loading_span_decades: 0.3
   same_within: 0.10
   decision: "heterogeneity supported if the pooled within-series Freundlich exponent is below 1 with a 95% interval excluding 1 (series with >= 3 loading levels) AND the two-site model has lower leave-one-group-out squared error than the one-site model"
+e17:   # written before E17 ran
+  decision: "report interactions; adopt nothing unless prediction (i) (deficit larger for strongly sorbing pairs, negative solids x pair-strength interaction, rising edges) or (ii) (filtration vs centrifugation, needs E10) holds with a 95% interval excluding zero"
+e22:
+  curves_per_new_paper: 3
+  decision: "report only"

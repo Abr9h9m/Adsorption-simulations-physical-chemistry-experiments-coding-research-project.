@@ -1,0 +1,15 @@
+{
+  "git_commit": "c7b22e2-dirty",
+  "config_hash": "83dd23d2ed5f",
+  "data_file": null,
+  "run_at_utc": "2026-10-14T00:28:53Z",
+  "data_version": {
+    "file": "C:\\Users\\itzju\\sc.dataset.csv",
+    "sha256_16": "60ac4733d684acb3",
+    "bytes": 16763477,
+    "modified_utc": "2025-05-02",
+    "release": "unknown (L-SCIE release not recorded in the file)"
+  },
+  "locked_set_hash": "88b1c3a1b769",
+  "experiment": "E17 partial + E22"
+}
