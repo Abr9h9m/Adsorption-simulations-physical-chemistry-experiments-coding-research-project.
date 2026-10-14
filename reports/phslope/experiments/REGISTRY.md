@@ -30,3 +30,5 @@
 | 2026-10-13 21:47 | E2 | c835343 | 88b1c3a1b769 | KEEP W0 (0.03, 0.97) | 5 schemes, 4 paired tests |
 | 2026-10-13 22:17 | F-dev | 4f24f3c | 88b1c3a1b769 | done | accepted: ['E8 ionic strength x sorbate type', 'E1 within-between solids (E23)'] |
 | 2026-10-14 00:13 | M7-M9 | deab33c | 88b1c3a1b769 | reported | M7 n=38; M8 2 pairs |
+| 2026-10-14 00:16 | E15 | deab33c | 88b1c3a1b769 | ADOPT random_forest, gradient_boosting | grouped vs random split; RF, HGB, E1, B0, B5 |
+| 2026-10-14 00:19 | E15b | f449797 | 88b1c3a1b769 | reported | gbm edge vs E1 final |
