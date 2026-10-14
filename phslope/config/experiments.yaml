@@ -133,3 +133,18 @@ e15:   # written before E15 ran
   decision: "adopt a flexible model only if it beats E1 on held-out logK_rmse with the paired unit-level interval below zero; report the random-split minus leave-unit-out gap for every model"
   n_estimators: 300
   random_split_seeds: 5
+e14:   # specification grid, frozen before E14 ran
+  windows: [[0.01, 0.99], [0.03, 0.97], [0.10, 0.90]]
+  min_points: [5, 8, 10]
+  line_r2_min: [0.3, 0.5, 0.7]
+  min_units_per_pair: [2, 3]
+  edge_definition: [pH20, pH50, pH80]
+  collapse_duplicates: [true, false]
+  weighting: [curve, paper]
+  headlines:
+    - "matching gain: median B3 error < median B0 error"
+    - "rising solids slope (within pair, edge per decade) < 0"
+    - "falling solids slope (within pair) > 0"
+    - "loading: log10 Kd at the pair reference pH falls with loading above 1e-4.5 mol/g (slope < 0)"
+    - "ionic strength null: within-pair edge slope on log10 I has a 95% interval including 0"
+  decision: "a conclusion is robust if its sign / interval conclusion holds in >= 90% of specifications (D8 default)"
