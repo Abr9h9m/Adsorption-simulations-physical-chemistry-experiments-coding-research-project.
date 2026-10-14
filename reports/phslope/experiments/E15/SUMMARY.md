@@ -74,3 +74,27 @@ gbm minus each model (negative = gbm better):
 - **Random 80/20 point splits overstate skill 1.7-2.8x** (E1 2.4x, gradient boosting 2.8x, random forest 2.4x, B0 1.7x): a careless split makes every model look much better than it is for new papers, and flexible models most of all.
 - On log10 K at each point, E1 is not better than the plain average of other papers (-0.01 [-0.14, +0.08]); its edge advantage over B0 comes from the edge summary, not from the whole curve.
 - Not yet done for GBM: calibrated intervals (E21-style conformal at paper level is the natural next step), the M3 fraction-sorbed metric, and ablation of the identity features (how much is mineral/sorbate identity vs conditions).
+
+## E15c: gradient boosting follow-ups (feature ablation, fraction error, conformal intervals)
+
+Same 20 grouped folds. Edge errors are on all E1 main-set curves (single- and multi-unit pairs). Fraction MAE = mean |predicted - observed fraction sorbed| over the curve's measured points (E21/M3: E1 0.153, B0 0.161, B3 0.163 on multi-unit pairs). Conformal = paper-level CV+.
+
+| feature_set | n | median_edge_error | median_edge_error_multi_unit_pairs | median_edge_error_single_unit_pairs | median_fraction_mae | conformal_coverage | conformal_median_width |
+|---|---|---|---|---|---|---|---|
+| full | 757 | 0.813 | 0.722 | 1.08 | 0.164 | 0.901 | 5.45 |
+| no_conditions | 757 | 1.09 | 0.933 | 1.35 | 0.197 | 0.897 | 6.42 |
+| no_identity | 757 | 1.19 | 1.07 | 1.48 | 0.21 | 0.9 | 7.85 |
+
+Coverage by pair size:
+
+| feature_set | pair_size | n | coverage |
+|---|---|---|---|
+| full | 1 unit | 222 | 0.833 |
+| full | 2-3 units | 280 | 0.911 |
+| full | 4+ units | 255 | 0.949 |
+| no_conditions | 1 unit | 222 | 0.856 |
+| no_conditions | 2-3 units | 280 | 0.946 |
+| no_conditions | 4+ units | 255 | 0.878 |
+| no_identity | 1 unit | 222 | 0.892 |
+| no_identity | 2-3 units | 280 | 0.918 |
+| no_identity | 4+ units | 255 | 0.886 |

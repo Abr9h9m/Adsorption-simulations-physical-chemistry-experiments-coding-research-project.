@@ -32,3 +32,4 @@
 | 2026-10-14 00:13 | M7-M9 | deab33c | 88b1c3a1b769 | reported | M7 n=38; M8 2 pairs |
 | 2026-10-14 00:16 | E15 | deab33c | 88b1c3a1b769 | ADOPT random_forest, gradient_boosting | grouped vs random split; RF, HGB, E1, B0, B5 |
 | 2026-10-14 00:19 | E15b | f449797 | 88b1c3a1b769 | reported | gbm edge vs E1 final |
+| 2026-10-14 00:24 | E15c | af74e3f | 88b1c3a1b769 | reported | full: 0.81; no_conditions: 1.09; no_identity: 1.19 |

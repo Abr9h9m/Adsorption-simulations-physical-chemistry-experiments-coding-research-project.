@@ -1,0 +1,10 @@
+feature_set,pair_size,n,coverage
+full,1 unit,222,0.8333333333333334
+full,2-3 units,280,0.9107142857142857
+full,4+ units,255,0.9490196078431372
+no_conditions,1 unit,222,0.8558558558558559
+no_conditions,2-3 units,280,0.9464285714285714
+no_conditions,4+ units,255,0.8784313725490196
+no_identity,1 unit,222,0.8918918918918919
+no_identity,2-3 units,280,0.9178571428571428
+no_identity,4+ units,255,0.8862745098039215
