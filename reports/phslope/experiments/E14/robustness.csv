@@ -1,0 +1,6 @@
+conclusion,specifications,share_holding,robust (>= 90%)
+H1 matching gain (B3 < B0),648,0.7345679012345679,False
+H2 rising solids slope < 0 (interval below 0),648,0.5077160493827161,False
+H3 falling solids slope > 0 (interval above 0),648,0.9120370370370371,True
+H4 loading Kd drop (interval below 0),648,0.8287037037037037,False
+H5 ionic strength null (interval includes 0),648,0.9675925925925926,True

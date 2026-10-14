@@ -4,7 +4,7 @@ Covers `PH_ONLY_TEST_PROTOCOL.md` (E0-E10, F) and `PH_ONLY_TEST_PROTOCOL_ADDENDU
 
 ## For Dr. Black (plain English)
 
-We rebuilt the core model so that it uses 81% of the usable curves instead of 36%: instead of requiring a full S-shaped curve, it fits a straight line to how strongly the contaminant sticks (on a log scale) against pH, which works for partial curves too. For a paper the model has not seen, it places the sorption edge to within about 0.8 pH units (median), reliably better than averaging the other papers on the same system (1.0) and slightly better than copying the most similar experiments (0.96, a difference just inside the uncertainty). Its stated uncertainty ranges are honest (they contain the true value about 90% of the time), but they are wide, about 6 pH units, which shows how much papers differ even for the same mineral and contaminant.
+We rebuilt the core model so that it uses 81% of the usable curves instead of 36%. A machine-learning model (gradient boosting) tested the honest way, on papers it had never seen, did better still: about 0.7 pH for systems measured before and 1.1 pH for systems measured only once (versus 1.7 for the statistical model); careless testing (hiding random points instead of whole papers) would have made every model look 2-3 times better than it is: instead of requiring a full S-shaped curve, it fits a straight line to how strongly the contaminant sticks (on a log scale) against pH, which works for partial curves too. For a paper the model has not seen, it places the sorption edge to within about 0.8 pH units (median), reliably better than averaging the other papers on the same system (1.0) and slightly better than copying the most similar experiments (0.96, a difference just inside the uncertainty). Its stated uncertainty ranges are honest (they contain the true value about 90% of the time), but they are wide, about 6 pH units, which shows how much papers differ even for the same mineral and contaminant.
 
 Several earlier conclusions changed:
 - **Copies inflate agreement.** 28 curves appear in two different papers. Once copies are treated as one source, the advantage of "find the most similar experiment" shrinks and is no longer clearly better than a plain average.
@@ -34,9 +34,18 @@ Several earlier conclusions changed:
 | E20 | Temperature | anecdotal | 3 series only; no time column |
 | E21 | Paper-level conformal intervals | PREFER conformal | coverage 0.90 vs 0.85, width ~5.9 pH |
 | E23 | Placebos + power | 2 of 3 pass; a failure exposed confounding, now fixed | solids placebo 0.48 -> 0.06 after within-between split |
+| E12 | Loading and heterogeneous sites | HETEROGENEITY SUPPORTED | Freundlich exponent 0.66 [0.49, 0.82]; two-site beats one-site; anion edges -1.3 pH per decade of total sorbate |
+| E14 | Specification curve (648 specs) | 2 of 5 headlines robust | robust: falling solids (91%), overall I null (97%); fragile: matching gain (73%), rising solids (51%), loading drop (83%) |
+| E15 | Model bake-off | ADOPT gradient boosting | grouped validation: GBM edge 0.72 vs E1 0.80 (n.s.), single-paper pairs 1.08 vs 1.73 (sig.), beats B3 -0.24 [-0.40, -0.11]; random point splits overstate skill 1.7-2.8x |
+| E15c | GBM follow-ups | reported | identities and conditions both matter (0.81 -> 1.19 / 1.09 pH without); conformal coverage 0.90, width 5.4 pH |
+| E17 | Particle concentration (partial) | (i) not supported | falling edges scale ~linearly (+0.95), rising +0.33; (ii) needs E10 |
+| E22 | Where to measure next | reported | one more paper per pair barely narrows new-paper predictions (paper variance dominates) |
+| M7-M9 | Matched subset, twice-digitized, steepness | reported | matched gain on dev: 38 curves / 18 papers, interval touches 0; 2 twice-digitized pairs; steep edges truncate better |
 | F | Integration (development) | final model beats B0 significantly; vs B3 borderline | 0.80 vs B0 0.99 [-0.41, -0.005]; locked set NOT opened |
 
-**Delayed (longer work, per Samuel's instruction to defer):** E12 (loading and site heterogeneity), E14 (specification curve), E15 (model bake-off incl. random forest and random-split inflation), E17 (particle-concentration diagnostics; part needs E10), E18-E19 (need PZC and pKa tables), E22 (where to measure next), E24 (source-data audit; needs the L-SCIE documentation), web interface P2 onwards (API and front end).
+**Also built:** Stage 4 predictor `phslope.predictor.predict_slope_curve` (development-paper model, distance warnings); web interface P2 v0 (`python -m curvelib.api`, http://127.0.0.1:8000: periodic table, coverage heatmap, curve viewer with server-side fits and paper-level intervals, predictor).
+
+**Still waiting on input or data:** E6, E18, E19 (chemistry tables), E10 and E17(ii) (methods table), E24 (L-SCIE documentation; D9 email), full E7 (carbonate constants, D5), web P5 (choice of a second dataset). **Not yet done (buildable):** M4/M5 E1 structure variants (lower value now that GBM is adopted), switching the predictor and web model to gradient boosting (best after the locked-set look), web R10/R15/R17/R21 (exports, facet panel, plot-builder axes, URL state).
 
 ## Integration on development papers (F)
 
