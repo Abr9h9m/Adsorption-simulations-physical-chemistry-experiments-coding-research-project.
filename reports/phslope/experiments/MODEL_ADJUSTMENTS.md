@@ -21,3 +21,4 @@ Locked test set: 20% of papers, seeded (decision D1 default). Each adjustment en
 | E15 flexible model class (RF / gradient boosting) | ADOPT random_forest, gradient_boosting | B0_all_other: grouped 0.705, random 0.412; B5_global_mean: grouped 1.091, random 1.013; E1_final: grouped 0.769, random 0.321; gradient_boosting: grouped 0.517, random 0.186; random_forest: grouped 0.593, random 0.246 |
 | E15b gradient boosting as the predictive model | ADOPT (rule met; intervals and ablation still to do) | edge 0.72 vs E1 0.80 (multi-unit pairs, n.s.), 1.08 vs 1.73 single-unit pairs (-0.65 [-1.01,-0.23]); vs B3 -0.24 [-0.40,-0.11] |
 | E15c GBM conformal intervals | reported | coverage 0.90, width 5.45 pH |
+| E12 two-site loading term | ACCEPT | Freundlich 0.66 [0.49, 0.82]; LOPO SSE one-site 224.7 vs two-site 189.1 |

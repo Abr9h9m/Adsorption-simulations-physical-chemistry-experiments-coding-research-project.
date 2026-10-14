@@ -148,3 +148,7 @@ e14:   # specification grid, frozen before E14 ran
     - "loading: log10 Kd at the pair reference pH falls with loading above 1e-4.5 mol/g (slope < 0)"
     - "ionic strength null: within-pair edge slope on log10 I has a 95% interval including 0"
   decision: "a conclusion is robust if its sign / interval conclusion holds in >= 90% of specifications (D8 default)"
+e12:   # written before E12 ran
+  min_loading_span_decades: 0.3
+  same_within: 0.10
+  decision: "heterogeneity supported if the pooled within-series Freundlich exponent is below 1 with a 95% interval excluding 1 (series with >= 3 loading levels) AND the two-site model has lower leave-one-group-out squared error than the one-site model"
