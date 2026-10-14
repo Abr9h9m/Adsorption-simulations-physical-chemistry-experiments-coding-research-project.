@@ -126,3 +126,10 @@ e13:
 e1_within_between:   # added after E23 (registry E23-a3), before the integration run
   covariates: [solids_r, solids_f]
   decision: "include in the final model if the held-out median edge error is not worse than without it (difference-of-medians interval upper bound <= 0.05 pH); motivated by validity (E23), not by prediction"
+e15:   # written before E15 ran
+  models: [B0_all_other, B3_matched_fb, B5_global_mean, E1_final, random_forest, gradient_boosting]
+  target: "log10 K per point (edge derived per curve)"
+  splits: [leave_one_unit_out, random_80_20_by_point]
+  decision: "adopt a flexible model only if it beats E1 on held-out logK_rmse with the paired unit-level interval below zero; report the random-split minus leave-unit-out gap for every model"
+  n_estimators: 300
+  random_split_seeds: 5
