@@ -10,3 +10,4 @@ Adsorption-simulations-project/
 reports/phslope/**/draws.npz
 reports/phslope/**/diagnostics.pdf
 reports/phslope/**/pooled_diagnostics.pdf
+reports/phslope/experiments/F/predictor_model.pkl
