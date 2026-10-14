@@ -29,3 +29,4 @@
 | 2026-10-13 21:39 | E23-a3 |  |  | placebo a with within-between split | {'solids_r': 0.06, 'solids_f': 0.12} |
 | 2026-10-13 21:47 | E2 | c835343 | 88b1c3a1b769 | KEEP W0 (0.03, 0.97) | 5 schemes, 4 paired tests |
 | 2026-10-13 22:17 | F-dev | 4f24f3c | 88b1c3a1b769 | done | accepted: ['E8 ionic strength x sorbate type', 'E1 within-between solids (E23)'] |
+| 2026-10-14 00:13 | M7-M9 | deab33c | 88b1c3a1b769 | reported | M7 n=38; M8 2 pairs |
