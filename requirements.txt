@@ -9,3 +9,7 @@ scikit-learn==1.6.1
 PyYAML==6.0.2
 pytest==9.1.1
 pyarrow==21.0.0      # optional (parquet); code falls back to CSV
+fastapi==0.143.0
+uvicorn==0.54.0
+httpx==0.28.1       # FastAPI test client
+jsonschema==4.25.0

@@ -74,3 +74,32 @@ def entity_counts(curves, coverage, sorbate_map):
     other = c[c["element"].isna()].groupby("group_b").agg(points=("n_points", "sum"), curves=("n_points", "size"),
                                                           papers=("cluster", "nunique")).reset_index()
     return out, other
+
+
+# Standard periodic-table layout: (symbol, row, column). Rows 1-7 main table; lanthanides row 9, actinides
+# row 10 (columns 3-17), as in the usual 18-column display.
+_MAIN = """H 1 1|He 1 18|Li 2 1|Be 2 2|B 2 13|C 2 14|N 2 15|O 2 16|F 2 17|Ne 2 18|Na 3 1|Mg 3 2|Al 3 13|Si 3 14|P 3 15|S 3 16|Cl 3 17|Ar 3 18|K 4 1|Ca 4 2|Sc 4 3|Ti 4 4|V 4 5|Cr 4 6|Mn 4 7|Fe 4 8|Co 4 9|Ni 4 10|Cu 4 11|Zn 4 12|Ga 4 13|Ge 4 14|As 4 15|Se 4 16|Br 4 17|Kr 4 18|Rb 5 1|Sr 5 2|Y 5 3|Zr 5 4|Nb 5 5|Mo 5 6|Tc 5 7|Ru 5 8|Rh 5 9|Pd 5 10|Ag 5 11|Cd 5 12|In 5 13|Sn 5 14|Sb 5 15|Te 5 16|I 5 17|Xe 5 18|Cs 6 1|Ba 6 2|Hf 6 4|Ta 6 5|W 6 6|Re 6 7|Os 6 8|Ir 6 9|Pt 6 10|Au 6 11|Hg 6 12|Tl 6 13|Pb 6 14|Bi 6 15|Po 6 16|At 6 17|Rn 6 18|Fr 7 1|Ra 7 2"""
+_LAN = "La Ce Pr Nd Pm Sm Eu Gd Tb Dy Ho Er Tm Yb Lu".split()
+_ACT = "Ac Th Pa U Np Pu Am Cm Bk Cf Es Fm Md No Lr".split()
+POSITIONS = {s: (int(r), int(c)) for s, r, c in (x.split() for x in _MAIN.split("|"))}
+POSITIONS.update({s: (9, 3 + i) for i, s in enumerate(_LAN)})
+POSITIONS.update({s: (10, 3 + i) for i, s in enumerate(_ACT)})
+
+
+def entity_picker(curves, coverage, sorbate_map=None):
+    """The sorption pack's front page: a periodic table of sorbate elements (WEB_INTERFACE_PROTOCOL.md 3b)."""
+    smap = sorbate_map if sorbate_map is not None else (
+        pd.read_csv(MAP_PATH) if os.path.exists(MAP_PATH) else propose_sorbate_map(curves["group_b"].unique()))
+    counts, other = entity_counts(curves, coverage, smap)
+    labels = smap.dropna(subset=["element"]).groupby("element")["sorbate_label"].apply(list).to_dict()
+    cells = []
+    for sym, (row, col) in POSITIONS.items():
+        r = counts[counts["element"] == sym]
+        cell = {"id": sym, "label": sym, "row": row, "col": col, "has_data": bool(len(r)),
+                "members": labels.get(sym, [])}
+        if len(r):
+            cell.update({k: int(v) for k, v in r.iloc[0].drop("element").items()})
+        cells.append(cell)
+    return {"type": "periodic_table", "metrics": ["points", "curves", "papers", "pairs_2plus_papers", "minerals"],
+            "cells": cells, "other": other.rename(columns={"group_b": "label"}).to_dict("records"),
+            "needs_review": smap[smap["status"] == "needs_review"]["sorbate_label"].tolist()}

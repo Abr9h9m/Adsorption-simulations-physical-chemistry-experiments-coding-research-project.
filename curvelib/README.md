@@ -1,7 +1,15 @@
 # curvelib: generic curve-library engine (WEB_INTERFACE_PROTOCOL.md)
 
-Status 2026-10-13: **P0 and P1 done** (manifest schema + validator, loader with declared unit conversions,
-row accounting, curve builder, coverage, threshold sweep). P2 onwards (API, front end) not started.
+Status 2026-10-13: **P0, P1 done; P2 v0 built** (read-only API + single-page front end). Backend: FastAPI +
+static page (the protocol's recommended default for open decision 1; not formally confirmed).
+
+Run: `python -m curvelib.api` then open http://127.0.0.1:8000 (Elements = periodic table coloured by data,
+Coverage = heatmap with thresholds, Curves = points per paper + server-side logistic fit with paper-level
+intervals and the pooling warning, Predict = Stage 4 predictor with its warnings). Plotly loads from cdnjs.
+Endpoints: /api/meta, /api/accounting, /api/coverage, /api/sweep, /api/entities, /api/curves, /api/points,
+/api/fit, /api/predict. Every response carries status, schema_version and a data-version hash.
+Not yet: query state in the URL (R21), full facet panel with live counts (R15), plot builder axes (R17),
+exports (R10), phone-width screenshot test, second-dataset acceptance (P5).
 
 - `curvelib/manifest.py`: JSON Schema for dataset manifests; extra checks (exactly one group_a, group_b,
   cluster, sweep_x; conversions declared, never inferred; curve key and response columns declared).
