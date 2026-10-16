@@ -14,7 +14,7 @@ import os
 import numpy as np
 import pandas as pd
 
-from phslope.common import REPORTS_DIR, load_config, load_yaml
+from phslope.common import REPORTS_DIR, load_config, load_yaml, solids_term
 from phslope.experiments import kd as kdmod
 from phslope.experiments.registry import load_exp_config, log_run, read_locked
 from phslope.load import split_signature
@@ -126,7 +126,7 @@ def finish_curves(curves):
     """Derived line columns (edges, direction checks); used after any (re)fit of the lines."""
     curves = curves.copy()
     curves["pH_native"] = -curves["a"] / curves["b"]
-    curves["pH_S1"] = (curves["log10_solids"] - curves["a"]) / curves["b"]
+    curves["pH_S1"] = (solids_term(curves["log10_solids"]) - curves["a"]) / curves["b"]
     ok_dir = np.where(curves["direction"] == 1, curves["b"] > 0,
                       np.where(curves["direction"] == -1, curves["b"] < 0, False))
     curves["line_dir_ok"] = ok_dir & curves["b"].notna()

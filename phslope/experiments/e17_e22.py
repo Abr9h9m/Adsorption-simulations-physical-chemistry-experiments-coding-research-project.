@@ -19,6 +19,7 @@ import numpy as np
 import pandas as pd
 import statsmodels.api as sm
 
+from phslope.common import solids_term
 from phslope.experiments import e01_logk_mixed as E1
 from phslope.experiments.data import build
 from phslope.experiments.integrate import accepted_adjustments, prepare
@@ -30,7 +31,7 @@ def e17(c):
     c = c.copy()
     c["pH_c"] = E1.reference_pH(c, c)
     c["level"] = c["a"] + c["b"] * c["pH_c"]
-    c["logKd_ref"] = c["level"] - c["log10_solids"]
+    c["logKd_ref"] = c["level"] - solids_term(c["log10_solids"])
     rows = []
     for shape in ("rising", "falling"):
         d = c[c["shape"] == shape].dropna(subset=["level", "log10_solids"])

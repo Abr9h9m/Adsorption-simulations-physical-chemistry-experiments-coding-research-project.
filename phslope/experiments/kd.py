@@ -12,6 +12,8 @@ Missing solids give NaN (never zero).
 import numpy as np
 import pandas as pd
 
+from phslope.common import RESPONSE
+
 
 def mass_balance(df, tol):
     """Relative mismatch |Aq - (total - sorbed)| / total for rows with all three values,
@@ -34,14 +36,21 @@ def add_kd(df, cfg):
     sorbed = pd.to_numeric(out["Sorbed_val"], errors="coerce")
     aq = pd.to_numeric(out["Aq_val"], errors="coerce")
     inside = (f > 0) & (f < 1)
-    k_rep = (sorbed / aq).where(ok.fillna(False) & (sorbed > 0) & (aq > 0))
-    k_mb = (f / (1 - f)).where(inside)
-    out["K"] = k_rep.fillna(k_mb)
-    out["K_source"] = np.where(k_rep.notna(), "reported", np.where(k_mb.notna(), "mass_balance", "none"))
+    S = out["solids_g_L"].where(out["solids_g_L"] > 0)
+    if RESPONSE == "kd":
+        # response is already Kd / (Kd + 1000); K is Kd in L/g (= K at 1 g/L), straight from load.add_kd_response
+        kd_g = out["Kd_L_kg"] / 1000
+        out["K"] = kd_g.where(kd_g > 0)
+        out["K_source"] = np.where(out["K"].notna(), out["kd_source"], "none")
+        out["Kd_L_per_g"] = out["K"]
+    else:
+        k_rep = (sorbed / aq).where(ok.fillna(False) & (sorbed > 0) & (aq > 0))
+        k_mb = (f / (1 - f)).where(inside)
+        out["K"] = k_rep.fillna(k_mb)
+        out["K_source"] = np.where(k_rep.notna(), "reported", np.where(k_mb.notna(), "mass_balance", "none"))
+        out["Kd_L_per_g"] = out["K"] / S
     out["log10K"] = np.log10(out["K"].where(out["K"] > 0))
     out["logit_f"] = np.log((f / (1 - f)).where(inside))
-    S = out["solids_g_L"].where(out["solids_g_L"] > 0)
-    out["Kd_L_per_g"] = out["K"] / S
     out["log10Kd"] = np.log10(out["Kd_L_per_g"].where(out["Kd_L_per_g"] > 0))
     out["loading_mol_per_g"] = out["total_sorbate_mol_L"] / S
     out["log10L"] = np.log10(out["loading_mol_per_g"].where(out["loading_mol_per_g"] > 0))

@@ -27,6 +27,7 @@ import os
 import numpy as np
 import pandas as pd
 
+from phslope.common import solids_term
 from phslope.experiments import harness as H
 from phslope.experiments.data import build
 from phslope.experiments.registry import (EXP_DIR, exp_stamp, load_exp_config, log_run, record_adjustment,
@@ -153,9 +154,9 @@ class E1Model:
         Bd = np.where(Bd * sign > 0, Bd, np.nan)                         # draws with the wrong slope sign
         pc = d["pH_c"].to_numpy()[:, None]
         edge_draws = pc - A / Bd
-        s1_draws = pc + (d["log10_solids"].to_numpy()[:, None] - A) / Bd
+        s1_draws = pc + (solids_term(d["log10_solids"]).to_numpy()[:, None] - A) / Bd
         d["pred_edge"] = d["pH_c"] - ma / mb
-        d["pred_edge_S1"] = d["pH_c"] + (d["log10_solids"] - ma) / mb
+        d["pred_edge_S1"] = d["pH_c"] + (solids_term(d["log10_solids"]) - ma) / mb
         q = 0.05                                                          # 90% intervals
         with np.errstate(all="ignore"):
             d["edge_lo"], d["edge_hi"] = np.nanquantile(edge_draws, q, axis=1), np.nanquantile(edge_draws, 1 - q, axis=1)

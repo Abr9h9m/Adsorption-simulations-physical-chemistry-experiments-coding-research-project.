@@ -15,8 +15,25 @@ import yaml
 PKG_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(PKG_DIR)
 CONFIG_DIR = os.path.join(PKG_DIR, "config")
-REPORTS_DIR = os.path.join(PROJECT_ROOT, "reports", "phslope")
 DESCRIPTOR_DIR = os.path.join(PROJECT_ROOT, "data", "descriptors")
+
+# Response variant, chosen by the PHSLOPE_RESPONSE environment variable:
+#   fraction (default)  response = fraction sorbed, outputs in reports/phslope/
+#   kd                  Kd = 1000 * Sorbed / (solids_g_L * Aq) in L/kg (Samuel, 2026-10-16); the response every
+#                       stage sees is Kd / (Kd + 1000) = the fraction that WOULD be sorbed at 1 g/L solids, so
+#                       logistic edges become "pH where Kd = 1000 L/kg"; log10 K columns become log10 Kd (L/g).
+#                       Outputs in reports/phslope_kd/ and export_kd/, so nothing from the fraction run is touched.
+RESPONSE = os.environ.get("PHSLOPE_RESPONSE", "fraction").strip().lower()
+if RESPONSE not in ("fraction", "kd"):
+    raise ValueError(f"PHSLOPE_RESPONSE must be 'fraction' or 'kd', not {RESPONSE!r}")
+REPORTS_DIR = os.path.join(PROJECT_ROOT, "reports", "phslope" if RESPONSE == "fraction" else "phslope_kd")
+EXPORT_DIR = os.path.join(PROJECT_ROOT, "export" if RESPONSE == "fraction" else "export_kd")
+
+
+def solids_term(log10_solids):
+    """What to subtract from a curve's log10 K to get log10 Kd. In kd mode the response is already per gram,
+    so the term is 0 (missing solids stay missing)."""
+    return log10_solids * 0 if RESPONSE == "kd" else log10_solids
 
 
 def load_yaml(name):
@@ -50,6 +67,8 @@ def config_hash():
     for name in ("config.yaml", "thresholds.yaml", "classes.yaml", "schemes.yaml"):
         with open(os.path.join(CONFIG_DIR, name), "rb") as f:
             h.update(name.encode() + b"\0" + f.read().replace(b"\r\n", b"\n"))
+    if RESPONSE != "fraction":
+        h.update(b"response\0" + RESPONSE.encode())
     return h.hexdigest()[:12]
 
 
@@ -71,6 +90,7 @@ def run_stamp(data_file=None):
     return {
         "git_commit": git_commit(),
         "config_hash": config_hash(),
+        "response": RESPONSE,
         "data_file": data_file,
         "run_at_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
     }

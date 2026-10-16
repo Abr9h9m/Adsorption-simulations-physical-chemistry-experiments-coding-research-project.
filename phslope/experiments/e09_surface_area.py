@@ -18,6 +18,7 @@ import os
 import numpy as np
 import pandas as pd
 
+from phslope.common import solids_term
 from phslope.experiments import e01_logk_mixed as E1
 from phslope.experiments.data import build
 from phslope.experiments.registry import (EXP_DIR, exp_stamp, load_exp_config, log_run, record_adjustment,
@@ -45,7 +46,7 @@ def breakpoint_interval(c, loading_col, B, seed):
     ref = d.groupby("pair_dir")["pH_native"].median()
     d["pH_ref"] = d["pair_dir"].map(ref)
     d = d[(d["pH_ref"] >= d["mid_pH_lo"] - 0.25) & (d["pH_ref"] <= d["mid_pH_hi"] + 0.25)]
-    d["logKd"] = d["a"] + d["b"] * d["pH_ref"] - d["log10_solids"]
+    d["logKd"] = d["a"] + d["b"] * d["pH_ref"] - solids_term(d["log10_solids"])
     d = d[d.groupby("pair_dir")[loading_col].transform(lambda s: s.max() - s.min()) >= 0.5]
     grid = np.linspace(d[loading_col].quantile(.1), d[loading_col].quantile(.9), 31)
 

@@ -23,7 +23,7 @@ import pandas as pd
 
 import data_audit as da
 from response import compute_response
-from phslope.common import load_config, resolve_data_file
+from phslope.common import RESPONSE, load_config, resolve_data_file
 
 PAIR_SEP = " | "
 
@@ -115,7 +115,29 @@ def clean_observations(raw, config=None):
                         "Aq_val": df["Aq_val"]})
     out["response"] = compute_response(tmp, mode="fraction_sorbed")
     out["log_kd"] = compute_response(tmp, mode="log_kd")
+    if RESPONSE == "kd":
+        add_kd_response(out, df)
     return out
+
+
+def add_kd_response(out, df):
+    """Kd = 1000 * Sorbed / (solids * Aq), L/kg, solids in g/L. Where only one of Sorbed and Aq is reported,
+    the other comes from mass balance (total - the reported one) and kd_source says so. The response becomes
+    Kd / (Kd + 1000) = Sorbed / (Sorbed + Aq * solids), written in that form so Aq = 0 gives 1, not inf/inf.
+    Rows without solids in g/L (missing, m2/L, unconvertible units) get no response. Fraction sorbed is kept
+    as response_fraction."""
+    sorbed = pd.to_numeric(df["Sorbed_val"], errors="coerce")
+    aq = pd.to_numeric(df["Aq_val"], errors="coerce")
+    tot = out["total_sorbate_mol_L"]
+    s = out["solids_g_L"].where(out["solids_g_L"] > 0)
+    both = sorbed.notna() & aq.notna()
+    sorbed_f, aq_f = sorbed.fillna(tot - aq), aq.fillna(tot - sorbed)
+    have = sorbed_f.notna() & aq_f.notna() & s.notna()
+    out["kd_source"] = np.where(have & both, "reported", np.where(have, "mass_balance", "none"))
+    out["Kd_L_kg"] = (1000 * sorbed_f / (s * aq_f)).where(have & (aq_f > 0))
+    denom = sorbed_f + aq_f * s
+    out["response_fraction"] = out["response"]
+    out["response"] = (sorbed_f / denom).where(have & (denom > 0))
 
 
 def load_observations(data_file=None, config=None):

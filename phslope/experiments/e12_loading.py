@@ -24,6 +24,7 @@ import pandas as pd
 import statsmodels.api as sm
 from scipy.optimize import least_squares
 
+from phslope.common import solids_term
 from phslope.experiments import e01_logk_mixed as E1
 from phslope.experiments.data import build
 from phslope.experiments.e08_ionic_strength import clustered_slope
@@ -135,7 +136,7 @@ def run():
     d = c.copy()
     d["pH_ref"] = d.groupby("pair_dir")["pH_native"].transform("median")
     d = d[(d["pH_ref"] >= d["mid_pH_lo"] - 0.25) & (d["pH_ref"] <= d["mid_pH_hi"] + 0.25)]
-    d["logKd"] = d["a"] + d["b"] * d["pH_ref"] - d["log10_solids"]
+    d["logKd"] = d["a"] + d["b"] * d["pH_ref"] - solids_term(d["log10_solids"])
     d = d.dropna(subset=["logKd", "log10L"])
     d = d[d.groupby("pair_dir")["log10L"].transform(lambda s: s.max() - s.min()) >= 0.5]
     one, two = lopo_error(d, False), lopo_error(d, True)

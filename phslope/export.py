@@ -15,7 +15,7 @@ import numpy as np
 import pandas as pd
 
 from phslope import fit_edge
-from phslope.common import PROJECT_ROOT, REPORTS_DIR, run_stamp, write_stamp
+from phslope.common import EXPORT_DIR, PROJECT_ROOT, REPORTS_DIR, run_stamp, write_stamp
 from phslope.library import load_library
 
 SCHEMA_VERSION = 1
@@ -109,7 +109,7 @@ def main():
     ap = argparse.ArgumentParser(description="Export tables for the web interface.")
     ap.add_argument("--library", default=os.path.join(REPORTS_DIR, "stage1", "library"))
     ap.add_argument("--data")
-    ap.add_argument("--out", default=os.path.join(PROJECT_ROOT, "export"))
+    ap.add_argument("--out", default=EXPORT_DIR)
     args = ap.parse_args()
     _, curve_obs, path = load_real(args.data, load_config())
     write_stamp(args.out, run_stamp(path))

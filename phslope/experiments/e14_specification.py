@@ -19,6 +19,7 @@ import numpy as np
 import pandas as pd
 import statsmodels.api as sm
 
+from phslope.common import solids_term
 from phslope.experiments import harness as H
 from phslope.experiments.data import build, refit_lines
 from phslope.experiments.registry import EXP_DIR, exp_stamp, load_exp_config, log_run, write_run_info
@@ -64,7 +65,7 @@ def one_spec(base_by_window, spec):
         out[k], out[k + "_lo"], out[k + "_hi"] = within_slope(c[c["shape"] == shape], "edge_x", "log10_solids",
                                                                unit_col, weighting)
     c["pH_ref"] = c["grp"].map(c.groupby("grp")["pH_native"].median())
-    c["logKd"] = c["a"] + c["b"] * c["pH_ref"] - c["log10_solids"]
+    c["logKd"] = c["a"] + c["b"] * c["pH_ref"] - solids_term(c["log10_solids"])
     c["hinge"] = np.maximum(c["log10L"] + 4.5, 0)
     out["loading"], out["loading_lo"], out["loading_hi"] = within_slope(c, "logKd", "hinge", unit_col, weighting)
     out["ionic"], out["ionic_lo"], out["ionic_hi"] = within_slope(c, "edge_x", "log10_I", unit_col, weighting)
