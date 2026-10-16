@@ -1,0 +1,10 @@
+E3: 67 duplicate pairs (22 cross-paper); 16 papers in multi-paper clusters
+    leave_out_unit          model    n  n_units    median  median_lo  median_hi       q25       q75      rmse  within_0_5  within_1  coverage  median_paper_weighted  within_0_5_paper_weighted
+0        reference   B0_all_other  155       61  0.480648        NaN        NaN  0.153004  0.940520  0.868636    0.522581  0.767742       NaN               0.499061                   0.500802
+1        reference    B1_nearest1  155       61  0.338564        NaN        NaN  0.118780  0.896557  0.834741    0.600000  0.774194       NaN               0.464405                   0.530515
+2        reference    B2_nearest3  155       61  0.471076        NaN        NaN  0.179991  0.720449  0.779577    0.580645  0.845161       NaN               0.479551                   0.542104
+3        reference  B3_matched_fb  155       61  0.462918        NaN        NaN  0.190002  0.853776  0.851035    0.548387  0.787097       NaN               0.480648                   0.512706
+0  lineage_cluster   B0_all_other  153       58  0.519968        NaN        NaN  0.225720  0.893213  0.894797    0.496732  0.777778       NaN               0.526208                   0.489318
+1  lineage_cluster    B1_nearest1  153       58  0.554859        NaN        NaN  0.217475  1.039601  0.903826    0.477124  0.725490       NaN               0.554859                   0.487574
+2  lineage_cluster    B2_nearest3  153       58  0.499061        NaN        NaN  0.226438  0.826262  0.864542    0.509804  0.803922       NaN               0.492797                   0.517671
+3  lineage_cluster  B3_matched_fb  153       58  0.480648        NaN        NaN  0.217319  0.848739  0.875708    0.516340  0.790850       NaN               0.499061                   0.501531

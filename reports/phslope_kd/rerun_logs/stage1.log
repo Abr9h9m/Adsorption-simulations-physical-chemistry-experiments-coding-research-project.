@@ -1,0 +1,4 @@
+[run] commit d468a46  config 7683c4e695c4
+Stage 1: 1627 curves, B=200, 8 workers
+Stage 1 FAIL: core fraction in census set 0.437
+Wrote C:\Users\itzju\Mineral Fingerprinting\reports\phslope_kd\stage1\diagnostics.pdf

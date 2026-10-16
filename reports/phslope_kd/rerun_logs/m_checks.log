@@ -1,0 +1,15 @@
+{'curves_with_match': 44, 'papers': 24, 'lineage_units': 24} 2
+              model   n  n_units    median  median_lo  median_hi
+0        B3 matched  44       24  0.442835   0.268505   0.716118
+1  B0 plain average  44       24  0.543275   0.314737   0.820387
+   median_diff   diff_lo  diff_hi
+0     -0.10044 -0.481087  0.12069
+              steepness  window    n  median_error  within_0_5
+0  shallow (|b| < 0.58)       2  129      0.332393    0.713178
+1  shallow (|b| < 0.58)       3  154      0.252600    0.759740
+2  shallow (|b| < 0.58)       4  171      0.204834    0.842105
+3  shallow (|b| < 0.58)       5  173      0.122024    0.901734
+4   steep (|b| >= 0.58)       2   74      0.131728    0.878378
+5   steep (|b| >= 0.58)       3  102      0.105534    0.921569
+6   steep (|b| >= 0.58)       4  121      0.066452    0.917355
+7   steep (|b| >= 0.58)       5  152      0.096501    0.967105

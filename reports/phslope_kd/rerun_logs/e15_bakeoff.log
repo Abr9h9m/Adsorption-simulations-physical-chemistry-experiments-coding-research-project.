@@ -1,0 +1,48 @@
+C:\Users\itzju\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\joblib\externals\loky\backend\context.py:136: UserWarning: Could not find the number of physical cores for the following reason:
+[WinError 2] The system cannot find the file specified
+Returning the number of logical cores instead. You can silence this warning by setting LOKY_MAX_CPU_COUNT to the number of cores you want to use.
+  warnings.warn(
+  File "C:\Users\itzju\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\joblib\externals\loky\backend\context.py", line 257, in _count_physical_cores
+    cpu_info = subprocess.run(
+               ^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\subprocess.py", line 1538, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E15 grouped fold 1/20
+E15 grouped fold 2/20
+E15 grouped fold 3/20
+E15 grouped fold 4/20
+E15 grouped fold 5/20
+E15 grouped fold 6/20
+E15 grouped fold 7/20
+E15 grouped fold 8/20
+E15 grouped fold 9/20
+E15 grouped fold 10/20
+E15 grouped fold 11/20
+E15 grouped fold 12/20
+E15 grouped fold 13/20
+E15 grouped fold 14/20
+E15 grouped fold 15/20
+E15 grouped fold 16/20
+E15 grouped fold 17/20
+E15 grouped fold 18/20
+E15 grouped fold 19/20
+E15 grouped fold 20/20
+E15 random split 1
+E15 random split 2
+E15 random split 3
+E15 random split 4
+E15 random split 5
+ADOPT random_forest, gradient_boosting
+split              grouped (whole units)  random 80/20 by point  inflation (grouped / random)
+model                                                                                        
+B0_all_other                    0.616234               0.368308                      1.673148
+B5_global_mean                  1.207998               1.148198                      1.052081
+E1_final                        0.764406               0.316296                      2.416740
+gradient_boosting               0.471530               0.191977                      2.456184
+random_forest                   0.603805               0.253728                      2.379734

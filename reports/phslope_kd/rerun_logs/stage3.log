@@ -1,0 +1,7 @@
+[stage3] thresholds.yaml is not frozen (frozen: false); classes NOT confirmed
+[run] commit d468a46  config 7683c4e695c4
+[stage3] leave one study out: 7 models
+[stage3] leave one pair out: 7 models
+[stage3] leave one mineral out: 7 models
+[stage3] leave one sorbate out: 7 models
+Stage 3 summary written

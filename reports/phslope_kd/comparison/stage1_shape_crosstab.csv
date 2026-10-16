@@ -1,0 +1,6 @@
+shape_f,bell,falling,multi_step,rising,unclassified
+bell,160,0,0,23,4
+falling,13,282,4,0,5
+multi_step,0,2,15,8,1
+rising,19,0,6,668,4
+unclassified,1,0,0,2,16

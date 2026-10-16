@@ -1,0 +1,8 @@
+PREFER conformal
+       n  parametric_coverage  parametric_median_width  conformal_coverage  conformal_median_width      group
+0  639.0             0.827856                 4.799558            0.896714                5.570074        all
+1  182.0             0.868132                 5.916006            0.901099                5.570074    falling
+2  457.0             0.811816                 4.539535            0.894967                5.570074     rising
+3  180.0             0.688889                 4.949403            0.783333                5.562763     1 unit
+4  210.0             0.852381                 4.943735            0.919048                5.570074  2-3 units
+5  249.0             0.907631                 4.515208            0.959839                5.581042   4+ units

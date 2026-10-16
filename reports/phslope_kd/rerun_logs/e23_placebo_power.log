@@ -1,0 +1,6 @@
+PLACEBOS PASS
+                                                       test  reps  detections  interval_covers_truth  rate
+0        a: E1 solids (rising), solids shuffled within pair    50           2                    NaN  0.04
+1  b: E8 outer-sphere slope, log10 I shuffled within series    50           5                    NaN  0.10
+2                              c: E1 random-noise covariate    50           3                    NaN  0.06
+3                          e: planted covariate +0.3 per SD    20          20                   12.0  1.00

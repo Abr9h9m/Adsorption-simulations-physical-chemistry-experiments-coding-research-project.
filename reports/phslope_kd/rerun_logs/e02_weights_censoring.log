@@ -1,0 +1,11 @@
+E2 W0 (0.03, 0.97): 641 curves
+E2 W0 (0.01, 0.99): 674 curves
+E2 W0 (0.10, 0.90): 529 curves
+E2 W1 empirical (0.03, 0.97): 646 curves
+E2 W2 logit-delta (0.03, 0.97): 616 curves
+                        scheme    n  median_logK_rmse  median_edge_error  coverage  rel_change_vs_W0  meets_rule
+0              W0 (0.01, 0.99)  499          0.764635           0.977930  0.869739          0.052398       False
+1              W0 (0.03, 0.97)  499          0.726564           0.950802  0.843687          0.000000       False
+2              W0 (0.10, 0.90)  499          0.765471           1.050916  0.863727          0.053549       False
+3    W1 empirical (0.03, 0.97)  499          0.730083           0.993500  0.839679          0.004843       False
+4  W2 logit-delta (0.03, 0.97)  499          0.729360           0.922313  0.821643          0.003848       False

@@ -1,0 +1,17 @@
+PREDICTION (i) NOT SUPPORTED
+  direction               term  estimate     ci_lo     ci_hi    n  pairs  units
+0    rising             solids -0.238855 -0.397712 -0.079999  294     37     68
+1    rising  solids_x_strength -0.043262 -0.223542  0.137018  294     37     68
+2    rising          solids_sq  0.194654  0.016414  0.372894  294     37     68
+3   falling             solids -0.034453 -0.343719  0.274812  151     10     27
+4   falling  solids_x_strength  0.297445 -0.096230  0.691120  151     10     27
+5   falling          solids_sq  0.081759 -0.117448  0.280966  151     10     27
+                         pair_direction  units_now  pred_sd_now  pred_sd_after_one_paper  variance_reduction  rank
+0      birnessite | Se(-2) (unmeasured)          0      0.58427                  0.58368            0.000689     1
+1  kaolinite | Oxalic acid (unmeasured)          0      0.58427                  0.58368            0.000689     2
+2          illite | Se(-2) (unmeasured)          0      0.58427                  0.58368            0.000689     3
+3       kaolinite | Np(+5) (unmeasured)          0      0.58427                  0.58368            0.000689     4
+4       kaolinite | Se(+4) (unmeasured)          0      0.58427                  0.58368            0.000689     5
+5       kaolinite | Ni(+2) (unmeasured)          0      0.58427                  0.58368            0.000689     6
+6       kaolinite | Se(+6) (unmeasured)          0      0.58427                  0.58368            0.000689     7
+7       kaolinite | Am(+3) (unmeasured)          0      0.58427                  0.58368            0.000689     8

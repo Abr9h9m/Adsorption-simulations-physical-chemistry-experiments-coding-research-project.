@@ -1,0 +1,6 @@
+DO NOT KEEP competitor term (rule not met)
+                 set                       outcome    n  pairs  units      coef     ci_lo     ci_hi         p
+0    oxyanion (test)  log10 K at pair reference pH   13      1      4  0.097337 -0.252289  0.446964  0.585299
+1    oxyanion (test)              native edge (pH)   13      1      4  0.481979 -0.003618  0.967575  0.051732
+2  cations (control)  log10 K at pair reference pH  205     22     42  0.045438 -0.019339  0.110216  0.169186
+3  cations (control)              native edge (pH)  205     22     42 -0.037053 -0.124361  0.050255  0.405523

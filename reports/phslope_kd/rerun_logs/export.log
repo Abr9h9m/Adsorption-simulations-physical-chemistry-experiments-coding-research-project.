@@ -1,0 +1,5 @@
+[run] commit d468a46  config 7683c4e695c4
+  curves_meta.csv: 1,627 rows
+  slope_grid.csv: 60,199 rows
+  observations.csv: 22,711 rows
+  pair_summary.csv: 273 rows

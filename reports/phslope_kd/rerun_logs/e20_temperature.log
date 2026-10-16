@@ -1,0 +1,4 @@
+                                   outcome  series  papers  n  slope  ci_lo  ci_hi   p
+0             native edge (pH per 10 degC)       1       1  9    NaN    NaN    NaN NaN
+1  solids-normalised edge (pH per 10 degC)       1       1  9    NaN    NaN    NaN NaN
+2    slope b (log10 K per pH, per 10 degC)       1       1  9    NaN    NaN    NaN NaN

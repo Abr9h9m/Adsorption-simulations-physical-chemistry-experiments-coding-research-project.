@@ -1,0 +1,27 @@
+experiment,verdict [fraction],note [fraction],verdict [Kd],note [Kd]
+E0.1,PASS,mass balance consistent 99.9% of 24617 rows,PASS,mass balance consistent 99.9% of 24617 rows
+E1,ACCEPT,edge median E1 0.882 vs B3 0.962; coverage 0.85; usage 0.81,ACCEPT,edge median E1 0.751 vs B3 0.828; coverage 0.83; usage 0.78
+E11,UNDECIDED (ratio interval includes 1),"ratio 1.29 [0.56, 2.42]",UNDECIDED (ratio interval includes 1),"ratio 0.88 [0.30, 1.83]"
+E12,HETEROGENEITY SUPPORTED,"Freundlich 0.66 [0.49,0.82]; SSE one 224.7 two 189.1",HETEROGENEITY SUPPORTED,"Freundlich 0.60 [0.43,0.77]; SSE one 76.1 two 74.4"
+E13,DO NOT KEEP competitor term (rule not met),oxyanion (test)/log10 K : -0.110; oxyanion (test)/native e: 0.299; cations (control)/log10 K : -0.150; cations (control)/native e: 0.300,DO NOT KEEP competitor term (rule not met),oxyanion (test)/log10 K : 0.097; oxyanion (test)/native e: 0.482; cations (control)/log10 K : 0.045; cations (control)/native e: -0.037
+E14,reported,H1 0.73; H2 0.51; H3 0.91; H4 0.83; H5 0.97,reported,H1 0.73; H2 0.00; H3 0.00; H4 0.89; H5 0.98
+E15,"ADOPT random_forest, gradient_boosting","grouped vs random split; RF, HGB, E1, B0, B5","ADOPT random_forest, gradient_boosting","grouped vs random split; RF, HGB, E1, B0, B5"
+E15b,reported,gbm edge vs E1 final,reported,gbm edge vs E1 final
+E15c,reported,full: 0.81; no_conditions: 1.09; no_identity: 1.19,reported,full: 0.93; no_conditions: 1.02; no_identity: 1.30
+E16,reported,"useful: {'mineral': False, 'sorbate': False}",reported,"useful: {'mineral': False, 'sorbate': False}"
+E17,PREDICTION (i) NOT SUPPORTED,(ii) waits for E10,PREDICTION (i) NOT SUPPORTED,(ii) waits for E10
+E2,"KEEP W0 (0.03, 0.97)","5 schemes, 4 paired tests","KEEP W0 (0.03, 0.97)","5 schemes, 4 paired tests"
+E20,reported,3 temperature series,reported,1 temperature series
+E21/M2/M3,PREFER conformal,from cached E1 predictions,PREFER conformal,from cached E1 predictions
+E22,reported,229 pairs ranked,reported,211 pairs ranked
+E23-a2,rerun of placebo a with loading kept real,"{'solids_r': 0.48, 'solids_f': 0.46}",,
+E23-a3,placebo a with within-between split,"{'solids_r': 0.06, 'solids_f': 0.12}",,
+E23/M-Power,PLACEBO FAILURE: tighten rules,a 0.48; b 0.08; c 0.06; e 1.00,PLACEBOS PASS,a 0.04; b 0.10; c 0.06; e 1.00
+E3,done (no decision rule),"74 duplicate pairs, 28 cross-paper; 17 papers in multi-paper lineage clusters",done (no decision rule),"67 duplicate pairs, 22 cross-paper; 16 papers in multi-paper lineage clusters"
+E4,"GAIN DOES NOT SURVIVE (partly a lab effect, or not significant)",lab proxy from reference code; 2 proxies,"GAIN DOES NOT SURVIVE (partly a lab effect, or not significant)",lab proxy from reference code; 2 proxies
+E5,MEETS RULE,retained 93.4%; validated median error 0.11,MEETS RULE,retained 89.9%; validated median error 0.17
+E7,DO NOT KEEP log10 pCO2 (rule not met),step 1a only (pCO2); DIC waits for D5,DO NOT KEEP log10 pCO2 (rule not met),step 1a only (pCO2); DIC waits for D5
+E8,EFFECT FOUND (meets rule),13 tests; 81 within-paper series,EFFECT FOUND (meets rule),16 tests; 72 within-paper series
+E9,DO NOT ADOPT area normalisation (rule not met),R2 gain +13%; breakpoint narrowing +7%,DO NOT ADOPT area normalisation (rule not met),R2 gain -83%; breakpoint narrowing -37%
+F-dev,done,"accepted: ['E8 ionic strength x sorbate type', 'E1 within-between solids (E23)']",done,"accepted: ['E8 ionic strength x sorbate type', 'E1 within-between solids (E23)']"
+M7-M9,reported,M7 n=38; M8 2 pairs,reported,M7 n=44; M8 2 pairs

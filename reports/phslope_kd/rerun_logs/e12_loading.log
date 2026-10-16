@@ -1,0 +1,11 @@
+HETEROGENEITY SUPPORTED
+                                outcome direction  series    n  n_clusters     slope     ci_lo     ci_hi         p
+0  native edge (pH per decade of total)    rising      28  113          24  0.232196  0.013191  0.451200  0.037708
+1  native edge (pH per decade of total)   falling      15   80          12 -0.944742 -1.715803 -0.173681  0.016330
+2                solids-normalised edge    rising      28  113          24  0.232196  0.013191  0.451200  0.037708
+3                solids-normalised edge   falling      15   80          12 -0.944742 -1.715803 -0.173681  0.016330
+4                    plateau (fraction)    rising      28  113          24 -0.010447 -0.025620  0.004727  0.177218
+5                    plateau (fraction)   falling      15   80          12 -0.104260 -0.196851 -0.011669  0.027316
+6                               slope b    rising      28  113          24 -0.051461 -0.106310  0.003388  0.065931
+7                               slope b   falling      15   80          12  0.165315  0.017132  0.313497  0.028774
+{'n': 193, 'n_clusters': 36, 'slope': 0.5974383318375207, 'ci_lo': 0.42734028923876, 'ci_hi': 0.7675363744362814, 'p': 5.818841513557865e-12} 76.0513307893133 74.38429130110858

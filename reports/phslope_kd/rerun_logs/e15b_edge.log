@@ -1,0 +1,27 @@
+C:\Users\itzju\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\joblib\externals\loky\backend\context.py:136: UserWarning: Could not find the number of physical cores for the following reason:
+[WinError 2] The system cannot find the file specified
+Returning the number of logical cores instead. You can silence this warning by setting LOKY_MAX_CPU_COUNT to the number of cores you want to use.
+  warnings.warn(
+  File "C:\Users\itzju\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\joblib\externals\loky\backend\context.py", line 257, in _count_physical_cores
+    cpu_info = subprocess.run(
+               ^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\subprocess.py", line 1538, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                  subset          model    n    median  median_lo  median_hi
+0  pairs with >= 2 units       gbm_edge  459  0.769659   0.572271   0.979589
+1  pairs with >= 2 units       E1_final  459  0.765095   0.584880   0.915961
+2  pairs with >= 2 units   B0_all_other  459  0.815944   0.658078   1.007305
+3  pairs with >= 2 units  B3_matched_fb  459  0.827737   0.672038   1.015735
+0      pairs with 1 unit       gbm_edge  180  1.348927   1.016966   1.802263
+1      pairs with 1 unit       E1_final  180  1.875905   1.399599   2.423165
+                  subset       baseline  median_diff   diff_lo   diff_hi
+0  pairs with >= 2 units       E1_final     0.004564 -0.208889  0.238092
+1  pairs with >= 2 units   B0_all_other    -0.046284 -0.301487  0.151942
+2  pairs with >= 2 units  B3_matched_fb    -0.058078 -0.330749  0.146028
+0      pairs with 1 unit       E1_final    -0.526977 -1.160720  0.154261

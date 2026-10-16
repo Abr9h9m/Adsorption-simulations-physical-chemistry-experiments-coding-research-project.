@@ -1,0 +1,31 @@
+E14 25/648
+E14 50/648
+E14 75/648
+E14 100/648
+E14 125/648
+E14 150/648
+E14 175/648
+E14 200/648
+E14 225/648
+E14 250/648
+E14 275/648
+E14 300/648
+E14 325/648
+E14 350/648
+E14 375/648
+E14 400/648
+E14 425/648
+E14 450/648
+E14 475/648
+E14 500/648
+E14 525/648
+E14 550/648
+E14 575/648
+E14 600/648
+E14 625/648
+                                       conclusion  specifications  share_holding  robust (>= 90%)
+0                      H1 matching gain (B3 < B0)             648       0.725309            False
+1   H2 rising solids slope < 0 (interval below 0)             648       0.000000            False
+2  H3 falling solids slope > 0 (interval above 0)             648       0.000000            False
+3           H4 loading Kd drop (interval below 0)             648       0.893519            False
+4    H5 ionic strength null (interval includes 0)             648       0.975309             True
