@@ -27,6 +27,14 @@ python -m phslope.experiments.templates          # E6/E9/E10 data-entry template
 python -m phslope.experiments.integrate          # F on development papers only
 ```
 
+## Kd variant (2026-10-16)
+
+`PHSLOPE_RESPONSE=kd` makes every stage and experiment use Kd = 1000 x Sorbed / (solids x Aq) (L/kg) instead of
+fraction sorbed: log K becomes log Kd, and S-shaped fits use Kd / (Kd + 1000) (fraction sorbed at 1 g/L).
+Outputs go to `reports/phslope_kd/` and `export_kd/`. `python -m phslope.rerun_all` reruns everything under the
+current setting; `python -m phslope.compare_responses` joins the two runs into `reports/phslope_kd/comparison/`.
+Results: `reports/phslope_kd/COMPARISON.md`.
+
 ## How to run
 
 From the project root:
