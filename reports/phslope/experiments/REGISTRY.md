@@ -37,3 +37,4 @@
 | 2026-10-14 00:28 | E17 | c7b22e2-dirty | 88b1c3a1b769 | PREDICTION (i) NOT SUPPORTED | (ii) waits for E10 |
 | 2026-10-14 00:28 | E22 | c7b22e2-dirty | 88b1c3a1b769 | reported | 229 pairs ranked |
 | 2026-10-14 00:35 | E14 | ed145ae | 88b1c3a1b769 | reported | H1 0.73; H2 0.51; H3 0.91; H4 0.83; H5 0.97 |
+| 2026-10-16 11:25 | data |  |  | INCLUDES LOCKED PAPERS | test: harness regression check |
