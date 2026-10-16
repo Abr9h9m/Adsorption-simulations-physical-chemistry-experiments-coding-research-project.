@@ -1,0 +1,11 @@
+{
+  "git_commit": "d468a46",
+  "config_hash": "7683c4e695c4",
+  "response": "kd",
+  "data_file": "library: C:\\Users\\itzju\\Mineral Fingerprinting\\reports\\phslope_kd\\stage1\\library",
+  "run_at_utc": "2026-10-16T12:38:07Z",
+  "thresholds": "thresholds.yaml is not frozen (frozen: false)",
+  "freeze_commit": null,
+  "exploratory": true,
+  "classes_confirmed": false
+}

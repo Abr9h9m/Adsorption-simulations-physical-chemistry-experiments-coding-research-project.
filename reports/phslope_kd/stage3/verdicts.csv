@@ -1,0 +1,17 @@
+level,model,median_p50_error,p50_ok,interval_coverage,coverage_ok,beats_every_baseline,verdict
+mineral,version_a@conditions,1.154463522083609,False,0.8753872738230575,True,False,FAIL
+mineral,version_a@properties,1.2112725077984163,False,0.8763940167658825,True,False,FAIL
+mineral,version_b@conditions,1.154463522083609,False,0.8756782591254969,True,False,FAIL
+mineral,version_b@properties,1.2112725077984163,False,0.879555217875865,True,False,FAIL
+pair,version_a@conditions,1.1828571113091533,False,0.8762415931191221,True,False,FAIL
+pair,version_a@properties,1.4231606688477094,False,0.85273094004705,True,False,FAIL
+pair,version_b@conditions,1.1828571113091533,False,0.8770691936688709,True,False,FAIL
+pair,version_b@properties,1.4231606688477094,False,0.8561110442776712,True,False,FAIL
+sorbate,version_a@conditions,1.2290766009611755,False,0.8603506533844756,True,False,FAIL
+sorbate,version_a@properties,1.9138270055750275,False,0.8375110066796165,True,False,FAIL
+sorbate,version_b@conditions,1.2290766009611755,False,0.8610700865129239,True,False,FAIL
+sorbate,version_b@properties,1.9138270055750275,False,0.837320010951727,True,False,FAIL
+study,version_a@conditions,1.1843050916887727,False,0.8818569406661797,True,False,FAIL
+study,version_a@properties,1.1009078155781231,False,0.8853784238136291,True,False,FAIL
+study,version_b@conditions,1.1843050916887727,False,0.881467975894732,True,False,FAIL
+study,version_b@properties,1.1009078155781231,False,0.8846287122177378,True,False,FAIL
