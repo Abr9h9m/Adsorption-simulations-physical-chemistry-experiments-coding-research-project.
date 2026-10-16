@@ -1,0 +1,91 @@
+mineral,sorbate,n_curves,n_points,reason
+goethite,Am(+3),0,0,empty
+goethite,Sr(+2),1,13,points 13<50; references 1<2
+goethite,Se(-2),6,159,references 1<2
+montmorillonite,Se(+4),0,0,empty
+montmorillonite,Se(+6),0,0,empty
+montmorillonite,Oxalic acid,0,0,empty
+montmorillonite,Sr(+2),0,0,empty
+montmorillonite,Se(-2),0,0,empty
+hematite,Ni(+2),3,19,points 19<50
+hematite,Oxalic acid,0,0,empty
+hematite,Zn(+2),1,5,points 5<50; pH span 1.9<4.0; references 1<2
+hematite,Ra(+2),0,0,empty
+hematite,Sr(+2),0,0,empty
+hematite,Se(-2),0,0,empty
+ferrihydrite,Np(+5),0,0,empty
+ferrihydrite,Eu(+3),2,19,points 19<50; references 1<2
+ferrihydrite,Am(+3),0,0,empty
+ferrihydrite,Oxalic acid,1,5,points 5<50; pH span 4.0<4.0; references 1<2
+ferrihydrite,Se(-2),0,0,empty
+illite,Se(+4),0,0,empty
+illite,Se(+6),0,0,empty
+illite,Oxalic acid,0,0,empty
+illite,Zn(+2),8,125,references 1<2
+illite,Ra(+2),0,0,empty
+illite,Se(-2),0,0,empty
+kaolinite,Np(+5),0,0,empty
+kaolinite,Eu(+3),3,33,points 33<50
+kaolinite,Se(+4),0,0,empty
+kaolinite,Ni(+2),0,0,empty
+kaolinite,Se(+6),0,0,empty
+kaolinite,Am(+3),0,0,empty
+kaolinite,Oxalic acid,0,0,empty
+kaolinite,Zn(+2),0,0,empty
+kaolinite,Sr(+2),0,0,empty
+kaolinite,Se(-2),0,0,empty
+quartz,Se(+4),1,12,points 12<50; pH span 3.6<4.0; references 1<2
+quartz,Ni(+2),0,0,empty
+quartz,Se(+6),0,0,empty
+quartz,Am(+3),5,46,points 46<50
+quartz,Oxalic acid,0,0,empty
+quartz,Zn(+2),1,10,points 10<50; pH span 2.1<4.0; references 1<2
+quartz,Sr(+2),4,35,points 35<50; references 1<2
+quartz,Se(-2),0,0,empty
+alumina,U(+6),2,20,points 20<50
+alumina,Se(+4),0,0,empty
+alumina,Ni(+2),0,0,empty
+alumina,Se(+6),0,0,empty
+alumina,Zn(+2),0,0,empty
+alumina,Ra(+2),0,0,empty
+alumina,Se(-2),0,0,empty
+magnetite,Eu(+3),3,30,points 30<50; references 1<2
+magnetite,Ni(+2),1,25,points 25<50; pH span 3.1<4.0; references 1<2
+magnetite,Se(+6),3,18,points 18<50
+magnetite,Am(+3),0,0,empty
+magnetite,Oxalic acid,0,0,empty
+magnetite,Zn(+2),0,0,empty
+magnetite,Ra(+2),0,0,empty
+magnetite,Sr(+2),1,22,points 22<50; references 1<2
+magnetite,Se(-2),3,180,references 1<2
+bentonite,Np(+5),0,0,empty
+bentonite,Se(+4),1,12,points 12<50; references 1<2
+bentonite,Ni(+2),0,0,empty
+bentonite,Se(+6),0,0,empty
+bentonite,Am(+3),0,0,empty
+bentonite,Oxalic acid,0,0,empty
+bentonite,Zn(+2),0,0,empty
+bentonite,Ra(+2),3,15,points 15<50; references 1<2
+bentonite,Se(-2),0,0,empty
+gibbsite,Np(+5),5,69,references 1<2
+gibbsite,Eu(+3),0,0,empty
+gibbsite,Se(+4),2,47,points 47<50
+gibbsite,Ni(+2),0,0,empty
+gibbsite,Se(+6),0,0,empty
+gibbsite,Am(+3),0,0,empty
+gibbsite,Oxalic acid,0,0,empty
+gibbsite,Zn(+2),1,17,points 17<50; pH span 2.9<4.0; references 1<2
+gibbsite,Ra(+2),0,0,empty
+gibbsite,Sr(+2),0,0,empty
+gibbsite,Se(-2),0,0,empty
+birnessite,U(+6),0,0,empty
+birnessite,Np(+5),0,0,empty
+birnessite,Eu(+3),0,0,empty
+birnessite,Se(+4),0,0,empty
+birnessite,Ni(+2),1,5,points 5<50; references 1<2
+birnessite,Se(+6),0,0,empty
+birnessite,Am(+3),0,0,empty
+birnessite,Oxalic acid,0,0,empty
+birnessite,Ra(+2),0,0,empty
+birnessite,Sr(+2),0,0,empty
+birnessite,Se(-2),0,0,empty
