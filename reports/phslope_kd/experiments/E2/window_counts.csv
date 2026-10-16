@@ -1,0 +1,6 @@
+scheme,curves_in_main_set,of_rising_falling,points_in_window
+"W0 (0.03, 0.97)",641,827,11358
+"W0 (0.01, 0.99)",674,827,13789
+"W0 (0.10, 0.90)",529,827,7501
+"W1 empirical (0.03, 0.97)",646,827,11358
+"W2 logit-delta (0.03, 0.97)",616,827,11358

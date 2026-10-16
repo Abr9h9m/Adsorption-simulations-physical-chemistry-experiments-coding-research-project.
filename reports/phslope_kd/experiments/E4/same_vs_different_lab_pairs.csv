@@ -1,0 +1,3 @@
+lab_id,same_lab_pairs,different_lab_pairs,median_same,median_different,mannwhitney_p
+lab_exact,4,356,0.2956249525432465,0.7102404887344556,
+lab_coarse,13,347,0.2767414491554172,0.7128371356168348,0.2811751554270254

@@ -1,0 +1,5 @@
+test,reps,detections,interval_covers_truth,rate
+"a: E1 solids (rising), solids shuffled within pair",50,2,,0.04
+"b: E8 outer-sphere slope, log10 I shuffled within series",50,5,,0.1
+c: E1 random-noise covariate,50,3,,0.06
+e: planted covariate +0.3 per SD,20,20,12.0,1.0
