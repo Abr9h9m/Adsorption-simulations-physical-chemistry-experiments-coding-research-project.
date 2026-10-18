@@ -3,6 +3,20 @@
 Status 2026-10-13: **P0, P1 done; P2 v0 built** (read-only API + single-page front end). Backend: FastAPI +
 static page (the protocol's recommended default for open decision 1; not formally confirmed).
 
+**Setup on a new machine.** The raw L-SCIE file is **not in the repo** (the repo is public and the data licence
+is still unchecked, WEB_INTERFACE_DEV_PLAN M0.6); Samuel shares `sc.dataset.csv` (16.8 MB, 38,906 rows) privately.
+
+1. Branch `ph-slope`, Python 3.11: `pip install -r requirements.txt`
+2. Put the file at `data/raw/sc.dataset.csv` (git-ignored, so it cannot be committed by accident), or point
+   `SORPTION_DATA_FILE` (or `CURVELIB_DATA`) at it wherever it lives.
+3. Check: `python -c "from phslope.common import resolve_data_file; print(resolve_data_file())"` prints that path,
+   and `python -m pytest tests/curvelib` passes (22 tests; the real-data tests skip if the file is missing).
+4. `python -m curvelib.api`. The first Predict call refits the predictor (a few minutes) because the cached
+   model file is git-ignored; after that it is cached.
+
+Everything else the app reads (`export/`, `reports/phslope/stage1/library/`, `packs/sorption/sorbate_map.csv`,
+config) is tracked.
+
 Run: `python -m curvelib.api` then open http://127.0.0.1:8000 (Elements = periodic table coloured by data,
 Coverage = heatmap with thresholds, Curves = points per paper + server-side logistic fit with paper-level
 intervals and the pooling warning, Predict = Stage 4 predictor with its warnings). Plotly loads from cdnjs.

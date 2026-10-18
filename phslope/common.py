@@ -49,14 +49,20 @@ def load_thresholds():
     return load_yaml("thresholds.yaml")
 
 
+REPO_DATA_FILE = os.path.join(PROJECT_ROOT, "data", "raw", "sc.dataset.csv")   # git-ignored; shared privately
+
+
 def resolve_data_file(cli_path=None, config=None):
-    """--data flag > SORPTION_DATA_FILE env var > config.yaml > data_audit.CONFIG."""
+    """--data flag > SORPTION_DATA_FILE env var > config.yaml > data/raw/sc.dataset.csv (if present) >
+    data_audit.CONFIG."""
     if cli_path:
         return cli_path
     if os.environ.get("SORPTION_DATA_FILE"):
         return os.environ["SORPTION_DATA_FILE"]
     if config and config.get("data", {}).get("file"):
         return config["data"]["file"]
+    if os.path.exists(REPO_DATA_FILE):
+        return REPO_DATA_FILE
     import data_audit
     return data_audit.CONFIG["DATA_FILE"]
 

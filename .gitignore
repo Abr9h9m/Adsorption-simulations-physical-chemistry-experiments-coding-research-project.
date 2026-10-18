@@ -11,3 +11,7 @@ reports/phslope/**/draws.npz
 reports/phslope/**/diagnostics.pdf
 reports/phslope/**/pooled_diagnostics.pdf
 reports/phslope/experiments/F/predictor_model.pkl
+
+# raw L-SCIE data: shared privately, never committed (public repo; licence unchecked, WEB_INTERFACE_DEV_PLAN M0.6)
+data/raw/
+sc.dataset.csv
