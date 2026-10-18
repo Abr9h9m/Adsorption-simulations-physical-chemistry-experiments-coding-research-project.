@@ -6,21 +6,22 @@
 <title>Curve Library</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.27.0/plotly.min.js"></script>
 <style>
-:root { --bg:#fcfcfb; --fg:#0b0b0b; --muted:#52514e; --line:#e3e2dd; --card:#ffffff; --accent:#2a78d6;
-        --warn-bg:#fff4e0; --warn-fg:#6b4500; --empty:#efeee9; }
+:root { --bg:#f4f3ff; --fg:#202044; --muted:#686888; --line:#e3e1f2; --card:#ffffff; --accent:#6654e8;
+        --warn-bg:#fff3d6; --warn-fg:#724d00; --empty:#ecebfa; --mint:#42c7b5; --coral:#ff866c; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
   --bg:#1a1a19; --fg:#f0efec; --muted:#c3c2b7; --line:#3a3a37; --card:#232322; --accent:#3987e5;
   --warn-bg:#3a2e14; --warn-fg:#f5d79a; --empty:#2c2c2a; } }
 :root[data-theme="dark"] { --bg:#1a1a19; --fg:#f0efec; --muted:#c3c2b7; --line:#3a3a37; --card:#232322;
   --accent:#3987e5; --warn-bg:#3a2e14; --warn-fg:#f5d79a; --empty:#2c2c2a; }
 * { box-sizing: border-box; }
-body { margin:0; font:14px/1.45 system-ui, sans-serif; background:var(--bg); color:var(--fg); }
-header { padding:10px 16px; border-bottom:1px solid var(--line); }
-.banner { background:var(--warn-bg); color:var(--warn-fg); padding:6px 16px; font-size:13px; }
-nav button { margin-right:6px; padding:6px 10px; border:1px solid var(--line); background:var(--card); color:var(--fg);
-             border-radius:6px; cursor:pointer; }
-nav button[aria-selected="true"] { border-color:var(--accent); color:var(--accent); font-weight:600; }
-main { padding:12px 16px; max-width:1200px; margin:0 auto; }
+body { margin:0; font:14px/1.5 system-ui, sans-serif; background:radial-gradient(ellipse at 8% 0%,#e6e3ff 0,transparent 36%),radial-gradient(ellipse at 95% 18%,#dcf8f2 0,transparent 27%),var(--bg); color:var(--fg); }
+header { padding:18px 24px; border-bottom:1px solid #ffffff35; background:linear-gradient(112deg,#342d78 0%,#5549c8 54%,#3677c9 100%); color:white; box-shadow:0 8px 26px #34307828; }
+.banner { background:#29265d; color:#e8e7ff; padding:7px 24px; font-size:12px; }
+nav button { margin-right:6px; padding:8px 13px; border:1px solid transparent; background:transparent; color:#e3e3ff;
+             border-radius:9px; cursor:pointer; transition:background .18s,transform .18s; }
+nav button:hover { background:#ffffff20; transform:translateY(-1px); }
+nav button[aria-selected="true"] { border-color:#ffffff60; background:#ffffff20; color:white; font-weight:700; }
+main { padding:24px; max-width:1440px; margin:0 auto; }
 section[hidden] { display:none; }
 .ptable { display:grid; grid-template-columns:repeat(18, minmax(0,1fr)); gap:3px; max-width:900px; }
 .cell { aspect-ratio:1; border:1px solid var(--line); border-radius:4px; font-size:11px; padding:2px; text-align:center;
@@ -31,7 +32,7 @@ section[hidden] { display:none; }
 .cell .n { font-size:9px; }
 .gap { aspect-ratio:1; }
 .row { display:flex; gap:16px; flex-wrap:wrap; align-items:flex-start; }
-.panel { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:10px; margin:10px 0; flex:1 1 300px; }
+.panel { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:16px; margin:10px 0; flex:1 1 300px; box-shadow:0 8px 24px #322e7b0c; }
 table { border-collapse:collapse; font-size:12px; width:100%; }
 th, td { border-bottom:1px solid var(--line); padding:3px 6px; text-align:left; }
 .warn { background:var(--warn-bg); color:var(--warn-fg); padding:6px; border-radius:6px; margin:6px 0; }
@@ -39,12 +40,71 @@ label { margin-right:10px; }
 input[type=number] { width:90px; }
 .muted { color:var(--muted); }
 @media (max-width: 640px) { .ptable { gap:1px; } .cell .n { display:none; } .cell .sym { font-size:9px; } }
+.brand { font-size:20px; letter-spacing:-.3px; }
+.brand:before { content:'✦'; display:inline-grid; place-items:center; width:30px; height:30px; margin-right:9px; border-radius:10px; color:#322c75; background:linear-gradient(135deg,#a4f2df,#ffe39c); vertical-align:middle; }
+.brand + .muted { color:#d9dcff; }
+.page-intro { display:flex; justify-content:space-between; gap:20px; align-items:flex-end; margin:2px 0 20px; }
+.page-intro h1 { margin:0 0 4px; font-size:29px; letter-spacing:-.8px; background:linear-gradient(95deg,#34317c,#6858e7 56%,#179c9a); color:transparent; background-clip:text; }
+.toolbar { display:flex; gap:12px; flex-wrap:wrap; align-items:end; padding:16px; background:#ffffffd9; border:1px solid #ffffff; border-radius:16px; margin:14px 0 18px; box-shadow:0 8px 24px #322e7b10; }
+.field { display:flex; flex-direction:column; gap:5px; color:var(--muted); font-size:12px; font-weight:600; }
+.field input,.field select { min-width:230px; padding:10px 12px; border:1px solid var(--line); border-radius:8px; background:var(--bg); color:var(--fg); font:inherit; font-weight:400; }
+.field input:focus,.field select:focus { outline:2px solid #356fe055; border-color:var(--accent); }
+.search-wrap { position:relative; }
+.search-wrap:before { content:'⌕'; position:absolute; left:11px; top:5px; font-size:22px; color:var(--muted); }
+.search-wrap input { padding-left:34px; }
+.stat-grid { display:grid; grid-template-columns:repeat(4,minmax(120px,1fr)); gap:12px; margin:14px 0 18px; }
+.stat { position:relative; overflow:hidden; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px 16px; box-shadow:0 6px 20px #322e7b0c; }
+.stat:after { content:''; position:absolute; right:-16px; top:-23px; width:62px; height:62px; border-radius:50%; background:linear-gradient(135deg,#7466ef55,#3bc8b455); }
+.stat strong { display:block; font-size:21px; }
+.stat span { color:var(--muted); font-size:12px; }
+.stat:nth-child(2) strong { color:#168c82; }.stat:nth-child(3) strong { color:#e16b53; }.stat:nth-child(4) strong { color:#6654e8; }
+.ptable { max-width:none; gap:5px; }
+.cell { border-radius:7px; min-height:48px; }
+.cell .sym { font-size:13px; }
+.cell .n { color:#27354d; }
+button { font:inherit; }
+button.primary { background:var(--accent); color:white; border:0; border-radius:8px; padding:10px 15px; cursor:pointer; }
+button.subtle { background:var(--card); color:var(--accent); border:1px solid #d7d2ff; border-radius:9px; padding:9px 12px; cursor:pointer; transition:.18s; }
+button.subtle:hover { background:#f1efff; transform:translateY(-1px); }
+.cell.has { border-color:#ffffffb8; box-shadow:0 2px 6px #24204a14; transition:transform .15s,box-shadow .15s; }
+.cell.has:hover { transform:translateY(-2px) scale(1.05); box-shadow:0 6px 14px #24204a28; }
+header .headrow { display:flex; justify-content:space-between; align-items:center; gap:16px; }
+dialog { width:min(680px,calc(100% - 28px)); border:0; border-radius:18px; padding:0; color:var(--fg); box-shadow:0 28px 90px #15134555; }
+dialog::backdrop { background:#1b1946a8; backdrop-filter:blur(4px); }
+.dialog-body { padding:22px; }.dialog-body h2 { margin:0 0 5px; }.map-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:18px 0; }
+.dialog-actions { display:flex; gap:8px; justify-content:flex-end; margin-top:18px; }.upload-note { padding:10px 12px; background:#f0efff; border-radius:10px; color:#5145a9; }
+.results-heading h2 { color:#383677; }
+.plot-overview { background:linear-gradient(110deg,#eeedff,#e7faf5); border:1px solid #e0def8; border-radius:13px; padding:12px 15px; color:#34316f; }
+.plot-overview strong { display:block; font-size:15px; margin-bottom:8px; }
+.plot-stats { display:flex; flex-wrap:wrap; gap:7px; }
+.plot-stats span { display:inline-block; padding:4px 9px; background:#ffffffbd; border:1px solid #ffffff; border-radius:999px; font-size:12px; color:#555477; }
+.empty-state { max-width:760px; margin:10vh auto; padding:44px 28px; text-align:center; background:var(--card); border:1px solid var(--line); border-radius:20px; box-shadow:0 12px 36px #322e7b12; }
+.empty-state h1 { margin:0 0 10px; color:#423c9a; font-size:30px; }
+.ion-list { display:grid; gap:8px; margin:12px 0; }
+.ion-row { display:grid; grid-template-columns:minmax(100px,1.3fr) minmax(110px,1fr) minmax(90px,.7fr) auto; gap:8px; align-items:center; }
+.ion-row input,.ionic-controls input,.ionic-controls select { min-width:0; padding:8px 10px; border:1px solid var(--line); border-radius:8px; background:var(--bg); color:var(--fg); font:inherit; }
+.ionic-controls { display:flex; flex-wrap:wrap; gap:10px; align-items:end; }
+.calc-display { width:min(100%,420px); padding:10px 12px; border:1px solid var(--line); border-radius:9px; background:var(--bg); color:var(--fg); font:600 18px ui-monospace,monospace; text-align:right; }
+.calc-grid { display:grid; grid-template-columns:repeat(4,minmax(52px,76px)); gap:7px; margin:12px 0; }
+.calc-grid button { min-height:42px; }
+@media(max-width:600px) { .ion-row { grid-template-columns:1fr 1fr; } }
+.point-table-wrap { max-height:360px; overflow:auto; border:1px solid var(--line); border-radius:10px; background:var(--card); }
+.point-table-wrap table { min-width:760px; }
+.point-table-wrap th { position:sticky; top:0; background:var(--bg); z-index:1; }
+.point-table-wrap tbody tr { cursor:pointer; }
+.point-table-wrap tbody tr.point-selected td { background:#ffe89a !important; color:#272044; font-weight:700; }
+th { color:#5145a9; font-weight:700; background:#f5f4ff; }
+tr:hover td { background:#f8f7ff; }
+.results-heading { display:flex; align-items:center; justify-content:space-between; margin:20px 0 8px; }
+.results-heading h2 { margin:0; font-size:16px; }
+.selection-layout { display:grid; grid-template-columns:minmax(0,2fr) minmax(260px,1fr); gap:14px; }
+@media(max-width:760px) { header { padding:14px; } main { padding:15px; } .page-intro { display:block; } .stat-grid { grid-template-columns:repeat(2,1fr); } .selection-layout { grid-template-columns:1fr; } .field input,.field select { min-width:0; width:100%; } .toolbar { align-items:stretch; } }
 </style>
 </head>
 <body>
 <div class="banner" id="banner">Loading…</div>
 <header>
-  <strong>Curve Library</strong> <span class="muted" id="title"></span>
+  <div class="headrow"><div><strong class="brand">Curve Library</strong> <span class="muted" id="title"></span></div><button id="openUpload" class="primary" type="button">＋ Upload dataset</button></div>
   <nav role="tablist" style="margin-top:8px">
     <button role="tab" data-tab="picker" aria-selected="true">Elements</button>
     <button role="tab" data-tab="coverage" aria-selected="false">Coverage</button>
@@ -52,16 +112,33 @@ input[type=number] { width:90px; }
     <button role="tab" data-tab="predict" aria-selected="false">Predict</button>
   </nav>
 </header>
-<main>
-<section id="picker">
-  <p class="muted">Colour = amount of data (log scale). Elements with no data are greyed. Click an element.</p>
-  <label>Colour by <select id="metric"></select></label>
-  <div id="ptable" class="ptable" style="margin-top:8px"></div>
-  <div class="row">
-    <div class="panel" id="selection"><em class="muted">No element selected.</em></div>
-    <div class="panel"><strong>Other sorbates (not elements)</strong><div id="other"></div></div>
+<dialog id="uploadDialog"><div class="dialog-body">
+  <h2>Bring in a dataset</h2><p class="muted">Choose a CSV, delimited text file, or Excel workbook and map its columns. Excel files use the first worksheet. The limit is <span id="uploadLimitLabel">50</span> MB. It stays in memory while this app runs and is not saved to disk.</p>
+  <label class="field">Dataset file<input id="uploadFile" type="file" accept=".csv,.txt,.tsv,.xlsx,.xlsm,.xls,text/csv,text/plain,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"></label>
+  <div id="uploadError" class="warn" hidden></div>
+  <div id="uploadMapping" hidden><p class="upload-note">Pick columns for each curve. Ionic strength is optional; if supplied, map a column expressed in mol/L.</p>
+    <div class="field"><span>Dataset name</span><input id="uploadName" value="Uploaded dataset"></div>
+    <div class="map-grid" id="mapGrid"></div>
   </div>
-  <details class="panel"><summary>Table view of the counts</summary><div id="counts"></div></details>
+  <div class="dialog-actions"><button id="cancelUpload" class="subtle" type="button">Cancel</button><button id="applyUpload" class="primary" type="button" disabled>Load dataset</button></div>
+</div></dialog>
+<main>
+<div id="emptyState" class="empty-state" hidden><h1>Your workspace is ready</h1><p class="muted">No dataset is loaded. Upload a CSV to explore its curves, compare groups, and view point details.</p><button class="primary" type="button" onclick="document.getElementById('openUpload').click()">＋ Choose a dataset</button></div>
+<section id="picker">
+  <div class="page-intro"><div><h1>Explore sorption data</h1><div class="muted">Find an element, filter the dataset, and open curves by mineral.</div></div></div>
+  <div class="stat-grid" id="overview-stats"><div class="stat"><strong id="stat-elements">—</strong><span>elements with data</span></div><div class="stat"><strong id="stat-curves">—</strong><span>clean curves</span></div><div class="stat"><strong id="stat-papers">—</strong><span>papers</span></div><div class="stat"><strong id="stat-minerals">—</strong><span>minerals</span></div></div>
+  <div class="toolbar">
+    <div class="field">Search by element or sorbate<label class="search-wrap"><input id="elementSearch" type="search" placeholder="Try uranium, U, or U(+6)" autocomplete="off"></label></div>
+    <label class="field">Colour elements by<select id="metric"></select></label>
+    <button class="subtle" id="clearSearch" type="button">Clear search</button>
+  </div>
+  <div class="results-heading"><h2>Elements</h2><span class="muted">Heat colour = amount of data · select an element to narrow by mineral</span></div>
+  <div id="ptable" class="ptable"></div>
+  <div class="selection-layout">
+    <div class="panel" id="selection"><em class="muted">Search for an element or select one in the table above.</em></div>
+    <div class="panel"><strong>Other sorbates</strong><p class="muted">Labels that do not map cleanly to an element.</p><div id="other"></div></div>
+  </div>
+  <details class="panel"><summary>Element counts table</summary><div id="counts"></div></details>
 </section>
 <section id="coverage" hidden>
   <label>min points <input type="number" id="minp" value="50"></label>
@@ -72,7 +149,30 @@ input[type=number] { width:90px; }
 </section>
 <section id="viewer" hidden>
   <div id="vsel" class="muted">Select curves from the Elements tab.</div>
+  <div id="plotStatus" class="muted" role="status" aria-live="polite"></div>
   <div id="plot" style="height:440px"></div>
+  <details class="panel" id="calculatorTools"><summary><strong>Calculators (optional)</strong></summary><p class="muted">Open a calculator only when you need it. More dataset-specific calculators can be added here.</p>
+    <details style="margin-top:10px"><summary>Standard calculator</summary>
+      <p class="muted">A basic arithmetic calculator for quick checks. It does not change your dataset.</p>
+      <input class="calc-display" id="calcExpression" type="text" inputmode="decimal" aria-label="Calculator expression" placeholder="0 + 0">
+      <div class="calc-grid" id="calcButtons">
+        <button class="subtle" type="button" data-calc="clear">C</button><button class="subtle" type="button" data-calc="back">⌫</button><button class="subtle" type="button" data-calc="(">(</button><button class="subtle" type="button" data-calc=")">)</button>
+        <button class="subtle" type="button" data-calc="7">7</button><button class="subtle" type="button" data-calc="8">8</button><button class="subtle" type="button" data-calc="9">9</button><button class="subtle" type="button" data-calc="/">÷</button>
+        <button class="subtle" type="button" data-calc="4">4</button><button class="subtle" type="button" data-calc="5">5</button><button class="subtle" type="button" data-calc="6">6</button><button class="subtle" type="button" data-calc="*">×</button>
+        <button class="subtle" type="button" data-calc="1">1</button><button class="subtle" type="button" data-calc="2">2</button><button class="subtle" type="button" data-calc="3">3</button><button class="subtle" type="button" data-calc="-">−</button>
+        <button class="subtle" type="button" data-calc="0">0</button><button class="subtle" type="button" data-calc=".">.</button><button class="subtle" type="button" data-calc="^">xʸ</button><button class="subtle" type="button" data-calc="+">+</button>
+      </div>
+      <button class="primary" id="calculateExpression" type="button">= Calculate</button> <span id="calcResult" class="muted" role="status" aria-live="polite"></span>
+    </details>
+    <details id="ionicCalculator" style="margin-top:10px"><summary>Ionic strength calculator (optional)</summary>
+      <div class="ionic-controls" style="margin-top:12px"><label class="field">Ionic strength (mol/L)<input id="ionicStrengthValue" type="number" min="0" step="any" placeholder="Enter or calculate"></label><span id="ionicStrengthStatus" class="muted" aria-live="polite"></span></div>
+      <p class="muted">Enter each ion’s concentration and charge. The calculator uses I = ½ Σ cᵢzᵢ² and converts concentrations to mol/L.</p>
+      <div class="ionic-controls"><label class="field">Concentration unit<select id="ionUnit"><option value="1">mol/L</option><option value="0.001">mmol/L</option><option value="0.000001">µmol/L</option></select></label></div>
+      <div id="ionRows" class="ion-list"></div>
+      <div class="ionic-controls"><button id="addIon" class="subtle" type="button">＋ Add ion</button><button id="calculateIonicStrength" class="primary" type="button">Calculate ionic strength</button></div>
+    </details>
+  </details>
+  <details class="panel" id="pointDetails" hidden open><summary>Point details</summary><p class="muted" id="pointDetailsNote"></p><div class="point-table-wrap" id="pointDetailsTable"></div></details>
   <button id="fitgo">Fit logistic to the shown curves</button>
   <div id="fitout"></div>
 </section>
@@ -91,8 +191,9 @@ input[type=number] { width:90px; }
 </main>
 <script>
 const api = (p) => fetch(p).then(r => r.ok ? r.json() : r.json().then(e => { throw new Error(e.detail || r.status); }));
-let PICK = null, SELECTED = [];
+let PICK = null, SELECTED = [], AXIS_X = "pH", AXIS_Y = "fraction sorbed", ROLE_COLUMNS = {}, uploadBytes = null, uploadFilename = "", GENERIC_MODE = false, MAX_UPLOAD_MB = 50;
 const esc = (s) => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const ELEMENT_NAMES = {uranium:"U", selenium:"Se", iron:"Fe", arsenic:"As", copper:"Cu", lead:"Pb", chromium:"Cr", nickel:"Ni", zinc:"Zn", cobalt:"Co", cadmium:"Cd", manganese:"Mn", calcium:"Ca", aluminum:"Al", aluminium:"Al", silicon:"Si", phosphorus:"P", sulfur:"S", sulphur:"S", carbon:"C", nitrogen:"N", oxygen:"O", chlorine:"Cl", bromine:"Br", iodine:"I", strontium:"Sr", cesium:"Cs", caesium:"Cs", barium:"Ba", thorium:"Th", plutonium:"Pu"};
 
 document.querySelectorAll("nav button").forEach(b => b.onclick = () => {
   document.querySelectorAll("nav button").forEach(x => x.setAttribute("aria-selected", x === b));
@@ -108,13 +209,55 @@ function color(v, max) {               // sequential blue, log scale
 }
 
 async function init() {
+  if (location.protocol === "file:") {
+    document.getElementById("banner").textContent = "This page was opened as a file. Start the app with `python -m curvelib.api`, then open http://127.0.0.1:8000 so the page can reach its API.";
+    document.getElementById("openUpload").disabled = true;
+    return;
+  }
   const m = await api("/api/meta");
+  MAX_UPLOAD_MB = Number(m.data.upload_limit_mb) || 50;
+  document.getElementById("uploadLimitLabel").textContent = MAX_UPLOAD_MB;
+  if (!m.data.loaded) {
+    document.getElementById("banner").textContent = "No dataset loaded · upload a CSV to begin.";
+    document.getElementById("title").textContent = "Ready for your data";
+    document.querySelector("header nav").hidden = true;
+    document.querySelectorAll("main section").forEach(section => section.hidden = true);
+    document.getElementById("emptyState").hidden = false;
+    return;
+  }
+  ROLE_COLUMNS = Object.fromEntries(Object.entries(m.data.roles).map(([name, role]) => [role, name]));
   document.getElementById("banner").textContent =
     `Status: ${m.status.toUpperCase()} · schema v${m.schema_version} · data ${m.data_version} · ${m.data.rows.toLocaleString()} rows. ` +
     `Uncertainty is shown at paper level; the locked test papers are never used to fit the model.`;
   document.getElementById("title").textContent = m.data.title;
+  if (!m.data.upload_enabled) {
+    const uploadButton=document.getElementById("openUpload");uploadButton.disabled=true;
+    uploadButton.title="Restart the FastAPI app to enable CSV uploads.";
+    document.getElementById("banner").textContent="This app server is out of date for uploads. Restart it from Adsorption-project with: python -m curvelib.api";
+  }
+  if (!m.data.has_picker) {
+    GENERIC_MODE = true;
+    AXIS_X = Object.keys(m.data.roles).find(k => m.data.roles[k] === "sweep_x") || "x";
+    AXIS_Y = Object.keys(m.data.roles).find(k => m.data.roles[k] === "value") || "value";
+    document.querySelector('nav button[data-tab="predict"]').hidden = true;
+    document.getElementById("fitgo").hidden = true;
+    const allCurves = (await api("/api/curves")).data;
+    document.getElementById("stat-elements").textContent = new Set(allCurves.map(c=>c.group_b)).size;
+    document.getElementById("stat-curves").textContent = allCurves.length.toLocaleString();
+    document.getElementById("stat-papers").textContent = new Set(allCurves.map(c=>c.cluster)).size.toLocaleString();
+    document.getElementById("stat-minerals").textContent = new Set(allCurves.map(c=>c.group_a)).size.toLocaleString();
+    document.querySelector("#stat-elements + span").textContent = "Group 2 values";
+    document.querySelector("#stat-papers + span").textContent = "sources";
+    document.querySelector("#stat-minerals + span").textContent = "Group 1 values";
+    renderGenericBrowser(allCurves);
+    return;
+  }
   const e = await api("/api/entities");
   PICK = e.data;
+  const allCurves = (await api("/api/curves")).data;
+  document.getElementById("stat-curves").textContent = allCurves.length.toLocaleString();
+  document.getElementById("stat-papers").textContent = new Set(allCurves.map(c=>c.cluster)).size.toLocaleString();
+  document.getElementById("stat-minerals").textContent = new Set(allCurves.map(c=>c.group_a)).size.toLocaleString();
   const sel = document.getElementById("metric");
   (PICK.metrics || ["curves"]).forEach(k => sel.add(new Option(k.replace(/_/g, " "), k)));
   sel.onchange = drawTable;
@@ -123,8 +266,27 @@ async function init() {
     (PICK.other || []).map(o => `<tr><td>${esc(o.label)}</td><td>${o.curves}</td><td>${o.papers}</td></tr>`).join("") + "</table>";
 }
 
+function renderGenericBrowser(curves) {
+  const pairs = [...new Set(curves.map(c=>JSON.stringify([c.group_a,c.group_b])))].map(x=>JSON.parse(x));
+  const options = vals => vals.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join("");
+  document.getElementById("picker").innerHTML = `<div class="page-intro"><div><h1>Explore ${esc(document.getElementById("title").textContent)}</h1><div class="muted">Filter the uploaded data by its mapped groups, then open a curve.</div></div></div>
+    <div class="toolbar"><label class="field">Group 1<select id="genericA">${options([...new Set(pairs.map(p=>p[0]))].sort())}</select></label>
+    <label class="field">Group 2<select id="genericB">${options([...new Set(pairs.map(p=>p[1]))].sort())}</select></label><button class="primary" id="genericFilter">Apply filters</button></div>
+    <div class="panel"><strong id="genericSummary"></strong><div id="genericResults"></div></div>`;
+  document.getElementById("genericFilter").onclick = () => {
+    const a=document.getElementById("genericA").value,b=document.getElementById("genericB").value;
+    const found=curves.filter(c=>String(c.group_a)===a&&String(c.group_b)===b);
+    document.getElementById("genericSummary").textContent=`${found.length} curves · ${a} / ${b}`;
+    document.getElementById("genericResults").innerHTML=`<table><tr><th>source</th><th>points</th><th>${esc(AXIS_X)} range</th><th></th></tr>`+found.map((c,i)=>`<tr><td>${esc(c.cluster)}</td><td>${c.n_points}</td><td>${c.x_min} – ${c.x_max}</td><td><button class="subtle" data-index="${i}">View curve</button></td></tr>`).join("")+"</table>";
+    document.querySelectorAll("#genericResults button[data-index]").forEach(btn=>btn.onclick=()=>{SELECTED=[found[Number(btn.dataset.index)]];document.querySelector('nav button[data-tab="viewer"]').click();drawCurves();});
+  };
+  document.getElementById("genericFilter").click();
+}
+
 function drawTable() {
   const k = document.getElementById("metric").value;
+  const rawQuery = document.getElementById("elementSearch").value.trim().toLowerCase();
+  const query = ELEMENT_NAMES[rawQuery] ? ELEMENT_NAMES[rawQuery].toLowerCase() : rawQuery;
   const cells = PICK.cells, max = Math.max(...cells.map(c => c[k] || 0));
   const grid = document.getElementById("ptable");
   grid.innerHTML = "";
@@ -133,7 +295,9 @@ function drawTable() {
     const c = at[`${r},${col}`];
     if (!c) { const g = document.createElement("div"); g.className = "gap"; grid.appendChild(g); continue; }
     const d = document.createElement(c.has_data ? "button" : "div");
+    const matches = !query || c.id.toLowerCase().includes(query) || c.members.some(m => m.toLowerCase().includes(query));
     d.className = "cell" + (c.has_data ? " has" : "");
+    if (c.has_data && !matches) d.style.opacity = ".18";
     if (c.has_data) { d.style.background = color(c[k], max); d.onclick = () => selectElement(c);
       d.title = `${c.id}: ${c.points} points, ${c.curves} curves, ${c.papers} papers, ${c.minerals} minerals`;
       d.setAttribute("aria-label", d.title); }
@@ -141,10 +305,27 @@ function drawTable() {
     grid.appendChild(d);
   }
   const rows = cells.filter(c => c.has_data).sort((a, b) => b[k] - a[k]);
+  document.getElementById("stat-elements").textContent = rows.length;
   document.getElementById("counts").innerHTML = "<table><tr><th>element</th>" +
     PICK.metrics.map(m => `<th>${m.replace(/_/g, " ")}</th>`).join("") + "</tr>" +
     rows.map(c => `<tr><td>${c.id}</td>` + PICK.metrics.map(m => `<td>${c[m]}</td>`).join("") + "</tr>").join("") + "</table>";
 }
+
+function fmtValue(value) {
+  const n=Number(value);
+  if(Number.isFinite(n)) return n!==0&&(Math.abs(n)<0.001||Math.abs(n)>=100000)?n.toExponential(3):n.toLocaleString(undefined,{maximumSignificantDigits:5});
+  return String(value);
+}
+
+document.getElementById("elementSearch").addEventListener("input", () => {
+  drawTable();
+  const raw = document.getElementById("elementSearch").value.trim().toLowerCase();
+  const q = ELEMENT_NAMES[raw] ? ELEMENT_NAMES[raw].toLowerCase() : raw;
+  if (!q) return;
+  const found = PICK.cells.find(c => c.has_data && (c.id.toLowerCase() === q || c.members.some(m => m.toLowerCase() === q)));
+  if (found) selectElement(found);
+});
+document.getElementById("clearSearch").onclick = () => { document.getElementById("elementSearch").value = ""; drawTable(); };
 
 async function selectElement(c) {
   const qs = c.members.map(m => "group_b=" + encodeURIComponent(m)).join("&");
@@ -155,10 +336,15 @@ async function selectElement(c) {
   const p = document.getElementById("selection");
   p.innerHTML = `<strong>${esc(c.id)}</strong>: ${curves.length} clean curves. Oxidation states / forms: ` +
     c.members.map(m => `<label><input type="checkbox" class="ox" value="${esc(m)}" checked> ${esc(m)}</label>`).join("") +
+    `<div class="field" style="margin:12px 0"><span>Filter minerals</span><input id="mineralSearch" type="search" placeholder="Search minerals…"></div>` +
     "<table><tr><th>mineral</th><th>curves</th><th>papers</th><th></th></tr>" +
     Object.entries(byMineral).sort((a, b) => b[1].length - a[1].length).map(([mn, cs]) =>
-      `<tr><td>${esc(mn)}</td><td>${cs.length}</td><td>${new Set(cs.map(x => x.cluster)).size}</td>` +
+      `<tr data-mineral="${esc(mn.toLowerCase())}"><td>${esc(mn)}</td><td>${cs.length}</td><td>${new Set(cs.map(x => x.cluster)).size}</td>` +
       `<td><button data-m="${esc(mn)}">show</button></td></tr>`).join("") + "</table>";
+  p.querySelector("#mineralSearch").addEventListener("input", ev => {
+    const q = ev.target.value.trim().toLowerCase();
+    p.querySelectorAll("tr[data-mineral]").forEach(row => row.hidden = !row.dataset.mineral.includes(q));
+  });
   p.querySelectorAll("button[data-m]").forEach(b => b.onclick = () => {
     const ox = [...p.querySelectorAll(".ox:checked")].map(x => x.value);
     SELECTED = byMineral[b.dataset.m].filter(x => ox.includes(x.group_b));
@@ -169,18 +355,59 @@ async function selectElement(c) {
 
 async function drawCurves() {
   if (!SELECTED.length) return;
+  const plotStatus = document.getElementById("plotStatus");
+  if (plotStatus) plotStatus.textContent = "Loading plotted points…";
+  try {
   const qs = SELECTED.slice(0, 60).map(x => "curve_id=" + encodeURIComponent(x.curve_id)).join("&");
   const r = await api("/api/points?" + qs);
   const pts = r.data, byCluster = {};
-  pts.forEach(p => (byCluster[p.Reference ?? p.curve_id] = byCluster[p.Reference ?? p.curve_id] || []).push(p));
-  const traces = Object.entries(byCluster).map(([k, ps]) => ({x: ps.map(p => p.x), y: ps.map(p => p.y), mode: "markers",
-    type: "scattergl", name: k, text: ps.map(p => Object.entries(p).filter(([a]) => !["x","y"].includes(a))
-      .map(([a, v]) => `${a}: ${v}`).join("<br>")), hoverinfo: "text+x+y"}));
+  pts.forEach((p,index) => (byCluster[p.Reference ?? p.curve_id] = byCluster[p.Reference ?? p.curve_id] || []).push({p,index}));
+  const skipDetails = new Set(["x","y","curve_id",ROLE_COLUMNS.group_a,ROLE_COLUMNS.group_b,ROLE_COLUMNS.cluster,AXIS_X,AXIS_Y].filter(Boolean));
+  const traces = Object.entries(byCluster).map(([k, entries]) => ({x: entries.map(({p}) => p.x), y: entries.map(({p}) => p.y),
+    customdata: entries.map(({index}) => index), mode: "markers", marker:{color:"#3686d8",size:9,line:{color:"#ffffff",width:1}},
+    type: "scattergl", name: k, text: entries.map(({p}) => {
+      const where=[p[ROLE_COLUMNS.group_a],p[ROLE_COLUMNS.group_b]].filter(v=>v!==undefined&&v!==null&&v!=="").map(esc).join(" · ");
+      const source=p[ROLE_COLUMNS.cluster];
+      const heading=`${esc(AXIS_Y)} = ${esc(fmtValue(p.y))} at ${esc(AXIS_X)} = ${esc(fmtValue(p.x))}`;
+      const context=[where?`<b>${where}</b>`:"",source!==undefined&&source!==null?`Source: ${esc(source)}`:""].filter(Boolean).join("<br>");
+      const details=Object.entries(p).filter(([a,v])=>!skipDetails.has(a)&&v!==null&&v!==undefined&&v!=="")
+        .map(([a,v])=>`${esc(a)}: ${esc(v)}`).join("<br>");
+      return `<b>${heading}</b>${context?`<br>${context}`:""}${details?`<br><br>${details}`:""}`;
+    }), hoverinfo: "text"}));
   const s = SELECTED[0];
-  document.getElementById("vsel").textContent = `${s.group_a} · ${[...new Set(SELECTED.map(x => x.group_b))].join(", ")} · ` +
-    `${SELECTED.length} curves, ${Object.keys(byCluster).length} papers (one colour per paper)`;
-  Plotly.newPlot("plot", traces, {xaxis: {title: "pH"}, yaxis: {title: "fraction sorbed"}, margin: {t: 20},
+  const xvals=pts.map(p=>Number(p.x)).filter(Number.isFinite), yvals=pts.map(p=>Number(p.y)).filter(Number.isFinite);
+  const range=arr=>arr.length?`${fmtValue(arr.reduce((a,b)=>Math.min(a,b),Infinity))}–${fmtValue(arr.reduce((a,b)=>Math.max(a,b),-Infinity))}`:"n/a";
+  const sourceCount=new Set(SELECTED.map(c=>String(c.cluster))).size;
+  const pairTitle=`${s.group_a} · ${[...new Set(SELECTED.map(x => x.group_b))].join(", ")}`;
+  const summaries=[`${pts.length.toLocaleString()} points`,`${SELECTED.length} curves`,`${sourceCount} ${GENERIC_MODE?"sources":"papers"}`,
+    `${AXIS_X}: ${range(xvals)}`,`${AXIS_Y}: ${range(yvals)}`];
+  document.getElementById("vsel").innerHTML=`<div class="plot-overview"><strong>${esc(pairTitle)}</strong><div class="plot-stats">${summaries.map(x=>`<span>${esc(x)}</span>`).join("")}</div></div>`;
+  const detailRows=pts.slice(0,100);
+  const detailColumns=[ROLE_COLUMNS.group_a,ROLE_COLUMNS.group_b,ROLE_COLUMNS.cluster,ROLE_COLUMNS.ionic_strength].filter((c,i,a)=>c&&a.indexOf(c)===i);
+  const shownColumns=[...new Set([AXIS_X,AXIS_Y,...detailColumns])];
+  document.getElementById("pointDetailsNote").textContent=`Showing ${detailRows.length.toLocaleString()} of ${pts.length.toLocaleString()} plotted points. Hover over any dot for its full source details.`;
+  document.getElementById("pointDetailsTable").innerHTML=`<table><thead><tr>${shownColumns.map(c=>`<th>${esc(c)}</th>`).join("")}</tr></thead><tbody>${detailRows.map((p,index)=>`<tr data-point-index="${index}" tabindex="0" aria-label="Highlight point ${index+1}">${shownColumns.map(c=>`<td>${esc(fmtValue(c===AXIS_X?p.x:c===AXIS_Y?p.y:p[c] ?? ""))}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
+  document.getElementById("pointDetails").hidden=false;
+  await Plotly.newPlot("plot", traces, {title:{text:esc(pairTitle),x:.02,xanchor:"left"},xaxis: {title: AXIS_X}, yaxis: {title: AXIS_Y}, margin: {t: 58},
     paper_bgcolor: "rgba(0,0,0,0)", plot_bgcolor: "rgba(0,0,0,0)"}, {responsive: true});
+  const plot=document.getElementById("plot"), rows=[...document.querySelectorAll("#pointDetailsTable tr[data-point-index]")];
+  const highlightPoint=index=>{
+    const colors=Object.values(byCluster).map(entries=>entries.map(({index:i})=>i===index?"#ff4f9a":"#3686d8"));
+    const sizes=Object.values(byCluster).map(entries=>entries.map(({index:i})=>i===index?16:9));
+    const lineColors=Object.values(byCluster).map(entries=>entries.map(({index:i})=>i===index?"#4a1740":"#ffffff"));
+    const lineWidths=Object.values(byCluster).map(entries=>entries.map(({index:i})=>i===index?3:1));
+    Plotly.restyle(plot,{"marker.color":colors,"marker.size":sizes,"marker.line.color":lineColors,"marker.line.width":lineWidths});
+    rows.forEach(row=>row.classList.toggle("point-selected",Number(row.dataset.pointIndex)===index));
+    const row=rows.find(item=>Number(item.dataset.pointIndex)===index);
+    if(row){row.scrollIntoView({block:"nearest"});document.getElementById("pointDetailsNote").textContent=`Highlighted point ${index+1} of ${pts.length}. Click another row or dot to move the highlight.`;}
+  };
+  rows.forEach(row=>{row.addEventListener("click",()=>highlightPoint(Number(row.dataset.pointIndex)));row.addEventListener("keydown",ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();highlightPoint(Number(row.dataset.pointIndex));}});});
+  plot.on("plotly_click",ev=>{if(ev.points?.length)highlightPoint(Number(ev.points[0].customdata));});
+  if (plotStatus) plotStatus.textContent = `${pts.length.toLocaleString()} plotted points. Hover over a dot for its measurements and source details.`;
+  } catch (e) {
+    if (plotStatus) plotStatus.textContent = `Could not display plot: ${e.message}. Check that the app server is running and Plotly can load.`;
+    throw e;
+  }
 }
 
 document.getElementById("fitgo").onclick = async () => {
@@ -226,6 +453,108 @@ document.getElementById("predgo").onclick = async () => {
       {responsive: true});
   } catch (e) { document.getElementById("prednotes").innerHTML = `<div class="warn">${esc(e.message)}</div>`; }
 };
+
+document.getElementById("openUpload").onclick = () => document.getElementById("uploadDialog").showModal();
+document.getElementById("cancelUpload").onclick = () => document.getElementById("uploadDialog").close();
+document.getElementById("uploadFile").addEventListener("change", async ev => {
+  const file=ev.target.files[0]; if(!file) return;
+  const button=document.getElementById("applyUpload"); button.disabled=true; button.textContent="Reading…";
+  try {
+    document.getElementById("uploadError").hidden=true;
+    if(file.size>MAX_UPLOAD_MB*1024*1024)throw new Error(`This file is larger than the ${MAX_UPLOAD_MB} MB upload limit.`);
+    uploadFilename=file.name;
+    uploadBytes=new Uint8Array(await file.arrayBuffer());
+    const info=await fetch("/api/upload/inspect?"+new URLSearchParams({filename:uploadFilename}),{method:"POST",body:uploadBytes}).then(async r=>{const j=await r.json();if(!r.ok)throw new Error(r.status===404?"Upload API not found. Restart the app from Adsorption-project with: python -m curvelib.api":(j.detail||"Could not read file"));return j;});
+    const defs=[["group_a","Group 1"],["group_b","Group 2"],["cluster","Source / paper"],["series","Series (optional)"],["x","X measurement"],["y","Measured value"],["ionic_strength","Ionic strength (mol/L, optional)"]];
+    const guess={group_a:/mineral|material|group|site|continent|region|category|class|segment/i,group_b:/sorbate|compound|species|treatment|country|entity|product|store|city|name|subject/i,cluster:/reference|paper|study|source|author/i,series:/set|series|curve|replicate/i,x:/^x$|ph|year|date|time|temperature|dose|concentration|age|index/i,y:/^y$|sorbed|response|value|yield|uptake|life.?expect|population|gdp|sales|revenue|score|measurement/i,ionic_strength:/ionic[ _-]*strength|^i$|ionic_strength/i};
+    document.getElementById("mapGrid").innerHTML=defs.map(([key,label])=>`<label class="field">${label}<select id="map-${key}">${["series","ionic_strength"].includes(key)?'<option value="">None</option>':(["group_a","group_b","cluster"].includes(key)?'<option value="__all__">Use one default group</option>':"")}${info.columns.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join("")}</select></label>`).join("");
+    for(const [key,pattern] of Object.entries(guess)){const sel=document.getElementById(`map-${key}`);const hit=info.columns.find(c=>pattern.test(c));if(hit)sel.value=hit;}
+    const xSel=document.getElementById("map-x"),ySel=document.getElementById("map-y");
+    if(xSel.value===ySel.value)ySel.value=info.columns.find(c=>c!==xSel.value)||ySel.value;
+    document.getElementById("uploadName").value=file.name.replace(/\.(csv|txt|tsv|xlsx|xlsm|xls)$/i,"");
+    document.getElementById("uploadMapping").hidden=false;button.disabled=false;
+  } catch(e) { const err=document.getElementById("uploadError");err.textContent=e.message;err.hidden=false; }
+  button.textContent="Load dataset";
+});
+document.getElementById("applyUpload").onclick=async()=>{
+  if(!uploadBytes)return;
+  const button=document.getElementById("applyUpload");button.disabled=true;button.textContent="Loading…";
+  const q=new URLSearchParams({name:document.getElementById("uploadName").value,group_a:document.getElementById("map-group_a").value,
+    group_b:document.getElementById("map-group_b").value,cluster:document.getElementById("map-cluster").value,
+    series:document.getElementById("map-series").value,x:document.getElementById("map-x").value,y:document.getElementById("map-y").value,
+    ionic_strength:document.getElementById("map-ionic_strength").value,filename:uploadFilename});
+  try {
+    const r=await fetch("/api/upload?"+q,{method:"POST",body:uploadBytes});const result=await r.json();if(!r.ok)throw new Error(r.status===404?"Upload API not found. Restart the app from Adsorption-project with: python -m curvelib.api":(result.detail||"Upload failed"));
+    document.getElementById("banner").textContent=`Loaded ${result.data.rows.toLocaleString()} rows and ${result.data.curves.toLocaleString()} curves. Data stays in this running session.`;
+    document.getElementById("uploadDialog").close();window.location.reload();
+  } catch(e) { const err=document.getElementById("uploadError");err.textContent=e.message;err.hidden=false;button.disabled=false;button.textContent="Load dataset"; }
+};
+
+function addIonRow() {
+  const row=document.createElement("div");row.className="ion-row";
+  row.innerHTML='<input type="text" aria-label="Ion name" placeholder="Ion (optional)"><input type="number" min="0" step="any" aria-label="Concentration" placeholder="Concentration"><input type="number" step="1" aria-label="Ion charge" placeholder="Charge z"><button class="subtle" type="button" aria-label="Remove ion">Remove</button>';
+  row.querySelector("button").onclick=()=>row.remove();
+  document.getElementById("ionRows").appendChild(row);
+}
+document.getElementById("addIon").onclick=addIonRow;
+document.getElementById("calculateIonicStrength").onclick=()=>{
+  const unit=Number(document.getElementById("ionUnit").value);let sum=0,used=0;
+  for(const row of document.querySelectorAll("#ionRows .ion-row")){
+    const concentration=row.querySelectorAll("input")[1].value,charge=row.querySelectorAll("input")[2].value;
+    if(concentration===""&&charge==="")continue;
+    const c=Number(concentration),z=Number(charge);
+    if(concentration===""||charge===""||!Number.isFinite(c)||c<0||!Number.isFinite(z)||!Number.isInteger(z)){
+      document.getElementById("ionicStrengthStatus").textContent="Enter a non-negative concentration and an integer charge for each ion.";return;
+    }
+    sum+=(c*unit)*z*z;used++;
+  }
+  if(!used){document.getElementById("ionicStrengthStatus").textContent="Add at least one ion concentration and charge.";return;}
+  const ionicStrength=sum/2;
+  document.getElementById("ionicStrengthValue").value=ionicStrength.toPrecision(6);
+  document.getElementById("ionicStrengthStatus").textContent=`Calculated I = ${ionicStrength.toExponential(4)} mol/L (${(ionicStrength*1000).toPrecision(4)} mmol/L).`;
+};
+addIonRow();
+
+function evaluateArithmetic(expression) {
+  const source=expression.replace(/[×]/g,"*").replace(/[÷]/g,"/");
+  const tokens=[];let i=0;
+  while(i<source.length){
+    if(/\s/.test(source[i])){i++;continue;}
+    const number=source.slice(i).match(/^(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?/i);
+    if(number){tokens.push(Number(number[0]));i+=number[0].length;continue;}
+    if("()+-*/^".includes(source[i])){tokens.push(source[i++]);continue;}
+    throw new Error("Use numbers, parentheses, and + − × ÷ or xʸ.");
+  }
+  let pos=0;
+  const primary=()=>{
+    const t=tokens[pos++];
+    if(typeof t==="number")return t;
+    if(t==="("){const v=add();if(tokens[pos++]!==")")throw new Error("Check the parentheses.");return v;}
+    throw new Error("Enter a complete arithmetic expression.");
+  };
+  const power=()=>{const left=unary();if(tokens[pos]==="^"){pos++;return Math.pow(left,power());}return left;};
+  const unary=()=>{if(tokens[pos]==="+"){pos++;return unary();}if(tokens[pos]==="-"){pos++;return -unary();}return primary();};
+  const multiply=()=>{let v=power();while(tokens[pos]==="*"||tokens[pos]==="/"){const op=tokens[pos++],right=power();v=op==="*"?v*right:v/right;}return v;};
+  const add=()=>{let v=multiply();while(tokens[pos]==="+"||tokens[pos]==="-"){const op=tokens[pos++],right=multiply();v=op==="+"?v+right:v-right;}return v;};
+  if(!tokens.length)throw new Error("Enter an expression first.");
+  const result=add();if(pos!==tokens.length)throw new Error("Check the expression.");
+  if(!Number.isFinite(result))throw new Error("The result is not a finite number.");
+  return result;
+}
+const calcExpression=document.getElementById("calcExpression");
+document.getElementById("calcButtons").addEventListener("click",ev=>{
+  const key=ev.target.closest("button")?.dataset.calc;if(key===undefined)return;
+  if(key==="clear")calcExpression.value="";
+  else if(key==="back")calcExpression.value=calcExpression.value.slice(0,-1);
+  else calcExpression.value+=key;
+  calcExpression.focus();
+});
+const calculateExpression=()=>{
+  try{const value=evaluateArithmetic(calcExpression.value);calcExpression.value=String(value);document.getElementById("calcResult").textContent=`= ${value.toLocaleString(undefined,{maximumSignificantDigits:12})}`;}
+  catch(e){document.getElementById("calcResult").textContent=e.message;}
+};
+document.getElementById("calculateExpression").onclick=calculateExpression;
+calcExpression.addEventListener("keydown",ev=>{if(ev.key==="Enter"){ev.preventDefault();calculateExpression();}});
 
 init().catch(e => document.getElementById("banner").textContent = "Error: " + e.message);
 </script>

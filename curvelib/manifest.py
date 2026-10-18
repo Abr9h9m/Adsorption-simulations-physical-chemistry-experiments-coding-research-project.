@@ -16,7 +16,7 @@ Unknown roles are an error. Unit conversions are declared (`units_from` + `conve
 import yaml
 from jsonschema import Draft202012Validator
 
-ROLES = ["group_a", "group_b", "cluster", "series", "sweep_x", "value", "covariate", "label"]
+ROLES = ["group_a", "group_b", "cluster", "series", "sweep_x", "value", "covariate", "label", "ionic_strength"]
 
 SCHEMA = {
     "type": "object",

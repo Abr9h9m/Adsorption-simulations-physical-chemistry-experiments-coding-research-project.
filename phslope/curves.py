@@ -34,8 +34,13 @@ def _n_levels(s, decimals):
     s = s.dropna()
     if s.empty:
         return 0
-    if s.dtype == object:
+    # Pandas 3 can infer nullable Arrow string columns, which are not `object`.
+    # Condition summaries must treat every non-numeric dtype as categories.
+    if not pd.api.types.is_numeric_dtype(s.dtype):
         return s.nunique()
+    s = pd.to_numeric(s, errors="coerce").dropna()
+    if s.empty:
+        return 0
     if decimals is None:
         s = np.log10(s[s > 0]).round(2)
     else:

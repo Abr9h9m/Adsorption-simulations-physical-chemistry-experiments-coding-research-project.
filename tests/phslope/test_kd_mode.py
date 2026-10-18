@@ -2,6 +2,7 @@
 import os
 import subprocess
 import sys
+from io import StringIO
 
 import numpy as np
 import pandas as pd
@@ -32,7 +33,7 @@ out = pd.DataFrame({"total_sorbate_mol_L": [1e-6] * 5, "solids_g_L": [2.0, 0.5, 
 add_kd_response(out, df)
 print(out[["Kd_L_kg", "response", "kd_source"]].to_json(orient="split"))
 """
-    r = pd.read_json(_run(code, "kd"), orient="split")
+    r = pd.read_json(StringIO(_run(code, "kd")), orient="split")
     assert np.isclose(r["Kd_L_kg"][0], 1000 * 6e-7 / (2.0 * 4e-7))          # the formula as given
     assert np.isclose(r["response"][0], r["Kd_L_kg"][0] / (r["Kd_L_kg"][0] + 1000))
     assert np.isclose(r["response"][1], 9.9e-7 / (9.9e-7 + 1e-8 * 0.5))

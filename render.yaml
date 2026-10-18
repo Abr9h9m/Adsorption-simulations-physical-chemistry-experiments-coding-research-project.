@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: curvelib
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn curvelib.api:app --host 0.0.0.0 --port $PORT --workers 1
+    envVars:
+      - key: CURVELIB_MAX_UPLOAD_MB
+        value: "10"
+      - key: CURVELIB_MAX_ACTIVE_SESSIONS
+        value: "4"
+      - key: CURVELIB_SESSION_TTL_SECONDS
+        value: "7200"
